@@ -3,3 +3,5 @@ node_modules
 .vercel
 .env*.local
 *.tsbuildinfo
+next-env.d.ts
+Toan_10_Theo_Bai/

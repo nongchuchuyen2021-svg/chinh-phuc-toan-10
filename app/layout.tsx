@@ -1,9 +1,11 @@
-import type { Metadata } from 'next';
-import './globals.css';
+import type { Metadata } from "next";
+import Link from "next/link";
+import "./globals.css";
 
 export const metadata: Metadata = {
-  title: 'Luyện trắc nghiệm Toán 10 — THPT Na Rì',
-  description: 'Website ôn tập và luyện trắc nghiệm môn Toán lớp 10 theo bộ sách Kết nối tri thức với cuộc sống của trường THPT Na Rì.',
+  title: "Chinh phục Toán 10 — THPT Na Rì",
+  description:
+    "Cổng học tập & ôn luyện Toán 10 trực tuyến (Bộ sách Kết nối tri thức với cuộc sống) của Trường THPT Na Rì, tỉnh Thái Nguyên — Lý thuyết tương tác, trắc nghiệm 4 lựa chọn, đúng/sai chuẩn cấu trúc Bộ GD&ĐT, trả lời ngắn, sổ tay công thức và thi thử trực tuyến.",
 };
 
 export default function RootLayout({
@@ -14,51 +16,86 @@ export default function RootLayout({
   return (
     <html lang="vi">
       <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap"
+          rel="stylesheet"
+        />
         <link
           rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css"
-          integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+"
           crossOrigin="anonymous"
         />
         <script
           defer
           src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js"
-          integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaigo2XXCG4wgfcq4BFV5J4jNGvVC4t201eWPmV"
           crossOrigin="anonymous"
         ></script>
         <script
           defer
           src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js"
-          integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZko/WgHtn48RdLAOTIdFe0EGzHy1xJR1PiTXWCx"
           crossOrigin="anonymous"
         ></script>
       </head>
-      <body className="antialiased">
-        <header className="sticky top-0 z-50 glass-card shadow-sm border-b border-slate-200">
-          <div className="max-w-6xl mx-auto px-4 h-16 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-indigo-600 to-blue-600 flex items-center justify-center text-white font-bold shadow-md shadow-indigo-200">
+      <body className="font-body text-star antialiased selection:bg-nebula/30">
+        <header className="sticky top-0 z-50 glass-bright border-b border-indigo-100/60 transition-all">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-nebula via-indigo-600 to-plasma flex items-center justify-center text-white font-display font-bold text-lg shadow-glow group-hover:scale-105 transition">
                 T10
               </div>
               <div>
-                <h1 className="font-bold text-slate-800 text-base leading-tight">TOÁN 10 — KẾT NỐI TRI THỨC</h1>
-                <p className="text-xs text-indigo-600 font-medium">Trường THPT Na Rì</p>
+                <h1 className="font-display font-bold text-slate-900 text-base leading-tight group-hover:text-nebula transition">
+                  CHINH PHỤC TOÁN 10
+                </h1>
+                <p className="text-xs text-nebula font-medium">
+                  THPT Na Rì — Kết nối tri thức
+                </p>
               </div>
-            </a>
-            <div className="flex items-center gap-4 text-sm">
-              <a href="/" className="text-slate-600 hover:text-indigo-600 font-medium transition">Danh sách bài</a>
-              <span className="px-3 py-1 rounded-full bg-indigo-50 text-indigo-700 text-xs font-semibold border border-indigo-200">
-                Năm học 2026–2027
+            </Link>
+
+            <nav className="flex items-center gap-2 sm:gap-4 text-sm font-medium">
+              <Link
+                href="/"
+                className="px-3 py-1.5 rounded-lg text-slate-700 hover:text-nebula hover:bg-indigo-50/70 transition"
+              >
+                Bài học
+              </Link>
+              <Link
+                href="/cong-thuc"
+                className="px-3 py-1.5 rounded-lg text-slate-700 hover:text-nebula hover:bg-indigo-50/70 transition"
+              >
+                Sổ tay công thức
+              </Link>
+              <Link
+                href="/thi-thu"
+                className="px-3 py-1.5 rounded-lg text-slate-700 hover:text-nebula hover:bg-indigo-50/70 transition"
+              >
+                Thi thử
+              </Link>
+              <span className="hidden md:inline-flex items-center gap-1 px-3 py-1 rounded-full bg-indigo-50 text-nebula text-xs font-semibold border border-indigo-200/60">
+                <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                2026–2027
               </span>
-            </div>
+            </nav>
           </div>
         </header>
-        <main className="max-w-6xl mx-auto px-4 py-8">
-          {children}
-        </main>
-        <footer className="mt-16 border-t border-slate-200 py-8 bg-slate-50 text-center text-xs text-slate-500">
-          <p className="font-medium text-slate-600">Hệ thống Ôn tập & Luyện trắc nghiệm Toán 10 — Trường THPT Na Rì</p>
-          <p className="mt-1">Bám sát chuẩn kiến thức & định dạng đề thi mới của Bộ GD&ĐT</p>
+
+        <div className="relative z-10">{children}</div>
+
+        <footer className="relative z-10 mt-20 border-t border-slate-200/80 bg-white/70 backdrop-blur-md py-10 text-center text-xs text-slate-500">
+          <div className="max-w-7xl mx-auto px-4 space-y-2">
+            <p className="font-semibold text-slate-700 text-sm">
+              Hệ thống Chinh phục Toán 10 — Trường THPT Na Rì, tỉnh Thái Nguyên
+            </p>
+            <p className="text-slate-500">
+              Bám sát chương trình SGK Toán 10 (Bộ sách Kết nối tri thức với cuộc sống) & Định dạng đề thi tốt nghiệp mới của Bộ GD&ĐT
+            </p>
+            <p className="text-slate-400 text-[11px] pt-2">
+              © 2026 THPT Na Rì. Thiết kế giao diện học tập thế hệ mới tích hợp KaTeX và tự động theo dõi tiến độ.
+            </p>
+          </div>
         </footer>
       </body>
     </html>

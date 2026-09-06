@@ -1,60 +1,125 @@
 "use client";
 
-import React, { useState } from 'react';
-import { EssayQuestion } from '@/lib/types';
-import MathText from './MathText';
+import { useState } from "react";
+import type { EssayQuestion } from "@/lib/types";
+import MathText from "@/components/MathText";
 
-interface EssayViewerProps {
+export default function EssayViewer({
+  lessonTitle,
+  questions,
+  onBack,
+}: {
+  lessonTitle: string;
   questions: EssayQuestion[];
-}
+  onBack?: () => void;
+}) {
+  const [userAnswers, setUserAnswers] = useState<Record<string, string>>({});
+  const [revealed, setRevealed] = useState<Record<string, boolean>>({});
 
-export default function EssayViewer({ questions }: EssayViewerProps) {
-  const [openSolutions, setOpenSolutions] = useState<{ [qId: string]: boolean }>({});
-
-  const toggleSolution = (qId: string) => {
-    setOpenSolutions(prev => ({ ...prev, [qId]: !prev[qId] }));
-  };
+  function handleCheck(qId: string) {
+    setRevealed((prev) => ({ ...prev, [qId]: true }));
+  }
 
   return (
-    <div className="space-y-4">
-      {questions.map((q, idx) => (
-        <div key={q.id} className="p-6 rounded-2xl glass-card shadow-sm border border-slate-200 space-y-4">
-          <div className="flex items-start gap-3">
-            <span className="flex-shrink-0 px-2.5 py-1 rounded-md bg-purple-100 text-purple-800 text-xs font-bold">
-              Bài {idx + 1}
-            </span>
-            <div className="font-semibold text-slate-800 text-sm leading-relaxed flex-1">
-              <MathText content={q.question} />
-            </div>
-          </div>
-
-          <div className="pt-2 flex items-center justify-between border-t border-slate-100">
-            {q.shortAnswer && (
-              <span className="text-xs text-slate-500 font-medium">
-                Đáp số ngắn gọn: <strong className="text-indigo-600"><MathText content={q.shortAnswer} /></strong>
-              </span>
-            )}
+    <div className="max-w-3xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="glass rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div className="flex items-center gap-3">
+          {onBack && (
             <button
-              onClick={() => toggleSolution(q.id)}
-              className="ml-auto px-4 py-1.5 rounded-lg bg-indigo-50 hover:bg-indigo-100 text-indigo-700 text-xs font-bold transition flex items-center gap-1.5"
+              onClick={onBack}
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-indigo-50 transition"
             >
-              <span>{openSolutions[q.id] ? 'Ẩn lời giải' : 'Xem hướng dẫn giải'}</span>
-              <svg className={`w-3.5 h-3.5 transform transition ${openSolutions[q.id] ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"/>
-              </svg>
+              ← Trở về
             </button>
-          </div>
-
-          {openSolutions[q.id] && (
-            <div className="p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-700 space-y-2">
-              <div className="font-bold text-purple-800">Lời giải chi tiết từng bước:</div>
-              <div className="leading-relaxed whitespace-pre-line">
-                <MathText content={q.solution} />
-              </div>
-            </div>
           )}
+          <span className="font-display text-xs font-bold text-slate-700">
+            Câu hỏi Trả lời ngắn / Tự luận ({questions.length} câu)
+          </span>
         </div>
-      ))}
+      </div>
+
+      {/* Questions list */}
+      <div className="space-y-6">
+        {questions.map((q, idx) => {
+          const isRevealed = revealed[q.id];
+          const userVal = userAnswers[q.id] || "";
+          const isMatch =
+            userVal.trim().toLowerCase() === q.answer.trim().toLowerCase();
+
+          return (
+            <div
+              key={q.id}
+              className="glass rounded-3xl p-6 sm:p-8 space-y-5 shadow-md border border-indigo-100/70"
+            >
+              <div className="space-y-2">
+                <span className="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-amber-50 text-amber-700 border border-amber-100">
+                  CÂU HỎI {idx + 1}
+                </span>
+                <div className="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed">
+                  <MathText content={q.q} />
+                </div>
+              </div>
+
+              {/* Student Answer Input */}
+              <div className="space-y-3 pt-2">
+                <label className="text-xs font-semibold text-slate-600">
+                  Nhập đáp số của bạn:
+                </label>
+                <div className="flex gap-3">
+                  <input
+                    type="text"
+                    value={userVal}
+                    onChange={(e) =>
+                      setUserAnswers({ ...userAnswers, [q.id]: e.target.value })
+                    }
+                    placeholder="Ví dụ: 5, -2/3, (1; 2)..."
+                    className="flex-1 px-4 py-2.5 rounded-xl border border-slate-200 glass text-sm focus:outline-none focus:ring-2 focus:ring-nebula shadow-sm font-mono"
+                  />
+                  <button
+                    onClick={() => handleCheck(q.id)}
+                    className="px-5 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md transition shrink-0"
+                  >
+                    Kiểm tra
+                  </button>
+                </div>
+              </div>
+
+              {/* Solution breakdown */}
+              {isRevealed && (
+                <div className="p-5 rounded-2xl bg-indigo-50/70 border border-indigo-200/80 space-y-3 animate-pop-in">
+                  <div className="flex items-center gap-2">
+                    <span className="text-sm font-bold text-slate-900">
+                      Đáp án chuẩn:
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-md bg-white border border-indigo-200 font-mono font-bold text-sm text-indigo-700">
+                      {q.answer}
+                    </span>
+                    {userVal.trim() && (
+                      <span
+                        className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                          isMatch
+                            ? "bg-emerald-100 text-emerald-800"
+                            : "bg-rose-100 text-rose-800"
+                        }`}
+                      >
+                        {isMatch ? "✓ Chính xác" : "✗ Chưa khớp"}
+                      </span>
+                    )}
+                  </div>
+
+                  {q.explain && (
+                    <div className="text-xs sm:text-sm text-slate-700 leading-relaxed border-t border-indigo-100 pt-2">
+                      <strong className="text-slate-900">Hướng dẫn giải: </strong>
+                      <MathText content={q.explain} />
+                    </div>
+                  )}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

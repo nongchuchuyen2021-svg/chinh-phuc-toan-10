@@ -1,168 +1,243 @@
 "use client";
 
-import React, { useState } from 'react';
-import { TrueFalseQuestion } from '@/lib/types';
-import { updateLessonTFScore } from '@/lib/progress';
-import MathText from './MathText';
+import { useState } from "react";
+import type { TFQuestion } from "@/lib/types";
+import MathText from "@/components/MathText";
 
-interface TrueFalseQuizProps {
-  baiId: string;
-  questions: TrueFalseQuestion[];
-}
+export default function TrueFalseQuiz({
+  lessonId,
+  lessonTitle,
+  questions,
+  onBack,
+}: {
+  lessonId: string;
+  lessonTitle: string;
+  questions: TFQuestion[];
+  onBack?: () => void;
+}) {
+  const [current, setCurrent] = useState(0);
+  const [userAnswers, setUserAnswers] = useState<Record<number, boolean | null>>({});
+  const [submitted, setSubmitted] = useState(false);
+  const [totalScore, setTotalScore] = useState(0);
 
-export default function TrueFalseQuiz({ baiId, questions }: TrueFalseQuizProps) {
-  const [answers, setAnswers] = useState<{ [qId: string]: { [sId: string]: boolean } }>({});
-  const [showResults, setShowResults] = useState(false);
+  const q = questions[current];
 
-  const handleSelect = (qId: string, sId: string, val: boolean) => {
-    if (showResults) return;
-    setAnswers(prev => ({
+  function handleSelect(statementIdx: number, value: boolean) {
+    if (submitted) return;
+    setUserAnswers((prev) => ({
       ...prev,
-      [qId]: { ...(prev[qId] || {}), [sId]: val }
+      [statementIdx]: value,
     }));
-  };
+  }
 
-  const calculateScore = () => {
-    let totalScore = 0;
-    let correctStatements = 0;
-    let totalStatements = 0;
+  function calculateStatementScore(correctCount: number): number {
+    if (correctCount === 1) return 0.1;
+    if (correctCount === 2) return 0.25;
+    if (correctCount === 3) return 0.5;
+    if (correctCount === 4) return 1.0;
+    return 0.0;
+  }
 
-    questions.forEach(q => {
-      const qAns = answers[q.id] || {};
-      let qCorrect = 0;
-      q.statements.forEach(s => {
-        totalStatements++;
-        if (qAns[s.id] === s.isCorrect) {
-          qCorrect++;
-          correctStatements++;
-        }
-      });
-
-      // Scoring table per question (standard exam):
-      // 1 correct: 0.1 pt, 2 correct: 0.25 pt, 3 correct: 0.5 pt, 4 correct: 1.0 pt
-      if (qCorrect === 1) totalScore += 0.1;
-      else if (qCorrect === 2) totalScore += 0.25;
-      else if (qCorrect === 3) totalScore += 0.5;
-      else if (qCorrect === 4) totalScore += 1.0;
+  function handleSubmit() {
+    if (!q) return;
+    let correct = 0;
+    q.statements.forEach((st, idx) => {
+      if (userAnswers[idx] === st.answer) {
+        correct++;
+      }
     });
+    const score = calculateStatementScore(correct);
+    setTotalScore((s) => s + score);
+    setSubmitted(true);
+  }
 
-    return { totalScore, correctStatements, totalStatements };
-  };
+  function next() {
+    if (current + 1 < questions.length) {
+      setCurrent((c) => c + 1);
+      setUserAnswers({});
+      setSubmitted(false);
+    }
+  }
 
-  const handleFinish = () => {
-    setShowResults(true);
-    const { totalScore, correctStatements, totalStatements } = calculateScore();
-    updateLessonTFScore(baiId, correctStatements, totalStatements, totalScore);
-  };
+  if (!q) {
+    return (
+      <div className="text-center py-20">
+        <p className="text-slate-500">Chưa có câu hỏi đúng/sai cho bài học này.</p>
+        {onBack && (
+          <button
+            onClick={onBack}
+            className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold"
+          >
+            Quay lại
+          </button>
+        )}
+      </div>
+    );
+  }
 
-  const { totalScore, correctStatements, totalStatements } = calculateScore();
+  const allAnswered = q.statements.every((_, idx) => userAnswers[idx] !== undefined && userAnswers[idx] !== null);
+
+  let statementCorrectCount = 0;
+  if (submitted) {
+    q.statements.forEach((st, idx) => {
+      if (userAnswers[idx] === st.answer) {
+        statementCorrectCount++;
+      }
+    });
+  }
 
   return (
-    <div className="space-y-6">
-      {showResults && (
-        <div className="p-6 rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-700 text-white shadow-lg flex flex-wrap items-center justify-between gap-4">
-          <div>
-            <h3 className="text-xl font-bold">Kết quả dạng Đúng / Sai</h3>
-            <p className="text-xs text-emerald-100 mt-1">
-              Đúng <strong>{correctStatements}/{totalStatements}</strong> ý — Điểm số: <strong>{totalScore.toFixed(2)}/{(questions.length * 1.0).toFixed(1)} điểm</strong>
-            </p>
-          </div>
-          <button
-            onClick={() => { setAnswers({}); setShowResults(false); }}
-            className="px-5 py-2.5 rounded-xl bg-white text-emerald-800 text-xs font-bold hover:bg-emerald-50 transition shadow"
-          >
-            Làm lại từ đầu
-          </button>
+    <div className="max-w-3xl mx-auto space-y-6">
+      {/* Header */}
+      <div className="glass rounded-2xl p-4 flex items-center justify-between shadow-sm">
+        <div className="flex items-center gap-3">
+          {onBack && (
+            <button
+              onClick={onBack}
+              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-indigo-50 transition"
+            >
+              ← Trở về
+            </button>
+          )}
+          <span className="font-display text-xs font-bold text-slate-700">
+            Câu Đúng/Sai {current + 1} / {questions.length}
+          </span>
         </div>
-      )}
 
-      <div className="space-y-6">
-        {questions.map((q, idx) => (
-          <div key={q.id} className="p-6 rounded-2xl glass-card shadow-sm border border-slate-200 space-y-4">
-            <div className="flex items-start gap-3">
-              <span className="flex-shrink-0 px-2 py-1 rounded-md bg-teal-100 text-teal-800 text-xs font-bold">
-                Câu {idx + 1}
-              </span>
-              <div className="font-semibold text-slate-800 text-sm leading-relaxed">
-                <MathText content={q.context} />
-              </div>
-            </div>
-
-            <div className="space-y-3 pt-2">
-              {q.statements.map((s, sIdx) => {
-                const letters = ["a", "b", "c", "d"];
-                const userChoice = answers[q.id]?.[s.id];
-                const isCorrect = showResults && userChoice === s.isCorrect;
-                const isWrong = showResults && userChoice !== undefined && userChoice !== s.isCorrect;
-
-                return (
-                  <div
-                    key={s.id}
-                    className={`p-3.5 rounded-xl border text-xs transition ${
-                      showResults
-                        ? isCorrect
-                          ? 'bg-emerald-50 border-emerald-300 text-emerald-950'
-                          : isWrong
-                          ? 'bg-rose-50 border-rose-300 text-rose-950'
-                          : 'bg-slate-50 border-slate-200'
-                        : 'bg-white border-slate-200 hover:border-slate-300'
-                    }`}
-                  >
-                    <div className="flex items-start justify-between gap-4">
-                      <div className="flex items-start gap-2 flex-1">
-                        <span className="font-bold text-slate-600">{letters[sIdx]})</span>
-                        <div className="leading-relaxed">
-                          <MathText content={s.statement} />
-                        </div>
-                      </div>
-
-                      <div className="flex items-center gap-1.5 flex-shrink-0">
-                        <button
-                          onClick={() => handleSelect(q.id, s.id, true)}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                            userChoice === true
-                              ? 'bg-indigo-600 text-white'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                          }`}
-                        >
-                          Đúng
-                        </button>
-                        <button
-                          onClick={() => handleSelect(q.id, s.id, false)}
-                          className={`px-3 py-1 rounded-lg text-xs font-bold transition ${
-                            userChoice === false
-                              ? 'bg-rose-600 text-white'
-                              : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
-                          }`}
-                        >
-                          Sai
-                        </button>
-                      </div>
-                    </div>
-
-                    {showResults && (
-                      <div className="mt-2.5 pt-2 border-t border-slate-200/60 text-[11px] text-slate-600">
-                        <span className="font-bold text-indigo-700">Đáp án: {s.isCorrect ? 'ĐÚNG' : 'SAI'}</span> — <MathText content={s.explanation} />
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          </div>
-        ))}
+        <div className="flex items-center gap-2">
+          <span className="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">
+            Điểm: {totalScore.toFixed(2)}đ
+          </span>
+        </div>
       </div>
 
-      {!showResults && (
-        <div className="text-center pt-4">
-          <button
-            onClick={handleFinish}
-            className="px-8 py-3 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-sm transition shadow-lg shadow-teal-200"
-          >
-            Chấm điểm Đúng / Sai
-          </button>
+      {/* Main Question Card */}
+      <div className="glass rounded-3xl p-6 sm:p-8 space-y-6 shadow-md border border-indigo-100/70">
+        <div className="space-y-3">
+          <span className="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-100">
+            ĐỊNH DẠNG ĐỀ THI MỚI (4 MỆNH ĐỀ)
+          </span>
+          <div className="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed">
+            <MathText content={q.context} />
+          </div>
+          <p className="text-xs text-slate-500 italic">
+            * Barem điểm Bộ GD&ĐT: Đúng 1 ý: 0.1đ | Đúng 2 ý: 0.25đ | Đúng 3 ý: 0.5đ | Đúng cả 4 ý: 1.0đ.
+          </p>
         </div>
-      )}
+
+        {/* 4 Statements */}
+        <div className="space-y-4 pt-2">
+          {q.statements.map((st, idx) => {
+            const userPick = userAnswers[idx];
+            const isCorrect = userPick === st.answer;
+
+            let rowStyle = "glass border-slate-200";
+            if (submitted) {
+              if (isCorrect) {
+                rowStyle = "bg-emerald-50/60 border-emerald-300";
+              } else {
+                rowStyle = "bg-rose-50/60 border-rose-300";
+              }
+            }
+
+            return (
+              <div key={idx} className={`p-4 rounded-2xl border transition space-y-2 ${rowStyle}`}>
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+                  <div className="flex items-start gap-3 flex-1 text-sm font-medium text-slate-900">
+                    <span className="font-display font-bold text-xs w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
+                      {["a)", "b)", "c)", "d)"][idx]}
+                    </span>
+                    <div className="leading-relaxed">
+                      <MathText content={st.text} />
+                    </div>
+                  </div>
+
+                  {/* True / False Toggle */}
+                  <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                    <button
+                      disabled={submitted}
+                      onClick={() => handleSelect(idx, true)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition border ${
+                        userPick === true
+                          ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
+                          : "bg-white text-slate-700 border-slate-200 hover:bg-emerald-50"
+                      }`}
+                    >
+                      Đúng
+                    </button>
+                    <button
+                      disabled={submitted}
+                      onClick={() => handleSelect(idx, false)}
+                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition border ${
+                        userPick === false
+                          ? "bg-rose-600 text-white border-rose-600 shadow-sm"
+                          : "bg-white text-slate-700 border-slate-200 hover:bg-rose-50"
+                      }`}
+                    >
+                      Sai
+                    </button>
+                  </div>
+                </div>
+
+                {/* Explanation after submission */}
+                {submitted && (
+                  <div className="pt-2 text-xs text-slate-600 border-t border-slate-200/60 space-y-1">
+                    <div>
+                      <strong>Đáp án: </strong>
+                      <span className="font-bold text-indigo-700">
+                        {st.answer ? "Đúng" : "Sai"}
+                      </span>
+                    </div>
+                    <div>
+                      <strong>Giải thích: </strong>
+                      <MathText content={st.explain} />
+                    </div>
+                  </div>
+                )}
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Action Button */}
+        <div className="pt-4 flex items-center justify-between">
+          <div>
+            {submitted && (
+              <span className="font-display text-sm font-bold text-indigo-700">
+                Bạn đạt +{calculateStatementScore(statementCorrectCount).toFixed(2)}đ ({statementCorrectCount}/4 ý đúng)
+              </span>
+            )}
+          </div>
+
+          {!submitted ? (
+            <button
+              disabled={!allAnswered}
+              onClick={handleSubmit}
+              className={`px-6 py-2.5 rounded-xl font-semibold text-sm shadow-md transition ${
+                allAnswered
+                  ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-glow"
+                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
+              }`}
+            >
+              Chấm điểm câu này
+            </button>
+          ) : current + 1 < questions.length ? (
+            <button
+              onClick={next}
+              className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md transition"
+            >
+              Câu tiếp theo →
+            </button>
+          ) : (
+            <button
+              onClick={onBack}
+              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md transition"
+            >
+              Hoàn thành ôn luyện ✓
+            </button>
+          )}
+        </div>
+      </div>
     </div>
   );
 }

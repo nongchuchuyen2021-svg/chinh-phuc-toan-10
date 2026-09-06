@@ -1,54 +1,54 @@
-import { UserProgress } from './types';
+import type { LessonProgress, ProgressMap } from "./types";
 
-const STORAGE_KEY = 'toan_10_user_progress_v1';
+const KEY = "cptoan10:progress";
 
-export function getProgress(): UserProgress {
-  if (typeof window === 'undefined') return {};
+export function getProgress(): ProgressMap {
+  if (typeof window === "undefined") return {};
   try {
-    const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : {};
-  } catch (e) {
-    console.error('Error loading progress:', e);
+    const raw = localStorage.getItem(KEY);
+    return raw ? JSON.parse(raw) : {};
+  } catch {
     return {};
   }
 }
 
-export function saveProgress(progress: UserProgress): void {
-  if (typeof window === 'undefined') return;
-  try {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-  } catch (e) {
-    console.error('Error saving progress:', e);
-  }
+export function getLessonProgress(lessonId: string): LessonProgress | null {
+  return getProgress()[lessonId] ?? null;
 }
 
-export function updateLessonMCScore(baiId: string, correct: number, total: number, wrongIds: string[]): void {
-  const progress = getProgress();
-  const current = progress[baiId] || {};
-  progress[baiId] = {
-    ...current,
-    mcScore: {
-      correct,
-      total,
-      percent: Math.round((correct / total) * 100),
-      date: new Date().toLocaleDateString('vi-VN')
-    },
-    wrongQuestions: wrongIds
-  };
-  saveProgress(progress);
+export function theoryKey(lessonId: string) {
+  return `${lessonId}:lt`;
 }
 
-export function updateLessonTFScore(baiId: string, correct: number, total: number, score: number): void {
-  const progress = getProgress();
-  const current = progress[baiId] || {};
-  progress[baiId] = {
-    ...current,
-    tfScore: {
-      correct,
-      total,
-      score: Math.round(score * 10) / 10,
-      date: new Date().toLocaleDateString('vi-VN')
-    }
+export function tfKey(lessonId: string) {
+  return `${lessonId}:ds`;
+}
+
+export function essayKey(lessonId: string) {
+  return `${lessonId}:tl`;
+}
+
+export function markTheoryRead(lessonId: string) {
+  if (typeof window === "undefined") return;
+  const all = getProgress();
+  const key = theoryKey(lessonId);
+  if (all[key]?.best === 100) return;
+  all[key] = {
+    best: 100,
+    attempts: (all[key]?.attempts ?? 0) + 1,
+    lastAt: new Date().toISOString(),
   };
-  saveProgress(progress);
+  localStorage.setItem(KEY, JSON.stringify(all));
+}
+
+export function saveAttempt(lessonId: string, scorePercent: number) {
+  if (typeof window === "undefined") return;
+  const all = getProgress();
+  const prev = all[lessonId];
+  all[lessonId] = {
+    best: Math.max(prev?.best ?? 0, scorePercent),
+    attempts: (prev?.attempts ?? 0) + 1,
+    lastAt: new Date().toISOString(),
+  };
+  localStorage.setItem(KEY, JSON.stringify(all));
 }
