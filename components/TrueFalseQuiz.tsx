@@ -3,6 +3,8 @@
 import { useState } from "react";
 import type { TFQuestion } from "@/lib/types";
 import MathText from "@/components/MathText";
+import Confetti from "@/components/Confetti";
+import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound";
 
 export default function TrueFalseQuiz({
   lessonId,
@@ -19,11 +21,14 @@ export default function TrueFalseQuiz({
   const [userAnswers, setUserAnswers] = useState<Record<number, boolean | null>>({});
   const [submitted, setSubmitted] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
+  const [finished, setFinished] = useState(false);
+  const [showConfetti, setShowConfetti] = useState(false);
 
   const q = questions[current];
 
   function handleSelect(statementIdx: number, value: boolean) {
     if (submitted) return;
+    playClick();
     setUserAnswers((prev) => ({
       ...prev,
       [statementIdx]: value,
@@ -49,24 +54,48 @@ export default function TrueFalseQuiz({
     const score = calculateStatementScore(correct);
     setTotalScore((s) => s + score);
     setSubmitted(true);
+
+    if (correct >= 3) {
+      playCorrect();
+    } else {
+      playWrong();
+    }
   }
 
   function next() {
+    playClick();
     if (current + 1 < questions.length) {
       setCurrent((c) => c + 1);
       setUserAnswers({});
       setSubmitted(false);
+    } else {
+      setFinished(true);
+      const maxPossible = questions.length;
+      if (totalScore / maxPossible >= 0.7) {
+        playCelebration();
+        setShowConfetti(true);
+      }
     }
+  }
+
+  function restart() {
+    playClick();
+    setCurrent(0);
+    setUserAnswers({});
+    setSubmitted(false);
+    setTotalScore(0);
+    setFinished(false);
+    setShowConfetti(false);
   }
 
   if (!q) {
     return (
-      <div className="text-center py-20">
-        <p className="text-slate-500">Chưa có câu hỏi đúng/sai cho bài học này.</p>
+      <div className="text-center py-20 bg-void-card/60 rounded-3xl border border-void-border p-8">
+        <p className="text-star-mute">Chưa có câu hỏi đúng/sai cho bài học này.</p>
         {onBack && (
           <button
             onClick={onBack}
-            className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded-xl text-sm font-semibold"
+            className="mt-4 px-4 py-2 bg-cyan text-white rounded-xl text-xs font-semibold"
           >
             Quay lại
           </button>
@@ -86,81 +115,111 @@ export default function TrueFalseQuiz({
     });
   }
 
-  return (
-    <div className="max-w-3xl mx-auto space-y-6">
-      {/* Header */}
-      <div className="glass rounded-2xl p-4 flex items-center justify-between shadow-sm">
-        <div className="flex items-center gap-3">
-          {onBack && (
+  if (finished) {
+    const maxScore = questions.length * 1.0;
+    const pct = maxScore > 0 ? Math.round((totalScore / maxScore) * 100) : 0;
+
+    return (
+      <div className="max-w-2xl mx-auto space-y-6 pb-12 animate-fade-in-up">
+        {showConfetti && <Confetti trigger={true} />}
+
+        <div className="rounded-3xl border border-emerald/40 bg-void-card/95 p-6 sm:p-8 text-center shadow-glow-emerald backdrop-blur-xl space-y-5">
+          <span className="text-5xl">{pct >= 80 ? "🏆" : pct >= 50 ? "👍" : "💪"}</span>
+
+          <div>
+            <h2 className="font-display text-2xl sm:text-3xl font-bold text-star">
+              Hoàn thành phần thi Đúng / Sai!
+            </h2>
+            <p className="text-xs sm:text-sm text-star-soft mt-1">
+              Barem điểm Bộ GD&ĐT: 0.1 - 0.25 - 0.5 - 1.0 điểm
+            </p>
+          </div>
+
+          <div className="p-4 rounded-2xl bg-void-subtle border border-void-border inline-block px-8">
+            <span className="block text-3xl font-mono font-bold text-emerald-glow">
+              {totalScore.toFixed(2)} / {maxScore.toFixed(1)} điểm
+            </span>
+            <span className="text-xs text-star-mute">Đạt {pct}%</span>
+          </div>
+
+          <div className="flex justify-center gap-3 pt-3">
             <button
-              onClick={onBack}
-              className="px-3 py-1.5 rounded-lg text-xs font-semibold text-slate-600 hover:bg-indigo-50 transition"
+              onClick={restart}
+              className="px-6 py-3 rounded-xl bg-gradient-to-r from-emerald to-cyan text-white font-mono text-xs font-bold shadow-glow-emerald hover:opacity-90 transition"
             >
-              ← Trở về
+              🔄 Luyện lại dạng Đúng/Sai
             </button>
-          )}
-          <span className="font-display text-xs font-bold text-slate-700">
-            Câu Đúng/Sai {current + 1} / {questions.length}
+          </div>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <div className="max-w-3xl mx-auto space-y-6 pb-12">
+      {/* Progress & Score Bar */}
+      <div className="rounded-2xl border border-void-border bg-void-card/90 p-4 shadow-card backdrop-blur-xl flex items-center justify-between gap-4">
+        <div className="flex items-center gap-2">
+          <span className="flex h-7 w-7 items-center justify-center rounded-xl bg-emerald/15 border border-emerald/30 text-xs font-mono font-bold text-emerald-glow">
+            {current + 1}
+          </span>
+          <span className="text-xs font-mono text-star-soft">
+            / {questions.length} câu Đúng/Sai
           </span>
         </div>
 
-        <div className="flex items-center gap-2">
-          <span className="px-2.5 py-1 rounded-md bg-indigo-50 text-indigo-700 text-xs font-bold border border-indigo-100">
-            Điểm: {totalScore.toFixed(2)}đ
-          </span>
+        <div className="text-xs font-mono text-emerald-glow font-bold">
+          Tổng điểm: {totalScore.toFixed(2)}
         </div>
       </div>
 
-      {/* Main Question Card */}
-      <div className="glass rounded-3xl p-6 sm:p-8 space-y-6 shadow-md border border-indigo-100/70">
-        <div className="space-y-3">
-          <span className="inline-block text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-sky-50 text-sky-700 border border-sky-100">
-            ĐỊNH DẠNG ĐỀ THI MỚI (4 MỆNH ĐỀ)
-          </span>
-          <div className="text-base sm:text-lg font-semibold text-slate-900 leading-relaxed">
+      {/* Context Card */}
+      <div className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
+        <div>
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/30 text-emerald-glow text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
+            ⚖️ Dạng thức Đúng / Sai 4 mệnh đề
+          </div>
+          <div className="text-base sm:text-lg font-medium text-star leading-relaxed">
             <MathText content={q.context} />
           </div>
-          <p className="text-xs text-slate-500 italic">
-            * Barem điểm Bộ GD&ĐT: Đúng 1 ý: 0.1đ | Đúng 2 ý: 0.25đ | Đúng 3 ý: 0.5đ | Đúng cả 4 ý: 1.0đ.
-          </p>
         </div>
 
         {/* 4 Statements */}
         <div className="space-y-4 pt-2">
           {q.statements.map((st, idx) => {
             const userPick = userAnswers[idx];
-            const isCorrect = userPick === st.answer;
-
-            let rowStyle = "glass border-slate-200";
-            if (submitted) {
-              if (isCorrect) {
-                rowStyle = "bg-emerald-50/60 border-emerald-300";
-              } else {
-                rowStyle = "bg-rose-50/60 border-rose-300";
-              }
-            }
+            const isRight = userPick === st.answer;
 
             return (
-              <div key={idx} className={`p-4 rounded-2xl border transition space-y-2 ${rowStyle}`}>
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-                  <div className="flex items-start gap-3 flex-1 text-sm font-medium text-slate-900">
-                    <span className="font-display font-bold text-xs w-6 h-6 rounded-lg bg-indigo-100 text-indigo-700 flex items-center justify-center shrink-0">
-                      {["a)", "b)", "c)", "d)"][idx]}
+              <div
+                key={idx}
+                className={`p-4 sm:p-5 rounded-2xl border transition-all duration-200 ${
+                  submitted
+                    ? isRight
+                      ? "bg-emerald/10 border-emerald/40"
+                      : "bg-rose/10 border-rose/40"
+                    : "bg-void-subtle border-void-border"
+                }`}
+              >
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                  <div className="flex items-start gap-3 flex-1">
+                    <span className="w-6 h-6 rounded-full bg-void-card border border-void-border flex items-center justify-center font-mono text-xs font-bold text-cyan-glow shrink-0 mt-0.5">
+                      {["a", "b", "c", "d"][idx]}
                     </span>
-                    <div className="leading-relaxed">
+                    <div className="text-xs sm:text-sm text-star leading-relaxed">
                       <MathText content={st.text} />
                     </div>
                   </div>
 
-                  {/* True / False Toggle */}
-                  <div className="flex items-center gap-2 shrink-0 self-end sm:self-auto">
+                  {/* Buttons */}
+                  <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
                     <button
                       disabled={submitted}
                       onClick={() => handleSelect(idx, true)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition border ${
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold border transition ${
                         userPick === true
-                          ? "bg-emerald-600 text-white border-emerald-600 shadow-sm"
-                          : "bg-white text-slate-700 border-slate-200 hover:bg-emerald-50"
+                          ? "bg-emerald/20 border-emerald text-emerald-glow shadow-glow-emerald"
+                          : "bg-void-card border-void-border text-star-soft hover:text-star hover:border-emerald/30"
                       }`}
                     >
                       Đúng
@@ -168,10 +227,10 @@ export default function TrueFalseQuiz({
                     <button
                       disabled={submitted}
                       onClick={() => handleSelect(idx, false)}
-                      className={`px-3 py-1.5 rounded-xl text-xs font-bold transition border ${
+                      className={`px-3.5 py-1.5 rounded-xl text-xs font-mono font-bold border transition ${
                         userPick === false
-                          ? "bg-rose-600 text-white border-rose-600 shadow-sm"
-                          : "bg-white text-slate-700 border-slate-200 hover:bg-rose-50"
+                          ? "bg-rose/20 border-rose text-rose-glow shadow-glow-rose"
+                          : "bg-void-card border-void-border text-star-soft hover:text-star hover:border-rose/30"
                       }`}
                     >
                       Sai
@@ -179,19 +238,15 @@ export default function TrueFalseQuiz({
                   </div>
                 </div>
 
-                {/* Explanation after submission */}
+                {/* Explanation */}
                 {submitted && (
-                  <div className="pt-2 text-xs text-slate-600 border-t border-slate-200/60 space-y-1">
-                    <div>
-                      <strong>Đáp án: </strong>
-                      <span className="font-bold text-indigo-700">
-                        {st.answer ? "Đúng" : "Sai"}
-                      </span>
-                    </div>
-                    <div>
-                      <strong>Giải thích: </strong>
+                  <div className="mt-3 pt-3 border-t border-void-border/70 text-xs text-star-soft leading-relaxed flex items-start gap-2">
+                    <span className={st.answer ? "text-emerald-glow font-bold" : "text-rose-glow font-bold"}>
+                      Đáp án: {st.answer ? "Đúng" : "Sai"}.
+                    </span>
+                    <span>
                       <MathText content={st.explain} />
-                    </div>
+                    </span>
                   </div>
                 )}
               </div>
@@ -199,42 +254,32 @@ export default function TrueFalseQuiz({
           })}
         </div>
 
-        {/* Action Button */}
-        <div className="pt-4 flex items-center justify-between">
-          <div>
-            {submitted && (
-              <span className="font-display text-sm font-bold text-indigo-700">
-                Bạn đạt +{calculateStatementScore(statementCorrectCount).toFixed(2)}đ ({statementCorrectCount}/4 ý đúng)
-              </span>
-            )}
-          </div>
-
+        {/* Action Controls */}
+        <div className="pt-4 flex items-center justify-between border-t border-void-border/70">
           {!submitted ? (
             <button
               disabled={!allAnswered}
               onClick={handleSubmit}
-              className={`px-6 py-2.5 rounded-xl font-semibold text-sm shadow-md transition ${
+              className={`px-6 py-3 rounded-2xl font-display font-bold text-xs sm:text-sm transition ${
                 allAnswered
-                  ? "bg-indigo-600 hover:bg-indigo-700 text-white shadow-glow"
-                  : "bg-slate-200 text-slate-400 cursor-not-allowed"
+                  ? "bg-gradient-to-r from-emerald to-cyan text-white shadow-glow-emerald hover:opacity-95 transform hover:scale-105"
+                  : "bg-void-subtle border border-void-border text-star-mute cursor-not-allowed"
               }`}
             >
               Chấm điểm câu này
             </button>
-          ) : current + 1 < questions.length ? (
-            <button
-              onClick={next}
-              className="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-semibold text-sm shadow-md transition"
-            >
-              Câu tiếp theo →
-            </button>
           ) : (
-            <button
-              onClick={onBack}
-              className="px-6 py-2.5 rounded-xl bg-emerald-600 hover:bg-emerald-700 text-white font-semibold text-sm shadow-md transition"
-            >
-              Hoàn thành ôn luyện ✓
-            </button>
+            <div className="flex items-center justify-between w-full">
+              <span className="text-xs font-mono text-cyan-glow">
+                Đúng {statementCorrectCount}/4 ý • +{calculateStatementScore(statementCorrectCount)} điểm
+              </span>
+              <button
+                onClick={next}
+                className="px-6 py-3 rounded-2xl bg-gradient-to-r from-cyan to-violet text-white font-display font-bold text-xs sm:text-sm shadow-glow-cyan hover:opacity-95 transition transform hover:scale-105"
+              >
+                {current + 1 < questions.length ? "Câu tiếp theo →" : "Xem tổng kết →"}
+              </button>
+            </div>
           )}
         </div>
       </div>

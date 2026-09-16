@@ -1,236 +1,222 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { CURRICULUM } from "@/data/curriculum";
 import { getProgress } from "@/lib/progress";
 import type { LessonCounts, ProgressMap } from "@/lib/types";
 import MathText from "@/components/MathText";
+import { playClick } from "@/lib/sound";
+import ProgressRing from "@/components/ProgressRing";
 
-/* ─── Particle Canvas Background ─────────────────────────────────────────── */
-function ParticleCanvas() {
-  const canvasRef = useRef<HTMLCanvasElement>(null);
-
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let animId: number;
-    let particles: { x: number; y: number; vx: number; vy: number; r: number; a: number }[] = [];
-
-    function resize() {
-      canvas!.width = window.innerWidth;
-      canvas!.height = window.innerHeight;
-    }
-    resize();
-    window.addEventListener("resize", resize);
-
-    const count = Math.min(60, Math.floor((window.innerWidth * window.innerHeight) / 16000));
-    for (let i = 0; i < count; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.35,
-        vy: (Math.random() - 0.5) * 0.35,
-        r: Math.random() * 1.8 + 0.6,
-        a: Math.random() * 0.5 + 0.25,
-      });
-    }
-
-    function draw() {
-      ctx!.clearRect(0, 0, canvas!.width, canvas!.height);
-
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0) p.x = canvas!.width;
-        if (p.x > canvas!.width) p.x = 0;
-        if (p.y < 0) p.y = canvas!.height;
-        if (p.y > canvas!.height) p.y = 0;
-
-        ctx!.beginPath();
-        ctx!.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-        ctx!.fillStyle = `rgba(99, 102, 241, ${p.a * 0.4})`;
-        ctx!.fill();
-      }
-
-      // Đường liên kết giữa các hạt gần nhau
-      for (let i = 0; i < particles.length; i++) {
-        for (let j = i + 1; j < particles.length; j++) {
-          const dx = particles[i].x - particles[j].x;
-          const dy = particles[i].y - particles[j].y;
-          const dist = Math.sqrt(dx * dx + dy * dy);
-          if (dist < 120) {
-            ctx!.beginPath();
-            ctx!.moveTo(particles[i].x, particles[i].y);
-            ctx!.lineTo(particles[j].x, particles[j].y);
-            ctx!.strokeStyle = `rgba(2, 132, 199, ${0.12 * (1 - dist / 120)})`;
-            ctx!.lineWidth = 0.6;
-            ctx!.stroke();
-          }
-        }
-      }
-
-      animId = requestAnimationFrame(draw);
-    }
-    draw();
-
-    return () => {
-      cancelAnimationFrame(animId);
-      window.removeEventListener("resize", resize);
-    };
-  }, []);
-
-  return <canvas ref={canvasRef} className="particles-canvas" />;
-}
-
-/* ─── Progress Ring ───────────────────────────────────────────────────────── */
-function ProgressRing({ done, total, size = 72 }: { done: number; total: number; size?: number }) {
-  const strokeWidth = 4;
-  const radius = (size - strokeWidth) / 2;
-  const circumference = 2 * Math.PI * radius;
-  const pct = total > 0 ? done / total : 0;
-  const offset = circumference * (1 - pct);
-
+function ScoreBadge({ percent }: { percent: number }) {
+  if (percent >= 80) {
+    return (
+      <span className="flex items-center gap-1 rounded-full border border-emerald/40 bg-emerald/15 px-3 py-0.5 font-mono text-xs font-bold text-emerald-glow shadow-glow-emerald">
+        ⭐ {percent}%
+      </span>
+    );
+  }
+  if (percent >= 50) {
+    return (
+      <span className="rounded-full border border-amber/40 bg-amber/15 px-3 py-0.5 font-mono text-xs font-bold text-amber-glow">
+        {percent}%
+      </span>
+    );
+  }
   return (
-    <div className="relative inline-flex items-center justify-center">
-      <svg width={size} height={size} className="drop-shadow-sm">
-        <circle
-          stroke="rgba(99, 102, 241, 0.15)"
-          fill="transparent"
-          strokeWidth={strokeWidth}
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-        />
-        <circle
-          stroke="url(#purpleGradient)"
-          fill="transparent"
-          strokeWidth={strokeWidth}
-          strokeDasharray={circumference}
-          strokeDashoffset={offset}
-          strokeLinecap="round"
-          r={radius}
-          cx={size / 2}
-          cy={size / 2}
-          style={{ transform: "rotate(-90deg)", transformOrigin: "50% 50%", transition: "stroke-dashoffset 0.8s ease" }}
-        />
-        <defs>
-          <linearGradient id="purpleGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#6366F1" />
-            <stop offset="100%" stopColor="#0284C7" />
-          </linearGradient>
-        </defs>
-      </svg>
-      <div className="absolute flex flex-col items-center justify-center text-center">
-        <span className="font-display text-xs font-bold text-slate-900">{Math.round(pct * 100)}%</span>
-      </div>
-    </div>
+    <span className="rounded-full border border-rose/40 bg-rose/15 px-3 py-0.5 font-mono text-xs font-bold text-rose-glow">
+      {percent}%
+    </span>
   );
 }
 
 export default function HomeClient({ counts }: { counts: Record<string, LessonCounts> }) {
   const [progress, setProgress] = useState<ProgressMap>({});
+  const [loaded, setLoaded] = useState(false);
   const [search, setSearch] = useState("");
   const [selectedChapter, setSelectedChapter] = useState<string>("all");
 
   useEffect(() => {
     setProgress(getProgress());
+    setLoaded(true);
   }, []);
 
-  const totalLessons = CURRICULUM.reduce((acc, t) => acc + t.lessons.length, 0);
-  const completedLessons = CURRICULUM.flatMap((t) => t.lessons).filter(
+  const allLessons = CURRICULUM.flatMap((t) => t.lessons);
+  const totalLessons = allLessons.length;
+  const completedLessons = allLessons.filter(
     (l) => (progress[l.id]?.best ?? 0) >= 80
   ).length;
 
+  const totalMCQs = Object.values(counts).reduce((sum, c) => sum + (c.mcq || 0), 0);
+  const totalTFs = Object.values(counts).reduce((sum, c) => sum + (c.tf || 0), 0);
+  const progressPercent = totalLessons > 0 ? Math.round((completedLessons / totalLessons) * 100) : 0;
+
   return (
-    <main className="cosmos relative min-h-screen pb-20">
-      <ParticleCanvas />
+    <main className="relative min-h-screen pb-20">
+      <div className="mx-auto max-w-5xl px-4 pt-8 sm:px-6">
+        {/* ─── Hero Section ─── */}
+        <header className="text-center">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan/30 bg-cyan/10 px-5 py-2 font-display text-sm font-semibold text-cyan-glow shadow-glow-cyan sm:text-base">
+            <span>🏫</span>
+            <span>Trường THPT Na Rì — Tỉnh Thái Nguyên</span>
+          </div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10 space-y-10">
-        {/* ─── Hero Section ──────────────────────────────────────────────── */}
-        <section className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-indigo-700 via-indigo-600 to-sky-700 p-6 sm:p-10 text-white shadow-xl shadow-indigo-900/10">
-          <div className="relative z-10 max-w-3xl space-y-4">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-xs font-semibold tracking-wide uppercase text-indigo-100 border border-white/20">
-              <span className="w-2 h-2 rounded-full bg-emerald-400"></span>
-              THPT Na Rì • Môn Toán 10 • KNTT
-            </div>
+          <div className="mt-6 flex items-center justify-center gap-3">
+            <span className="animate-float text-4xl sm:text-5xl" style={{ animationDelay: "0s" }}>📐</span>
+            <span className="animate-float text-3xl sm:text-4xl" style={{ animationDelay: "0.5s" }}>✨</span>
+            <span className="animate-float text-4xl sm:text-5xl" style={{ animationDelay: "1s" }}>🔺</span>
+            <span className="animate-float text-3xl sm:text-4xl" style={{ animationDelay: "1.5s" }}>↗️</span>
+            <span className="animate-float text-4xl sm:text-5xl" style={{ animationDelay: "2s" }}>🎲</span>
+          </div>
 
-            <h1 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight">
-              Chinh Phục Toán 10
-            </h1>
+          <h1 className="mt-4 font-display text-4xl font-extrabold leading-tight tracking-tight text-star sm:text-5xl md:text-6xl">
+            Chinh Phục{" "}
+            <span className="bg-gradient-to-r from-cyan-glow via-violet-glow to-amber bg-clip-text text-transparent">
+              Toán 10
+            </span>
+          </h1>
 
-            <p className="text-sm sm:text-base text-indigo-100 leading-relaxed max-w-2xl font-normal">
-              Không gian tự học thế hệ mới theo bộ sách <strong>Kết nối tri thức với cuộc sống</strong>. Tích hợp KaTeX sắc nét, ngân hàng câu hỏi 3 dạng thức thi mới của Bộ GD&ĐT, Sổ tay công thức tra cứu tức thì và Phòng thi thử trực tuyến.
-            </p>
+          <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-star-soft sm:text-base">
+            Hệ thống học tập & ôn luyện toàn diện bám sát SGK <strong>Kết nối tri thức với cuộc sống</strong>.
+            Gồm 27 bài học 9 chương (Lý thuyết tương tác, Trắc nghiệm 4 lựa chọn, Đúng/Sai chuẩn cấu trúc Bộ GD&ĐT, Tự luận),
+            Sổ tay Công thức, Cẩm nang Casio 580/880 và Phòng Thi thử trực tuyến.
+          </p>
 
-            {/* Quick Metrics */}
-            <div className="pt-3 flex flex-wrap items-center gap-6 sm:gap-8">
-              <div className="flex items-center gap-3">
-                <ProgressRing done={completedLessons} total={totalLessons} />
-                <div>
-                  <div className="text-xl font-bold font-display text-white">
-                    {completedLessons} / {totalLessons} bài
-                  </div>
-                  <div className="text-xs text-indigo-200">Đạt thành tích cao (≥ 80%)</div>
+          {/* Feature Shortcuts Banner */}
+          <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-4">
+            <Link
+              href="/cong-thuc"
+              onClick={() => playClick()}
+              className="group flex flex-col items-center justify-center rounded-2xl border border-cyan/30 bg-void-card/90 p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-cyan/60 hover:shadow-glow-cyan"
+            >
+              <span className="text-2xl transition group-hover:scale-110">📑</span>
+              <span className="mt-2 font-display text-xs font-bold text-star group-hover:text-cyan-glow">
+                Sổ tay Công thức
+              </span>
+              <span className="text-[10px] text-star-mute">Đầy đủ 9 chương</span>
+            </Link>
+
+            <Link
+              href="/casio"
+              onClick={() => playClick()}
+              className="group flex flex-col items-center justify-center rounded-2xl border border-amber/30 bg-void-card/90 p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-amber/60 hover:shadow-glow-amber"
+            >
+              <span className="text-2xl transition group-hover:scale-110">⚡</span>
+              <span className="mt-2 font-display text-xs font-bold text-star group-hover:text-amber-glow">
+                Tips Casio 580/880
+              </span>
+              <span className="text-[10px] text-star-mute">Bấm máy giải nhanh</span>
+            </Link>
+
+            <Link
+              href="/thi-thu"
+              onClick={() => playClick()}
+              className="group flex flex-col items-center justify-center rounded-2xl border border-violet/40 bg-gradient-to-br from-violet-deep/30 to-cyan-deep/30 p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-violet/60 hover:shadow-glow-violet"
+            >
+              <span className="text-2xl transition group-hover:scale-110">🏆</span>
+              <span className="mt-2 font-display text-xs font-bold text-star group-hover:text-violet-glow">
+                Thi thử trực tuyến
+              </span>
+              <span className="text-[10px] text-star-mute">Chuẩn ma trận mới</span>
+            </Link>
+
+            <Link
+              href="/on-tap"
+              onClick={() => playClick()}
+              className="group flex flex-col items-center justify-center rounded-2xl border border-emerald/30 bg-void-card/90 p-4 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-emerald/60 hover:shadow-glow-emerald"
+            >
+              <span className="text-2xl transition group-hover:scale-110">🎯</span>
+              <span className="mt-2 font-display text-xs font-bold text-star group-hover:text-emerald-glow">
+                Sổ tay Ôn câu sai
+              </span>
+              <span className="text-[10px] text-star-mute">Khắc phục lỗ hổng</span>
+            </Link>
+          </div>
+
+          {/* Progress Overview Card */}
+          {loaded && (
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 rounded-3xl border border-void-border bg-void-card/85 p-5 shadow-glass backdrop-blur-xl">
+              <div className="flex items-center gap-4">
+                <ProgressRing
+                  percent={progressPercent}
+                  size={68}
+                  strokeWidth={5}
+                  gradientFrom="#06B6D4"
+                  gradientTo="#10B981"
+                >
+                  <span className="font-mono text-xs font-bold text-star">{progressPercent}%</span>
+                </ProgressRing>
+                <div className="text-left">
+                  <span className="block font-display text-sm font-bold text-star">
+                    Tiến độ hoàn thành
+                  </span>
+                  <span className="block text-xs text-star-mute">
+                    {completedLessons}/{totalLessons} bài đạt thành tích cao (≥ 80%)
+                  </span>
                 </div>
               </div>
 
-              <div className="h-10 w-px bg-white/20 hidden sm:block"></div>
+              <div className="h-10 w-px bg-void-border hidden sm:block"></div>
 
-              <div className="flex gap-3">
-                <Link
-                  href="/cong-thuc"
-                  className="px-4 py-2.5 rounded-xl bg-white text-indigo-700 hover:bg-indigo-50 font-semibold text-xs sm:text-sm shadow-md transition flex items-center gap-2"
-                >
-                  📖 Sổ tay công thức
-                </Link>
-                <Link
-                  href="/thi-thu"
-                  className="px-4 py-2.5 rounded-xl bg-sky-500 hover:bg-sky-400 text-white font-semibold text-xs sm:text-sm shadow-md transition flex items-center gap-2"
-                >
-                  ⏱️ Phòng thi thử
-                </Link>
+              <div className="flex items-center gap-6 text-xs text-star-soft">
+                <div className="text-center">
+                  <span className="block font-mono text-lg font-bold text-cyan-glow">
+                    {totalMCQs}
+                  </span>
+                  <span className="text-star-mute">Câu trắc nghiệm</span>
+                </div>
+                <div className="text-center">
+                  <span className="block font-mono text-lg font-bold text-emerald-glow">
+                    {totalTFs}
+                  </span>
+                  <span className="text-star-mute">Câu Đúng/Sai</span>
+                </div>
+                <div className="text-center">
+                  <span className="block font-mono text-lg font-bold text-amber-glow">
+                    9
+                  </span>
+                  <span className="text-star-mute">Chương SGK</span>
+                </div>
               </div>
+            </div>
+          )}
+        </header>
+
+        {/* ─── Search & Filter Section ─── */}
+        <div className="mt-10 space-y-4">
+          <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
+            {/* Search Input */}
+            <div className="relative w-full sm:w-80">
+              <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-star-mute text-sm">
+                🔍
+              </span>
+              <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Tìm bài học, khái niệm (Vectơ, Parabol, Mệnh đề...)"
+                className="w-full pl-10 pr-4 py-2.5 text-xs sm:text-sm rounded-2xl bg-void-card/90 border border-void-border text-star placeholder:text-star-mute focus:outline-none focus:border-cyan/50 focus:ring-1 focus:ring-cyan/50 transition"
+              />
+            </div>
+
+            {/* Quick status label */}
+            <div className="text-xs text-star-mute w-full sm:w-auto text-right">
+              Hiển thị: <strong className="text-cyan-glow">{selectedChapter === "all" ? "Tất cả 9 chương" : "1 chương"}</strong>
             </div>
           </div>
 
-          {/* Decorative Elements */}
-          <div className="absolute -right-16 -bottom-16 w-80 h-80 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
-          <div className="absolute right-12 top-8 text-white/10 font-mono text-8xl font-black select-none pointer-events-none hidden lg:block">
-            ∑ ∫ √π
-          </div>
-        </section>
-
-        {/* ─── Filter & Search Bar ───────────────────────────────────────── */}
-        <section className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
-          <div className="relative flex-1 max-w-md">
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Tìm kiếm bài học, khái niệm (Mệnh đề, Parabol, Vectơ...)"
-              className="w-full px-4 py-3 pl-11 rounded-2xl glass text-sm focus:outline-none focus:ring-2 focus:ring-nebula shadow-sm border border-slate-200 placeholder:text-slate-400"
-            />
-            <svg
-              className="w-5 h-5 text-slate-400 absolute left-3.5 top-3.5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-            </svg>
-          </div>
-
-          <div className="flex items-center gap-2 overflow-x-auto pb-2 sm:pb-0 scrollbar-none">
+          {/* Chapter Pills */}
+          <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
             <button
-              onClick={() => setSelectedChapter("all")}
+              onClick={() => {
+                playClick();
+                setSelectedChapter("all");
+              }}
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold whitespace-nowrap transition ${
                 selectedChapter === "all"
-                  ? "bg-nebula text-white shadow-glow"
-                  : "glass text-slate-700 hover:bg-indigo-50/70"
+                  ? "bg-cyan/20 border border-cyan/40 text-cyan-glow shadow-glow-cyan"
+                  : "bg-void-card/80 border border-void-border text-star-soft hover:border-cyan/30 hover:text-star"
               }`}
             >
               Tất cả 9 chương
@@ -238,21 +224,24 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
             {CURRICULUM.map((topic) => (
               <button
                 key={topic.id}
-                onClick={() => setSelectedChapter(topic.id)}
+                onClick={() => {
+                  playClick();
+                  setSelectedChapter(topic.id);
+                }}
                 className={`px-3 py-2 rounded-xl text-xs font-medium whitespace-nowrap transition ${
                   selectedChapter === topic.id
-                    ? "bg-nebula text-white shadow-glow"
-                    : "glass text-slate-600 hover:bg-indigo-50/70"
+                    ? "bg-cyan/20 border border-cyan/40 text-cyan-glow shadow-glow-cyan font-bold"
+                    : "bg-void-card/80 border border-void-border text-star-soft hover:border-cyan/30 hover:text-star"
                 }`}
               >
                 {topic.emoji} {topic.name.split(".")[0]}
               </button>
             ))}
           </div>
-        </section>
+        </div>
 
-        {/* ─── Chapter List & Lessons ────────────────────────────────────── */}
-        <section className="space-y-8">
+        {/* ─── Chapter List & Lessons ─── */}
+        <section className="mt-8 space-y-8">
           {CURRICULUM.map((topic) => {
             if (selectedChapter !== "all" && selectedChapter !== topic.id) return null;
 
@@ -267,17 +256,20 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
             return (
               <div key={topic.id} className="space-y-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-9 h-9 rounded-xl bg-indigo-100/80 text-indigo-700 flex items-center justify-center text-lg shadow-sm">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-2xl bg-void-card border border-void-border text-xl shadow-glow-cyan">
                     {topic.emoji}
                   </div>
                   <div>
-                    <h2 className="font-display font-bold text-slate-900 text-lg sm:text-xl">
+                    <h2 className="font-display text-lg sm:text-xl font-bold text-star">
                       {topic.name}
                     </h2>
+                    <span className="text-[11px] font-mono text-star-mute">
+                      {filteredLessons.length} bài học
+                    </span>
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredLessons.map((lesson) => {
                     const c = counts[lesson.id] ?? { mcq: 0, tf: 0, essay: 0, theory: true };
                     const prog = progress[lesson.id];
@@ -287,54 +279,43 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
                       <Link
                         key={lesson.id}
                         href={`/luyen/${lesson.id}`}
-                        className="group relative flex flex-col justify-between p-5 rounded-2xl glass hover:border-indigo-300 hover:shadow-glass-hover transition duration-200"
+                        onClick={() => playClick()}
+                        className="group relative flex flex-col justify-between rounded-3xl border border-void-border bg-void-card/90 p-5 shadow-card transition-all duration-300 hover:-translate-y-1 hover:border-cyan/50 hover:shadow-glow-cyan backdrop-blur-xl"
                       >
                         <div>
                           <div className="flex items-start justify-between gap-2">
-                            <span className="text-[11px] font-bold px-2.5 py-0.5 rounded-md bg-indigo-50 text-indigo-700 border border-indigo-100">
+                            <span className="rounded-lg border border-cyan/30 bg-cyan/10 px-2.5 py-0.5 font-mono text-[10px] font-bold uppercase tracking-wider text-cyan-glow">
                               {lesson.id.toUpperCase()}
                             </span>
 
                             {bestScore !== null ? (
-                              <span
-                                className={`text-[11px] font-bold px-2 py-0.5 rounded-full ${
-                                  bestScore >= 80
-                                    ? "bg-emerald-100 text-emerald-800"
-                                    : bestScore >= 50
-                                    ? "bg-amber-100 text-amber-800"
-                                    : "bg-rose-100 text-rose-800"
-                                }`}
-                              >
-                                Đã đạt: {bestScore}%
-                              </span>
+                              <ScoreBadge percent={bestScore} />
                             ) : (
-                              <span className="text-[11px] text-slate-400 font-medium">Chưa học</span>
+                              <span className="text-[10px] font-mono text-star-mute">Chưa làm</span>
                             )}
                           </div>
 
-                          <h3 className="mt-3 font-display font-bold text-slate-900 text-base group-hover:text-nebula transition leading-snug">
+                          <h3 className="mt-3 font-display text-base font-bold text-star group-hover:text-cyan-glow transition leading-snug">
                             {lesson.title}
                           </h3>
 
                           {lesson.desc && (
-                            <p className="mt-1.5 text-xs text-slate-500 line-clamp-2 leading-relaxed">
+                            <p className="mt-1.5 text-xs text-star-soft line-clamp-2 leading-relaxed">
                               {lesson.desc}
                             </p>
                           )}
                         </div>
 
-                        <div className="mt-5 pt-3 border-t border-slate-100 flex items-center justify-between">
-                          <div className="flex items-center gap-2 text-[11px] text-slate-500 font-medium">
-                            <span className="inline-flex items-center gap-1">
-                              📝 {c.mcq} trắc nghiệm
-                            </span>
+                        <div className="mt-5 pt-3 border-t border-void-border/70 flex items-center justify-between">
+                          <div className="flex items-center gap-2 text-[11px] text-star-mute font-mono">
+                            <span>🎯 {c.mcq}</span>
                             <span>•</span>
-                            <span className="inline-flex items-center gap-1">
-                              ⚖️ {c.tf} đúng/sai
-                            </span>
+                            <span>⚖️ {c.tf}</span>
+                            <span>•</span>
+                            <span>✍️ {c.essay}</span>
                           </div>
 
-                          <span className="text-xs font-semibold text-nebula flex items-center gap-1 group-hover:translate-x-0.5 transition">
+                          <span className="text-xs font-semibold text-cyan-glow flex items-center gap-1 group-hover:translate-x-1 transition">
                             Học ngay →
                           </span>
                         </div>

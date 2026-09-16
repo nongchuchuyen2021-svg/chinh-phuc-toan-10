@@ -1,33 +1,84 @@
 import type { Config } from "tailwindcss";
 
 const config: Config = {
-  content: ["./app/**/*.{ts,tsx}", "./components/**/*.{ts,tsx}"],
+  content: [
+    "./pages/**/*.{js,ts,jsx,tsx,mdx}",
+    "./components/**/*.{js,ts,jsx,tsx,mdx}",
+    "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./data/**/*.{js,ts,jsx,tsx,mdx}",
+  ],
+  darkMode: "class",
   theme: {
     extend: {
       colors: {
-        // Nền sáng thanh lịch, chống mỏi mắt khi học toán
-        void: "#F8FAFC",          // slate-50 nền chính sáng dịu
-        "void-light": "#FFFFFF",   // trắng tinh tế
-        "void-card": "#FFFFFF",    // nền thẻ trắng ngọc cao cấp
-        // Chữ tương phản cao, sắc nét cho công thức toán
-        star: "#0F172A",          // slate-900 đen navy đậm
-        "star-soft": "#334155",   // slate-700 chữ phụ rõ ràng
-        "star-mute": "#64748B",   // slate-500 chữ chú thích
-        // Điểm nhấn Toán học: Tím Logic & Xanh Sapphire
-        nebula: "#6366F1",        // indigo-500 tím logic rực rỡ
-        "nebula-deep": "#4338CA", // indigo-700
-        "nebula-glow": "#818CF8", // indigo-400
-        // Xanh Hình học & Đại số
-        plasma: "#0284C7",        // sky-600 xanh sapphire
-        "plasma-deep": "#0369A1", // sky-700
-        // Năng lượng & chú ý
-        photon: "#D97706",        // hổ phách nổi bật
-        "photon-deep": "#B45309",
-        // Trạng thái kết quả
-        correct: "#059669",       // emerald-600 xanh ngọc chuẩn
-        "correct-deep": "#047857",
-        wrong: "#DC2626",         // red-600 đỏ nổi bật
-        "wrong-deep": "#B91C1C",
+        // Quantum Deep Void Theme
+        void: "#080D1A",
+        "void-card": "#0F172A",
+        "void-subtle": "#162036",
+        "void-border": "#24324D",
+        star: "#F8FAFC",
+        "star-soft": "#94A3B8",
+        "star-mute": "#64748B",
+
+        // Quantum math neon colors
+        cyan: {
+          DEFAULT: "#06B6D4",
+          deep: "#0891B2",
+          glow: "#22D3EE",
+          soft: "rgba(6, 182, 212, 0.15)",
+        },
+        emerald: {
+          DEFAULT: "#10B981",
+          deep: "#059669",
+          glow: "#34D399",
+          soft: "rgba(16, 185, 129, 0.15)",
+        },
+        violet: {
+          DEFAULT: "#8B5CF6",
+          deep: "#7C3AED",
+          glow: "#A78BFA",
+          soft: "rgba(139, 92, 246, 0.15)",
+        },
+        amber: {
+          DEFAULT: "#F59E0B",
+          deep: "#D97706",
+          glow: "#FBBF24",
+          soft: "rgba(245, 158, 11, 0.15)",
+        },
+        rose: {
+          DEFAULT: "#F43F5E",
+          deep: "#E11D48",
+          glow: "#FB7185",
+          soft: "rgba(244, 63, 94, 0.15)",
+        },
+        indigo: {
+          DEFAULT: "#6366F1",
+          deep: "#4F46E5",
+          glow: "#818CF8",
+          soft: "rgba(99, 102, 241, 0.15)",
+        },
+
+        // Backward compatibility
+        sky: "#06B6D4",
+        "sky-deep": "#0891B2",
+        sun: "#F59E0B",
+        "sun-deep": "#D97706",
+        leaf: "#10B981",
+        "leaf-deep": "#059669",
+        gold: "#FBBF24",
+        "gold-deep": "#D97706",
+        berry: "#F43F5E",
+        correct: "#10B981",
+        "correct-deep": "#059669",
+        wrong: "#F43F5E",
+        "wrong-deep": "#E11D48",
+        photon: "#F59E0B",
+        "photon-deep": "#D97706",
+        nebula: "#8B5CF6",
+        "nebula-deep": "#7C3AED",
+        "nebula-glow": "#A78BFA",
+        plasma: "#06B6D4",
+        "plasma-deep": "#0891B2",
       },
       fontFamily: {
         display: ["var(--font-display)"],
@@ -35,16 +86,19 @@ const config: Config = {
         mono: ["var(--font-mono)"],
       },
       boxShadow: {
-        glow: "0 4px 20px -2px rgba(99, 102, 241, 0.25), 0 2px 6px -1px rgba(99, 102, 241, 0.15)",
-        "glow-hover": "0 8px 30px -4px rgba(99, 102, 241, 0.35), 0 4px 12px -2px rgba(99, 102, 241, 0.2)",
-        "glow-blue": "0 4px 20px -2px rgba(2, 132, 199, 0.25), 0 2px 6px -1px rgba(2, 132, 199, 0.15)",
-        "glow-gold": "0 4px 20px -2px rgba(217, 119, 6, 0.25), 0 2px 6px -1px rgba(217, 119, 6, 0.15)",
-        glass: "0 4px 20px -2px rgba(15, 23, 42, 0.07), 0 2px 6px -1px rgba(15, 23, 42, 0.04)",
-        "glass-hover": "0 10px 30px -4px rgba(15, 23, 42, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06)",
+        card: "0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3)",
+        glass: "0 8px 32px 0 rgba(0, 0, 0, 0.37)",
+        "glow-cyan": "0 0 25px -3px rgba(6, 182, 212, 0.35), 0 0 10px -2px rgba(6, 182, 212, 0.2)",
+        "glow-violet": "0 0 25px -3px rgba(139, 92, 246, 0.35), 0 0 10px -2px rgba(139, 92, 246, 0.2)",
+        "glow-emerald": "0 0 25px -3px rgba(16, 185, 129, 0.35), 0 0 10px -2px rgba(16, 185, 129, 0.2)",
+        "glow-amber": "0 0 25px -3px rgba(245, 158, 11, 0.35), 0 0 10px -2px rgba(245, 158, 11, 0.2)",
+        "glow-rose": "0 0 25px -3px rgba(244, 63, 94, 0.35), 0 0 10px -2px rgba(244, 63, 94, 0.2)",
+        glow: "0 0 25px -3px rgba(139, 92, 246, 0.35), 0 0 10px -2px rgba(139, 92, 246, 0.2)",
+        "glow-hover": "0 0 35px -2px rgba(6, 182, 212, 0.5), 0 0 15px -1px rgba(6, 182, 212, 0.3)",
       },
       keyframes: {
         "pop-in": {
-          "0%": { opacity: "0", transform: "translateY(14px) scale(0.96)" },
+          "0%": { opacity: "0", transform: "translateY(12px) scale(0.97)" },
           "100%": { opacity: "1", transform: "translateY(0) scale(1)" },
         },
         wiggle: {
@@ -57,8 +111,8 @@ const config: Config = {
           "50%": { transform: "translateY(-6px)" },
         },
         "glow-pulse": {
-          "0%, 100%": { boxShadow: "0 0 15px rgba(99, 102, 241, 0.2)" },
-          "50%": { boxShadow: "0 0 25px rgba(99, 102, 241, 0.35)" },
+          "0%, 100%": { boxShadow: "0 0 15px rgba(6, 182, 212, 0.25)" },
+          "50%": { boxShadow: "0 0 30px rgba(6, 182, 212, 0.55)" },
         },
         shimmer: {
           "0%": { backgroundPosition: "-200% 0" },

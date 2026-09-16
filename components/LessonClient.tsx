@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import type {
   EssayQuestion,
@@ -9,14 +9,15 @@ import type {
   Question,
   TFQuestion,
 } from "@/lib/types";
-import { getLessonProgress, theoryKey } from "@/lib/progress";
+import { playClick } from "@/lib/sound";
+import MathText from "@/components/MathText";
 import QuizClient from "@/components/QuizClient";
 import TrueFalseQuiz from "@/components/TrueFalseQuiz";
 import EssayViewer from "@/components/EssayViewer";
 import TheoryViewer from "@/components/TheoryViewer";
 import ReviewViewer from "@/components/ReviewViewer";
 
-type Mode = "menu" | "theory" | "mcq" | "tf" | "essay" | "review";
+type TabKey = "theory" | "mcq" | "tf" | "essay" | "review";
 
 export default function LessonClient({
   lessonId,
@@ -37,254 +38,144 @@ export default function LessonClient({
   essay: EssayQuestion[];
   review: LessonReview;
 }) {
-  const [mode, setMode] = useState<Mode>("menu");
-  const [bestMcq, setBestMcq] = useState<number | null>(null);
-  const [readTheory, setReadTheory] = useState(false);
+  const [activeTab, setActiveTab] = useState<TabKey>("theory");
 
-  useEffect(() => {
-    if (mode === "menu") {
-      setBestMcq(getLessonProgress(lessonId)?.best ?? null);
-      setReadTheory(getLessonProgress(theoryKey(lessonId)) !== null);
-    }
-  }, [mode, lessonId]);
+  const tabs: { key: TabKey; label: string; icon: string; count?: number }[] = [
+    { key: "theory", label: "Tóm tắt & Khắc sâu", icon: "⚡" },
+    { key: "mcq", label: "Trắc nghiệm 4 lựa chọn", icon: "🎯", count: mcq.length },
+    { key: "tf", label: "Đúng / Sai 4 ý", icon: "⚖️", count: tf.length },
+    { key: "essay", label: "Tự luận / Trả lời ngắn", icon: "✍️", count: essay.length },
+    { key: "review", label: "Ôn tập tổng kết", icon: "📋" },
+  ];
 
-  function switchMode(next: Mode) {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-    setMode(next);
-  }
+  const handleTabChange = (key: TabKey) => {
+    playClick();
+    setActiveTab(key);
+  };
 
-  if (mode === "theory" && theory) {
-    return (
-      <main className="cosmos relative min-h-screen py-8 px-4">
-        <TheoryViewer
-          lessonId={lessonId}
-          lessonTitle={lessonTitle}
-          topicName={topicName}
-          theory={theory}
-          onBack={() => switchMode("menu")}
-          onGoQuiz={() => switchMode("mcq")}
-        />
-      </main>
-    );
-  }
-
-  if (mode === "mcq") {
-    return (
-      <main className="cosmos relative min-h-screen py-8 px-4">
-        <QuizClient
-          lessonId={lessonId}
-          lessonTitle={lessonTitle}
-          topicName={topicName}
-          questions={mcq}
-          onBack={() => switchMode("menu")}
-        />
-      </main>
-    );
-  }
-
-  if (mode === "tf") {
-    return (
-      <main className="cosmos relative min-h-screen py-8 px-4">
-        <TrueFalseQuiz
-          lessonId={lessonId}
-          lessonTitle={lessonTitle}
-          questions={tf}
-          onBack={() => switchMode("menu")}
-        />
-      </main>
-    );
-  }
-
-  if (mode === "essay") {
-    return (
-      <main className="cosmos relative min-h-screen py-8 px-4">
-        <EssayViewer
-          lessonTitle={lessonTitle}
-          questions={essay}
-          onBack={() => switchMode("menu")}
-        />
-      </main>
-    );
-  }
-
-  if (mode === "review") {
-    return (
-      <main className="cosmos relative min-h-screen py-8 px-4">
-        <ReviewViewer
-          lessonTitle={lessonTitle}
-          review={review}
-          onBack={() => switchMode("menu")}
-        />
-      </main>
-    );
-  }
-
-  // ─── Main Lesson Menu ─────────────────────────────────────────────────────
   return (
-    <main className="cosmos relative min-h-screen py-8 sm:py-12 px-4">
-      <div className="max-w-4xl mx-auto space-y-8">
-        {/* Navigation Breadcrumb */}
-        <div className="flex items-center justify-between">
+    <main className="relative min-h-screen pb-20">
+      <div className="mx-auto max-w-4xl px-4 pt-8 sm:px-6">
+        {/* Breadcrumb Navigation */}
+        <div className="flex items-center gap-2 font-mono text-xs text-star-mute">
           <Link
             href="/"
-            className="px-3.5 py-1.5 rounded-xl glass hover:bg-indigo-50 text-xs font-semibold text-slate-700 transition flex items-center gap-1.5"
+            onClick={() => playClick()}
+            className="flex items-center gap-1 rounded-xl border border-void-border bg-void-card px-3 py-1.5 text-star-soft transition hover:border-cyan/40 hover:text-cyan-glow hover:shadow-glow-cyan"
           >
-            ← Danh sách bài học
+            ← Danh sách 27 bài học
           </Link>
-          <span className="text-xs font-bold text-nebula px-3 py-1 rounded-full bg-indigo-50 border border-indigo-100">
-            {lessonId.toUpperCase()}
-          </span>
+          <span>/</span>
+          <span className="text-cyan-glow truncate max-w-[200px] sm:max-w-none">{lessonTitle}</span>
         </div>
 
-        {/* Lesson Hero */}
-        <div className="glass rounded-3xl p-6 sm:p-10 border border-indigo-100/80 shadow-md space-y-3">
-          <span className="text-xs font-bold uppercase tracking-wider text-nebula">
-            {topicName}
-          </span>
-          <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight">
-            {lessonTitle}
-          </h1>
+        {/* Lesson Header Card */}
+        <div className="mt-5 animate-fade-in-up rounded-3xl border border-void-border/90 bg-void-card/90 p-6 shadow-card backdrop-blur-xl">
+          <div className="flex flex-wrap items-center justify-between gap-4">
+            <div>
+              <span className="inline-flex items-center gap-1.5 rounded-full border border-cyan/30 bg-cyan/15 px-3.5 py-1 font-mono text-xs font-bold uppercase tracking-wider text-cyan-glow">
+                ✨ {topicName}
+              </span>
+              <h1 className="mt-3 font-display text-2xl font-bold text-star sm:text-3xl">
+                <MathText content={lessonTitle} />
+              </h1>
+            </div>
 
-          <div className="pt-2 flex flex-wrap items-center gap-4 text-xs font-medium text-slate-600">
-            <span className="inline-flex items-center gap-1">
-              📖 Lý thuyết {readTheory ? "✓ Đã đọc" : "Chưa hoàn thành"}
-            </span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1">
-              📝 Trắc nghiệm: {bestMcq !== null ? `Kỷ lục ${bestMcq}%` : "Chưa làm"}
-            </span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1">
-              ⚖️ {tf.length} câu Đúng/Sai
-            </span>
-            <span>•</span>
-            <span className="inline-flex items-center gap-1">
-              ✍️ {essay.length} câu tự luận
-            </span>
+            <Link
+              href="/cong-thuc"
+              onClick={() => playClick()}
+              className="flex shrink-0 items-center gap-2 rounded-2xl bg-gradient-to-r from-amber to-amber-deep px-4 py-2.5 font-mono text-xs font-bold text-white shadow-glow-amber transition hover:opacity-90 hover:scale-105"
+            >
+              📖 Sổ tay công thức
+            </Link>
+          </div>
+
+          {/* Tab Selector */}
+          <div className="mt-6 flex flex-wrap gap-2 border-t border-void-border pt-4">
+            {tabs.map((t) => {
+              const isActive = activeTab === t.key;
+              let activeStyle = "";
+              if (isActive) {
+                if (t.key === "theory") activeStyle = "bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan border border-cyan/40";
+                else if (t.key === "mcq") activeStyle = "bg-gradient-to-r from-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
+                else if (t.key === "tf") activeStyle = "bg-gradient-to-r from-emerald to-emerald-deep text-white shadow-glow-emerald border border-emerald/40";
+                else if (t.key === "essay") activeStyle = "bg-gradient-to-r from-rose to-rose-deep text-white shadow-glow-rose border border-rose/40";
+                else activeStyle = "bg-gradient-to-r from-amber to-amber-deep text-white shadow-glow-amber border border-amber/40";
+              } else {
+                activeStyle = "border border-void-border bg-void-subtle text-star-soft hover:border-cyan/30 hover:text-star";
+              }
+
+              return (
+                <button
+                  key={t.key}
+                  onClick={() => handleTabChange(t.key)}
+                  className={`flex items-center gap-2 rounded-2xl px-3.5 sm:px-4 py-2 font-mono text-xs font-bold transition-all duration-200 ${activeStyle}`}
+                >
+                  <span>{t.icon}</span>
+                  <span>{t.label}</span>
+                  {t.count !== undefined && (
+                    <span className={`rounded-full px-1.5 py-0.2 text-[10px] font-bold ${
+                      isActive ? "bg-white/20 text-white" : "bg-void-border text-star-mute"
+                    }`}>
+                      {t.count}
+                    </span>
+                  )}
+                </button>
+              );
+            })}
           </div>
         </div>
 
-        {/* 5 Learning Action Hub Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-5">
-          {/* 1. Lý thuyết */}
-          <button
-            onClick={() => switchMode("theory")}
-            className="text-left p-6 rounded-3xl glass hover:border-indigo-400 hover:shadow-glow transition duration-200 group flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-indigo-100 text-indigo-700 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                📖
+        {/* Tab Content */}
+        <div className="mt-6">
+          {activeTab === "theory" && (
+            theory ? (
+              <TheoryViewer
+                lessonId={lessonId}
+                lessonTitle={lessonTitle}
+                topicName={topicName}
+                theory={theory}
+                onGoQuiz={() => handleTabChange("mcq")}
+              />
+            ) : (
+              <div className="rounded-3xl border border-void-border bg-void-card p-8 text-center text-star-soft">
+                Lý thuyết đang được cập nhật.
               </div>
-              <div>
-                <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-nebula transition">
-                  Lý thuyết trọng tâm
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Bài giảng trực quan với thẻ phân loại, bảng so sánh và các câu hỏi kiểm tra nhanh.
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-nebula">
-              <span>{readTheory ? "Đọc lại lý thuyết" : "Bắt đầu học ngay"}</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </div>
-          </button>
+            )
+          )}
 
-          {/* 2. Trắc nghiệm 4 lựa chọn */}
-          <button
-            onClick={() => switchMode("mcq")}
-            className="text-left p-6 rounded-3xl glass hover:border-indigo-400 hover:shadow-glow transition duration-200 group flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-sky-100 text-sky-700 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                📝
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-nebula transition">
-                  Trắc nghiệm 4 lựa chọn
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Luyện tập phản xạ giải nhanh, đảo ngẫu nhiên phương án kèm lời giải chi tiết từng bước.
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-sky-600">
-              <span>{mcq.length} câu hỏi • Bấm vào để luyện</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </div>
-          </button>
+          {activeTab === "mcq" && (
+            <QuizClient
+              lessonId={lessonId}
+              lessonTitle={lessonTitle}
+              topicName={topicName}
+              questions={mcq}
+            />
+          )}
 
-          {/* 3. Đúng / Sai */}
-          <button
-            onClick={() => switchMode("tf")}
-            className="text-left p-6 rounded-3xl glass hover:border-indigo-400 hover:shadow-glow transition duration-200 group flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                ⚖️
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-nebula transition">
-                  Trắc nghiệm Đúng / Sai
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Cấu trúc thi mới Bộ GD&ĐT 4 mệnh đề. Tính điểm luỹ tiến 0.1 - 0.25 - 0.5 - 1.0 điểm.
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-emerald-600">
-              <span>Luyện câu Đúng/Sai</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </div>
-          </button>
+          {activeTab === "tf" && (
+            <TrueFalseQuiz
+              lessonId={lessonId}
+              lessonTitle={lessonTitle}
+              questions={tf}
+            />
+          )}
 
-          {/* 4. Trả lời ngắn / Tự luận */}
-          <button
-            onClick={() => switchMode("essay")}
-            className="text-left p-6 rounded-3xl glass hover:border-indigo-400 hover:shadow-glow transition duration-200 group flex flex-col justify-between"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                ✍️
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-nebula transition">
-                  Trả lời ngắn & Tự luận
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Tự điền đáp số và so sánh với phương pháp giải toán chi tiết của giáo viên.
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-amber-600">
-              <span>Luyện điền kết quả</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </div>
-          </button>
+          {activeTab === "essay" && (
+            <EssayViewer
+              lessonId={lessonId}
+              lessonTitle={lessonTitle}
+              questions={essay}
+            />
+          )}
 
-          {/* 5. Ôn tập & Flashcards */}
-          <button
-            onClick={() => switchMode("review")}
-            className="text-left p-6 rounded-3xl glass hover:border-indigo-400 hover:shadow-glow transition duration-200 group flex flex-col justify-between sm:col-span-2"
-          >
-            <div className="space-y-3">
-              <div className="w-12 h-12 rounded-2xl bg-purple-100 text-purple-700 flex items-center justify-center text-2xl group-hover:scale-110 transition">
-                🧠
-              </div>
-              <div>
-                <h3 className="font-display font-bold text-lg text-slate-900 group-hover:text-nebula transition">
-                  Flashcard Ghi nhớ & Bẫy thường gặp
-                </h3>
-                <p className="mt-1 text-xs text-slate-500 leading-relaxed">
-                  Lật thẻ Flashcard ôn công thức tức thì, phòng tránh các bẫy đề thi và kiểm tra bảng mục tiêu học tập.
-                </p>
-              </div>
-            </div>
-            <div className="mt-6 pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-bold text-purple-600">
-              <span>Mở Flashcards & Bảng kiểm</span>
-              <span className="group-hover:translate-x-1 transition">→</span>
-            </div>
-          </button>
+          {activeTab === "review" && (
+            <ReviewViewer
+              lessonId={lessonId}
+              lessonTitle={lessonTitle}
+              review={review}
+            />
+          )}
         </div>
       </div>
     </main>
