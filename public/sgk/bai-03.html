@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <title>Toán 10 - Bài 3: Bất phương trình bậc nhất hai ẩn (SGK Kết nối tri thức)</title>
+
+    <!-- KaTeX CDN for Math Typesetting -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        })
+      "
+    ></script>
+
+    <style>
+      :root {
+        --bg-dark: #090d16;
+        --bg-card: #131b2e;
+        --bg-card-alt: #1a243b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --color-title: #38bdf8;
+        --color-h1: #fbbf24;
+        --color-h2: #f43f5e;
+        --color-h3: #10b981;
+        --color-badge: #6366f1;
+        --border-color: #24324f;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        font-size: 16px;
+        padding-bottom: 60px;
+      }
+      #progress-bar {
+        position: fixed; top: 0; left: 0; height: 4px;
+        background: linear-gradient(90deg, #38bdf8, #f43f5e, #fbbf24, #10b981);
+        width: 0%; z-index: 1000;
+        transition: width 0.1s ease-out;
+      }
+      .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+
+      .hero-banner {
+        background: linear-gradient(135deg, #162038 0%, #0c1222 100%);
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--color-title);
+        border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; text-align: center;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      }
+      .chapter-tag {
+        display: inline-block; background: rgba(56, 189, 248, 0.15);
+        color: var(--color-title); font-size: 0.88rem; font-weight: 700;
+        padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
+        margin-bottom: 12px; border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .hero-title { color: #ffffff; font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
+      .hero-title span { color: var(--color-title); }
+      .hero-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 680px; margin: 0 auto; }
+
+      .objectives-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px; margin-bottom: 24px;
+      }
+      .objectives-card {
+        background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3);
+        border-left: 4px solid var(--color-badge); border-radius: 12px; padding: 16px 20px;
+      }
+      .objectives-title { color: #818cf8; font-size: 1rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+      .objectives-list { list-style: none; }
+      .objectives-list li { position: relative; padding-left: 20px; margin-bottom: 6px; font-size: 0.92rem; color: var(--text-secondary); }
+      .objectives-list li::before { content: "•"; position: absolute; left: 6px; color: #818cf8; font-weight: bold; }
+
+      .opening-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 22px 20px; margin-bottom: 30px;
+      }
+      .opening-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+      .opening-badge { background: #f43f5e; color: #fff; font-size: 0.78rem; font-weight: 800; padding: 3px 10px; border-radius: 6px; }
+      .opening-title { font-size: 1.15rem; font-weight: 700; color: #fda4af; }
+
+      .content-block {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 24px 20px; margin-bottom: 28px;
+      }
+      .sec-header {
+        display: flex; align-items: baseline; gap: 12px;
+        border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;
+      }
+      .sec-num { font-size: 1.5rem; font-weight: 900; color: var(--color-title); }
+      .sec-title { font-size: 1.35rem; font-weight: 800; color: #ffffff; }
+
+      .activity-box {
+        background: rgba(251, 191, 36, 0.05); border: 1px dashed rgba(251, 191, 36, 0.4);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .activity-header { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--color-h1); margin-bottom: 10px; }
+      .activity-badge { background: var(--color-h1); color: #1e1b4b; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; }
+
+      .knowledge-box {
+        background: rgba(56, 189, 248, 0.08); border-left: 5px solid var(--color-title);
+        border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+      .knowledge-title { color: var(--color-title); font-weight: 800; font-size: 1.05rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .example-box {
+        background: var(--bg-card-alt); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .example-header { font-weight: 700; color: #a5b4fc; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+      .solution-block {
+        margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+        color: var(--text-secondary); font-size: 0.95rem;
+      }
+      .solution-tag { font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+
+      .practice-box {
+        background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .practice-header { font-weight: 700; color: var(--color-h3); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .apply-box {
+        background: rgba(244, 63, 94, 0.06); border: 1px solid rgba(244, 63, 94, 0.3);
+        border-radius: 12px; padding: 18px 20px; margin: 22px 0;
+      }
+      .apply-header { font-weight: 700; color: var(--color-h2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .img-container {
+        text-align: center; margin: 20px 0; padding: 12px;
+        background: #0d1322; border-radius: 12px; border: 1px solid var(--border-color);
+      }
+      .img-container img {
+        max-width: 100%; height: auto; border-radius: 8px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.5); display: inline-block;
+      }
+      .img-caption { font-size: 0.88rem; color: #94a3b8; margin-top: 8px; font-style: italic; }
+
+      .robot-tip {
+        display: flex; gap: 14px; align-items: center; background: rgba(56, 189, 248, 0.06);
+        border: 1px solid rgba(56, 189, 248, 0.25); border-radius: 12px; padding: 12px 16px; margin: 16px 0;
+      }
+      .robot-tip img { width: 90px; height: auto; flex-shrink: 0; }
+      .robot-text { font-size: 0.92rem; color: #e2e8f0; }
+
+      .notice-card {
+        background: rgba(251, 191, 36, 0.08); border-left: 4px solid var(--color-h1);
+        border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.94rem;
+      }
+
+      /* Exercise Section */
+      .exercise-item {
+        background: var(--bg-card-alt); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;
+      }
+      .exercise-title { font-weight: 700; color: #facc15; margin-bottom: 10px; font-size: 1.05rem; }
+      details { margin-top: 12px; }
+      details summary {
+        cursor: pointer; color: #38bdf8; font-weight: 600; font-size: 0.92rem;
+        user-select: none; transition: color 0.2s;
+      }
+      details summary:hover { color: #7dd3fc; }
+      details[open] summary { margin-bottom: 10px; color: #93c5fd; }
+      .exercise-solution {
+        background: rgba(15, 23, 42, 0.7); border-radius: 8px;
+        padding: 14px 16px; font-size: 0.93rem; color: #e2e8f0; border-left: 3px solid #38bdf8;
+      }
+
+      .btn-nav-wrap {
+        display: flex; justify-content: space-between; gap: 14px; margin-top: 36px;
+      }
+      .btn-nav {
+        flex: 1; padding: 14px 18px; text-align: center; border-radius: 12px; text-decoration: none;
+        font-weight: 700; font-size: 0.95rem; transition: all 0.2s ease;
+      }
+      .btn-prev { background: #1e293b; color: #f1f5f9; border: 1px solid var(--border-color); }
+      .btn-prev:hover { background: #334155; }
+      .btn-next { background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; }
+      .btn-next:hover { opacity: 0.95; transform: translateY(-1px); }
+
+      /* KaTeX font readability */
+      .katex { font-size: 1.08em !important; }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <div class="container">
+      <!-- Header Banner -->
+      <div class="hero-banner">
+        <div class="chapter-tag">Chương II: Bất phương trình & Hệ bất phương trình bậc nhất hai ẩn</div>
+        <h1 class="hero-title">BÀI 3: <span>BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN</span></h1>
+        <p class="hero-desc">
+          Các bất phương trình bậc nhất hai ẩn xuất hiện trong nhiều bài toán kinh tế thực tiễn như sản xuất, phân phối hàng hóa. Bài học này cung cấp phương pháp biểu diễn miền nghiệm của bất phương trình trên mặt phẳng toạ độ.
+        </p>
+      </div>
+
+      <!-- Objectives -->
+      <div class="objectives-grid">
+        <div class="objectives-card">
+          <div class="objectives-title">Thuật ngữ cốt lõi</div>
+          <ul class="objectives-list">
+            <li>Bất phương trình bậc nhất hai ẩn</li>
+            <li>Miền nghiệm của bất phương trình bậc nhất hai ẩn</li>
+            <li>Đường thẳng biên và nửa mặt phẳng bờ $d$</li>
+          </ul>
+        </div>
+        <div class="objectives-card">
+          <div class="objectives-title">Kiến thức & Kĩ năng</div>
+          <ul class="objectives-list">
+            <li>Nhận biết bất phương trình bậc nhất hai ẩn</li>
+            <li>Biết biểu diễn miền nghiệm của BPT trên mặt phẳng toạ độ $Oxy$</li>
+            <li>Vận dụng vào giải quyết bài toán tối ưu, kinh tế thực tiễn</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Opening Situation -->
+      <div class="opening-card">
+        <div class="opening-header">
+          <span class="opening-badge">TÌNH HUỐNG MỞ ĐẦU</span>
+          <span class="opening-title">Bài toán bán vé rạp chiếu phim</span>
+        </div>
+        <p>
+          Nhân ngày Quốc tế Thiếu nhi 1-6, một rạp chiếu phim phục vụ các khán giả một bộ phim hoạt hình. Vé được bán ra có hai loại:
+        </p>
+        <ul style="margin: 8px 0 12px 24px;">
+          <li><strong>Loại 1</strong> (dành cho trẻ từ 6–13 tuổi): $50\,000$ đồng/vé;</li>
+          <li><strong>Loại 2</strong> (dành cho người trên 13 tuổi): $100\,000$ đồng/vé.</li>
+        </ul>
+        <p>
+          Người ta tính toán rằng, để không phải bù lỗ thì số tiền vé thu được ở rạp chiếu phim này phải đạt tối thiểu $20$ triệu đồng.
+        </p>
+        <p style="margin-top: 8px; color: #fbbf24; font-weight: 600;">
+          ❓ Hỏi số lượng vé bán được trong những trường hợp nào thì rạp chiếu phim phải bù lỗ?
+        </p>
+        <div class="img-container">
+          <img src="images/bai-03/rap-chieu-phim.png" alt="Rạp chiếu phim hoạt hình" />
+          <div class="img-caption">Khán phòng rạp chiếu phim phục vụ khán giả nhí ngày 1-6</div>
+        </div>
+      </div>
+
+      <!-- SECTION 1 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">1</span>
+          <span class="sec-title">BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN</span>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-header">
+            <span class="activity-badge">HĐ1</span>
+            <span>Hình thành khái niệm bất phương trình</span>
+          </div>
+          <p>
+            Trong tình huống mở đầu, gọi $x$ là số vé loại 1 bán được và $y$ là số vé loại 2 bán được ($x, y \in \mathbb{N}$).
+          </p>
+          <p style="margin-top: 6px;">
+            Viết biểu thức tính số tiền bán vé thu được (đơn vị nghìn đồng) ở rạp chiếu phim đó theo $x$ và $y$.
+          </p>
+          <p style="margin-top: 6px;">
+            <strong>a)</strong> Các số nguyên không âm $x$ và $y$ phải thoả mãn điều kiện gì để số tiền bán vé thu được đạt tối thiểu 20 triệu đồng?<br />
+            <strong>b)</strong> Nếu số tiền bán vé thu được nhỏ hơn 20 triệu đồng thì $x$ và $y$ thoả mãn điều kiện gì?
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Hướng dẫn:</div>
+            • Số tiền vé loại 1 thu được: $50x$ (nghìn đồng).<br />
+            • Số tiền vé loại 2 thu được: $100y$ (nghìn đồng).<br />
+            • Tổng số tiền bán vé thu được: $50x + 100y$ (nghìn đồng).<br />
+            a) Đổi $20\text{ triệu đồng} = 20\,000\text{ nghìn đồng}$. Đạt tối thiểu 20 triệu nghĩa là: $50x + 100y \ge 20\,000$ (hay $x + 2y \ge 400$).<br />
+            b) Nhỏ hơn 20 triệu đồng nghĩa là rạp bị bù lỗ: $50x + 100y < 20\,000$ (hay $x + 2y < 400$).
+          </div>
+        </div>
+
+        <p>Mỗi hệ thức liên hệ giữa $x$ và $y$ thu được trong HĐ1a và HĐ1b được gọi là một <em>bất phương trình bậc nhất hai ẩn</em>.</p>
+
+        <!-- KNOWLEDGE BOX 1 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">📌 ĐỊNH NGHĨA BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN</div>
+          <p>
+            <strong>Bất phương trình bậc nhất hai ẩn</strong> $x, y$ có dạng tổng quát là:
+          </p>
+          <p style="text-align: center; margin: 10px 0; font-size: 1.15rem; color: #facc15; font-weight: 700;">
+            $$ax + by \le c \quad (ax + by \ge c, \ ax + by < c, \ ax + by > c)$$
+          </p>
+          <p>
+            trong đó $a, b, c$ là những số thực đã cho, $a$ và $b$ không đồng thời bằng 0 ($a^2 + b^2 \ne 0$), $x$ và $y$ là các ẩn số.
+          </p>
+        </div>
+
+        <!-- EXAMPLE 1 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 1</span>
+          </div>
+          <p>Bất phương trình nào sau đây là bất phương trình bậc nhất hai ẩn?</p>
+          <p style="margin: 8px 0 0 16px;">
+            $$2x + 3y < 1; \qquad 2x^2 + 3y < 1.$$
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            • Bất phương trình $2x + 3y < 1$ là bất phương trình bậc nhất hai ẩn vì ẩn $x$ và $y$ đều có bậc 1 và hệ số $a=2, b=3$ không đồng thời bằng 0.<br />
+            • Bất phương trình $2x^2 + 3y < 1$ không phải là bất phương trình bậc nhất hai ẩn vì có chứa $x^2$ (bậc 2).
+          </div>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-header">
+            <span class="activity-badge">HĐ2</span>
+            <span>Khái niệm nghiệm của bất phương trình</span>
+          </div>
+          <p>
+            Cặp số $(x; y) = (100; 100)$ thoả mãn bất phương trình bậc nhất hai ẩn nào trong hai bất phương trình thu được ở HĐ1? Từ đó cho biết rạp chiếu phim có phải bù lỗ hay không nếu bán được 100 vé loại 1 và 100 vé loại 2.
+          </p>
+          <p style="margin-top: 6px;">
+            Trả lời câu hỏi tương tự với cặp số $(x; y) = (150; 150)$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Hướng dẫn:</div>
+            • Với $(x; y) = (100; 100)$: $50(100) + 100(100) = 15\,000 < 20\,000$. Thỏa mãn BPT bù lỗ $50x + 100y < 20\,000$. Rạp chiếu phim <strong>phải bù lỗ</strong>.<br />
+            • Với $(x; y) = (150; 150)$: $50(150) + 100(150) = 22\,500 > 20\,000$. Thỏa mãn BPT $50x + 100y \ge 20\,000$. Rạp chiếu phim <strong>không phải bù lỗ (có lãi)</strong>.
+          </div>
+        </div>
+
+        <!-- KNOWLEDGE BOX 2 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">🔑 NGHIỆM CỦA BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN</div>
+          <p>
+            Cặp số $(x_0; y_0)$ được gọi là một <strong>nghiệm</strong> của bất phương trình bậc nhất hai ẩn $ax + by \le c$ nếu bất đẳng thức $ax_0 + by_0 \le c$ đúng.
+          </p>
+        </div>
+
+        <!-- EXAMPLE 2 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 2</span>
+          </div>
+          <p>Cho bất phương trình bậc nhất hai ẩn $x + 2y > 5$. Cặp số nào sau đây là một nghiệm của bất phương trình bậc nhất hai ẩn trên?</p>
+          <p style="margin: 8px 0 0 16px;">
+            <strong>a)</strong> $(x; y) = (3; 4)$; &emsp;&emsp; <strong>b)</strong> $(x; y) = (0; -1)$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            a) Vì $3 + 2 \cdot 4 = 11 > 5$ nên cặp số $(3; 4)$ là một nghiệm của bất phương trình đã cho.<br />
+            b) Vì $0 + 2 \cdot (-1) = -2 < 5$ nên cặp số $(0; -1)$ không phải là một nghiệm của bất phương trình đã cho.
+          </div>
+        </div>
+
+        <!-- PRACTICE 1 -->
+        <div class="practice-box">
+          <div class="practice-header">
+            <span>Luyện tập 1</span>
+          </div>
+          <p>Cho bất phương trình bậc nhất hai ẩn $x + 2y \ge 0$.</p>
+          <p style="margin-top: 6px;">
+            <strong>a)</strong> Hãy chỉ ra ít nhất hai nghiệm của bất phương trình trên.<br />
+            <strong>b)</strong> Với $y = 0$, có bao nhiêu giá trị của $x$ thoả mãn bất phương trình đã cho?
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Lời giải:</div>
+            a) Chọn $(x; y) = (0; 0)$, ta có $0 + 2 \cdot 0 = 0 \ge 0$ (đúng); Chọn $(x; y) = (1; 1)$, ta có $1 + 2 \cdot 1 = 3 \ge 0$ (đúng). Vậy $(0; 0)$ và $(1; 1)$ là hai nghiệm của bất phương trình.<br />
+            b) Khi $y = 0$, bất phương trình trở thành $x + 2 \cdot 0 \ge 0 \Leftrightarrow x \ge 0$. Có vô số giá trị thực của $x$ không âm thỏa mãn ($x \in [0; +\infty)$).
+          </div>
+        </div>
+
+        <div class="notice-card">
+          💡 <strong>Nhận xét quan trọng:</strong> Bất phương trình bậc nhất hai ẩn luôn có <strong>vô số nghiệm</strong>.
+        </div>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">2</span>
+          <span class="sec-title">BIỂU DIỄN MIỀN NGHIỆM TRÊN MẶT PHẲNG TOẠ ĐỘ</span>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-header">
+            <span class="activity-badge">HĐ3</span>
+            <span>Đường thẳng biên chia mặt phẳng thành hai nửa</span>
+          </div>
+          <p>
+            Cho đường thẳng $d: 2x - y = 4$ trên mặt phẳng toạ độ $Oxy$ (H.2.1). Đường thẳng này chia mặt phẳng thành hai nửa mặt phẳng.
+          </p>
+          <p style="margin-top: 6px;">
+            <strong>a)</strong> Các điểm $O(0; 0), A(-1; 3)$ và $B(-2; -2)$ có thuộc cùng một nửa mặt phẳng bờ là đường thẳng $d$ không?<br />
+            Tính giá trị của biểu thức $2x - y$ tại các điểm đó và so sánh với 4.<br />
+            <strong>b)</strong> Trả lời câu hỏi tương tự như câu a với các điểm $C(3; 1), D(4; -1)$.
+          </p>
+          <div class="img-container">
+            <img src="images/bai-03/hinh-2-1.png" alt="Hình 2.1 Đường thẳng 2x - y = 4" />
+            <div class="img-caption">Hình 2.1: Đường thẳng $d: 2x - y = 4$ chia mặt phẳng tọa độ thành hai miền</div>
+          </div>
+          <div class="solution-block">
+            <div class="solution-tag">Hướng dẫn:</div>
+            a) Các điểm $O, A, B$ cùng thuộc nửa mặt phẳng bên trái (phía trên) đường thẳng $d$.<br />
+            • Tại $O(0; 0)$: $2(0) - 0 = 0 < 4$.<br />
+            • Tại $A(-1; 3)$: $2(-1) - 3 = -5 < 4$.<br />
+            • Tại $B(-2; -2)$: $2(-2) - (-2) = -2 < 4$.<br />
+            Giá trị biểu thức $2x - y$ tại cả ba điểm đều nhỏ hơn 4.<br />
+            b) Các điểm $C(3; 1)$ và $D(4; -1)$ cùng thuộc nửa mặt phẳng bên phải (phía dưới) đường thẳng $d$.<br />
+            • Tại $C(3; 1)$: $2(3) - 1 = 5 > 4$.<br />
+            • Tại $D(4; -1)$: $2(4) - (-1) = 9 > 4$.<br />
+            Giá trị biểu thức $2x - y$ tại cả hai điểm đều lớn hơn 4.
+          </div>
+        </div>
+
+        <!-- KNOWLEDGE BOX 3 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">📐 MIỀN NGHIỆM VÀ NỬA MẶT PHẲNG BỜ d</div>
+          <p>
+            • Trong mặt phẳng toạ độ $Oxy$, tập hợp các điểm có toạ độ là nghiệm của bất phương trình $ax + by \le c$ được gọi là <strong>miền nghiệm</strong> của bất phương trình đó.
+          </p>
+          <p style="margin-top: 8px;">
+            • Người ta chứng minh được rằng đường thẳng $d: ax + by = c$ chia mặt phẳng toạ độ $Oxy$ thành hai nửa mặt phẳng bờ $d$:
+          </p>
+          <ul style="margin: 8px 0 8px 24px;">
+            <li>Một nửa mặt phẳng (không kể bờ $d$) gồm các điểm $(x; y)$ thoả mãn $ax + by > c$;</li>
+            <li>Nửa mặt phẳng còn lại (không kể bờ $d$) gồm các điểm $(x; y)$ thoả mãn $ax + by < c$.</li>
+          </ul>
+          <p>• Bờ $d$ gồm các điểm $(x; y)$ thoả mãn $ax + by = c$.</p>
+        </div>
+
+        <!-- EXAMPLE 3 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 3</span>
+          </div>
+          <p>Biểu diễn miền nghiệm của bất phương trình $x + y \ge 100$ trên mặt phẳng toạ độ.</p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải (H.2.2):</div>
+            Ta biểu diễn miền nghiệm của bất phương trình bậc nhất hai ẩn $x + y \ge 100$ như sau:<br />
+            <strong>Bước 1.</strong> Vẽ đường thẳng $d: x + y = 100$ trên mặt phẳng toạ độ $Oxy$ (đi qua điểm $(100; 0)$ và $(0; 100)$).<br />
+            <strong>Bước 2.</strong> Lấy một điểm bất kì không thuộc $d$ trên mặt phẳng rồi thay vào biểu thức $x + y$. Chẳng hạn, lấy $O(0; 0)$, ta có: $0 + 0 = 0 < 100$.<br />
+            Do đó miền nghiệm của bất phương trình đã cho là nửa mặt phẳng bờ $d$ không chứa gốc toạ độ (miền không bị gạch chéo, kể cả bờ $d$).
+          </div>
+          <div class="img-container">
+            <img src="images/bai-03/hinh-2-2.png" alt="Hình 2.2 Biểu diễn miền nghiệm x + y >= 100" />
+            <div class="img-caption">Hình 2.2: Miền nghiệm của bất phương trình $x + y \ge 100$</div>
+          </div>
+        </div>
+
+        <!-- KNOWLEDGE BOX 4: 3-STEP METHOD -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">🌟 QUY TRÌNH 3 BƯỚC BIỂU DIỄN MIỀN NGHIỆM ax + by ≤ c</div>
+          <ol style="margin-left: 20px; line-height: 1.85;">
+            <li><strong>Bước 1: Vẽ đường thẳng bờ $d$:</strong> Vẽ đường thẳng $d: ax + by = c$ trên mặt phẳng toạ độ $Oxy$.</li>
+            <li><strong>Bước 2: Lấy điểm thử $M_0$:</strong> Lấy một điểm $M_0(x_0; y_0)$ không thuộc $d$. Tính giá trị $ax_0 + by_0$ và so sánh với $c$.</li>
+            <li><strong>Bước 3: Kết luận miền nghiệm:</strong>
+              <ul style="margin-top: 4px;">
+                <li>Nếu $ax_0 + by_0 < c$ thì nửa mặt phẳng bờ $d$ <strong>chứa $M_0$</strong> là miền nghiệm.</li>
+                <li>Nếu $ax_0 + by_0 > c$ thì nửa mặt phẳng bờ $d$ <strong>không chứa $M_0$</strong> là miền nghiệm.</li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+
+        <div class="robot-tip">
+          <img src="images/bai-03/robot-m0.png" alt="Mẹo chọn điểm M0" />
+          <div class="robot-text">
+            <strong>Mẹo chọn điểm kiểm tra $M_0$:</strong><br />
+            • Nếu $c \ne 0$, ta luôn ưu tiên chọn $M_0$ chính là <strong>gốc toạ độ $O(0; 0)$</strong> vì tính toán nhanh nhất!<br />
+            • Nếu $c = 0$ (đường thẳng đi qua gốc $O$), ta chọn $M_0$ là $(1; 0)$ hoặc $(0; 1)$.
+          </div>
+        </div>
+
+        <!-- EXAMPLE 4 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 4</span>
+          </div>
+          <p>Biểu diễn miền nghiệm của bất phương trình $5x - 7y \le 0$ trên mặt phẳng toạ độ.</p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải (H.2.3):</div>
+            <strong>Bước 1.</strong> Vẽ đường thẳng $d: 5x - 7y = 0$ trên mặt phẳng toạ độ $Oxy$ (đi qua gốc toạ độ $O(0; 0)$ và điểm $(7; 5)$).<br />
+            <strong>Bước 2.</strong> Vì $d$ đi qua gốc toạ độ nên ta chọn điểm $M_0(0; 1)$ không thuộc $d$. Thay $x = 0, y = 1$ vào biểu thức $5x - 7y$ ta được:
+            $$5 \cdot 0 - 7 \cdot 1 = -7 < 0.$$
+            Do đó miền nghiệm của bất phương trình là nửa mặt phẳng bờ $d$ chứa điểm $M_0$ (miền không bị gạch, kể cả bờ $d$).
+          </div>
+          <div class="img-container">
+            <img src="images/bai-03/hinh-2-3.png" alt="Hình 2.3 Biểu diễn miền nghiệm 5x - 7y <= 0" />
+            <div class="img-caption">Hình 2.3: Miền nghiệm của bất phương trình $5x - 7y \le 0$</div>
+          </div>
+        </div>
+
+        <div class="notice-card" style="border-left-color: #f43f5e;">
+          ⚠️ <strong>Chú ý về nét vẽ đường thẳng biên:</strong><br />
+          • Đối với bất phương trình có dấu bằng ($\le, \ge$): Đường biên $d$ được vẽ bằng <strong>nét liền</strong> (miền nghiệm bao gồm cả đường biên).<br />
+          • Đối với bất phương trình ngặt ($<, >$): Đường biên $d$ được vẽ bằng <strong>nét đứt</strong> (miền nghiệm bỏ đi đường biên).
+        </div>
+
+        <!-- PRACTICE 2 -->
+        <div class="practice-box">
+          <div class="practice-header">
+            <span>Luyện tập 2</span>
+          </div>
+          <p>Biểu diễn miền nghiệm của bất phương trình $2x + y < 200$ trên mặt phẳng toạ độ.</p>
+          <div class="solution-block">
+            <div class="solution-tag">Lời giải:</div>
+            <strong>Bước 1.</strong> Vẽ đường thẳng $d: 2x + y = 200$ bằng <em>nét đứt</em> (đi qua $(100; 0)$ và $(0; 200)$).<br />
+            <strong>Bước 2.</strong> Thay toạ độ gốc $O(0; 0)$ vào biểu thức: $2(0) + 0 = 0 < 200$ (thỏa mãn).<br />
+            <strong>Bước 3.</strong> Kết luận: Miền nghiệm của bất phương trình là nửa mặt phẳng bờ $d$ chứa gốc toạ độ $O(0; 0)$, không kể bờ $d$.
+          </div>
+        </div>
+
+        <!-- EXAMPLE 5: RESOLVING OPENING SITUATION -->
+        <div class="example-box" style="border: 1px solid #38bdf8;">
+          <div class="example-header" style="color: #38bdf8;">
+            <span>Ví dụ 5: Giải quyết trọn vẹn tình huống mở đầu</span>
+          </div>
+          <p>
+            Gọi $x$ là số lượng vé loại 1 bán được ($x \in \mathbb{N}$) và $y$ là số lượng vé loại 2 bán được ($y \in \mathbb{N}$) thì số tiền bán vé thu được là $50x + 100y$ (nghìn đồng).
+          </p>
+          <p style="margin-top: 6px;">
+            Người ta sẽ phải bù lỗ trong trường hợp số tiền bán vé nhỏ hơn 20 triệu đồng, tức là:
+            $$50x + 100y < 20\,000 \quad \Leftrightarrow \quad x + 2y < 400.$$
+            Như vậy, việc giải quyết bài toán mở đầu dẫn đến việc đi tìm miền nghiệm của bất phương trình $x + 2y < 400$ trên miền $x \ge 0, y \ge 0$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Xác định miền nghiệm:</div>
+            • Vẽ đường thẳng $d: x + 2y = 400$ (nét đứt) cắt trục hoành tại $B(400; 0)$ và cắt trục tung tại $A(0; 200)$.<br />
+            • Lấy gốc $O(0; 0)$: $0 + 2 \cdot 0 = 0 < 400$. Nửa mặt phẳng chứa gốc $O$ là miền nghiệm.<br />
+            • Kết hợp điều kiện $x \ge 0, y \ge 0$, miền nghiệm biểu diễn các trường hợp rạp chiếu phim phải bù lỗ là <strong>phần trong của tam giác $OAB$ (không kể các điểm trên cạnh $AB$)</strong>.
+          </div>
+          <div class="img-container">
+            <img src="images/bai-03/hinh-2-4.png" alt="Hình 2.4 Miền tam giác OAB" />
+            <div class="img-caption">Hình 2.4: Miền bù lỗ là miền tam giác OAB (không kể đoạn thẳng AB)</div>
+          </div>
+          <div class="robot-tip">
+            <img src="images/bai-03/robot-mien-tam-giac.png" alt="Robot miền tam giác" />
+            <div class="robot-text">
+              <strong>Nhận xét từ đồ thị:</strong><br />
+              • Nếu bán được 150 vé loại 1 và 150 vé loại 2 $\to (150; 150)$ nằm ngoài tam giác $OAB$: <strong>Rạp có lãi</strong>.<br />
+              • Nếu bán được 200 vé loại 1 và 100 vé loại 2 $\to (200; 100)$ nằm trên cạnh $AB$: <strong>Rạp hoà vốn</strong>.<br />
+              • Nếu bán được 100 vé loại 1 và 100 vé loại 2 $\to (100; 100)$ nằm trong miền tam giác $OAB$: <strong>Rạp bị bù lỗ</strong>.
+            </div>
+          </div>
+        </div>
+
+        <!-- APPLICATION -->
+        <div class="apply-box">
+          <div class="apply-header">
+            <span>Vận dụng: Bài toán gói cước viễn thông</span>
+          </div>
+          <p>
+            Một công ty viễn thông tính phí 1 nghìn đồng mỗi phút gọi nội mạng và 2 nghìn đồng mỗi phút gọi ngoại mạng. Em có thể sử dụng bao nhiêu phút gọi nội mạng và bao nhiêu phút gọi ngoại mạng trong một tháng nếu em muốn số tiền phải trả ít hơn 200 nghìn đồng?
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Lời giải:</div>
+            Gọi $x$ và $y$ lần lượt là số phút gọi nội mạng và ngoại mạng trong một tháng ($x \ge 0, y \ge 0$).<br />
+            • Tiền cước gọi nội mạng: $1 \cdot x = x$ (nghìn đồng).<br />
+            • Tiền cước gọi ngoại mạng: $2 \cdot y = 2y$ (nghìn đồng).<br />
+            Tổng số tiền phải trả ít hơn 200 nghìn đồng nên ta có bất phương trình:
+            $$x + 2y < 200 \quad (x \ge 0, \ y \ge 0).$$
+            Vậy số phút gọi nội mạng $x$ và ngoại mạng $y$ có thể sử dụng là toạ độ của mọi điểm $(x; y)$ nguyên không âm nằm trong miền tam giác giới hạn bởi gốc toạ độ $O(0; 0)$, điểm $(200; 0)$ trên trục $Ox$ và $(0; 100)$ trên trục $Oy$ (không kể cạnh huyền).
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3: EXERCISES -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">3</span>
+          <span class="sec-title">BÀI TẬP CUỐI BÀI (SGK TRANG 25)</span>
+        </div>
+
+        <!-- EXERCISE 2.1 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 2.1 (SGK trang 25)</div>
+          <p>Bất phương trình nào sau đây là bất phương trình bậc nhất hai ẩn?</p>
+          <p style="margin: 8px 0 0 16px;">
+            <strong>a)</strong> $2x + 3y > 6$; &emsp;&emsp;
+            <strong>b)</strong> $2^2 x + y \le 0$; &emsp;&emsp;
+            <strong>c)</strong> $2x^2 - y \ge 1$.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              • <strong>a)</strong> $2x + 3y > 6$ là bất phương trình bậc nhất hai ẩn vì có dạng $ax + by > c$ với $a = 2 \ne 0, b = 3 \ne 0$ và bậc của $x, y$ đều là 1.<br />
+              • <strong>b)</strong> $2^2 x + y \le 0 \Leftrightarrow 4x + y \le 0$ là bất phương trình bậc nhất hai ẩn vì $2^2 = 4$ chỉ là hằng số, các ẩn $x$ và $y$ đều có bậc 1.<br />
+              • <strong>c)</strong> $2x^2 - y \ge 1$ <em>không phải</em> là bất phương trình bậc nhất hai ẩn vì ẩn $x$ có bậc 2 ($x^2$).
+            </div>
+          </details>
+        </div>
+
+        <!-- EXERCISE 2.2 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 2.2 (SGK trang 25)</div>
+          <p>Biểu diễn miền nghiệm của mỗi bất phương trình sau trên mặt phẳng toạ độ:</p>
+          <p style="margin: 8px 0 0 16px;">
+            <strong>a)</strong> $3x + 2y \ge 300$; &emsp;&emsp;
+            <strong>b)</strong> $7x + 20y < 0$.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              <strong>a) Biểu diễn miền nghiệm $3x + 2y \ge 300$:</strong><br />
+              • Bước 1: Vẽ đường thẳng $d_1: 3x + 2y = 300$ bằng nét liền (đi qua $A(100; 0)$ và $B(0; 150)$).<br />
+              • Bước 2: Thay toạ độ $O(0; 0)$ vào vế trái: $3(0) + 2(0) = 0 < 300$ (không thoả mãn).<br />
+              • Bước 3: Miền nghiệm là nửa mặt phẳng bờ $d_1$ không chứa gốc toạ độ $O(0; 0)$, kể cả bờ $d_1$.<br /><br />
+              <strong>b) Biểu diễn miền nghiệm $7x + 20y < 0$:</strong><br />
+              • Bước 1: Vẽ đường thẳng $d_2: 7x + 20y = 0$ bằng nét đứt (đi qua gốc toạ độ $O(0; 0)$ và điểm $M(20; -7)$).<br />
+              • Bước 2: Vì $d_2$ đi qua $O$, chọn điểm thử $N(0; 1)$: thay vào biểu thức ta được $7(0) + 20(1) = 20 > 0$ (không thoả mãn).<br />
+              • Bước 3: Miền nghiệm là nửa mặt phẳng bờ $d_2$ không chứa điểm $N(0; 1)$, không kể bờ $d_2$.
+            </div>
+          </details>
+        </div>
+
+        <!-- EXERCISE 2.3 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 2.3 (SGK trang 25) - Bài toán thực tế thuê xe ô tô</div>
+          <p>
+            Ông An muốn thuê một chiếc ô tô (có lái xe) trong một tuần. Giá thuê xe được cho như bảng sau:
+          </p>
+          <div class="img-container">
+            <img src="images/bai-03/bang-thue-xe.png" alt="Bảng giá thuê xe ô tô" />
+            <div class="img-caption">Bảng giá cước thuê xe ô tô theo ngày và kilômét di chuyển</div>
+          </div>
+          <p style="margin-top: 8px;">
+            <strong>a)</strong> Gọi $x$ và $y$ lần lượt là số kilômét ông An đi trong các ngày từ thứ Hai đến thứ Sáu và trong hai ngày cuối tuần. Viết bất phương trình biểu thị mối liên hệ giữa $x$ và $y$ sao cho tổng số tiền ông An phải trả không quá 14 triệu đồng.<br />
+            <strong>b)</strong> Biểu diễn miền nghiệm của bất phương trình ở câu a trên mặt phẳng toạ độ.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              <strong>a) Thiết lập bất phương trình:</strong><br />
+              • Từ thứ Hai đến thứ Sáu có 5 ngày. Phí cố định: $5 \times 900 = 4\,500$ (nghìn đồng).<br />
+              • Phí di chuyển các ngày thường ($x$ km): $8x$ (nghìn đồng).<br />
+              • Thứ Bảy và Chủ nhật có 2 ngày cuối tuần. Phí cố định: $2 \times 1\,500 = 3\,000$ (nghìn đồng).<br />
+              • Phí di chuyển cuối tuần ($y$ km): $10y$ (nghìn đồng).<br />
+              Tổng số tiền ông An phải trả:
+              $$T = (4\,500 + 8x) + (3\,000 + 10y) = 7\,500 + 8x + 10y \text{ (nghìn đồng)}.$$
+              Đổi 14 triệu đồng $= 14\,000$ nghìn đồng. Do tổng số tiền không quá 14 triệu đồng:
+              $$7\,500 + 8x + 10y \le 14\,000 \quad \Leftrightarrow \quad 8x + 10y \le 6\,500 \quad \Leftrightarrow \quad 4x + 5y \le 3\,250 \quad (x \ge 0, y \ge 0).$$
+              <br />
+              <strong>b) Biểu diễn miền nghiệm:</strong><br />
+              • Bước 1: Vẽ đường thẳng $d: 4x + 5y = 3\,250$ (đi qua điểm $(812.5; 0)$ và $(0; 650)$).<br />
+              • Bước 2: Thay $O(0; 0)$ vào biểu thức: $4(0) + 5(0) = 0 \le 3\,250$ (thoả mãn).<br />
+              • Bước 3: Do $x \ge 0, y \ge 0$, miền nghiệm của bất phương trình là miền tam giác giới hạn bởi ba đỉnh: gốc toạ độ $O(0; 0)$, điểm $A(812.5; 0)$ trên $Ox$, và điểm $B(0; 650)$ trên $Oy$, kể cả các cạnh của tam giác $OAB$.
+            </div>
+          </details>
+        </div>
+
+        <!-- NAVIGATION -->
+        <div class="btn-nav-wrap">
+          <a href="/luyen/bai-03" class="btn-nav btn-prev">
+            ← Quay lại Bài học & Luyện tập
+          </a>
+          <a href="/luyen/bai-03?tab=quiz" class="btn-nav btn-next">
+            Luyện trắc nghiệm 3 dạng Bài 3 →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Scroll Progress Bar
+      window.addEventListener("scroll", () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height =
+          document.documentElement.scrollHeight -
+          document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+      });
+    </script>
+  </body>
+</html>

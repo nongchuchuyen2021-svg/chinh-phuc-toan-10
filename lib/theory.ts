@@ -615,6 +615,294 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
     ]
   },
 
+  "bai-03": {
+    intro: "Bất phương trình bậc nhất hai ẩn là công cụ toán học nền tảng mô hình hóa các bài toán kinh tế, sản xuất và quy hoạch tuyến tính. Nắm vững phương pháp biểu diễn miền nghiệm trên mặt phẳng toạ độ giúp em làm chủ các bài toán thực tế và đạt điểm tuyệt đối trong các kì thi.",
+    minutes: 12,
+    sections: [
+      {
+        id: "sec-1",
+        emoji: "💡",
+        heading: "1. Khái niệm & Nghiệm của BPT bậc nhất hai ẩn",
+        blocks: [
+          {
+            kind: "text",
+            text: "Bất phương trình bậc nhất hai ẩn là dạng mở rộng của phương trình đường thẳng sang dạng bất đẳng thức trong không gian hai chiều."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "📐",
+                title: "Dạng tổng quát",
+                text: "$ax + by \\le c$ (hoặc $\\ge c, < c, > c$).\nTrong đó $a, b, c \\in \\mathbb{R}$ và $a, b$ không đồng thời bằng 0 ($a^2 + b^2 \\ne 0$)."
+              },
+              {
+                emoji: "🔑",
+                title: "Nghiệm (x₀; y₀)",
+                text: "Cặp số $(x_0; y_0)$ là nghiệm khi thay vào BPT cho ta bất đẳng thức đúng: $ax_0 + by_0 \\le c$."
+              },
+              {
+                emoji: "♾️",
+                title: "Vô số nghiệm",
+                text: "Một BPT bậc nhất hai ẩn luôn có VÔ SỐ nghiệm, tập hợp nghiệm lấp đầy một nửa mặt phẳng."
+              },
+              {
+                emoji: "🚫",
+                title: "Dấu hiệu nhận biết loại trừ",
+                text: "Chứa bậc 2 ($x^2, y^2$), tích hai ẩn ($xy$), hoặc ẩn ở mẫu ($\\frac{1}{x}, \\frac{1}{y}$) thì KHÔNG PHẢI là bậc nhất hai ẩn."
+              }
+            ]
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Là BPT bậc nhất hai ẩn",
+              emoji: "✅",
+              items: [
+                "$2x + 3y < 1$ (Bậc của cả $x$ và $y$ đều là 1)",
+                "$2^2 x + y \\le 0 \\Leftrightarrow 4x + y \\le 0$ (Lũy thừa ở hệ số là hằng số)",
+                "$-3x + 5y \\ge 7$ (Hệ số âm hoàn toàn hợp lệ)"
+              ]
+            },
+            right: {
+              title: "KHÔNG PHẢI BPT bậc nhất hai ẩn",
+              emoji: "❌",
+              items: [
+                "$2x^2 + 3y \\le 5$ (Chứa $x^2$ có bậc 2)",
+                "$xy - 2x + 1 > 0$ (Chứa tích hai biến $xy$)",
+                "$\\frac{3}{x} + 2y \\ge 4$ (Chứa biến ở mẫu thức)"
+              ]
+            }
+          },
+          {
+            kind: "note",
+            text: "⚠️ **CẢNH BÁO BẪY THƯỜNG GẶP**: Hệ số $a, b$ có thể là số âm, số thập phân hoặc căn thức ($\sqrt{2}x - \\frac{1}{3}y \\ge 0$), miễn là bậc của hai ẩn $x$ và $y$ đều là bậc 1 và $a, b$ không đồng thời bằng 0."
+          },
+          {
+            kind: "check",
+            q: "Trong các bất phương trình sau, bất phương trình nào là bất phương trình bậc nhất hai ẩn?",
+            options: [
+              "$2x^2 - y \\le 3$",
+              "$3x + xy > 5$",
+              "$2x - 3y + 7 \\ge 0$",
+              "$\\frac{1}{x} + 2y < 4$"
+            ],
+            answer: 2,
+            explain: "Chỉ có $2x - 3y + 7 \\ge 0$ có dạng $ax + by + c \\ge 0$ với $a = 2, b = -3$ đều khác 0 và bậc của $x, y$ đều là bậc 1."
+          }
+        ]
+      },
+      {
+        id: "sec-2",
+        emoji: "📐",
+        heading: "2. Đường thẳng biên & Định lí phân chia mặt phẳng",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong mặt phẳng toạ độ $Oxy$, đường thẳng biên $d: ax + by = c$ đóng vai trò như một bức tường ranh giới chia mặt phẳng thành hai nửa."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "➖",
+                title: "Đường thẳng biên bờ d",
+                text: "Gồm tất cả các điểm $(x; y)$ thỏa mãn đẳng thức $ax + by = c$."
+              },
+              {
+                emoji: "➕",
+                title: "Nửa mặt phẳng dấu dương",
+                text: "Gồm tất cả các điểm $(x; y)$ thỏa mãn bất đẳng thức $ax + by > c$."
+              },
+              {
+                emoji: "➖",
+                title: "Nửa mặt phẳng dấu âm",
+                text: "Gồm tất cả các điểm $(x; y)$ thỏa mãn bất đẳng thức $ax + by < c$."
+              },
+              {
+                emoji: "🌗",
+                title: "Cùng phía vs Khác phía",
+                text: "Hai điểm $M, N$ nằm cùng một nửa mặt phẳng khi $ax + by - c$ cùng dấu; khác phía khi trái dấu."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "📌 **QUY TẮC NÉT VẼ ĐƯỜNG THẲNG BIÊN (BẮT BUỘC NHỚ)**:\n\n• **Bất phương trình không ngặt ($\\le, \\ge$)**: Đường thẳng biên $d$ vẽ bằng **NÉT LIỀN** (miền nghiệm bao gồm cả bờ $d$).\n• **Bất phương trình ngặt ($<, >$)**: Đường thẳng biên $d$ vẽ bằng **NÉT ĐỨT** (miền nghiệm không bao gồm bờ $d$)."
+          },
+          {
+            kind: "check",
+            q: "Khi biểu diễn miền nghiệm của bất phương trình $3x - y < 4$ trên mặt phẳng toạ độ, đường thẳng biên $3x - y = 4$ được vẽ bằng nét gì và có thuộc miền nghiệm không?",
+            options: [
+              "Nét liền và thuộc miền nghiệm",
+              "Nét liền và không thuộc miền nghiệm",
+              "Nét đứt và thuộc miền nghiệm",
+              "Nét đứt và không thuộc miền nghiệm"
+            ],
+            answer: 3,
+            explain: "Vì bất phương trình mang dấu ngặt '$<$' nên đường thẳng biên không thuộc miền nghiệm và phải được biểu diễn bằng nét đứt."
+          }
+        ]
+      },
+      {
+        id: "sec-3",
+        emoji: "🎯",
+        heading: "3. Quy trình 3 bước biểu diễn miền nghiệm trên Oxy",
+        blocks: [
+          {
+            kind: "text",
+            text: "Để biểu diễn miền nghiệm của bất phương trình $ax + by \\le c$, ta thực hiện theo 3 bước chuẩn hóa sau:"
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Vẽ đường thẳng biên bờ d",
+                text: "Vẽ đường thẳng $d: ax + by = c$. Xác định 2 điểm đặc biệt: giao với $Ox$ tại $(\\frac{c}{a}; 0)$ và giao với $Oy$ tại $(0; \\frac{c}{b})$ (với $c \\ne 0$). Chú ý nét liền hay nét đứt!"
+              },
+              {
+                label: "Bước 2",
+                title: "Chọn điểm thử M₀",
+                text: "Chọn một điểm $M_0(x_0; y_0)$ không nằm trên $d$. Nếu $c \\ne 0$, luôn luôn chọn gốc toạ độ $O(0; 0)$ để tính nhẩm siêu tốc! Nếu $c = 0$, chọn $(1; 0)$ hoặc $(0; 1)$."
+              },
+              {
+                label: "Bước 3",
+                title: "So sánh & Kết luận miền nghiệm",
+                text: "Thay toạ độ $M_0$ vào vế trái $ax_0 + by_0$ so sánh với $c$. Nếu nghiệm đúng thì miền nghiệm là nửa mặt phẳng chứa $M_0$; nếu sai thì là nửa mặt phẳng không chứa $M_0$ (gạch bỏ phần còn lại)."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "💡 **MẸO VÀNG NHỚ NHANH GỐC O(0; 0)**:\nKhi $c > 0$ và BPT là $ax + by < c$:\nThay $O(0; 0) \\to 0 < c$ (luôn ĐÚNG) $\\Rightarrow$ Miền nghiệm luôn chứa gốc toạ độ $O(0; 0)$!"
+          },
+          {
+            kind: "check",
+            q: "Cho bất phương trình $2x + y \\ge 4$. Gốc toạ độ $O(0; 0)$ có thuộc miền nghiệm không và miền nghiệm nằm ở phía nào?",
+            options: [
+              "$O(0; 0)$ thuộc miền nghiệm, miền nghiệm là nửa mặt phẳng chứa $O$",
+              "$O(0; 0)$ không thuộc miền nghiệm, miền nghiệm là nửa mặt phẳng không chứa $O$",
+              "$O(0; 0)$ nằm trên đường thẳng biên $2x + y = 4$",
+              "Bất phương trình vô nghiệm"
+            ],
+            answer: 1,
+            explain: "Thay $O(0; 0)$ vào vế trái: $2(0) + 0 = 0 < 4$ (không thỏa mãn $\\ge 4$). Do đó gốc toạ độ $O(0; 0)$ không thuộc miền nghiệm. Miền nghiệm là nửa mặt phẳng bờ $2x + y = 4$ không chứa gốc toạ độ $O$."
+          }
+        ]
+      },
+      {
+        id: "sec-4",
+        emoji: "⚡",
+        heading: "4. BPT đi qua gốc toạ độ (c = 0) & Các trường hợp khuyết ẩn",
+        blocks: [
+          {
+            kind: "text",
+            text: "Khi hằng số tự do $c = 0$ hoặc bất phương trình khuyết một ẩn ($x \\le a$ hoặc $y \\ge b$), cần có phương pháp xử lí linh hoạt."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "🎯",
+                title: "Khi c = 0 (d đi qua gốc O)",
+                text: "BPT dạng $ax + by \\le 0$. Đường thẳng đi qua $O(0; 0)$ nên KHÔNG ĐƯỢC lấy $O$ làm điểm thử! Ta lấy điểm thử $M_0(0; 1)$ trên trục $Oy$ hoặc $(1; 0)$ trên trục $Ox$."
+              },
+              {
+                emoji: "↕️",
+                title: "Khuyết ẩn y (x ≤ a hoặc x ≥ a)",
+                text: "Đường thẳng biên $x = a$ song song (hoặc trùng) với trục tung $Oy$. Miền nghiệm $x \\le a$ là nửa mặt phẳng bên trái $x = a$; $x \\ge a$ là nửa mặt phẳng bên phải."
+              },
+              {
+                emoji: "↔️",
+                title: "Khuyết ẩn x (y ≤ b hoặc y ≥ b)",
+                text: "Đường thẳng biên $y = b$ song song (hoặc trùng) với trục hoành $Ox$. Miền nghiệm $y \\ge b$ là nửa mặt phẳng phía trên $y = b$; $y \\le b$ là nửa mặt phẳng phía dưới."
+              },
+              {
+                emoji: "🛡️",
+                title: "Góc phần tư thứ nhất",
+                text: "Điều kiện không âm thực tế: $x \\ge 0$ (bên phải $Oy$) và $y \\ge 0$ (phía trên $Ox$) tạo thành góc phần tư I."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "⚠️ **CẢNH BÁO BẪY ĐIỂM THỬ KHI c = 0**:\nRất nhiều học sinh theo thói quen vẫn thay điểm $O(0; 0)$ vào khi gặp BPT $5x - 7y \\le 0$. Vì $5(0) - 7(0) = 0$ nên điểm $O$ nằm ngay trên bờ biên, không thể dùng để phân biệt hai nửa mặt phẳng! Nhất định phải chọn điểm nằm ngoài đường thẳng bờ như $(0; 1)$ hoặc $(1; 0)$!"
+          },
+          {
+            kind: "check",
+            q: "Để kiểm tra miền nghiệm của bất phương trình $3x - 4y > 0$, ta nên chọn điểm thử nào sau đây?",
+            options: [
+              "$(0; 0)$",
+              "$(4; 3)$",
+              "$(0; 1)$",
+              "$(8; 6)$"
+            ],
+            answer: 2,
+            explain: "Đường thẳng $3x - 4y = 0$ đi qua các điểm $(0; 0)$, $(4; 3)$, $(8; 6)$ nên cả ba điểm này đều nằm trên đường biên. Chỉ có điểm $(0; 1)$ không thuộc đường biên, thay vào: $3(0) - 4(1) = -4 < 0$ (không thoả mãn), vậy miền nghiệm không chứa $(0; 1)$."
+          }
+        ]
+      },
+      {
+        id: "sec-5",
+        emoji: "💼",
+        heading: "5. Thiết lập mô hình kinh tế & Bài toán thực tiễn",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong đời sống và sản xuất, bất phương trình bậc nhất hai ẩn giúp người quản lí kiểm soát chi phí, phân bổ vốn và tối ưu nguồn lực."
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Gọi ẩn & Đặt điều kiện",
+                text: "Gọi $x, y$ lần lượt là số lượng đơn vị đối tượng 1 và 2 cần tìm. Đặt điều kiện thực tế: thường là $x \\ge 0, y \\ge 0$ (hoặc $x, y \\in \\mathbb{N}$)."
+              },
+              {
+                label: "Bước 2",
+                title: "Quy đổi đơn vị & Lập BPT",
+                text: "Đồng nhất các đơn vị đo (ví dụ: triệu đồng sang nghìn đồng; kg sang gram; giờ sang phút). Lập bất đẳng thức theo yêu cầu: 'tối thiểu/ít nhất' ($\\ge$), 'tối đa/không quá' ($\\le$), 'nhỏ hơn' ($<$)."
+              },
+              {
+                label: "Bước 3",
+                title: "Rút gọn & Biểu diễn miền khả thi",
+                text: "Chia cả hai vế cho ước chung lớn nhất để đưa về BPT tối giản $ax + by \\le c$. Miền nghiệm kết hợp với $x \\ge 0, y \\ge 0$ thường tạo thành một miền tam giác vuông."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "🌟 **CÔNG THỨC DIỆN TÍCH MIỀN TAM GIÁC NGHIỆM KHẢ THI**:\nKhi đường thẳng $ax + by = c$ ($a, b, c > 0$) kết hợp với $x \\ge 0, y \\ge 0$, miền nghiệm tạo thành tam giác vuông $OAB$ với hai cạnh góc vuông $OA = \\frac{c}{b}$ và $OB = \\frac{c}{a}$.\n$$S_{\\Delta OAB} = \\frac{1}{2} OA \\cdot OB = \\frac{c^2}{2ab}$$\n(Công thức tính nhanh diện tích miền nghiệm trong các bài thi trắc nghiệm)."
+          },
+          {
+            kind: "check",
+            q: "Một công ty dự định chi không quá 30 triệu đồng để quảng cáo trên đài phát thanh (giá 3 triệu/phút) và truyền hình (giá 6 triệu/phút). Gọi $x, y$ lần lượt là số phút quảng cáo trên phát thanh và truyền hình. Bất phương trình tối giản mô tả điều kiện ngân sách là:",
+            options: [
+              "$x + 2y \\le 10$",
+              "$3x + 6y < 30$",
+              "$2x + y \\le 10$",
+              "$x + 2y \\ge 10$"
+            ],
+            answer: 0,
+            explain: "Chi phí quảng cáo: $3x + 6y \\le 30$. Chia cả hai vế cho 3 ta được bất phương trình tối giản: $x + 2y \\le 10$."
+          }
+        ]
+      }
+    ],
+    summary: [
+      "1. Dạng tổng quát: $ax + by \\le c$ ($a, b$ không đồng thời bằng 0). BPT bậc nhất hai ẩn luôn có vô số nghiệm.",
+      "2. Đường thẳng biên bờ $d$: $ax + by = c$ chia mặt phẳng thành hai miền: một bên $ax + by > c$ và một bên $ax + by < c$.",
+      "3. Quy tắc nét vẽ: Dấu có bằng ($\\le, \\ge$) vẽ NÉT LIỀN (lấy cả bờ); Dấu ngặt ($<, >$) vẽ NÉT ĐỨT (không lấy bờ).",
+      "4. Điểm thử $M_0$: Nếu $c \\ne 0$, luôn chọn gốc $O(0; 0)$ để thử nhanh nhất; Nếu $c = 0$ (đường thẳng qua $O$), tuyệt đối không thử điểm $O$, hãy chọn $(0; 1)$ hoặc $(1; 0)$.",
+      "5. Bài toán kinh tế thực tế: Đồng nhất đơn vị, lập BPT $ax + by \\le c$ với điều kiện không âm $x \\ge 0, y \\ge 0$. Miền nghiệm thường là miền tam giác vuông có diện tích $S = \\frac{c^2}{2ab}$."
+    ]
+  },
+
   "bai-06": {
     intro: "Hệ thức lượng trong tam giác mở rộng định lí Pythagore sang tam giác bất kì, cung cấp bộ công thức định lí côsin, định lí sin và 5 công thức tính diện tích kinh điển.",
     minutes: 12,

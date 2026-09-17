@@ -159,27 +159,53 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     tf: [
       {
         id: "b3-tf1",
-        context: "Cho bất phương trình bậc nhất hai ẩn $d: 2x + 3y - 6 \\le 0$.",
+        context: "Cho bất phương trình bậc nhất hai ẩn $2x + 3y - 6 \\le 0$.",
         statements: [
           {
-            text: "Đường thẳng biên $2x + 3y - 6 = 0$ đi qua điểm $A(3; 0)$ và $B(0; 2)$.",
+            text: "Đường thẳng biên $2x + 3y - 6 = 0$ đi qua hai điểm $A(3; 0)$ và $B(0; 2)$.",
             answer: true,
-            explain: "Thay $(3; 0)$: $2(3) + 0 - 6 = 0$; thay $(0; 2)$: $0 + 3(2) - 6 = 0$ (đúng)."
+            explain: "Thay $(3; 0)$: $2(3) + 3(0) - 6 = 0$; thay $(0; 2)$: $2(0) + 3(2) - 6 = 0$. Cả hai điểm đều thuộc đường thẳng."
           },
           {
             text: "Gốc toạ độ $O(0; 0)$ thuộc miền nghiệm của bất phương trình.",
             answer: true,
-            explain: "Thay $(0; 0)$: $0 + 0 - 6 = -6 \\le 0$ (thoả mãn)."
+            explain: "Thay $(0; 0)$: $2(0) + 3(0) - 6 = -6 \\le 0$ (thoả mãn)."
           },
           {
             text: "Điểm $M(2; 1)$ thuộc miền nghiệm của bất phương trình.",
             answer: false,
-            explain: "Thay $(2; 1)$: $2(2) + 3(1) - 6 = 4 + 3 - 6 = 1 > 0$ (không thoả mãn)."
+            explain: "Thay $(2; 1)$: $2(2) + 3(1) - 6 = 4 + 3 - 6 = 1 > 0$ (không thoả mãn BPT)."
           },
           {
-            text: "Miền nghiệm của BPT chứa các điểm nằm trên đường thẳng biên $2x + 3y - 6 = 0$.",
+            text: "Miền nghiệm của bất phương trình là nửa mặt phẳng bờ $d: 2x + 3y - 6 = 0$ chứa gốc toạ độ $O(0; 0)$, kể cả bờ $d$.",
             answer: true,
-            explain: "Vì dấu của BPT là '$\\le$' (có dấu bằng)."
+            explain: "Vì dấu của BPT là '$\\le$' (có dấu bằng) nên miền nghiệm bao gồm cả các điểm nằm trên đường thẳng biên $d$."
+          }
+        ]
+      },
+      {
+        id: "b3-tf2",
+        context: "Cho bất phương trình bậc nhất hai ẩn $\\Delta: 3x - 2y + 6 > 0$.",
+        statements: [
+          {
+            text: "Bất phương trình $\\Delta$ không phải là bất phương trình bậc nhất hai ẩn vì hệ số của $y$ là số âm.",
+            answer: false,
+            explain: "Hệ số $a, b$ chỉ cần không đồng thời bằng 0 và nhận giá trị thực tùy ý. Bất phương trình $3x - 2y + 6 > 0$ có $a = 3 \\ne 0, b = -2 \\ne 0$ nên là BPT bậc nhất hai ẩn."
+          },
+          {
+            text: "Điểm $N(-2; 0)$ thuộc đường thẳng biên nhưng không thuộc miền nghiệm của bất phương trình $\\Delta$.",
+            answer: true,
+            explain: "Thay $N(-2; 0)$ vào biểu thức: $3(-2) - 2(0) + 6 = 0$. Điểm $N$ nằm trên bờ $3x - 2y + 6 = 0$. Tuy nhiên do BPT là dấu ngặt '$>$' (không có dấu bằng) nên điểm trên bờ không thuộc miền nghiệm."
+          },
+          {
+            text: "Điểm $P(1; 2)$ thuộc miền nghiệm của bất phương trình $\\Delta$.",
+            answer: true,
+            explain: "Thay $P(1; 2)$ vào vế trái: $3(1) - 2(2) + 6 = 3 - 4 + 6 = 5 > 0$ (thoả mãn)."
+          },
+          {
+            text: "Đường thẳng biên $3x - 2y + 6 = 0$ khi biểu diễn miền nghiệm của $\\Delta$ trên mặt phẳng toạ độ được vẽ bằng nét liền.",
+            answer: false,
+            explain: "Vì bất phương trình mang dấu ngặt '$>$' nên đường thẳng biên phải được vẽ bằng nét đứt."
           }
         ]
       }
@@ -189,7 +215,19 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
         id: "b3-es1",
         q: "Xác định toạ độ giao điểm của đường thẳng biên $3x - 4y = 12$ với trục hoành $Ox$.",
         answer: "(4; 0)",
-        explain: "Cho $y = 0 \\Rightarrow 3x = 12 \\Rightarrow x = 4$. Toạ độ giao điểm là $(4; 0)$."
+        explain: "Điểm thuộc trục hoành $Ox$ có tung độ $y = 0$. Thay $y = 0$ vào phương trình: $3x - 4(0) = 12 \\Leftrightarrow 3x = 12 \\Leftrightarrow x = 4$. Vậy toạ độ giao điểm là $(4; 0)$."
+      },
+      {
+        id: "b3-es2",
+        q: "Có bao nhiêu cặp số nguyên không âm $(x; y)$ thỏa mãn bất phương trình $3x + 4y \\le 12$?",
+        answer: "11",
+        explain: "Vì $x, y \\in \\mathbb{N}$ nên $x, y \\ge 0$.\\n• Với $y = 0$: $3x \\le 12 \\Rightarrow x \\in \\{0; 1; 2; 3; 4\\}$ (5 cặp).\\n• Với $y = 1$: $3x + 4 \\le 12 \\Rightarrow 3x \\le 8 \\Rightarrow x \\in \\{0; 1; 2\\}$ (3 cặp).\\n• Với $y = 2$: $3x + 8 \\le 12 \\Rightarrow 3x \\le 4 \\Rightarrow x \\in \\{0; 1\\}$ (2 cặp).\\n• Với $y = 3$: $3x + 12 \\le 12 \\Rightarrow 3x \\le 0 \\Rightarrow x = 0$ (1 cặp).\\n• Với $y \\ge 4$: $3x + 4y \\ge 16 > 12$ (không có nghiệm).\\nTổng cộng có: $5 + 3 + 2 + 1 = 11$ cặp số nguyên không âm."
+      },
+      {
+        id: "b3-es3",
+        q: "Một người thợ làm hai loại bánh A và B. Một chiếc bánh A cần 100g bột; một chiếc bánh B cần 150g bột. Người thợ hiện có 1,2 kg bột. Gọi $x, y$ lần lượt là số bánh loại A và B người đó làm ($x, y \\in \\mathbb{N}$). Viết bất phương trình rút gọn thể hiện giới hạn lượng bột có thể dùng dưới dạng $ax + by \\le c$ (với $a, b, c$ là các số nguyên dương nguyên tố cùng nhau).",
+        answer: "2x + 3y <= 24",
+        explain: "Đổi 1,2 kg = 1200g bột. Tổng lượng bột cần cho $x$ bánh A và $y$ bánh B là $100x + 150y$ (g). Bất phương trình giới hạn: $100x + 150y \\le 1200$. Chia cả hai vế cho 50 ta được bất phương trình tối giản: $2x + 3y \\le 24$."
       }
     ]
   },
