@@ -25,7 +25,7 @@ export default function Navbar() {
     { href: "/", label: "Trang chủ", icon: "🏠" },
     { href: "/cong-thuc", label: "Sổ tay Công thức", icon: "📑", badge: "Hot" },
     { href: "/casio", label: "Tips Casio 580", icon: "⚡" },
-    { href: "/thi-thu", label: "Thi thử trực tuyến", icon: "🏆", highlight: true },
+    { href: "/thi-thu", label: "Kiểm tra định kỳ", icon: "🏆", highlight: true },
     { href: "/on-tap", label: "Ôn câu sai", icon: "🎯" },
   ];
 

@@ -2,14 +2,16 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { MOCK_EXAM_INFO, MOCK_EXAM_QUESTIONS } from "@/data/mockExam";
-import type { MockExamQuestion } from "@/lib/types";
+import type { ExamPaper } from "@/lib/types";
 import MathText from "@/components/MathText";
 import Confetti from "@/components/Confetti";
 import ProgressRing from "@/components/ProgressRing";
 import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound";
 
-export default function MockExamClient() {
+export default function MockExamClient({ paper }: { paper: ExamPaper }) {
+  const MOCK_EXAM_INFO = paper;
+  const MOCK_EXAM_QUESTIONS = paper.questions;
+
   const [started, setStarted] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [timeLeft, setTimeLeft] = useState(MOCK_EXAM_INFO.durationMinutes * 60);
@@ -121,11 +123,11 @@ export default function MockExamClient() {
       <main className="relative min-h-screen py-10 px-4 max-w-3xl mx-auto">
         <div className="space-y-6">
           <Link
-            href="/"
+            href="/thi-thu"
             onClick={() => playClick()}
             className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-void-card border border-void-border text-xs font-mono font-bold text-star-soft hover:text-cyan-glow transition shadow-card"
           >
-            ← Quay lại trang chủ
+            ← Chọn đề khác
           </Link>
 
           <div className="rounded-3xl p-8 sm:p-12 space-y-6 shadow-card border border-void-border bg-void-card/95 text-center backdrop-blur-xl">
@@ -135,13 +137,16 @@ export default function MockExamClient() {
 
             <div className="space-y-2">
               <span className="text-xs font-mono font-bold uppercase tracking-widest text-cyan-glow">
-                Phòng Thi Thử Trực Tuyến
+                Phòng Kiểm Tra Định Kỳ
               </span>
               <h1 className="font-display text-2xl sm:text-4xl font-extrabold text-star">
                 {MOCK_EXAM_INFO.title}
               </h1>
               <p className="text-sm text-star-soft max-w-xl mx-auto">
                 {MOCK_EXAM_INFO.subtitle}
+              </p>
+              <p className="text-xs text-star-mute max-w-xl mx-auto">
+                Phạm vi kiến thức: {MOCK_EXAM_INFO.scope}
               </p>
             </div>
 
@@ -204,7 +209,7 @@ export default function MockExamClient() {
             ← Thoát
           </Link>
           <span className="font-display text-xs sm:text-sm font-bold text-star hidden sm:inline">
-            Đề thi thử Toán 10
+            {MOCK_EXAM_INFO.title}
           </span>
         </div>
 
@@ -249,7 +254,7 @@ export default function MockExamClient() {
           <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
             <div className="space-y-1 text-center sm:text-left">
               <span className="text-xs font-mono font-bold uppercase tracking-wider text-cyan-glow">
-                Kết quả bài thi thử
+                Kết quả bài kiểm tra
               </span>
               <h2 className="font-display text-2xl sm:text-3xl font-bold text-star">
                 {results.total >= 8.0

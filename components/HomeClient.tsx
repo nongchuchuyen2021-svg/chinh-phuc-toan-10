@@ -80,7 +80,7 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-star-soft sm:text-base">
             Hệ thống học tập & ôn luyện toàn diện bám sát SGK <strong>Kết nối tri thức với cuộc sống</strong>.
             Gồm 27 bài học 9 chương (Lý thuyết tương tác, Trắc nghiệm 4 lựa chọn, Đúng/Sai chuẩn cấu trúc Bộ GD&ĐT, Tự luận),
-            Sổ tay Công thức, Cẩm nang Casio 580/880 và Phòng Thi thử trực tuyến.
+            Sổ tay Công thức, Cẩm nang Casio 580/880 và Phòng Kiểm tra định kỳ Giữa kỳ/Cuối kỳ.
           </p>
 
           {/* Feature Shortcuts Banner */}
@@ -116,9 +116,9 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
             >
               <span className="text-2xl transition group-hover:scale-110">🏆</span>
               <span className="mt-2 font-display text-xs font-bold text-star group-hover:text-violet-glow">
-                Thi thử trực tuyến
+                Kiểm tra định kỳ
               </span>
-              <span className="text-[10px] text-star-mute">Chuẩn ma trận mới</span>
+              <span className="text-[10px] text-star-mute">Giữa kỳ / Cuối kỳ · 90 phút</span>
             </Link>
 
             <Link

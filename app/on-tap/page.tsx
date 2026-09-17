@@ -212,7 +212,7 @@ export default function OnTapPage() {
             onClick={() => playClick()}
             className="px-4 py-2 text-xs font-semibold rounded-xl bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan hover:opacity-95 transition"
           >
-            Vào Thi Thử ⏱️
+            Vào Kiểm Tra ⏱️
           </Link>
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import renderMathInElement from "katex/contrib/auto-render";
 
 interface MathTextProps {
   content: string;
@@ -13,37 +14,19 @@ export default function MathText({ content, className = "" }: MathTextProps) {
   useEffect(() => {
     if (!containerRef.current) return;
 
-    const win = typeof window !== "undefined" ? (window as any) : null;
-    if (!win) return;
-
-    const render = () => {
-      if (win.renderMathInElement && containerRef.current) {
-        try {
-          win.renderMathInElement(containerRef.current, {
-            delimiters: [
-              { left: "$$", right: "$$", display: true },
-              { left: "$", right: "$", display: false },
-              { left: "\\[", right: "\\]", display: true },
-              { left: "\\(", right: "\\)", display: false },
-            ],
-            throwOnError: false,
-          });
-        } catch (e) {
-          console.error("KaTeX render error:", e);
-        }
-      }
-    };
-
-    if (win.renderMathInElement) {
-      render();
-    } else {
-      const interval = setInterval(() => {
-        if (win.renderMathInElement) {
-          clearInterval(interval);
-          render();
-        }
-      }, 100);
-      return () => clearInterval(interval);
+    try {
+      renderMathInElement(containerRef.current, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "\\(", right: "\\)", display: false },
+        ],
+        throwOnError: false,
+        strict: (errorCode: string) => (errorCode === "unicodeTextInMathMode" ? "ignore" : "warn"),
+      });
+    } catch (e) {
+      console.error("KaTeX render error:", e);
     }
   }, [content]);
 

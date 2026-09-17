@@ -149,7 +149,7 @@ export type FormulaCategory = {
   formulas: FormulaItem[];
 };
 
-// ─── 8. Đề thi thử Trực tuyến (Mock Exam) ───────────────────────────────────
+// ─── 8. Đề kiểm tra định kỳ (Giữa kỳ / Cuối kỳ theo cấu trúc Tốt nghiệp THPT) ─
 export type MockExamQuestion = {
   id: string;
   part: 1 | 2 | 3; // Phần 1: MCQ (0.25đ), Phần 2: Đúng/Sai (1.0đ), Phần 3: Trả lời ngắn (0.5đ)
@@ -158,4 +158,15 @@ export type MockExamQuestion = {
   answer?: number | string;
   statements?: TFStatement[];
   explain: string;
+};
+
+export type ExamPaper = {
+  id: string;
+  title: string;
+  subtitle: string;
+  scope: string;
+  durationMinutes: number;
+  totalQuestions: number;
+  maxScore: number;
+  questions: MockExamQuestion[];
 };

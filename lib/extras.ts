@@ -164,7 +164,7 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
         context: "Trong mặt phẳng toạ độ $Oxy$, cho ba điểm $A(1; 2), B(-2; 6), C(9; 8)$.",
         statements: [
           {
-            text: "Vectơ $\\vec{AB} = (-3; 4)$ và độ dài $|\vec{AB}| = 5$.",
+            text: "Vectơ $\\vec{AB} = (-3; 4)$ và độ dài $|\\vec{AB}| = 5$.",
             answer: true,
             explain: "$\\vec{AB} = (-2-1; 6-2) = (-3; 4) \\Rightarrow |\\vec{AB}| = \\sqrt{(-3)^2 + 4^2} = 5$."
           },

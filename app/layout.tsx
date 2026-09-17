@@ -26,7 +26,7 @@ const mono = IBM_Plex_Mono({
 export const metadata: Metadata = {
   title: "Chinh Phục Toán 10 — THPT Na Rì (Bộ sách Kết nối tri thức)",
   description:
-    "Cổng học tập & ôn luyện Toán 10 trực tuyến (Bộ sách Kết nối tri thức với cuộc sống) của Trường THPT Na Rì, tỉnh Thái Nguyên — Lý thuyết tương tác, trắc nghiệm 4 lựa chọn, đúng/sai chuẩn cấu trúc Bộ GD&ĐT, tự luận, Sổ tay công thức, Cẩm nang Casio 580 và Thi thử trực tuyến.",
+    "Cổng học tập & ôn luyện Toán 10 trực tuyến (Bộ sách Kết nối tri thức với cuộc sống) của Trường THPT Na Rì, tỉnh Thái Nguyên — Lý thuyết tương tác, trắc nghiệm 4 lựa chọn, đúng/sai chuẩn cấu trúc Bộ GD&ĐT, tự luận, Sổ tay công thức, Cẩm nang Casio 580 và Đề kiểm tra Giữa kỳ/Cuối kỳ theo cấu trúc Tốt nghiệp THPT.",
 };
 
 export default function RootLayout({
