@@ -22,9 +22,9 @@ export default function TheoryViewer({
   const [checks, setChecks] = useState<Record<string, number>>({});
   const [completed, setCompleted] = useState(false);
 
-  function handleCheck(blockIdx: number, optIdx: number, isRight: boolean) {
-    if (checks[blockIdx] !== undefined) return;
-    setChecks((prev) => ({ ...prev, [blockIdx]: optIdx }));
+  function handleCheck(checkKey: string, optIdx: number, isRight: boolean) {
+    if (checks[checkKey] !== undefined) return;
+    setChecks((prev) => ({ ...prev, [checkKey]: optIdx }));
     if (isRight) {
       playCorrect();
     } else {
@@ -165,70 +165,75 @@ export default function TheoryViewer({
                 )}
 
                 {/* 5. Quick Check */}
-                {block.kind === "check" && (
-                  <div className="rounded-3xl border border-violet/40 bg-void-card/95 shadow-glow-violet overflow-hidden backdrop-blur-xl">
-                    <div className="flex items-center gap-2 bg-gradient-to-r from-violet-deep via-violet to-cyan-deep px-5 py-3 text-white">
-                      <span className="text-xl">🤔</span>
-                      <p className="font-display text-sm font-semibold">
-                        Kiểm tra nhanh xem em đã hiểu chưa
-                      </p>
-                    </div>
+                {block.kind === "check" && (() => {
+                  const checkKey = `${sec.id || secIdx}-${bIdx}`;
+                  const answered = checks[checkKey] !== undefined;
+                  const pickedIdx = checks[checkKey];
 
-                    <div className="p-5 sm:p-6 space-y-4">
-                      <div className="text-sm font-semibold text-star leading-relaxed">
-                        <MathText content={block.q} />
+                  return (
+                    <div className="rounded-3xl border border-violet/40 bg-void-card/95 shadow-glow-violet overflow-hidden backdrop-blur-xl">
+                      <div className="flex items-center gap-2 bg-gradient-to-r from-violet-deep via-violet to-cyan-deep px-5 py-3 text-white">
+                        <span className="text-xl">🤔</span>
+                        <p className="font-display text-sm font-semibold">
+                          Kiểm tra nhanh xem em đã hiểu chưa
+                        </p>
                       </div>
 
-                      <div className="space-y-2">
-                        {block.options.map((opt, oIdx) => {
-                          const isPicked = checks[bIdx] === oIdx;
-                          const isAnswer = oIdx === block.answer;
-                          const answered = checks[bIdx] !== undefined;
-
-                          let style = "bg-void-subtle border-void-border text-star-soft hover:border-cyan/40 hover:text-star";
-                          if (answered) {
-                            if (isAnswer) {
-                              style = "bg-emerald/20 border-emerald text-emerald-glow font-bold shadow-glow-emerald";
-                            } else if (isPicked) {
-                              style = "bg-rose/20 border-rose text-rose-glow font-bold shadow-glow-rose";
-                            } else {
-                              style = "opacity-40 border-void-border text-star-mute";
-                            }
-                          }
-
-                          return (
-                            <button
-                              key={oIdx}
-                              disabled={answered}
-                              onClick={() => handleCheck(bIdx, oIdx, isAnswer)}
-                              className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition flex items-center gap-3 ${style}`}
-                            >
-                              <span className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs font-mono font-bold shrink-0 ${
-                                answered && isAnswer
-                                  ? "bg-emerald text-white border-emerald"
-                                  : answered && isPicked
-                                  ? "bg-rose text-white border-rose"
-                                  : "border-void-border text-star-mute"
-                              }`}>
-                                {["A", "B", "C", "D"][oIdx]}
-                              </span>
-                              <span className="flex-1">
-                                <MathText content={opt} />
-                              </span>
-                            </button>
-                          );
-                        })}
-                      </div>
-
-                      {checks[bIdx] !== undefined && (
-                        <div className="text-xs text-star-soft bg-void-subtle/80 p-3.5 rounded-2xl border border-void-border animate-fade-in-up">
-                          <strong className="text-cyan-glow">💡 Giải thích: </strong>
-                          <MathText content={block.explain} />
+                      <div className="p-5 sm:p-6 space-y-4">
+                        <div className="text-sm font-semibold text-star leading-relaxed">
+                          <MathText content={block.q} />
                         </div>
-                      )}
+
+                        <div className="space-y-2">
+                          {block.options.map((opt, oIdx) => {
+                            const isPicked = pickedIdx === oIdx;
+                            const isAnswer = oIdx === block.answer;
+
+                            let style = "bg-void-subtle border-void-border text-star-soft hover:border-cyan/40 hover:text-star";
+                            if (answered) {
+                              if (isAnswer) {
+                                style = "bg-emerald/20 border-emerald text-emerald-glow font-bold shadow-glow-emerald";
+                              } else if (isPicked) {
+                                style = "bg-rose/20 border-rose text-rose-glow font-bold shadow-glow-rose";
+                              } else {
+                                style = "opacity-40 border-void-border text-star-mute";
+                              }
+                            }
+
+                            return (
+                              <button
+                                key={oIdx}
+                                disabled={answered}
+                                onClick={() => handleCheck(checkKey, oIdx, isAnswer)}
+                                className={`w-full text-left p-3.5 rounded-2xl border text-xs sm:text-sm transition flex items-center gap-3 ${style}`}
+                              >
+                                <span className={`w-6 h-6 rounded-full border flex items-center justify-center text-xs font-mono font-bold shrink-0 ${
+                                  answered && isAnswer
+                                    ? "bg-emerald text-white border-emerald"
+                                    : answered && isPicked
+                                    ? "bg-rose text-white border-rose"
+                                    : "border-void-border text-star-mute"
+                                }`}>
+                                  {["A", "B", "C", "D"][oIdx]}
+                                </span>
+                                <span className="flex-1">
+                                  <MathText content={opt} />
+                                </span>
+                              </button>
+                            );
+                          })}
+                        </div>
+
+                        {answered && (
+                          <div className="text-xs text-star-soft bg-void-subtle/80 p-3.5 rounded-2xl border border-void-border animate-fade-in-up">
+                            <strong className="text-cyan-glow">💡 Giải thích: </strong>
+                            <MathText content={block.explain} />
+                          </div>
+                        )}
+                      </div>
                     </div>
-                  </div>
-                )}
+                  );
+                })()}
 
                 {/* 6. Note */}
                 {block.kind === "note" && (

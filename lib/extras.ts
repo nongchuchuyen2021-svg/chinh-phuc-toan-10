@@ -28,6 +28,32 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
             explain: "Phương trình chỉ có 2 nghiệm, không đúng với mọi số thực."
           }
         ]
+      },
+      {
+        id: "b1-tf2",
+        context: "Cho tam giác $ABC$. Xét hai mệnh đề: $P$: 'Tam giác $ABC$ có ba cạnh bằng nhau' và $Q$: 'Tam giác $ABC$ có ba góc bằng nhau'.",
+        statements: [
+          {
+            text: "Mệnh đề kéo theo $P \\Rightarrow Q$ là một mệnh đề đúng.",
+            answer: true,
+            explain: "Tam giác có 3 cạnh bằng nhau là tam giác đều, do đó cả 3 góc bằng nhau (đều bằng $60^\\circ$). Khẳng định này đúng."
+          },
+          {
+            text: "Mệnh đề đảo $Q \\Rightarrow P$ là một mệnh đề sai.",
+            answer: false,
+            explain: "Tam giác có 3 góc bằng nhau thì tam giác đó đều, suy ra 3 cạnh bằng nhau. Do đó mệnh đề đảo $Q \\Rightarrow P$ là mệnh đề ĐÚNG, phát biểu cho rằng sai là nhận định sai."
+          },
+          {
+            text: "Khẳng định '$P$ là điều kiện cần và đủ để có $Q$' là đúng.",
+            answer: true,
+            explain: "Vì cả hai mệnh đề $P \\Rightarrow Q$ và $Q \\Rightarrow P$ đều đúng nên $P \\Leftrightarrow Q$. Do đó $P$ là điều kiện cần và đủ để có $Q$."
+          },
+          {
+            text: "Phủ định của mệnh đề $P$ là 'Tam giác $ABC$ có ba cạnh đôi một khác nhau'.",
+            answer: false,
+            explain: "Phủ định của 'ba cạnh bằng nhau' là 'có ít nhất hai cạnh có độ dài khác nhau', không bắt buộc cả ba cạnh phải đôi một khác nhau."
+          }
+        ]
       }
     ],
     essay: [
@@ -36,6 +62,18 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
         q: "Tìm mệnh đề phủ định của mệnh đề: 'Mọi hình vuông đều là hình chữ nhật'.",
         answer: "Có ít nhất một hình vuông không phải là hình chữ nhật",
         explain: "Phủ định của mệnh đề 'Mọi $A$ đều là $B$' là 'Tồn tại ít nhất một $A$ không phải là $B$'."
+      },
+      {
+        id: "b1-es2",
+        q: "Trong các câu sau, có bao nhiêu câu là mệnh đề toán học?\n(1) Năm 2026 là năm nhuận.\n(2) Số 31 là số nguyên tố.\n(3) Hãy giải phương trình này cẩn thận!\n(4) Bất đẳng thức $x^2 - 2x + 5 > 0$ đúng với mọi số thực $x$.\n(5) Bầu trời hôm nay nhiều mây quá!",
+        answer: "3",
+        explain: "Các câu (1), (2), (4) là mệnh đề toán học vì là câu khẳng định có tính đúng/sai xác định. Câu (3) là câu cầu khiến/mệnh lệnh, câu (5) là câu cảm thán nên không phải mệnh đề."
+      },
+      {
+        id: "b1-es3",
+        q: "Có bao nhiêu số nguyên $x \\in [-5; 5]$ để mệnh đề chứa biến $P(x)$: '$x^2 - 9 \\le 0$' trở thành một mệnh đề đúng?",
+        answer: "7",
+        explain: "Giải bất phương trình: $x^2 - 9 \\le 0 \\Leftrightarrow -3 \\le x \\le 3$. Các giá trị nguyên thỏa mãn trên đoạn $[-5; 5]$ là: $-3, -2, -1, 0, 1, 2, 3$. Có tất cả 7 giá trị nguyên."
       }
     ]
   },

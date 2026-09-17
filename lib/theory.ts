@@ -2,17 +2,17 @@ import type { LessonTheory } from "./types";
 
 export const THEORY_BANK: Record<string, LessonTheory> = {
   "bai-01": {
-    intro: "Mệnh đề là khái niệm nền tảng của toán học hiện đại. Bài học này trang bị tư duy logic, cách phát biểu mệnh đề phủ định, mệnh đề kéo theo, mệnh đề tương đương và các kí hiệu với mọi ($\\forall$), tồn tại ($\\exists$).",
-    minutes: 10,
+    intro: "Mệnh đề là khái niệm nền tảng của tư duy logic và toán học hiện đại. Nắm vững bài học này giúp em hiểu bản chất của các định lí, thành thạo lập luận suy diễn, phân biệt điều kiện cần và đủ, cũng như tránh mọi cạm bẫy phủ định phổ biến trong các kì thi.",
+    minutes: 12,
     sections: [
       {
         id: "sec-1",
         emoji: "💡",
-        heading: "1. Mệnh đề và Mệnh đề chứa biến",
+        heading: "1. Mệnh đề & Mệnh đề chứa biến",
         blocks: [
           {
             kind: "text",
-            text: "Mệnh đề là một câu khẳng định có tính đúng hoặc sai rõ ràng. Một mệnh đề không thể vừa đúng vừa sai."
+            text: "Mỗi mệnh đề toán học là một khẳng định có tính đúng hoặc sai rõ ràng. Một mệnh đề không thể vừa đúng vừa sai."
           },
           {
             kind: "cards",
@@ -21,42 +21,95 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "✅",
                 title: "Mệnh đề đúng",
-                text: "Ví dụ: 'Số 19 là số nguyên tố', 'Tổng ba góc trong một tam giác bằng 180°'."
+                text: "Khẳng định phản ánh đúng chân lí khách quan.\nVí dụ: 'Số 17 là số nguyên tố', '$\\sqrt{2}$ là số vô tỉ'."
               },
               {
                 emoji: "❌",
                 title: "Mệnh đề sai",
-                text: "Ví dụ: 'Số 10 là số lẻ', 'Tam giác đều có 4 cạnh bằng nhau'."
+                text: "Khẳng định trái với sự thật toán học.\nVí dụ: 'Số 15 chia hết cho 2', 'Tổng 3 góc tam giác bằng 360°'."
               },
               {
                 emoji: "❓",
                 title: "Không phải mệnh đề",
-                text: "Các câu hỏi, câu cảm thán, câu cầu khiến: 'Hôm nay trời đẹp quá!', 'Mấy giờ rồi?'."
+                text: "Các câu cảm thán, nghi vấn, mệnh lệnh (chưa xác định đúng/sai):\n'Hôm nay trời đẹp quá!', 'Mấy giờ rồi?'."
+              },
+              {
+                emoji: "🧬",
+                title: "Mệnh đề chứa biến P(x)",
+                text: "Câu khẳng định chứa biến, chỉ trở thành mệnh đề khi thay biến bằng giá trị cụ thể.\nVí dụ: $P(n)$: '$n$ chia hết cho 3'."
               }
             ]
           },
           {
             kind: "check",
-            q: "Câu nào sau đây là một mệnh đề toán học?",
+            q: "Trong các câu sau, câu nào là một mệnh đề toán học?",
             options: [
-              "Học toán thật là vui!",
-              "Phương trình x² - 4 = 0 có hai nghiệm phân biệt trên ℝ.",
-              "Hãy giải phương trình này ngay!",
-              "Bạn đã làm bài tập chưa?"
+              "Học toán thật là thú vị!",
+              "Phương trình $x^2 - 4 = 0$ có hai nghiệm thực phân biệt.",
+              "Hãy giải phương trình này ngay đi!",
+              "Số $2x + 1$ có phải là số lẻ không?"
             ],
             answer: 1,
-            explain: "Chỉ có khẳng định về nghiệm của phương trình x² - 4 = 0 là có tính đúng/sai xác định."
+            explain: "Chỉ có khẳng định về nghiệm của phương trình $x^2 - 4 = 0$ là có tính đúng/sai xác định (mệnh đề đúng vì có 2 nghiệm $x = \\pm 2$). Các câu còn lại là câu cảm thán, câu lệnh hoặc câu hỏi."
           }
         ]
       },
       {
         id: "sec-2",
         emoji: "🔄",
-        heading: "2. Phủ định và Mệnh đề kéo theo",
+        heading: "2. Mệnh đề phủ định (\\overline{P})",
         blocks: [
           {
             kind: "text",
-            text: "Kí hiệu mệnh đề phủ định của $P$ là $\\overline{P}$. Nếu $P$ đúng thì $\\overline{P}$ sai và ngược lại."
+            text: "Để phủ định một mệnh đề $P$, ta thường thêm hoặc bớt từ 'không' (hoặc 'không phải') trước vị ngữ của $P$. Kí hiệu mệnh đề phủ định của $P$ là $\\overline{P}$."
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Mệnh đề gốc P",
+              emoji: "📌",
+              items: [
+                "Nếu $P$ ĐÚNG thì $\\overline{P}$ SAI.",
+                "Nếu $P$ SAI thì $\\overline{P}$ ĐÚNG.",
+                "Ví dụ: $P$: 'Số 2 là số nguyên tố chẵn duy nhất' (Đúng)."
+              ]
+            },
+            right: {
+              title: "Mệnh đề phủ định P̄",
+              emoji: "🔄",
+              items: [
+                "Khẳng định hoàn toàn trái ngược với $P$.",
+                "Không bao giờ xảy ra trường hợp cả hai cùng đúng hoặc cùng sai.",
+                "Ví dụ: $\\overline{P}$: 'Số 2 không phải là số nguyên tố chẵn duy nhất' (Sai)."
+              ]
+            }
+          },
+          {
+            kind: "note",
+            text: "📌 **Khắc sâu**: Hai mệnh đề $P$ và $\\overline{P}$ luôn có giá trị chân trị đối lập nhau. Muốn bác bỏ một mệnh đề sai, ta chỉ cần chứng minh mệnh đề phủ định của nó là đúng!"
+          },
+          {
+            kind: "check",
+            q: "Cho mệnh đề $P$: 'Số 13 là số nguyên tố'. Mệnh đề phủ định $\\overline{P}$ là gì?",
+            options: [
+              "Số 13 là hợp số.",
+              "Số 13 không phải là số nguyên tố.",
+              "Số 13 là số chẵn.",
+              "Số 13 chia hết cho 3."
+            ],
+            answer: 1,
+            explain: "Mệnh đề phủ định chuẩn ngữ pháp và logic là thêm 'không phải': $\\overline{P}$: 'Số 13 không phải là số nguyên tố'."
+          }
+        ]
+      },
+      {
+        id: "sec-3",
+        emoji: "➡️",
+        heading: "3. Mệnh đề kéo theo (P ⇒ Q) & Mệnh đề đảo",
+        blocks: [
+          {
+            kind: "text",
+            text: "Mệnh đề 'Nếu $P$ thì $Q$' được gọi là mệnh đề kéo theo, kí hiệu $P \\Rightarrow Q$. Hầu hết các định lí toán học đều có dạng mệnh đề kéo theo."
           },
           {
             kind: "compare",
@@ -64,19 +117,113 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               title: "Mệnh đề kéo theo P ⇒ Q",
               emoji: "➡️",
               items: [
-                "Đọc là: 'Nếu P thì Q' hoặc 'P kéo theo Q'.",
-                "P là điều kiện đủ để có Q.",
-                "Q là điều kiện cần để có P.",
-                "Chỉ sai khi P đúng mà Q sai."
+                "Chỉ SAI khi $P$ ĐÚNG mà $Q$ SAI. Đúng trong mọi trường hợp còn lại!",
+                "Nếu $P$ sai, mệnh đề $P \\Rightarrow Q$ luôn mặc nhiên là ĐÚNG.",
+                "$P$ là giả thiết, $Q$ là kết luận của định lí."
               ]
             },
             right: {
-              title: "Mệnh đề tương đương P ⇔ Q",
-              emoji: "↔️",
+              title: "Mệnh đề đảo Q ⇒ P",
+              emoji: "🔁",
               items: [
-                "Đọc là: 'P khi và chỉ khi Q' hoặc 'P nếu và chỉ nếu Q'.",
-                "P là điều kiện cần và đủ để có Q.",
-                "Đúng khi cả P và Q cùng đúng hoặc cùng sai."
+                "Được thành lập bằng cách hoán đổi vị trí: 'Nếu $Q$ thì $P$'.",
+                "Mệnh đề đảo của một định lí đúng KHÔNG nhất thiết phải đúng!",
+                "Ví dụ: 'Nếu tam giác đều thì cân' (Đúng) nhưng 'Nếu tam giác cân thì đều' (Sai)."
+              ]
+            }
+          },
+          {
+            kind: "note",
+            text: "🌟 **BÍ KÍP VÀNG: 'ĐẾN TRƯỚC LÀ ĐỦ, ĐẾN SAU LÀ CẦN'**\n\nKhi mệnh đề kéo theo $P \\Rightarrow Q$ là một định lí (luôn đúng):\n• $P$ (đứng trước mũi tên) là **điều kiện ĐỦ** để có $Q$.\n• $Q$ (đứng sau mũi tên) là **điều kiện CẦN** để có $P$."
+          },
+          {
+            kind: "check",
+            q: "Cho định lí: 'Nếu tứ giác $ABCD$ là hình thoi thì tứ giác $ABCD$ có hai đường chéo vuông góc với nhau'. Khẳng định nào sau đây dùng thuật ngữ 'điều kiện đủ' là CHÍNH XÁC?",
+            options: [
+              "Hai đường chéo vuông góc là điều kiện đủ để tứ giác là hình thoi.",
+              "Tứ giác là hình thoi là điều kiện đủ để hai đường chéo vuông góc.",
+              "Hai đường chéo vuông góc là điều kiện cần và đủ để tứ giác là hình thoi.",
+              "Tứ giác là hình thoi là điều kiện cần để hai đường chéo vuông góc."
+            ],
+            answer: 1,
+            explain: "Trong mệnh đề $P \\Rightarrow Q$, giả thiết $P$ ('là hình thoi') đứng trước mũi tên nên là ĐIỀU KIỆN ĐỦ để có kết luận $Q$ ('hai đường chéo vuông góc')."
+          }
+        ]
+      },
+      {
+        id: "sec-4",
+        emoji: "↔️",
+        heading: "4. Mệnh đề tương đương (P ⇔ Q)",
+        blocks: [
+          {
+            kind: "text",
+            text: "Mệnh đề 'P nếu và chỉ nếu Q' (hoặc 'P khi và chỉ khi Q') gọi là mệnh đề tương đương, kí hiệu $P \\Leftrightarrow Q$."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "⚖️",
+                title: "Tính chân trị",
+                text: "$P \\Leftrightarrow Q$ ĐÚNG khi và chỉ khi cả hai mệnh đề kéo theo $P \\Rightarrow Q$ và $Q \\Rightarrow P$ đều đúng (tức $P, Q$ cùng đúng hoặc cùng sai)."
+              },
+              {
+                emoji: "🔑",
+                title: "Điều kiện Cần và Đủ",
+                text: "Khi $P \\Leftrightarrow Q$ đúng, ta nói:\n• '$P$ là điều kiện cần và đủ để có $Q$'.\n• Hoặc ngược lại: '$Q$ là điều kiện cần và đủ để có $P$'."
+              }
+            ]
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Chứng minh chiều thuận",
+                text: "Chứng minh $P \\Rightarrow Q$ là đúng (từ giả thiết $P$ suy ra kết luận $Q$)."
+              },
+              {
+                label: "Bước 2",
+                title: "Chứng minh chiều đảo",
+                text: "Chứng minh $Q \\Rightarrow P$ là đúng (từ giả thiết $Q$ suy ra kết luận $P$)."
+              },
+              {
+                label: "Bước 3",
+                title: "Kết luận tương đương",
+                text: "Khi cả hai chiều đều đúng, kết luận $P \\Leftrightarrow Q$ đúng và sử dụng cụm từ 'khi và chỉ khi'."
+              }
+            ]
+          }
+        ]
+      },
+      {
+        id: "sec-5",
+        emoji: "🎯",
+        heading: "5. Lượng từ Với mọi (\\forall), Tồn tại (\\exists) & Bẫy phủ định",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong toán học, các kí hiệu $\\forall$ (với mọi) và $\\exists$ (tồn tại / có ít nhất một) đóng vai trò định lượng phạm vi của biến."
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Lượng từ ∀ (Với mọi)",
+              emoji: "🌐",
+              items: [
+                "$\\forall x \\in D, P(x)$: khẳng định ĐÚNG khi $P(x)$ đúng với TẤT CẢ mọi $x \\in D$.",
+                "Cách chứng minh ĐÚNG: Phải chứng minh cho phần tử tổng quát trong $D$.",
+                "Cách bác bỏ (chứng minh SAI): Chỉ cần chỉ ra MỘT phản ví dụ $x_0 \\in D$ làm cho $P(x_0)$ sai!"
+              ]
+            },
+            right: {
+              title: "Lượng từ ∃ (Tồn tại)",
+              emoji: "🎯",
+              items: [
+                "$\\exists x \\in D, P(x)$: khẳng định ĐÚNG khi có ÍT NHẤT MỘT giá trị $x \\in D$ thỏa mãn $P(x)$.",
+                "Cách chứng minh ĐÚNG: Chỉ cần chỉ ra MỘT ví dụ cụ thể $x_0 \\in D$ thỏa mãn.",
+                "Cách chứng minh SAI: Phải chứng minh $P(x)$ sai với mọi $x \\in D$."
               ]
             }
           },
@@ -85,24 +232,46 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
             items: [
               {
                 label: "Bước 1",
-                title: "Phủ định kí hiệu lượng từ",
-                text: "Phủ định của kí hiệu $\\forall$ (với mọi) là kí hiệu $\\exists$ (tồn tại) và ngược lại."
+                title: "Đổi lượng từ",
+                text: "Lượng từ $\\forall$ chuyển thành $\\exists$, và ngược lại $\\exists$ chuyển thành $\\forall$."
               },
               {
                 label: "Bước 2",
-                title: "Phủ định biểu thức khẳng định",
-                text: "Phủ định dấu '>' là '≤', dấu '<' là '≥', dấu '=' là '≠'."
+                title: "Giữ nguyên tập xác định",
+                text: "Tập hợp phần tử thuộc về ($x \\in \\mathbb{R}, n \\in \\mathbb{N},...$) được giữ NGUYÊN, tuyệt đối không đổi sang $\\notin$."
+              },
+              {
+                label: "Bước 3",
+                title: "Phủ định mệnh đề thành phần",
+                text: "Phủ định tính chất $P(x)$ thành $\\overline{P(x)}$. Lưu ý cạm bẫy dấu bất đẳng thức!"
               }
             ]
+          },
+          {
+            kind: "note",
+            text: "⚠️ **CẢNH BÁO BẪY DẤU BẤT ĐẲNG THỨC KHI PHỦ ĐỊNH**:\n\n• Phủ định của $>$ là $\\le$ (có thêm dấu bằng).\n• Phủ định của $<$ là $\\ge$ (có thêm dấu bằng).\n• Phủ định của $\\ge$ là $<$ (bỏ dấu bằng).\n• Phủ định của $\\le$ là $>$ (bỏ dấu bằng).\n• Phủ định của $=$ là $\\ne$."
+          },
+          {
+            kind: "check",
+            q: "Mệnh đề phủ định của mệnh đề: '$\\forall x \\in \\mathbb{R}, x^2 + 2x + 3 > 0$' là gì?",
+            options: [
+              "$\\exists x \\in \\mathbb{R}, x^2 + 2x + 3 \\le 0$",
+              "$\\forall x \\in \\mathbb{R}, x^2 + 2x + 3 \\le 0$",
+              "$\\exists x \\in \\mathbb{R}, x^2 + 2x + 3 < 0$",
+              "$\\exists x \\notin \\mathbb{R}, x^2 + 2x + 3 \\le 0$"
+            ],
+            answer: 0,
+            explain: "Quy tắc: Đổi $\\forall$ thành $\\exists$, giữ nguyên tập xác định $x \\in \\mathbb{R}$, phủ định dấu '>' thành '$\\le$'. Do đó đáp án chính xác là $\\exists x \\in \\mathbb{R}, x^2 + 2x + 3 \\le 0$."
           }
         ]
       }
     ],
     summary: [
-      "Mệnh đề là câu khẳng định đúng hoặc sai.",
-      "Phủ định của mệnh đề: đổi $\\forall$ thành $\\exists$ và ngược lại.",
-      "Mệnh đề kéo theo $P \\Rightarrow Q$ chỉ sai khi $P$ đúng mà $Q$ sai.",
-      "Mệnh đề tương đương $P \\Leftrightarrow Q$ đúng khi cả hai cùng chân trị."
+      "1. Mệnh đề là câu khẳng định chỉ nhận một trong hai giá trị chân trị: Đúng (Đ) hoặc Sai (S).",
+      "2. Phủ định: $P$ đúng thì $\\overline{P}$ sai; $\\overline{\\forall x, P(x)} \\equiv \\exists x, \\overline{P(x)}$; $\\overline{\\exists x, P(x)} \\equiv \\forall x, \\overline{P(x)}$.",
+      "3. Mệnh đề kéo theo: $P \\Rightarrow Q$ chỉ sai khi $P$ đúng mà $Q$ sai. Mẹo: 'Đến TRƯỚC là ĐỦ, Đến SAU là CẦN'.",
+      "4. Mệnh đề tương đương: $P \\Leftrightarrow Q$ đúng khi cả hai cùng chân trị. Khi đó $P$ là điều kiện cần và đủ để có $Q$.",
+      "5. Phản ví dụ: Để bác bỏ mệnh đề '$\\forall x \\in D, P(x)$', chỉ cần chỉ ra MỘT giá trị $x_0 \\in D$ làm cho khẳng định sai."
     ]
   },
 
