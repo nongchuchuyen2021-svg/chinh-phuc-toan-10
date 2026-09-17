@@ -11,7 +11,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "cosin",
         name: "Định lí Côsin",
         latex: "a^2 = b^2 + c^2 - 2bc \\cos A",
-        note: "\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}",
+        note: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$",
         tag: "Hình học"
       },
       {
@@ -32,7 +32,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "dien-tich-heron",
         name: "Công thức Hê-rông (Heron)",
         latex: "S = \\sqrt{p(p-a)(p-b)(p-c)}",
-        note: "với p = \\frac{a+b+c}{2} là nửa chu vi",
+        note: "với $p = \\frac{a+b+c}{2}$ là nửa chu vi",
         tag: "Diện tích"
       },
       {
@@ -72,14 +72,14 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "tich-vo-huong",
         name: "Tích vô hướng hai vectơ",
         latex: "\\vec{u} \\cdot \\vec{v} = |\\vec{u}| \\cdot |\\vec{v}| \\cdot \\cos(\\vec{u}, \\vec{v})",
-        note: "\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0",
+        note: "$\\vec{u} \\perp \\vec{v} \\iff \\vec{u} \\cdot \\vec{v} = 0$",
         tag: "Tích vô hướng"
       },
       {
         id: "toa-do-tich-vo-huong",
         name: "Biểu thức toạ độ tích vô hướng",
         latex: "\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2",
-        note: "với \\vec{u} = (x_1; y_1), \\vec{v} = (x_2; y_2)",
+        note: "với $\\vec{u} = (x_1; y_1)$, $\\vec{v} = (x_2; y_2)$",
         tag: "Toạ độ Oxy"
       },
       {
@@ -92,7 +92,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "khoang-cach-diem-duong-thang",
         name: "Khoảng cách từ điểm đến đường thẳng",
         latex: "d(M_0, \\Delta) = \\frac{|a x_0 + b y_0 + c|}{\\sqrt{a^2 + b^2}}",
-        note: "với M_0(x_0; y_0) và \\Delta: ax + by + c = 0",
+        note: "với $M_0(x_0; y_0)$ và $\\Delta: ax + by + c = 0$",
         tag: "Đường thẳng"
       }
     ]
@@ -107,7 +107,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "dinh-parabol",
         name: "Toạ độ đỉnh Parabol",
         latex: "I\\left(-\\frac{b}{2a}; -\\frac{\\Delta}{4a}\\right)",
-        note: "với y = ax^2 + bx + c \\ (a \\neq 0), \\ \\Delta = b^2 - 4ac",
+        note: "với $y = ax^2 + bx + c\\ (a \\neq 0)$, $\\Delta = b^2 - 4ac$",
         tag: "Parabol"
       },
       {
@@ -135,7 +135,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "hoan-vi",
         name: "Số hoán vị (P_n)",
         latex: "P_n = n! = n \\times (n-1) \\times \\dots \\times 1",
-        note: "Quy ước: 0! = 1",
+        note: "Quy ước: $0! = 1$",
         tag: "Tổ hợp"
       },
       {
@@ -168,7 +168,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "xac-suat-co-dien",
         name: "Định nghĩa cổ điển của xác suất",
         latex: "P(A) = \\frac{n(A)}{n(\\Omega)}",
-        note: "n(A) là số kết quả thuận lợi, n(\\Omega) là số phần tử không gian mẫu",
+        note: "$n(A)$ là số kết quả thuận lợi, $n(\\Omega)$ là số phần tử không gian mẫu",
         tag: "Xác suất"
       }
     ]
