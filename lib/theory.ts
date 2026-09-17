@@ -57,7 +57,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
       {
         id: "sec-2",
         emoji: "🔄",
-        heading: "2. Mệnh đề phủ định (\\overline{P})",
+        heading: "2. Mệnh đề phủ định ($\\overline{P}$)",
         blocks: [
           {
             kind: "text",
@@ -66,7 +66,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           {
             kind: "compare",
             left: {
-              title: "Mệnh đề gốc P",
+              title: "Mệnh đề gốc $P$",
               emoji: "📌",
               items: [
                 "Nếu $P$ ĐÚNG thì $\\overline{P}$ SAI.",
@@ -75,7 +75,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               ]
             },
             right: {
-              title: "Mệnh đề phủ định P̄",
+              title: "Mệnh đề phủ định $\\overline{P}$",
               emoji: "🔄",
               items: [
                 "Khẳng định hoàn toàn trái ngược với $P$.",
@@ -105,7 +105,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
       {
         id: "sec-3",
         emoji: "➡️",
-        heading: "3. Mệnh đề kéo theo (P ⇒ Q) & Mệnh đề đảo",
+        heading: "3. Mệnh đề kéo theo ($P \\Rightarrow Q$) & Mệnh đề đảo",
         blocks: [
           {
             kind: "text",
@@ -114,7 +114,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           {
             kind: "compare",
             left: {
-              title: "Mệnh đề kéo theo P ⇒ Q",
+              title: "Mệnh đề kéo theo $P \\Rightarrow Q$",
               emoji: "➡️",
               items: [
                 "Chỉ SAI khi $P$ ĐÚNG mà $Q$ SAI. Đúng trong mọi trường hợp còn lại!",
@@ -123,7 +123,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               ]
             },
             right: {
-              title: "Mệnh đề đảo Q ⇒ P",
+              title: "Mệnh đề đảo $Q \\Rightarrow P$",
               emoji: "🔁",
               items: [
                 "Được thành lập bằng cách hoán đổi vị trí: 'Nếu $Q$ thì $P$'.",
@@ -153,7 +153,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
       {
         id: "sec-4",
         emoji: "↔️",
-        heading: "4. Mệnh đề tương đương (P ⇔ Q)",
+        heading: "4. Mệnh đề tương đương ($P \\Leftrightarrow Q$)",
         blocks: [
           {
             kind: "text",
@@ -200,7 +200,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
       {
         id: "sec-5",
         emoji: "🎯",
-        heading: "5. Lượng từ Với mọi (\\forall), Tồn tại (\\exists) & Bẫy phủ định",
+        heading: "5. Lượng từ Với mọi ($\\forall$), Tồn tại ($\\exists$) & Bẫy phủ định",
         blocks: [
           {
             kind: "text",
@@ -209,7 +209,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           {
             kind: "compare",
             left: {
-              title: "Lượng từ ∀ (Với mọi)",
+              title: "Lượng từ $\\forall$ (Với mọi)",
               emoji: "🌐",
               items: [
                 "$\\forall x \\in D, P(x)$: khẳng định ĐÚNG khi $P(x)$ đúng với TẤT CẢ mọi $x \\in D$.",
@@ -218,7 +218,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               ]
             },
             right: {
-              title: "Lượng từ ∃ (Tồn tại)",
+              title: "Lượng từ $\\exists$ (Tồn tại)",
               emoji: "🎯",
               items: [
                 "$\\exists x \\in D, P(x)$: khẳng định ĐÚNG khi có ÍT NHẤT MỘT giá trị $x \\in D$ thỏa mãn $P(x)$.",

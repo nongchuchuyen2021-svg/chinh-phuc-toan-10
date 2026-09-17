@@ -56,7 +56,7 @@ export default function TheoryViewer({
           </span>
         </div>
         <h2 className="font-display text-2xl sm:text-3xl font-bold text-star">
-          {lessonTitle}
+          <MathText content={lessonTitle} />
         </h2>
         <div className="text-sm sm:text-base text-star-soft leading-relaxed pt-1">
           <MathText content={theory.intro} />
@@ -69,7 +69,7 @@ export default function TheoryViewer({
           <div className="flex items-center gap-2.5 pt-2">
             <span className="text-2xl">{sec.emoji}</span>
             <h3 className="font-display font-bold text-lg sm:text-xl text-star">
-              {sec.heading}
+              <MathText content={sec.heading} />
             </h3>
           </div>
 
@@ -94,7 +94,7 @@ export default function TheoryViewer({
                         <div className="flex items-center gap-2">
                           <span className="text-xl">{card.emoji}</span>
                           <h4 className="font-display font-bold text-sm text-star">
-                            {card.title}
+                            <MathText content={card.title} />
                           </h4>
                         </div>
                         <div className="text-xs sm:text-sm text-star-soft leading-relaxed whitespace-pre-line">
@@ -111,7 +111,7 @@ export default function TheoryViewer({
                     <div className="rounded-2xl border-l-4 border-l-violet border-y border-r border-void-border bg-void-card/90 p-5 space-y-3 shadow-card">
                       <div className="flex items-center gap-2 font-display font-bold text-sm text-violet-glow">
                         <span>{block.left.emoji}</span>
-                        <span>{block.left.title}</span>
+                        <MathText content={block.left.title} />
                       </div>
                       <ul className="space-y-1.5 text-xs sm:text-sm text-star-soft">
                         {block.left.items.map((it, iIdx) => (
@@ -126,7 +126,7 @@ export default function TheoryViewer({
                     <div className="rounded-2xl border-l-4 border-l-cyan border-y border-r border-void-border bg-void-card/90 p-5 space-y-3 shadow-card">
                       <div className="flex items-center gap-2 font-display font-bold text-sm text-cyan-glow">
                         <span>{block.right.emoji}</span>
-                        <span>{block.right.title}</span>
+                        <MathText content={block.right.title} />
                       </div>
                       <ul className="space-y-1.5 text-xs sm:text-sm text-star-soft">
                         {block.right.items.map((it, iIdx) => (
@@ -153,7 +153,7 @@ export default function TheoryViewer({
                         </div>
                         <div className="space-y-1">
                           <h5 className="font-display font-bold text-sm text-star">
-                            {st.title}
+                            <MathText content={st.title} />
                           </h5>
                           <div className="text-xs sm:text-sm text-star-soft leading-relaxed">
                             <MathText content={st.text} />
