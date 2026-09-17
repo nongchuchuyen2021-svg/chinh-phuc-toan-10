@@ -1,3 +1,5 @@
+import fs from "fs";
+import path from "path";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import LessonClient from "@/components/LessonClient";
@@ -42,6 +44,9 @@ export default function LessonPage({ params }: PageProps) {
   const essay = getEssay(baiId);
   const review = getLessonReview(baiId);
 
+  const sgkPath = path.join(process.cwd(), "public", "sgk", `${baiId}.html`);
+  const hasSgk = fs.existsSync(sgkPath);
+
   return (
     <LessonClient
       lessonId={baiId}
@@ -52,6 +57,7 @@ export default function LessonPage({ params }: PageProps) {
       tf={tf}
       essay={essay}
       review={review}
+      hasSgk={hasSgk}
     />
   );
 }

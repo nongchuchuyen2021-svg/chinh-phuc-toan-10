@@ -17,7 +17,7 @@ import EssayViewer from "@/components/EssayViewer";
 import TheoryViewer from "@/components/TheoryViewer";
 import ReviewViewer from "@/components/ReviewViewer";
 
-type TabKey = "theory" | "mcq" | "tf" | "essay" | "review";
+type TabKey = "sgk" | "theory" | "mcq" | "tf" | "essay" | "review";
 
 export default function LessonClient({
   lessonId,
@@ -28,6 +28,7 @@ export default function LessonClient({
   tf,
   essay,
   review,
+  hasSgk = false,
 }: {
   lessonId: string;
   lessonTitle: string;
@@ -37,10 +38,12 @@ export default function LessonClient({
   tf: TFQuestion[];
   essay: EssayQuestion[];
   review: LessonReview;
+  hasSgk?: boolean;
 }) {
-  const [activeTab, setActiveTab] = useState<TabKey>("theory");
+  const [activeTab, setActiveTab] = useState<TabKey>(hasSgk ? "sgk" : "theory");
 
   const tabs: { key: TabKey; label: string; icon: string; count?: number }[] = [
+    ...(hasSgk ? [{ key: "sgk" as TabKey, label: "SGK Chuẩn", icon: "📖" }] : []),
     { key: "theory", label: "Tóm tắt & Khắc sâu", icon: "⚡" },
     { key: "mcq", label: "Trắc nghiệm 4 lựa chọn", icon: "🎯", count: mcq.length },
     { key: "tf", label: "Đúng / Sai 4 ý", icon: "⚖️", count: tf.length },
@@ -81,13 +84,26 @@ export default function LessonClient({
               </h1>
             </div>
 
-            <Link
-              href="/cong-thuc"
-              onClick={() => playClick()}
-              className="flex shrink-0 items-center gap-2 rounded-2xl bg-gradient-to-r from-amber to-amber-deep px-4 py-2.5 font-mono text-xs font-bold text-white shadow-glow-amber transition hover:opacity-90 hover:scale-105"
-            >
-              📖 Sổ tay công thức
-            </Link>
+            <div className="flex flex-wrap items-center gap-2">
+              {hasSgk && (
+                <a
+                  href={`/sgk/${lessonId}.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => playClick()}
+                  className="flex shrink-0 items-center gap-2 rounded-2xl bg-gradient-to-r from-amber to-amber-deep px-4 py-2.5 font-mono text-xs font-bold text-white shadow-glow-amber transition hover:opacity-90 hover:scale-105"
+                >
+                  🚀 Mở tab riêng SGK
+                </a>
+              )}
+              <Link
+                href="/cong-thuc"
+                onClick={() => playClick()}
+                className="flex shrink-0 items-center gap-2 rounded-2xl border border-void-border bg-void-subtle px-4 py-2.5 font-mono text-xs font-bold text-star-soft transition hover:border-cyan/40 hover:text-white hover:scale-105"
+              >
+                📖 Sổ tay công thức
+              </Link>
+            </div>
           </div>
 
           {/* Tab Selector */}
@@ -96,7 +112,8 @@ export default function LessonClient({
               const isActive = activeTab === t.key;
               let activeStyle = "";
               if (isActive) {
-                if (t.key === "theory") activeStyle = "bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan border border-cyan/40";
+                if (t.key === "sgk") activeStyle = "bg-gradient-to-r from-amber to-amber-deep text-white shadow-glow-amber border border-amber/40";
+                else if (t.key === "theory") activeStyle = "bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan border border-cyan/40";
                 else if (t.key === "mcq") activeStyle = "bg-gradient-to-r from-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
                 else if (t.key === "tf") activeStyle = "bg-gradient-to-r from-emerald to-emerald-deep text-white shadow-glow-emerald border border-emerald/40";
                 else if (t.key === "essay") activeStyle = "bg-gradient-to-r from-rose to-rose-deep text-white shadow-glow-rose border border-rose/40";
@@ -128,6 +145,29 @@ export default function LessonClient({
 
         {/* Tab Content */}
         <div className="mt-6">
+          {activeTab === "sgk" && (
+            <div className="animate-fade-in-up space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-amber/30 bg-amber/10 px-5 py-3 text-sm text-amber-glow shadow-glow-amber">
+                <span>📖 Đang đọc bản Sách Giáo Khoa chuẩn tương tác có hình ảnh gốc</span>
+                <a
+                  href={`/sgk/${lessonId}.html`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold underline hover:text-white"
+                >
+                  Phóng to toàn màn hình ↗
+                </a>
+              </div>
+              <div className="overflow-hidden rounded-3xl border border-void-border bg-void shadow-card">
+                <iframe
+                  src={`/sgk/${lessonId}.html`}
+                  title={`SGK ${lessonTitle}`}
+                  className="h-[850px] w-full border-0"
+                />
+              </div>
+            </div>
+          )}
+
           {activeTab === "theory" && (
             theory ? (
               <TheoryViewer

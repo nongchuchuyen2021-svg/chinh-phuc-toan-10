@@ -1,0 +1,862 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <title>Toán 10 - Bài 1: Mệnh đề (SGK Kết nối tri thức)</title>
+
+    <!-- KaTeX CDN for Math Typesetting -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        })
+      "
+    ></script>
+
+    <style>
+      :root {
+        --bg-dark: #090d16;
+        --bg-card: #131b2e;
+        --bg-card-alt: #1a243b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --color-title: #38bdf8;
+        --color-h1: #fbbf24;
+        --color-h2: #f43f5e;
+        --color-h3: #10b981;
+        --color-badge: #6366f1;
+        --border-color: #24324f;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        font-size: 16px;
+        padding-bottom: 60px;
+      }
+      #progress-bar {
+        position: fixed; top: 0; left: 0; height: 4px;
+        background: linear-gradient(90deg, #38bdf8, #f43f5e, #fbbf24, #10b981);
+        width: 0%; z-index: 1000;
+        transition: width 0.1s ease-out;
+      }
+      .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+
+      .hero-banner {
+        background: linear-gradient(135deg, #162038 0%, #0c1222 100%);
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--color-title);
+        border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; text-align: center;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      }
+      .chapter-tag {
+        display: inline-block; background: rgba(56, 189, 248, 0.15);
+        color: var(--color-title); font-size: 0.88rem; font-weight: 700;
+        padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
+        margin-bottom: 12px; border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .hero-title { color: #ffffff; font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
+      .hero-title span { color: var(--color-title); }
+      .hero-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 680px; margin: 0 auto; }
+
+      .chapter-intro-card {
+        background: rgba(14, 165, 233, 0.06); border: 1px solid rgba(56, 189, 248, 0.25);
+        border-radius: 14px; padding: 18px 20px; margin-bottom: 24px;
+        display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
+      }
+      .chapter-intro-text { flex: 1 1 360px; font-size: 0.95rem; color: var(--text-secondary); }
+      .chapter-intro-img { flex: 0 0 280px; text-align: center; margin: 0 auto; }
+      .chapter-intro-img img { max-width: 100%; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; padding: 4px; }
+
+      .objectives-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px; margin-bottom: 24px;
+      }
+      .objectives-card {
+        background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3);
+        border-left: 4px solid var(--color-badge); border-radius: 12px; padding: 16px 20px;
+      }
+      .objectives-title { color: #818cf8; font-size: 1rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+      .objectives-list { list-style: none; padding-left: 0; }
+      .objectives-list li { position: relative; padding-left: 22px; margin-bottom: 6px; color: var(--text-secondary); font-size: 0.92rem; }
+      .objectives-list li::before { content: "✦"; position: absolute; left: 2px; color: #818cf8; }
+
+      h2.section-heading-1 {
+        color: var(--color-h1); font-size: 1.45rem; font-weight: 800;
+        border-bottom: 2px solid rgba(251, 191, 36, 0.3); padding-bottom: 8px; margin: 40px 0 16px 0;
+      }
+      h2.section-heading-2 {
+        color: var(--color-h2); font-size: 1.45rem; font-weight: 800;
+        border-bottom: 2px solid rgba(244, 63, 94, 0.3); padding-bottom: 8px; margin: 40px 0 16px 0;
+      }
+      h3.sub-heading { color: #38bdf8; font-size: 1.2rem; font-weight: 700; margin: 24px 0 12px 0; }
+
+      p { margin-bottom: 12px; color: var(--text-secondary); text-align: justify; }
+
+      .definition-card {
+        background: linear-gradient(135deg, rgba(245, 158, 11, 0.12) 0%, rgba(217, 119, 6, 0.04) 100%);
+        border: 1.5px solid rgba(245, 158, 11, 0.5); border-radius: 12px; padding: 16px 20px; margin: 18px 0;
+      }
+      .definition-title { color: #fbbf24; font-weight: 700; font-size: 1.05rem; margin-bottom: 8px; display: flex; align-items: center; gap: 8px; }
+
+      .activity-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 18px 20px; margin: 18px 0;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+      }
+
+      .badge {
+        display: inline-block; color: #fff; font-size: 0.8rem; font-weight: 700;
+        padding: 3px 10px; border-radius: 6px; margin-bottom: 8px; text-transform: uppercase;
+      }
+      .badge-act { background: #d97706; }
+      .badge-ex { background: #0284c7; }
+      .badge-pr { background: #059669; }
+      .badge-app { background: #7c3aed; }
+      .badge-note { background: #475569; }
+
+      .note-box {
+        background: rgba(148, 163, 184, 0.08); border-left: 3px solid #94a3b8;
+        border-radius: 0 8px 8px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.94rem;
+      }
+
+      details.solution {
+        background: rgba(15, 23, 42, 0.7); border: 1px dashed #38bdf8;
+        border-radius: 8px; padding: 12px 16px; margin-top: 14px;
+      }
+      details.solution summary {
+        font-weight: 700; color: #38bdf8; cursor: pointer; outline: none; user-select: none;
+        display: flex; align-items: center; justify-content: space-between;
+      }
+      details.solution summary::after { content: "▼ Mở lời giải / Hướng dẫn"; font-size: 0.82rem; font-weight: normal; color: #94a3b8; }
+      details.solution[open] summary::after { content: "▲ Thu gọn"; }
+      details.solution[open] summary { margin-bottom: 12px; border-bottom: 1px solid rgba(56, 189, 248, 0.2); padding-bottom: 8px; }
+
+      .fig-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 14px; margin: 20px auto; text-align: center;
+      }
+      .fig-card img {
+        max-width: 100%; height: auto; display: inline-block;
+        border-radius: 8px; background: #ffffff; padding: 6px;
+      }
+      .fig-card figcaption {
+        margin-top: 10px; font-size: 0.85rem; color: #94a3b8; font-style: italic;
+      }
+
+      .table-data {
+        width: 100%; border-collapse: collapse; margin: 16px 0; background: #0d1322;
+        border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden;
+        text-align: left; font-size: 0.92rem;
+      }
+      .table-data th, .table-data td { padding: 10px 12px; border: 1px solid #24324f; vertical-align: middle; }
+      .table-data th { background: #162038; color: #38bdf8; font-weight: 700; }
+      .table-data tr:nth-child(even) { background: rgba(255,255,255,0.02); }
+
+      .exercise-item {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 16px 20px; margin-bottom: 16px;
+      }
+      .exercise-title { font-weight: 800; color: #fbbf24; margin-bottom: 8px; font-size: 1.05rem; }
+
+      .em-co-biet-card {
+        background: linear-gradient(135deg, rgba(16, 185, 129, 0.1) 0%, rgba(6, 78, 59, 0.05) 100%);
+        border: 1.5px solid rgba(16, 185, 129, 0.4); border-radius: 14px;
+        padding: 20px 22px; margin: 32px 0 16px 0;
+      }
+      .em-co-biet-header {
+        display: flex; align-items: center; gap: 10px; color: #34d399;
+        font-weight: 800; font-size: 1.15rem; margin-bottom: 12px; text-transform: uppercase;
+      }
+      .em-co-biet-content {
+        display: flex; flex-wrap: wrap; gap: 18px; align-items: center;
+      }
+      .em-co-biet-text { flex: 1 1 360px; color: var(--text-secondary); font-size: 0.95rem; text-align: justify; }
+      .em-co-biet-img { flex: 0 0 260px; text-align: center; margin: 0 auto; }
+      .em-co-biet-img img { max-width: 100%; border-radius: 8px; background: #ffffff; padding: 4px; }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <div class="container">
+      <!-- HERO BANNER -->
+      <header class="hero-banner">
+        <div class="chapter-tag">
+          Toán 10 • Tập Một • Sách Kết nối tri thức với cuộc sống
+        </div>
+        <h1 class="hero-title">
+          BÀI 1: <span>MỆNH ĐỀ</span>
+        </h1>
+        <p class="hero-desc">
+          Trọn vẹn 100% nội dung Sách giáo khoa (trang 5 – 11) kèm hình ảnh minh hoạ gốc, giải thích chi tiết và hệ thống bài tập.
+        </p>
+      </header>
+
+      <!-- GIỚI THIỆU CHƯƠNG I -->
+      <section class="chapter-intro-card">
+        <div class="chapter-intro-text">
+          <h3 style="color: #38bdf8; font-weight: 800; margin-bottom: 6px;">CHƯƠNG I. MỆNH ĐỀ VÀ TẬP HỢP</h3>
+          <p style="margin-bottom: 0;">
+            Chương này cung cấp những khái niệm và kí hiệu lôgic thường dùng, củng cố và mở rộng hiểu biết ban đầu về lí thuyết tập hợp đã được học ở các lớp dưới. Từ đó góp phần hình thành khả năng suy luận có lí, khả năng tiếp nhận, diễn đạt các vấn đề một cách chính xác, tạo cơ sở để học tốt các nội dung toán học khác.
+          </p>
+        </div>
+        <div class="chapter-intro-img">
+          <img src="/sgk/images/bai-01/chuong-1-venn.png" alt="Sơ đồ Ven các tập hợp số N, Z, Q, R" />
+          <div style="font-size: 0.8rem; color: #94a3b8; margin-top: 4px;">Sơ đồ các tập hợp số: $\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$</div>
+        </div>
+      </section>
+
+      <!-- MỤC TIÊU & THUẬT NGỮ -->
+      <div class="objectives-grid">
+        <section class="objectives-card">
+          <div class="objectives-title">📖 Thuật ngữ cốt lõi:</div>
+          <ul class="objectives-list">
+            <li>Mệnh đề; Mệnh đề phủ định</li>
+            <li>Mệnh đề kéo theo; Mệnh đề đảo</li>
+            <li>Mệnh đề tương đương</li>
+            <li>Điều kiện cần, điều kiện đủ, điều kiện cần và đủ</li>
+            <li>Các kí hiệu với mọi ($\forall$), tồn tại ($\exists$)</li>
+          </ul>
+        </section>
+
+        <section class="objectives-card" style="border-left-color: #38bdf8;">
+          <div class="objectives-title" style="color: #38bdf8;">🎯 Kiến thức, kĩ năng:</div>
+          <ul class="objectives-list">
+            <li>Thiết lập và phát biểu mệnh đề phủ định, mệnh đề đảo, mệnh đề kéo theo, mệnh đề tương đương.</li>
+            <li>Thiết lập và phát biểu các mệnh đề có chứa kí hiệu $\forall, \exists$.</li>
+            <li>Xác định tính đúng / sai của một mệnh đề trong những trường hợp đơn giản.</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- TÌNH HUỐNG KHỞI ĐỘNG -->
+      <div class="activity-card" style="border-left: 4px solid #38bdf8;">
+        <div style="font-weight: 700; color: #38bdf8; font-size: 1.05rem; margin-bottom: 8px;">
+          💡 Tình huống mở đầu (Trang 5 SGK):
+        </div>
+        <p>Quan sát hình vẽ các con vật lồng vào nhau và cuộc đối thoại giữa hai bạn An và Khoa:</p>
+        <figure class="fig-card" style="max-width: 680px;">
+          <img src="/sgk/images/bai-01/khoi-dong-an-khoa.png" alt="Tình huống mở đầu: Các con vật và An, Khoa" />
+          <figcaption>Hình vẽ tình huống mở đầu: An nói "Có 5 con vật xuất hiện trong hình vẽ", Khoa nói "Có 6 con vật xuất hiện trong hình vẽ".</figcaption>
+        </figure>
+        <p>
+          Trong hai câu nói của An và Khoa, có một câu đúng và một câu sai. Những câu khẳng định có tính đúng hoặc sai như vậy được gọi là <strong>mệnh đề</strong>.
+        </p>
+      </div>
+
+      <!-- ==================== MỤC 1 ==================== -->
+      <h2 class="section-heading-1">1. MỆNH ĐỀ, MỆNH ĐỀ CHỨA BIẾN</h2>
+
+      <h3 class="sub-heading">a) Mệnh đề</h3>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 1</span>
+        <p>Trong các câu ở tình huống mở đầu:</p>
+        <p>a) Câu nào đúng?</p>
+        <p>b) Câu nào sai?</p>
+        <p>c) Câu nào không xác định được tính đúng sai?</p>
+        <details class="solution">
+          <summary>Xem giải thích HĐ1</summary>
+          <p>Quan sát kĩ hình vẽ: Trong hình gồm có các con vật: voi, ngựa vằn, khỉ đột, chó sói, mèo và chuột (tổng cộng có 6 con vật).</p>
+          <p>• Câu của bạn Khoa ("Có 6 con vật xuất hiện trong hình vẽ") là <strong>câu đúng</strong>.</p>
+          <p>• Câu của bạn An ("Có 5 con vật xuất hiện trong hình vẽ") là <strong>câu sai</strong>.</p>
+          <p>• Câu hỏi "Có bao nhiêu con vật xuất hiện trong hình vẽ?" là câu hỏi, <strong>không xác định được tính đúng sai</strong>.</p>
+        </details>
+      </div>
+
+      <p>
+        Những câu nói của An và Khoa là những khẳng định có tính đúng hoặc sai. Người ta gọi mỗi câu như vậy là một <strong>mệnh đề lôgic</strong> (gọi tắt là <strong>mệnh đề</strong>). Những câu không xác định được tính đúng sai không phải là mệnh đề.
+      </p>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 ĐỊNH NGHĨA MỆNH ĐỀ</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 6px;">
+          • Mỗi mệnh đề phải hoặc đúng hoặc sai.
+        </p>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 0;">
+          • Một mệnh đề không thể vừa đúng vừa sai.
+        </p>
+      </div>
+
+      <div class="note-box">
+        <strong>Chú ý:</strong> Người ta thường sử dụng các chữ cái in hoa $P, Q, R, \dots$ để biểu thị các mệnh đề.
+      </div>
+
+      <div class="activity-card">
+        <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <span class="badge badge-ex">Ví dụ 1 (Trang 6)</span>
+          <img src="/sgk/images/bai-01/robot-chu-y.png" alt="Robot chú ý" style="height: 38px; border-radius: 4px; background: #fff; padding: 2px;" />
+        </div>
+        <p>Trong các câu sau, câu nào là mệnh đề? Câu nào không phải là mệnh đề?</p>
+        <p>a) Phương trình $3x^2 - 5x + 2 = 0$ có nghiệm nguyên;</p>
+        <p>b) $5 < 7 - 3$;</p>
+        <p>c) Có bao nhiêu dấu hiệu nhận biết hai tam giác đồng dạng?</p>
+        <p>d) Đấy là cách xử lí khôn ngoan!</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>Vì phương trình $3x^2 - 5x + 2 = 0$ có nghiệm nguyên $x = 1$ (do $(x-1)(3x-2)=0$) nên câu a là mệnh đề đúng. Câu b là sai vì $7 - 3 = 4$, $5 < 4$ là khẳng định sai. Do đó, câu a và câu b là những <strong>mệnh đề</strong>.</p>
+          <p>Câu c là câu hỏi; câu d là câu cảm thán, nêu lên ý kiến chủ quan của người nói. Do đó, không xác định được tính đúng sai. Vậy các câu c và d <strong>không phải là mệnh đề</strong>.</p>
+        </details>
+      </div>
+
+      <div class="note-box">
+        <strong>Chú ý:</strong> Thông thường, những câu nghi vấn, câu cảm thán, câu cầu khiến không phải là mệnh đề. Những mệnh đề liên quan đến toán học (như câu a và câu b trong Ví dụ 1) được gọi là <strong>mệnh đề toán học</strong>.
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 1</span>
+        <p>Thay dấu "?" bằng dấu "x" vào ô thích hợp trong bảng sau:</p>
+        <table class="table-data">
+          <thead>
+            <tr>
+              <th>Câu</th>
+              <th style="text-align: center;">Không phải mệnh đề</th>
+              <th style="text-align: center;">Mệnh đề đúng</th>
+              <th style="text-align: center;">Mệnh đề sai</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>13 là số nguyên tố.</td>
+              <td style="text-align: center;"></td>
+              <td style="text-align: center; color: #10b981; font-weight: bold;">x</td>
+              <td style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td>Tổng độ dài hai cạnh bất kì của một tam giác nhỏ hơn độ dài cạnh còn lại.</td>
+              <td style="text-align: center;"></td>
+              <td style="text-align: center;"></td>
+              <td style="text-align: center; color: #f43f5e; font-weight: bold;">x</td>
+            </tr>
+            <tr>
+              <td>Bạn đã làm bài tập chưa?</td>
+              <td style="text-align: center; color: #38bdf8; font-weight: bold;">x</td>
+              <td style="text-align: center;"></td>
+              <td style="text-align: center;"></td>
+            </tr>
+            <tr>
+              <td>Thời tiết hôm nay thật đẹp!</td>
+              <td style="text-align: center; color: #38bdf8; font-weight: bold;">x</td>
+              <td style="text-align: center;"></td>
+              <td style="text-align: center;"></td>
+            </tr>
+          </tbody>
+        </table>
+        <details class="solution">
+          <summary>Giải thích chi tiết Luyện tập 1</summary>
+          <p>• "13 là số nguyên tố" là mệnh đề đúng (13 chỉ chia hết cho 1 và 13).</p>
+          <p>• "Tổng độ dài hai cạnh bất kì của một tam giác nhỏ hơn độ dài cạnh còn lại" là mệnh đề sai (theo bất đẳng thức tam giác, tổng độ dài hai cạnh luôn lớn hơn cạnh còn lại).</p>
+          <p>• "Bạn đã làm bài tập chưa?" là câu hỏi nghi vấn nên không phải mệnh đề.</p>
+          <p>• "Thời tiết hôm nay thật đẹp!" là câu cảm thán nên không phải mệnh đề.</p>
+        </details>
+      </div>
+
+      <h3 class="sub-heading">b) Mệnh đề chứa biến</h3>
+      <p>Xét câu "$n$ chia hết cho 2" (với $n$ là số tự nhiên).</p>
+      <p>Ta chưa khẳng định được tính đúng sai của câu này, do đó nó chưa phải là một mệnh đề. Tuy nhiên, nếu thay $n$ bằng số tự nhiên cụ thể thì câu này cho ta một mệnh đề. Chẳng hạn:</p>
+      <p>• Với $n = 5$ ta được mệnh đề "5 chia hết cho 2". Đây là mệnh đề sai.</p>
+      <p>• Với $n = 10$ ta được mệnh đề "10 chia hết cho 2". Đây là mệnh đề đúng.</p>
+      <p>Ta nói rằng câu "$n$ chia hết cho 2" là một <strong>mệnh đề chứa biến</strong>.</p>
+
+      <div class="activity-card" style="border-left: 4px solid #fbbf24;">
+        <p><strong>❓ Câu hỏi (Trang 7):</strong> Xét câu "$x > 5$". Hãy tìm hai giá trị thực của $x$ để từ câu đã cho, ta nhận được một mệnh đề đúng và một mệnh đề sai.</p>
+        <details class="solution">
+          <summary>Xem gợi ý trả lời</summary>
+          <p>• Chọn $x = 7 \in \mathbb{R}$: Ta được khẳng định "$7 > 5$", đây là một <strong>mệnh đề đúng</strong>.</p>
+          <p>• Chọn $x = 3 \in \mathbb{R}$: Ta được khẳng định "$3 > 5$", đây là một <strong>mệnh đề sai</strong>.</p>
+        </details>
+      </div>
+
+      <!-- ==================== MỤC 2 ==================== -->
+      <h2 class="section-heading-1">2. MỆNH ĐỀ PHỦ ĐỊNH</h2>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 2 (Trang 7)</span>
+        <p>Quan sát biển báo trong hình bên:</p>
+        <figure class="fig-card" style="max-width: 420px;">
+          <img src="/sgk/images/bai-01/hd2-bien-bao.png" alt="HĐ2: Biển báo giao thông người đi bộ và hai bạn An, Khoa" />
+          <figcaption>Biển báo giao thông hình tròn màu xanh có hình người đi bộ</figcaption>
+        </figure>
+        <p>Khoa nói: "Đây là biển báo đường dành cho người đi bộ".</p>
+        <p>An không đồng ý với ý kiến của Khoa. Hãy phát biểu ý kiến của An dưới dạng một mệnh đề.</p>
+        <details class="solution">
+          <summary>Xem lời giải HĐ2</summary>
+          <p>Ý kiến của bạn An phủ định lại câu nói của Khoa, có thể phát biểu là: <em>"Đây không phải là biển báo đường dành cho người đi bộ"</em> hoặc <em>"Không phải đây là biển báo đường dành cho người đi bộ"</em>.</p>
+        </details>
+      </div>
+
+      <p>
+        Để phủ định một mệnh đề $P$, người ta thường thêm (hoặc bớt) từ "không" hoặc "không phải" vào trước vị ngữ của mệnh đề $P$. Ta kí hiệu mệnh đề phủ định của mệnh đề $P$ là $\overline{P}$.
+      </p>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 QUY TẮC MỆNH ĐỀ PHỦ ĐỊNH</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 6px;">
+          Mệnh đề $P$ và mệnh đề $\overline{P}$ là hai phát biểu trái ngược nhau.
+        </p>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 0;">
+          • Nếu $P$ đúng thì $\overline{P}$ sai.<br/>
+          • Nếu $P$ sai thì $\overline{P}$ đúng.
+        </p>
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-ex">Ví dụ 2 (Trang 7)</span>
+        <p>Phát biểu mệnh đề phủ định của mỗi mệnh đề sau:</p>
+        <p>$P$: "17 là số chính phương";</p>
+        <p>$Q$: "Hình hộp không phải là hình lăng trụ".</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>Mệnh đề phủ định của $P$ là $\overline{P}$: "17 không phải là số chính phương". (Do $P$ sai nên $\overline{P}$ là mệnh đề đúng).</p>
+          <p>Mệnh đề phủ định của $Q$ là $\overline{Q}$: "Hình hộp là hình lăng trụ". (Do $Q$ sai nên $\overline{Q}$ là mệnh đề đúng vì hình hộp thực chất là hình lăng trụ có đáy là hình bình hành).</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 2</span>
+        <p>Phát biểu mệnh đề phủ định của mỗi mệnh đề sau và xác định tính đúng sai của mệnh đề phủ định đó:</p>
+        <p>$P$: "2 022 chia hết cho 5";</p>
+        <p>$Q$: "Bất phương trình $2x + 1 > 0$ có nghiệm".</p>
+        <details class="solution">
+          <summary>Xem lời giải Luyện tập 2</summary>
+          <p>• Mệnh đề phủ định của $P$ là $\overline{P}$: "2 022 không chia hết cho 5". Vì chữ số tận cùng của 2022 là 2 nên 2022 không chia hết cho 5, do đó <strong>$\overline{P}$ là mệnh đề đúng</strong>.</p>
+          <p>• Mệnh đề phủ định của $Q$ là $\overline{Q}$: "Bất phương trình $2x + 1 > 0$ vô nghiệm". Vì bất phương trình $2x + 1 > 0 \Leftrightarrow x > -\frac{1}{2}$ có vô số nghiệm (chẳng hạn $x = 0$) nên mệnh đề $Q$ đúng, do đó <strong>$\overline{Q}$ là mệnh đề sai</strong>.</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #7c3aed;">
+        <span class="badge badge-app">Vận dụng (Trang 7)</span>
+        <p>Cho mệnh đề $Q$: "Châu Á là châu lục có diện tích lớn nhất trên thế giới". Phát biểu mệnh đề phủ định $\overline{Q}$ và xác định tính đúng sai của hai mệnh đề $Q$ và $\overline{Q}$.</p>
+        <details class="solution">
+          <summary>Xem lời giải Vận dụng</summary>
+          <p>• Mệnh đề phủ định $\overline{Q}$: "Châu Á không phải là châu lục có diện tích lớn nhất trên thế giới".</p>
+          <p>• Tính đúng sai: Về mặt địa lí, Châu Á có diện tích khoảng 44,58 triệu $\text{km}^2$, là châu lục lớn nhất Trái Đất. Vì vậy <strong>mệnh đề $Q$ đúng</strong> và <strong>mệnh đề phủ định $\overline{Q}$ sai</strong>.</p>
+        </details>
+      </div>
+
+      <!-- ==================== MỤC 3 ==================== -->
+      <h2 class="section-heading-1">3. MỆNH ĐỀ KÉO THEO, MỆNH ĐỀ ĐẢO</h2>
+
+      <h3 class="sub-heading">a) Mệnh đề kéo theo</h3>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 3 (Trang 8)</span>
+        <p>Cặp từ quan hệ nào sau đây phù hợp với vị trí bị che khuất trong câu ghép ở hình bên?</p>
+        <figure class="fig-card" style="max-width: 380px;">
+          <img src="/sgk/images/bai-01/hd3-ruou-bia.png" alt="Mảnh giấy: ... sử dụng rượu bia khi tham gia giao thông ... có thể bị xử phạt" />
+        </figure>
+        <p>A. Nếu ... thì ...</p>
+        <p>B. Tuy ... nhưng ...</p>
+        <details class="solution">
+          <summary>Xem đáp án HĐ3</summary>
+          <p>Chọn <strong>A. Nếu ... thì ...</strong>. Khi ghép vào ta được câu hoàn chỉnh có mối quan hệ nhân quả/điều kiện: <em>"Nếu sử dụng rượu bia khi tham gia giao thông thì có thể bị xử phạt hành chính hoặc xử lí hình sự tuỳ theo mức độ vi phạm."</em></p>
+        </details>
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 4 (Trang 8)</span>
+        <p>Cho hai câu sau:</p>
+        <p>$P$: "Tam giác $ABC$ là tam giác vuông tại $A$";</p>
+        <p>$Q$: "Tam giác $ABC$ có $AB^2 + AC^2 = BC^2$".</p>
+        <figure class="fig-card" style="max-width: 240px;">
+          <img src="/sgk/images/bai-01/tam-giac-vuong.png" alt="Tam giác ABC vuông tại A" />
+          <figcaption>Tam giác ABC vuông tại A</figcaption>
+        </figure>
+        <p>Hãy phát biểu câu ghép có dạng "Nếu $P$ thì $Q$".</p>
+        <details class="solution">
+          <summary>Xem đáp án HĐ4</summary>
+          <p>Phát biểu câu ghép: <em>"Nếu tam giác $ABC$ là tam giác vuông tại $A$ thì tam giác $ABC$ có $AB^2 + AC^2 = BC^2$."</em></p>
+          <p>(Đây chính là nội dung định lí Pythagore quen thuộc ở cấp THCS).</p>
+        </details>
+      </div>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 ĐỊNH NGHĨA MỆNH ĐỀ KÉO THEO</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 6px;">
+          Mệnh đề "Nếu $P$ thì $Q$" được gọi là một <strong>mệnh đề kéo theo</strong> và kí hiệu là $P \Rightarrow Q$.
+        </p>
+        <p style="margin-bottom: 0;">
+          Mệnh đề $P \Rightarrow Q$ chỉ sai khi $P$ đúng mà $Q$ sai. Do đó, ta chỉ cần xét tính đúng sai của mệnh đề $P \Rightarrow Q$ khi $P$ đúng. Khi đó, nếu $Q$ đúng thì $P \Rightarrow Q$ đúng, nếu $Q$ sai thì $P \Rightarrow Q$ sai.
+        </p>
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-ex">Ví dụ 3 (Trang 8)</span>
+        <p>Cho tứ giác $ABCD$, xét hai câu sau:</p>
+        <p>$P$: "Tứ giác $ABCD$ có tổng số đo hai góc đối diện bằng $180^\circ$";</p>
+        <p>$Q$: "$ABCD$ là tứ giác nội tiếp đường tròn".</p>
+        <figure class="fig-card" style="max-width: 240px;">
+          <img src="/sgk/images/bai-01/tu-giac-noi-tiep.png" alt="Tứ giác ABCD nội tiếp đường tròn" />
+          <figcaption>Tứ giác ABCD nội tiếp đường tròn</figcaption>
+        </figure>
+        <p>Phát biểu mệnh đề $P \Rightarrow Q$ và cho biết tính đúng sai của mệnh đề đó.</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>$P \Rightarrow Q$: "Nếu tứ giác $ABCD$ có tổng số đo hai góc đối diện bằng $180^\circ$ thì $ABCD$ là tứ giác nội tiếp đường tròn".</p>
+          <p>Theo dấu hiệu nhận biết tứ giác nội tiếp trong hình học, mệnh đề kéo theo này là một <strong>mệnh đề đúng</strong>.</p>
+        </details>
+      </div>
+
+      <p>Các định lí toán học là những mệnh đề đúng và thường có dạng $P \Rightarrow Q$. Khi đó ta nói:</p>
+      <div class="definition-card" style="border-color: #38bdf8; background: linear-gradient(135deg, rgba(56, 189, 248, 0.1) 0%, rgba(14, 165, 233, 0.03) 100%);">
+        <p style="color: #38bdf8; font-weight: 700; margin-bottom: 6px;">
+          • $P$ là giả thiết của định lí, $Q$ là kết luận của định lí;
+        </p>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 0;">
+          • "$P$ là điều kiện đủ để có $Q$" hoặc "$Q$ là điều kiện cần để có $P$".
+        </p>
+      </div>
+
+      <h3 class="sub-heading">b) Mệnh đề đảo</h3>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 5 (Trang 8)</span>
+        <p>Xét hai câu sau:</p>
+        <p>$P$: "Phương trình bậc hai $ax^2 + bx + c = 0$ có hai nghiệm phân biệt";</p>
+        <p>$Q$: "Phương trình bậc hai $ax^2 + bx + c = 0$ có biệt thức $\Delta = b^2 - 4ac > 0$".</p>
+        <p>a) Hãy phát biểu mệnh đề $P \Rightarrow Q$.</p>
+        <p>b) Hãy phát biểu mệnh đề $Q \Rightarrow P$.</p>
+        <details class="solution">
+          <summary>Xem đáp án HĐ5</summary>
+          <p>a) $P \Rightarrow Q$: <em>"Nếu phương trình bậc hai $ax^2 + bx + c = 0$ có hai nghiệm phân biệt thì phương trình bậc hai $ax^2 + bx + c = 0$ có biệt thức $\Delta = b^2 - 4ac > 0$."</em></p>
+          <p>b) $Q \Rightarrow P$: <em>"Nếu phương trình bậc hai $ax^2 + bx + c = 0$ có biệt thức $\Delta = b^2 - 4ac > 0$ thì phương trình bậc hai $ax^2 + bx + c = 0$ có hai nghiệm phân biệt."</em></p>
+        </details>
+      </div>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 ĐỊNH NGHĨA MỆNH ĐỀ ĐẢO</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 0;">
+          Mệnh đề $Q \Rightarrow P$ được gọi là <strong>mệnh đề đảo</strong> của mệnh đề $P \Rightarrow Q$.
+        </p>
+      </div>
+
+      <div class="note-box">
+        <strong>Nhận xét:</strong> Mệnh đề đảo của một mệnh đề đúng <em>không nhất thiết là đúng</em>.
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-ex">Ví dụ 4 (Trang 9)</span>
+        <p>Hãy phát biểu mệnh đề đảo của mệnh đề: "Nếu tam giác $ABC$ là tam giác đều thì tam giác $ABC$ là tam giác cân" và xác định tính đúng sai của mệnh đề đảo này.</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>Mệnh đề đảo là: "Nếu tam giác $ABC$ là tam giác cân thì tam giác $ABC$ là tam giác đều".</p>
+          <p>Mệnh đề đảo này là <strong>sai</strong> vì một tam giác cân chưa chắc đã là tam giác đều (ví dụ tam giác cân có góc ở đỉnh bằng $100^\circ$ thì không thể là tam giác đều).</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 3</span>
+        <p>Cho các mệnh đề $P$: "$a$ và $b$ chia hết cho $c$"; $Q$: "$a + b$ chia hết cho $c$".</p>
+        <p>a) Hãy phát biểu định lí $P \Rightarrow Q$. Nêu giả thiết, kết luận của định lí và phát biểu định lí này dưới dạng điều kiện cần, điều kiện đủ.</p>
+        <p>b) Hãy phát biểu mệnh đề đảo của mệnh đề $P \Rightarrow Q$ rồi xác định tính đúng sai của mệnh đề đảo này.</p>
+        <details class="solution">
+          <summary>Xem lời giải Luyện tập 3</summary>
+          <p><strong>a)</strong> Phát biểu định lí: <em>"Nếu $a$ và $b$ chia hết cho $c$ thì $a + b$ chia hết cho $c$."</em></p>
+          <p>• Giả thiết: "$a$ và $b$ chia hết cho $c$"; Kết luận: "$a + b$ chia hết cho $c$".</p>
+          <p>• Điều kiện đủ: "$a$ và $b$ chia hết cho $c$ là điều kiện đủ để $a + b$ chia hết cho $c$".</p>
+          <p>• Điều kiện cần: "$a + b$ chia hết cho $c$ là điều kiện cần để $a$ và $b$ chia hết cho $c$".</p>
+          <p><strong>b)</strong> Mệnh đề đảo $Q \Rightarrow P$: <em>"Nếu $a + b$ chia hết cho $c$ thì $a$ và $b$ chia hết cho $c$."</em></p>
+          <p>• Mệnh đề đảo này là <strong>sai</strong>. Ví dụ: Với $a = 1, b = 3, c = 2$, ta có $a + b = 4$ chia hết cho 2 nhưng cả 1 và 3 đều không chia hết cho 2.</p>
+        </details>
+      </div>
+
+      <!-- ==================== MỤC 4 ==================== -->
+      <h2 class="section-heading-1">4. MỆNH ĐỀ TƯƠNG ĐƯƠNG</h2>
+
+      <div class="activity-card">
+        <span class="badge badge-act">Hoạt động 6 (Trang 9)</span>
+        <p>Hãy xác định tính đúng sai của mệnh đề sau:</p>
+        <p style="font-style: italic; color: #fbbf24;">"Một số tự nhiên chia hết cho 5 nếu số đó có chữ số tận cùng bằng 0 hoặc 5 và ngược lại".</p>
+        <p>Mệnh đề ở HĐ6 có thể phát biểu dưới dạng: "Một số tự nhiên chia hết cho 5 nếu và chỉ nếu số đó có chữ số tận cùng bằng 0 hoặc 5".</p>
+        <details class="solution">
+          <summary>Xem đáp án HĐ6</summary>
+          <p>Mệnh đề này là <strong>mệnh đề đúng</strong> vì: (1) Nếu một số có tận cùng bằng 0 hoặc 5 thì nó chia hết cho 5 (đúng); và ngược lại (2) Nếu một số chia hết cho 5 thì tận cùng của nó phải là 0 hoặc 5 (đúng).</p>
+        </details>
+      </div>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 ĐỊNH NGHĨA MỆNH ĐỀ TƯƠNG ĐƯƠNG</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 6px;">
+          Mệnh đề "P nếu và chỉ nếu Q" được gọi là một <strong>mệnh đề tương đương</strong> và kí hiệu là $P \Leftrightarrow Q$.
+        </p>
+        <p style="margin-bottom: 0;">
+          <strong>Nhận xét:</strong> Nếu cả hai mệnh đề $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng thì mệnh đề tương đương $P \Leftrightarrow Q$ đúng. Khi đó ta nói: "$P$ tương đương với $Q$" hoặc "$P$ là điều kiện cần và đủ để có $Q$" hoặc "$P$ khi và chỉ khi $Q$".
+        </p>
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-ex">Ví dụ 5 (Trang 9)</span>
+        <p>Cho hai mệnh đề:</p>
+        <p>$P$: "Tứ giác $ABCD$ là hình vuông";</p>
+        <p>$Q$: "Tứ giác $ABCD$ là hình chữ nhật có hai đường chéo vuông góc với nhau".</p>
+        <p>Hãy phát biểu mệnh đề tương đương $P \Leftrightarrow Q$ và xác định tính đúng sai của mệnh đề tương đương này.</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>Mệnh đề tương đương $P \Leftrightarrow Q$: <em>"Tứ giác $ABCD$ là hình vuông khi và chỉ khi tứ giác $ABCD$ là hình chữ nhật có hai đường chéo vuông góc với nhau".</em></p>
+          <p>Mệnh đề tương đương này <strong>đúng</strong> vì cả hai mệnh đề $P \Rightarrow Q$ và $Q \Rightarrow P$ đều đúng theo dấu hiệu nhận biết hình vuông trong hình học.</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 4</span>
+        <p>Phát biểu điều kiện cần và đủ để số tự nhiên $n$ chia hết cho 2.</p>
+        <details class="solution">
+          <summary>Xem lời giải Luyện tập 4</summary>
+          <p>Có thể phát biểu theo một trong các cách sau:</p>
+          <p>• <em>"Điều kiện cần và đủ để số tự nhiên $n$ chia hết cho 2 là $n$ có chữ số tận cùng là chữ số chẵn (0, 2, 4, 6, 8)."</em></p>
+          <p>• Hoặc: <em>"Số tự nhiên $n$ chia hết cho 2 khi và chỉ khi $n$ có chữ số tận cùng là 0, 2, 4, 6 hoặc 8."</em></p>
+        </details>
+      </div>
+
+      <!-- ==================== MỤC 5 ==================== -->
+      <h2 class="section-heading-1">5. MỆNH ĐỀ CÓ CHỨA KÍ HIỆU $\forall, \exists$</h2>
+
+      <p>
+        • Kí hiệu $\forall$ đọc là <strong>"với mọi"</strong>.<br/>
+        • Kí hiệu $\exists$ đọc là <strong>"tồn tại"</strong> (hoặc "có một", "có ít nhất một").
+      </p>
+
+      <div class="activity-card">
+        <p>• Câu "Mọi số thực đều có bình phương không âm" là một mệnh đề. Có thể viết mệnh đề này như sau:</p>
+        <p style="text-align: center; color: #38bdf8; font-size: 1.1rem; font-weight: bold;">
+          $P$: "$\forall x \in \mathbb{R},\ x^2 \ge 0$"
+        </p>
+        <p>• Câu "Có một số hữu tỉ mà bình phương của nó bằng 2" là một mệnh đề. Có thể viết mệnh đề này như sau:</p>
+        <p style="text-align: center; color: #fbbf24; font-size: 1.1rem; font-weight: bold;">
+          $Q$: "$\exists x \in \mathbb{Q},\ x^2 = 2$"
+        </p>
+        <p><strong>❓ Câu hỏi (Trang 10):</strong> Em hãy xác định tính đúng sai của hai mệnh đề trên.</p>
+        <details class="solution">
+          <summary>Xem trả lời câu hỏi</summary>
+          <p>• Mệnh đề $P$ là <strong>đúng</strong> vì bình phương của mọi số thực đều không âm ($x^2 \ge 0,\ \forall x \in \mathbb{R}$).</p>
+          <p>• Mệnh đề $Q$ là <strong>sai</strong> vì phương trình $x^2 = 2$ có hai nghiệm là $x = \pm \sqrt{2}$, mà $\sqrt{2}$ là số vô tỉ ($\sqrt{2} \notin \mathbb{Q}$). Không tồn tại số hữu tỉ nào thoả mãn.</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 5</span>
+        <p>Phát biểu bằng lời mệnh đề sau và cho biết mệnh đề đó đúng hay sai:</p>
+        <p style="text-align: center; font-weight: bold; font-size: 1.1rem;">$\forall x \in \mathbb{R},\ x^2 + 1 \le 0$</p>
+        <details class="solution">
+          <summary>Xem lời giải Luyện tập 5</summary>
+          <p>• Phát biểu bằng lời: <em>"Bình phương của mọi số thực cộng với 1 đều nhỏ hơn hoặc bằng 0"</em> (hoặc <em>"Với mọi số thực $x$, ta luôn có $x^2 + 1 \le 0$"</em>).</p>
+          <p>• Tính đúng sai: Vì với mọi số thực $x$, $x^2 \ge 0 \Rightarrow x^2 + 1 \ge 1 > 0$ nên bất đẳng thức $x^2 + 1 \le 0$ không bao giờ xảy ra. Vậy <strong>mệnh đề này sai</strong>.</p>
+        </details>
+      </div>
+
+      <h3 class="sub-heading">Phủ định của mệnh đề có chứa kí hiệu $\forall, \exists$</h3>
+      <p>Xét tình huống đối thoại của hai bạn học sinh:</p>
+      <figure class="fig-card" style="max-width: 620px;">
+        <img src="/sgk/images/bai-01/hd-nhan-voi-1.png" alt="Đối thoại về phép nhân với 1" />
+        <figcaption>Bạn nam: "Mọi số tự nhiên nhân với 1 đều bằng chính nó" — Bạn nữ: "Không đúng. Có một số tự nhiên nhân với 1 không bằng chính nó"</figcaption>
+      </figure>
+
+      <p>
+        Mệnh đề "Có một số tự nhiên nhân với 1 không bằng chính nó" là phủ định của mệnh đề "Mọi số tự nhiên nhân với 1 đều bằng chính nó".
+      </p>
+      <p>
+        Như vậy, mệnh đề phủ định của $P$: "$\forall n \in \mathbb{N},\ n \cdot 1 = n$" là mệnh đề $\overline{P}$: "$\exists n \in \mathbb{N},\ n \cdot 1 \ne n$".
+      </p>
+
+      <div class="definition-card">
+        <div class="definition-title">📌 NGUYÊN TẮC PHỦ ĐỊNH VỚI KÍ HIỆU $\forall$ VÀ $\exists$</div>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 6px;">
+          • Phủ định của mệnh đề "$\forall x \in X,\ P(x)$" là mệnh đề "$\exists x \in X,\ \overline{P(x)}$".
+        </p>
+        <p style="color: #f1f5f9; font-weight: 600; margin-bottom: 0;">
+          • Phủ định của mệnh đề "$\exists x \in X,\ P(x)$" là mệnh đề "$\forall x \in X,\ \overline{P(x)}$".
+        </p>
+      </div>
+
+      <div class="activity-card">
+        <span class="badge badge-ex">Ví dụ 6 (Trang 10)</span>
+        <p>Viết mệnh đề phủ định của mệnh đề sau và xác định tính đúng sai của nó:</p>
+        <p style="text-align: center; font-weight: bold;">$P$: "$\exists x \in \mathbb{R},\ x^2 + 1 = 0$"</p>
+        <details class="solution" open>
+          <summary>Lời giải chi tiết</summary>
+          <p>Mệnh đề $P$ có thể phát biểu là: "Tồn tại một số thực mà bình phương của nó cộng với 1 bằng 0".</p>
+          <p>Phủ định của mệnh đề $P$ là: "Không tồn tại một số thực mà bình phương của nó cộng với 1 bằng 0", tức là: "Mọi số thực đều có bình phương cộng với 1 khác 0".</p>
+          <p>Ta có thể viết mệnh đề phủ định của $P$ là $\overline{P}$: <strong>"$\forall x \in \mathbb{R},\ x^2 + 1 \ne 0$"</strong>.</p>
+          <p>Mệnh đề phủ định $\overline{P}$ này là <strong>đúng</strong> (vì $x^2 + 1 \ge 1 > 0 \ne 0$ với mọi $x \in \mathbb{R}$).</p>
+        </details>
+      </div>
+
+      <div class="activity-card" style="border-left: 4px solid #059669;">
+        <span class="badge badge-pr">Luyện tập 6</span>
+        <p>Trong tiết học môn Toán, Nam phát biểu: "Mọi số thực đều có bình phương khác 1". Mai phát biểu: "Có một số thực mà bình phương của nó bằng 1".</p>
+        <p>a) Hãy cho biết bạn nào phát biểu đúng.</p>
+        <p>b) Dùng kí hiệu $\forall, \exists$ để viết lại các phát biểu của Nam và Mai dưới dạng mệnh đề.</p>
+        <details class="solution">
+          <summary>Xem lời giải Luyện tập 6</summary>
+          <p><strong>a)</strong> Ta thấy với $x = 1$ hoặc $x = -1$ thì $x^2 = 1$. Do đó:</p>
+          <p>• Phát biểu của Nam là <strong>sai</strong>.</p>
+          <p>• Phát biểu của Mai là <strong>đúng</strong>.</p>
+          <p><strong>b)</strong> Viết dưới dạng kí hiệu toán học:</p>
+          <p>• Phát biểu của Nam: "$\forall x \in \mathbb{R},\ x^2 \ne 1$".</p>
+          <p>• Phát biểu của Mai: "$\exists x \in \mathbb{R},\ x^2 = 1$".</p>
+          <p>(Lưu ý: Phát biểu của Mai chính là mệnh đề phủ định cho phát biểu của Nam).</p>
+        </details>
+      </div>
+
+      <!-- ==================== BÀI TẬP CUỐI BÀI ==================== -->
+      <h2 class="section-heading-2">BÀI TẬP (Trang 11 SGK)</h2>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.1</div>
+        <p>Trong các câu sau, câu nào là mệnh đề?</p>
+        <p>a) Trung Quốc là nước đông dân nhất thế giới;</p>
+        <p>b) Bạn học trường nào?</p>
+        <p>c) Không được làm việc riêng trong giờ học;</p>
+        <p>d) Tôi sẽ sút bóng trúng xà ngang.</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.1</summary>
+          <p>• Câu a là một câu khẳng định có tính đúng sai rõ ràng (tại thời điểm SGK xuất bản, đây là một khẳng định đúng), do đó <strong>câu a là mệnh đề</strong>.</p>
+          <p>• Câu b là câu hỏi nghi vấn $\Rightarrow$ không phải mệnh đề.</p>
+          <p>• Câu c là câu mệnh lệnh, cầu khiến $\Rightarrow$ không phải mệnh đề.</p>
+          <p>• Câu d là một dự đoán tương lai chưa xác định được tính đúng sai tại thời điểm nói $\Rightarrow$ không phải mệnh đề.</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.2</div>
+        <p>Xác định tính đúng sai của mỗi mệnh đề sau:</p>
+        <p>a) $\pi < \frac{10}{3}$;</p>
+        <p>b) Phương trình $3x + 7 = 0$ có nghiệm;</p>
+        <p>c) Có ít nhất một số cộng với chính nó bằng 0;</p>
+        <p>d) 2 022 là hợp số.</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.2</summary>
+          <p>• <strong>a) Đúng:</strong> Ta có $\pi \approx 3{,}14159\dots$ và $\frac{10}{3} \approx 3{,}333\dots$, rõ ràng $3{,}14159 < 3{,}333$ nên mệnh đề này đúng.</p>
+          <p>• <strong>b) Đúng:</strong> Phương trình bậc nhất $3x + 7 = 0 \Leftrightarrow x = -\frac{7}{3}$, có nghiệm duy nhất.</p>
+          <p>• <strong>c) Đúng:</strong> Số 0 cộng với chính nó bằng $0 + 0 = 0$.</p>
+          <p>• <strong>d) Đúng:</strong> Số 2 022 có tổng các chữ số là $2 + 0 + 2 + 2 = 6$ chia hết cho 3, đồng thời tận cùng là số chẵn nên chia hết cho 2. Do đó 2 022 ngoài 1 và chính nó còn có các ước số khác (như 2, 3, 6...), vậy 2 022 là hợp số.</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.3</div>
+        <p>Cho hai câu sau:</p>
+        <p>$P$: "Tam giác $ABC$ là tam giác vuông";</p>
+        <p>$Q$: "Tam giác $ABC$ có một góc bằng tổng hai góc còn lại".</p>
+        <p>Hãy phát biểu mệnh đề tương đương $P \Leftrightarrow Q$ và xác định tính đúng sai của mệnh đề này.</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.3</summary>
+          <p>• <strong>Phát biểu:</strong> <em>"Tam giác $ABC$ là tam giác vuông khi và chỉ khi tam giác $ABC$ có một góc bằng tổng hai góc còn lại."</em></p>
+          <p>• <strong>Tính đúng sai:</strong> Mệnh đề tương đương này là <strong>ĐÚNG</strong>. Thật vậy: Trong tam giác $ABC$, tổng ba góc $\widehat{A} + \widehat{B} + \widehat{C} = 180^\circ$. Nếu tam giác vuông tại $A$ thì $\widehat{A} = 90^\circ \Rightarrow \widehat{B} + \widehat{C} = 90^\circ = \widehat{A}$. Ngược lại, nếu $\widehat{A} = \widehat{B} + \widehat{C}$ thì $2\widehat{A} = 180^\circ \Rightarrow \widehat{A} = 90^\circ$, tam giác vuông tại $A$.</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.4</div>
+        <p>Phát biểu mệnh đề đảo của mỗi mệnh đề sau và xác định tính đúng sai của chúng:</p>
+        <p>$P$: "Nếu số tự nhiên $n$ có chữ số tận cùng là 5 thì $n$ chia hết cho 5";</p>
+        <p>$Q$: "Nếu tứ giác $ABCD$ là hình chữ nhật thì tứ giác $ABCD$ có hai đường chéo bằng nhau".</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.4</summary>
+          <p>• Mệnh đề đảo của $P$: <em>"Nếu số tự nhiên $n$ chia hết cho 5 thì $n$ có chữ số tận cùng là 5."</em><br/>
+          $\Rightarrow$ Mệnh đề đảo này là <strong>SAI</strong>, vì số tự nhiên chia hết cho 5 có thể có chữ số tận cùng là 0 (ví dụ số 10, 20...).</p>
+          <p>• Mệnh đề đảo của $Q$: <em>"Nếu tứ giác $ABCD$ có hai đường chéo bằng nhau thì tứ giác $ABCD$ là hình chữ nhật."</em><br/>
+          $\Rightarrow$ Mệnh đề đảo này là <strong>SAI</strong>, ví dụ hình thang cân có hai đường chéo bằng nhau nhưng không phải là hình chữ nhật.</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.5</div>
+        <p>Với hai số thực $a$ và $b$, xét các mệnh đề $P$: "$a^2 < b^2$" và $Q$: "$0 < a < b$".</p>
+        <p>a) Hãy phát biểu mệnh đề $P \Rightarrow Q$.</p>
+        <p>b) Hãy phát biểu mệnh đề đảo của mệnh đề ở câu a.</p>
+        <p>c) Xác định tính đúng sai của mỗi mệnh đề ở câu a và câu b.</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.5</summary>
+          <p><strong>a)</strong> $P \Rightarrow Q$: <em>"Nếu $a^2 < b^2$ thì $0 < a < b$."</em></p>
+          <p><strong>b)</strong> Mệnh đề đảo $Q \Rightarrow P$: <em>"Nếu $0 < a < b$ thì $a^2 < b^2$."</em></p>
+          <p><strong>c)</strong> Tính đúng sai:</p>
+          <p>• Mệnh đề ở câu a ($P \Rightarrow Q$) là <strong>SAI</strong>. Phản ví dụ: Chọn $a = -3, b = 4$, ta có $a^2 = 9 < b^2 = 16$ (thỏa mãn $P$), nhưng $a = -3 < 0$ nên không thỏa mãn $0 < a < b$.</p>
+          <p>• Mệnh đề ở câu b ($Q \Rightarrow P$) là <strong>ĐÚNG</strong>. Thật vậy, với $0 < a < b$, nhân cả hai vế với $a > 0$ được $a^2 < ab$, nhân cả hai vế với $b > 0$ được $ab < b^2$, suy ra $a^2 < b^2$.</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.6</div>
+        <p>Xác định tính đúng sai của mệnh đề sau và tìm mệnh đề phủ định của nó:</p>
+        <p style="text-align: center; font-weight: bold;">$Q$: "$\exists n \in \mathbb{N},\ n \text{ chia hết cho } n + 1$"</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.6</summary>
+          <p>• <strong>Tính đúng sai:</strong> Mệnh đề $Q$ là <strong>ĐÚNG</strong>. Thật vậy, với số tự nhiên $n = 0 \in \mathbb{N}$, ta có $n + 1 = 1$, và 0 chia hết cho 1 ($0 : 1 = 0$). Vậy tồn tại $n = 0$ thỏa mãn.</p>
+          <p>• <strong>Mệnh đề phủ định $\overline{Q}$:</strong> "$\forall n \in \mathbb{N},\ n \text{ không chia hết cho } n + 1$".</p>
+        </details>
+      </div>
+
+      <div class="exercise-item">
+        <div class="exercise-title">Bài 1.7</div>
+        <p>Dùng kí hiệu $\forall, \exists$ để viết các mệnh đề sau:</p>
+        <p>$P$: "Mọi số tự nhiên đều có bình phương lớn hơn hoặc bằng chính nó";</p>
+        <p>$Q$: "Có một số thực cộng với chính nó bằng 0".</p>
+        <details class="solution">
+          <summary>Xem đáp án Bài 1.7</summary>
+          <p>• Viết lại mệnh đề $P$: <strong>"$\forall n \in \mathbb{N},\ n^2 \ge n$"</strong>.</p>
+          <p>• Viết lại mệnh đề $Q$: <strong>"$\exists x \in \mathbb{R},\ x + x = 0$"</strong> (hoặc "$\exists x \in \mathbb{R},\ 2x = 0$").</p>
+        </details>
+      </div>
+
+      <!-- ==================== EM CÓ BIẾT? ==================== -->
+      <section class="em-co-biet-card">
+        <div class="em-co-biet-header">
+          <span>💡</span> EM CÓ BIẾT? LỊCH SỬ LÔGIC HỌC TOÁN
+        </div>
+        <div class="em-co-biet-content">
+          <div class="em-co-biet-text">
+            <p>
+              Lôgic mệnh đề lần đầu tiên được phát triển một cách có hệ thống bởi nhà triết học Hy Lạp cổ đại <strong>Aristotle</strong> (A-rít-xtốt) hơn 2 300 năm trước. Ông được coi là người cha đẻ của lôgic học hình thức.
+            </p>
+            <p style="margin-bottom: 0;">
+              Đến giữa thế kỉ XIX, nhà toán học người Anh <strong>George Boole</strong> (Gióoc-giơ Bun) đã toán học hoá lôgic trong cuốn sách nổi tiếng <em>"The Laws of Thought"</em> (Các quy luật của tư duy, năm 1854). Hệ thống "Đại số Boole" với hai chân trị 0 (Sai) và 1 (Đúng) đã trở thành nền tảng toán học tối quan trọng cho sự ra đời của mạch điện tử, máy tính kĩ thuật số và ngành Khoa học máy tính ngày nay.
+            </p>
+          </div>
+          <div class="em-co-biet-img">
+            <img src="/sgk/images/bai-01/aristotle-boole.png" alt="Chân dung Aristotle và George Boole" />
+            <div style="font-size: 0.8rem; color: #a7f3d0; margin-top: 4px;">Aristotle (384–322 TCN) & George Boole (1815–1864)</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FOOTER NAVIGATION -->
+      <footer style="margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); text-align: center; color: #64748b; font-size: 0.88rem;">
+        <p>Hệ thống học liệu Chinh phục Toán 10 — Bộ sách Kết nối tri thức với cuộc sống</p>
+        <p style="margin-top: 4px;">Biên soạn theo chương trình giáo dục phổ thông mới của Bộ Giáo dục và Đào tạo</p>
+      </footer>
+    </div>
+
+    <!-- Script for Reading Progress Bar -->
+    <script>
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        const scrolled = (winScroll / height) * 100;
+        document.getElementById('progress-bar').style.width = scrolled + '%';
+      });
+    </script>
+  </body>
+</html>
