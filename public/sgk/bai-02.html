@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <title>Toán 10 - Bài 2: Tập hợp và các phép toán trên tập hợp (SGK Kết nối tri thức)</title>
+
+    <!-- KaTeX CDN for Math Typesetting -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        })
+      "
+    ></script>
+
+    <style>
+      :root {
+        --bg-dark: #090d16;
+        --bg-card: #131b2e;
+        --bg-card-alt: #1a243b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --color-title: #38bdf8;
+        --color-h1: #fbbf24;
+        --color-h2: #f43f5e;
+        --color-h3: #10b981;
+        --color-badge: #6366f1;
+        --border-color: #24324f;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        font-size: 16px;
+        padding-bottom: 60px;
+      }
+      #progress-bar {
+        position: fixed; top: 0; left: 0; height: 4px;
+        background: linear-gradient(90deg, #38bdf8, #f43f5e, #fbbf24, #10b981);
+        width: 0%; z-index: 1000;
+        transition: width 0.1s ease-out;
+      }
+      .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+
+      .hero-banner {
+        background: linear-gradient(135deg, #162038 0%, #0c1222 100%);
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--color-title);
+        border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; text-align: center;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      }
+      .chapter-tag {
+        display: inline-block; background: rgba(56, 189, 248, 0.15);
+        color: var(--color-title); font-size: 0.88rem; font-weight: 700;
+        padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
+        margin-bottom: 12px; border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .hero-title { color: #ffffff; font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
+      .hero-title span { color: var(--color-title); }
+      .hero-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 680px; margin: 0 auto; }
+
+      .objectives-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px; margin-bottom: 24px;
+      }
+      .objectives-card {
+        background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3);
+        border-left: 4px solid var(--color-badge); border-radius: 12px; padding: 16px 20px;
+      }
+      .objectives-title { color: #818cf8; font-size: 1rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+      .objectives-list { list-style: none; }
+      .objectives-list li { position: relative; padding-left: 20px; margin-bottom: 6px; font-size: 0.92rem; color: var(--text-secondary); }
+      .objectives-list li::before { content: "•"; position: absolute; left: 6px; color: #818cf8; font-weight: bold; }
+
+      .opening-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 22px 20px; margin-bottom: 30px;
+      }
+      .opening-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+      .opening-badge { background: #e11d48; color: white; padding: 3px 10px; border-radius: 6px; font-weight: 700; font-size: 0.82rem; }
+      .opening-title { font-weight: 700; font-size: 1.1rem; color: #ffffff; }
+      .opening-content { color: var(--text-secondary); font-size: 0.95rem; line-height: 1.7; }
+      .opening-img { text-align: center; margin: 16px 0; }
+      .opening-img img { max-width: 100%; border-radius: 12px; border: 1px solid var(--border-color); background: #ffffff; padding: 4px; }
+
+      .sec-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 24px 22px; margin-bottom: 30px;
+      }
+      .sec-h1 {
+        color: var(--color-h1); font-size: 1.35rem; font-weight: 800;
+        margin-bottom: 18px; padding-bottom: 8px; border-bottom: 2px solid rgba(251, 191, 36, 0.25);
+        display: flex; align-items: center; gap: 8px;
+      }
+      .sec-h2 {
+        color: var(--color-h2); font-size: 1.15rem; font-weight: 700;
+        margin: 20px 0 12px 0; display: flex; align-items: center; gap: 8px;
+      }
+
+      .activity-box {
+        background: rgba(251, 191, 36, 0.05); border: 1px solid rgba(251, 191, 36, 0.25);
+        border-left: 4px solid var(--color-h1); border-radius: 10px; padding: 14px 16px; margin: 14px 0;
+      }
+      .activity-title { color: #f59e0b; font-weight: 700; margin-bottom: 6px; font-size: 0.95rem; }
+
+      .def-box {
+        background: rgba(56, 189, 248, 0.08); border: 1px solid rgba(56, 189, 248, 0.35);
+        border-radius: 12px; padding: 16px 20px; margin: 16px 0; position: relative;
+      }
+      .def-box strong { color: var(--color-title); }
+
+      .example-box {
+        background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.25);
+        border-left: 4px solid var(--color-h3); border-radius: 10px; padding: 16px; margin: 16px 0;
+      }
+      .example-title { color: #34d399; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+      .example-sol {
+        background: rgba(0, 0, 0, 0.25); padding: 12px 14px; border-radius: 8px;
+        margin-top: 10px; font-size: 0.93rem; border: 1px dashed rgba(16, 185, 129, 0.3);
+      }
+
+      .note-box {
+        background: rgba(244, 63, 94, 0.07); border: 1px solid rgba(244, 63, 94, 0.3);
+        border-radius: 10px; padding: 12px 16px; margin: 14px 0; font-size: 0.93rem;
+      }
+      .note-title { color: #fb7185; font-weight: 700; margin-bottom: 4px; }
+
+      .practice-box {
+        background: rgba(129, 140, 248, 0.06); border: 1px solid rgba(129, 140, 248, 0.25);
+        border-left: 4px solid #818cf8; border-radius: 10px; padding: 16px; margin: 16px 0;
+      }
+      .practice-title { color: #a5b4fc; font-weight: 700; margin-bottom: 8px; font-size: 0.95rem; }
+
+      .applied-box {
+        background: rgba(245, 158, 11, 0.08); border: 1px solid rgba(245, 158, 11, 0.3);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .applied-title { color: #fbbf24; font-weight: 700; margin-bottom: 6px; font-size: 0.98rem; }
+
+      .img-center { text-align: center; margin: 16px 0; }
+      .img-center img { max-width: 100%; border-radius: 10px; border: 1px solid var(--border-color); background: #ffffff; padding: 6px; }
+      .img-caption { font-size: 0.85rem; color: #94a3b8; margin-top: 6px; font-style: italic; }
+
+      .math-table {
+        width: 100%; border-collapse: collapse; margin: 14px 0; font-size: 0.92rem;
+        background: rgba(0, 0, 0, 0.2); border-radius: 8px; overflow: hidden;
+      }
+      .math-table th, .math-table td {
+        border: 1px solid var(--border-color); padding: 10px 12px; text-align: left;
+      }
+      .math-table th { background: rgba(56, 189, 248, 0.12); color: var(--color-title); font-weight: 700; }
+
+      .exercise-item {
+        background: var(--bg-card-alt); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 16px; margin-bottom: 16px;
+      }
+      .exercise-title { color: var(--color-title); font-weight: 700; margin-bottom: 6px; font-size: 0.98rem; }
+      .solution {
+        margin-top: 10px; padding: 10px 14px; background: rgba(0, 0, 0, 0.3);
+        border-radius: 8px; border-left: 3px solid #38bdf8; font-size: 0.92rem;
+      }
+      .solution summary { color: #38bdf8; cursor: pointer; font-weight: 600; outline: none; margin-bottom: 6px; }
+      .solution summary:hover { text-decoration: underline; }
+
+      .did-you-know {
+        background: linear-gradient(135deg, rgba(30, 41, 59, 0.8) 0%, rgba(15, 23, 42, 0.9) 100%);
+        border: 1px solid rgba(56, 189, 248, 0.3); border-radius: 16px; padding: 22px;
+        margin-top: 30px;
+      }
+      .did-you-know-title {
+        color: #38bdf8; font-size: 1.15rem; font-weight: 700; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 8px;
+      }
+
+      .btn-top {
+        position: fixed; bottom: 25px; right: 25px; background: #38bdf8; color: #090d16;
+        border: none; border-radius: 50%; width: 44px; height: 44px; font-size: 18px;
+        font-weight: bold; cursor: pointer; box-shadow: 0 4px 12px rgba(56, 189, 248, 0.4);
+        display: none; align-items: center; justify-content: center; z-index: 999;
+        transition: transform 0.2s, background 0.2s;
+      }
+      .btn-top:hover { transform: scale(1.1); background: #7dd3fc; }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <div class="container">
+      <!-- HERO BANNER -->
+      <header class="hero-banner">
+        <div class="chapter-tag">Chương I. Mệnh đề và tập hợp</div>
+        <h1 class="hero-title">Bài 2. <span>TẬP HỢP VÀ CÁC PHÉP TOÁN TRÊN TẬP HỢP</span></h1>
+        <p class="hero-desc">
+          Sách giáo khoa Toán 10 — Bộ sách Kết nối tri thức với cuộc sống (Trang 12 – 19)
+        </p>
+      </header>
+
+      <!-- MỤC TIÊU BÀI HỌC -->
+      <section class="objectives-grid">
+        <div class="objectives-card">
+          <div class="objectives-title">📚 Thuật ngữ cần nhớ</div>
+          <ul class="objectives-list">
+            <li>Tập hợp, phần tử thuộc / không thuộc tập hợp</li>
+            <li>Tập con, tập hợp bằng nhau, tập rỗng ($\emptyset$)</li>
+            <li>Hợp, giao, hiệu của hai tập hợp</li>
+            <li>Phần bù của một tập con ($C_S T$)</li>
+            <li>Biểu đồ Ven (Venn diagram)</li>
+          </ul>
+        </div>
+        <div class="objectives-card">
+          <div class="objectives-title">🎯 Kiến thức & Kĩ năng cốt lõi</div>
+          <ul class="objectives-list">
+            <li>Nhận biết các khái niệm cơ bản về tập hợp và tập con.</li>
+            <li>Thực hiện thành thạo các phép toán giao, hợp, hiệu trên tập rời rạc và các tập con của $\mathbb{R}$.</li>
+            <li>Sử dụng biểu đồ Ven để giải quyết các bài toán đếm trong đời sống thực tiễn.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- TÌNH HUỐNG MỞ ĐẦU -->
+      <section class="opening-card">
+        <div class="opening-header">
+          <span class="opening-badge">KHỞI ĐỘNG</span>
+          <span class="opening-title">Tình huống thực tế: Hai chuyên đề Câu lạc bộ Lịch sử</span>
+        </div>
+        <div class="opening-content">
+          <p>
+            Câu lạc bộ Lịch sử có 12 thành viên (không có hai bạn nào trùng tên), tổ chức hai chuyên đề trên một phần mềm họp trực tuyến. Tên các thành viên tham gia mỗi chuyên đề được hiển thị trên màn hình (H.1.1):
+          </p>
+          <div class="opening-img">
+            <img src="/sgk/images/bai-02/h1-1-chuyen-de.png" alt="Hình 1.1 Tình huống họp trực tuyến 2 chuyên đề" />
+            <div class="img-caption">Hình 1.1: Danh sách thành viên tham gia Chuyên đề 1 và Chuyên đề 2</div>
+          </div>
+          <p style="color: #fbbf24; font-weight: 600; text-align: center;">
+            ❓ "Có bao nhiêu thành viên vắng mặt trong cả hai chuyên đề nhỉ?"
+          </p>
+          <p style="margin-top: 8px; font-size: 0.92rem;">
+            Bài học này sẽ giúp em trả lời câu hỏi trên bằng kiến thức cơ bản về tập hợp và các phép toán trên tập hợp.
+          </p>
+        </div>
+      </section>
+
+      <!-- 1. CÁC KHÁI NIỆM CƠ BẢN VỀ TẬP HỢP -->
+      <section class="sec-card">
+        <h2 class="sec-h1">1. Các khái niệm cơ bản về tập hợp</h2>
+
+        <h3 class="sec-h2">a. Tập hợp</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ1 (Khám phá)</div>
+          <p>Trong tình huống trên, gọi $A$ là tập hợp những thành viên tham gia Chuyên đề 1, $B$ là tập hợp những thành viên tham gia Chuyên đề 2.</p>
+          <p>a) Nam có là một phần tử của tập hợp $A$ không? Ngân có là một phần tử của tập hợp $B$ không?</p>
+          <p>b) Hãy mô tả các tập hợp $A$ và $B$ bằng cách liệt kê các phần tử.</p>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ2 (Tính chất đặc trưng)</div>
+          <p>Cho tập hợp: $C = \{\text{châu Á; châu Âu; châu Đại Dương; châu Mĩ; châu Nam Cực; châu Phi}\}$.</p>
+          <p>a) Hãy chỉ ra tính chất đặc trưng cho các phần tử của tập hợp $C$.</p>
+          <p>b) Tập hợp $C$ có bao nhiêu phần tử?</p>
+        </div>
+
+        <div class="def-box">
+          <p>Có thể mô tả một tập hợp bằng một trong hai cách sau:</p>
+          <p><strong>Cách 1:</strong> Liệt kê các phần tử của tập hợp;</p>
+          <p><strong>Cách 2:</strong> Chỉ ra tính chất đặc trưng cho các phần tử của tập hợp.</p>
+          <div style="margin-top: 8px; padding-top: 8px; border-top: 1px dashed rgba(56, 189, 248, 0.3); font-size: 0.92rem;">
+            • $a \in S$: phần tử $a$ thuộc tập hợp $S$.<br />
+            • $a \notin S$: phần tử $a$ không thuộc tập hợp $S$.
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 1</div>
+          <p>Cho $D = \{n \in \mathbb{N} \mid n \text{ là số nguyên tố}, 5 < n < 20\}$.</p>
+          <p>a) Dùng kí hiệu $\in, \notin$ để viết câu trả lời cho câu hỏi sau: Trong các số $5; 12; 17; 18$, số nào thuộc tập $D$, số nào không thuộc tập $D$?</p>
+          <p>b) Viết tập hợp $D$ bằng cách liệt kê các phần tử. Tập hợp $D$ có bao nhiêu phần tử?</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            a) $5 \notin D; 12 \notin D; 17 \in D; 18 \notin D$.<br />
+            b) Các số nguyên tố lớn hơn 5 và nhỏ hơn 20 là $7; 11; 13; 17; 19$. Do đó $D = \{7; 11; 13; 17; 19\}$. Tập hợp $D$ có 5 phần tử.
+          </div>
+        </div>
+
+        <div class="note-box">
+          <div class="note-title">📌 Chú ý về số phần tử của tập hợp:</div>
+          Số phần tử của tập hợp $S$ được kí hiệu là $n(S)$. Chẳng hạn, tập hợp $A$ trong HĐ1 có số phần tử là 7, ta viết $n(A) = 7$.
+        </div>
+
+        <div class="img-center">
+          <img src="/sgk/images/bai-02/hai-ban-vo-nghiem.png" alt="Tranh hai bạn đối thoại về nghiệm phương trình x^2 + 1 = 0" />
+        </div>
+
+        <div class="def-box" style="border-left: 4px solid #f43f5e;">
+          <strong>Tập hợp không chứa phần tử nào được gọi là tập rỗng, kí hiệu là $\emptyset$.</strong>
+          <p style="margin-top: 6px; font-size: 0.92rem;">
+            Chẳng hạn:<br />
+            - Tập hợp các nghiệm thực của phương trình $x^2 + 1 = 0$ là tập rỗng.<br />
+            - Tập hợp những người sống trên Mặt Trời là tập rỗng.
+          </p>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 1</div>
+          <p>Gọi $X$ là tập nghiệm của phương trình $x^2 - 24x + 143 = 0$. Các mệnh đề sau đúng hay sai?</p>
+          <p>a) $13 \in X$; &nbsp;&nbsp;&nbsp;&nbsp; b) $11 \notin X$; &nbsp;&nbsp;&nbsp;&nbsp; c) $n(X) = 2$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Luyện tập 1</summary>
+            Giải phương trình $x^2 - 24x + 143 = 0 \Leftrightarrow (x - 11)(x - 13) = 0 \Leftrightarrow x = 11$ hoặc $x = 13$.<br />
+            Vậy tập nghiệm $X = \{11; 13\}$.<br />
+            a) $13 \in X$ là mệnh đề <strong>ĐÚNG</strong>.<br />
+            b) $11 \notin X$ là mệnh đề <strong>SAI</strong> (vì $11 \in X$).<br />
+            c) $n(X) = 2$ là mệnh đề <strong>ĐÚNG</strong> (tập hợp $X$ có đúng 2 phần tử).
+          </details>
+        </div>
+
+        <h3 class="sec-h2">b. Tập hợp con</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ3</div>
+          <p>Gọi $H$ là tập hợp các bạn tham gia Chuyên đề 2 trong tình huống mở đầu có tên bắt đầu bằng chữ H. Các phần tử của tập hợp $H$ có là phần tử của tập hợp $B$ trong HĐ1 không?</p>
+        </div>
+
+        <div class="def-box">
+          <p>
+            <strong>Nếu mọi phần tử của tập hợp $T$ đều là phần tử của tập hợp $S$ thì ta nói $T$ là một tập hợp con (tập con) của $S$ và viết là $T \subset S$ (đọc là $T$ chứa trong $S$ hoặc $T$ là tập con của $S$).</strong>
+          </p>
+          <p style="margin-top: 6px; font-size: 0.92rem;">
+            • Thay cho $T \subset S$, ta còn viết $S \supset T$ (đọc là $S$ chứa $T$).<br />
+            • Kí hiệu $T \not\subset S$ để chỉ $T$ không là tập con của $S$.
+          </p>
+        </div>
+
+        <div class="note-box" style="border-left: 4px solid #10b981;">
+          <div class="note-title" style="color: #10b981;">✨ Nhận xét quan trọng:</div>
+          • Từ định nghĩa trên, $T$ là tập con của $S$ nếu mệnh đề sau đúng: $\forall x, x \in T \Rightarrow x \in S$.<br />
+          • <strong>Quy ước:</strong> Tập rỗng là tập con của mọi tập hợp ($\emptyset \subset S$ với mọi tập hợp $S$).
+        </div>
+
+        <div class="img-center">
+          <img src="/sgk/images/bai-02/h1-2-h1-3-venn.png" alt="Hình 1.2 và 1.3 Biểu đồ Ven" style="max-width: 380px;" />
+          <div class="img-caption">Hình 1.2: Biểu đồ Ven của tập hợp X &nbsp;|&nbsp; Hình 1.3: Minh họa $T$ là tập con của $S$ ($T \subset S$)</div>
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 2</div>
+          <p>Cho tập hợp $S = \{2; 3; 5\}$. Những tập hợp nào sau đây là tập con của $S$?</p>
+          <p style="text-align: center; margin: 8px 0;">$S_1 = \{3\}; \quad S_2 = \{0; 2\}; \quad S_3 = \{3; 5\}$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            • Phần tử 3 thuộc $S_1$ cũng thuộc $S$, do đó $S_1 \subset S$.<br />
+            • Phần tử $0 \in S_2$ nhưng $0 \notin S$, do đó $S_2 \not\subset S$.<br />
+            • Cả hai phần tử $3$ và $5$ của $S_3$ đều thuộc $S$, do đó $S_3 \subset S$.<br />
+            Vậy $S_1$ và $S_3$ là những tập con của $S$.
+          </div>
+          <div class="img-center" style="margin-top: 12px;">
+            <img src="/sgk/images/bai-02/h1-4-vi-du-2.png" alt="Hình 1.4 Biểu đồ Ven ví dụ 2" style="max-width: 550px;" />
+            <div class="img-caption">Hình 1.4: Minh họa các tập con $S_1, S_3 \subset S$ và $S_2 \not\subset S$</div>
+          </div>
+        </div>
+
+        <h3 class="sec-h2">c. Hai tập hợp bằng nhau</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ4</div>
+          <p>Sơn và Thu viết tập hợp các số chính phương nhỏ hơn 100 như sau:</p>
+          <p>Sơn: $S = \{0; 1; 4; 9; 16; 25; 36; 49; 64; 81\}$;</p>
+          <p>Thu: $T = \{n \in \mathbb{N} \mid n \text{ là số chính phương}; n < 100\}$.</p>
+          <p>Hỏi bạn nào viết đúng?</p>
+        </div>
+
+        <div class="def-box">
+          <p>
+            <strong>Hai tập hợp $S$ và $T$ được gọi là hai tập hợp bằng nhau nếu mỗi phần tử của $T$ cũng là phần tử của tập hợp $S$ và ngược lại. Kí hiệu là $S = T$.</strong>
+          </p>
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-top: 10px; flex-wrap: wrap;">
+            <span style="color: #38bdf8; font-weight: 700;">Nếu $S \subset T$ và $T \subset S$ thì $S = T$.</span>
+            <img src="/sgk/images/bai-02/robot-bang-nhau.png" alt="Robot bằng nhau" style="height: 60px; border: none; background: transparent;" />
+          </div>
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 3</div>
+          <p>Cho hai tập hợp:</p>
+          <p>$C = \{n \in \mathbb{N} \mid n \text{ là bội chung của 2 và 3}; n < 30\}$;</p>
+          <p>$D = \{n \in \mathbb{N} \mid n \text{ là bội của 6}; n < 30\}$.</p>
+          <p>Chứng minh $C = D$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            Ta có: $C = \{0; 6; 12; 18; 24\}$; $D = \{0; 6; 12; 18; 24\}$. Vậy $C = D$.
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 2</div>
+          <p>Giả sử $C$ là tập hợp các hình bình hành có hai đường chéo vuông góc; $D$ là tập hợp các hình vuông. Các mệnh đề sau đúng hay sai?</p>
+          <p>a) $C \subset D$; &nbsp;&nbsp;&nbsp;&nbsp; b) $C \supset D$; &nbsp;&nbsp;&nbsp;&nbsp; c) $C = D$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Luyện tập 2</summary>
+            Hình bình hành có hai đường chéo vuông góc là hình thoi. Do đó $C$ chính là tập hợp tất cả các hình thoi.<br />
+            Mọi hình vuông đều là hình thoi (nhưng không phải hình thoi nào cũng là hình vuông).<br />
+            Do đó $D \subset C$ (hay $C \supset D$).<br />
+            a) $C \subset D$ là <strong>SAI</strong>.<br />
+            b) $C \supset D$ là <strong>ĐÚNG</strong>.<br />
+            c) $C = D$ là <strong>SAI</strong>.
+          </details>
+        </div>
+      </section>
+
+      <!-- 2. CÁC TẬP HỢP SỐ -->
+      <section class="sec-card">
+        <h2 class="sec-h1">2. Các tập hợp số</h2>
+
+        <h3 class="sec-h2">a. Mối quan hệ giữa các tập hợp số</h3>
+        <p style="margin-bottom: 8px; color: var(--text-secondary);">Các tập hợp số quen thuộc đã học:</p>
+        <ul style="padding-left: 20px; margin-bottom: 12px; color: var(--text-secondary);">
+          <li>Tập hợp các số tự nhiên $\mathbb{N} = \{0; 1; 2; 3; 4; \dots\}$.</li>
+          <li>Tập hợp các số nguyên $\mathbb{Z} = \{\dots; -3; -2; -1; 0; 1; 2; 3; \dots\}$.</li>
+          <li>Tập hợp các số hữu tỉ $\mathbb{Q}$ gồm các số viết được dưới dạng phân số $\frac{a}{b}$ với $a, b \in \mathbb{Z}, b \neq 0$. Số hữu tỉ còn được biểu diễn dưới dạng số thập phân hữu hạn hoặc vô hạn tuần hoàn.</li>
+          <li>Tập hợp các số thực $\mathbb{R}$ gồm các số hữu tỉ và các số vô tỉ. Số vô tỉ là các số thập phân vô hạn không tuần hoàn.</li>
+        </ul>
+
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ5</div>
+          <p>Các mệnh đề sau đúng hay sai?</p>
+          <p>a) Mọi số nguyên đều viết được dưới dạng phân số;</p>
+          <p>b) Tập hợp các số thực chứa tập hợp các số hữu tỉ;</p>
+          <p>c) Tồn tại một số thực không là số hữu tỉ.</p>
+        </div>
+
+        <div class="def-box" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div>
+            <p style="font-size: 1.05rem; font-weight: 700; color: #fbbf24;">Mối quan hệ bao hàm giữa các tập hợp số:</p>
+            <p style="font-size: 1.3rem; color: #38bdf8; font-weight: 800; margin-top: 6px;">
+              $$\mathbb{N} \subset \mathbb{Z} \subset \mathbb{Q} \subset \mathbb{R}$$
+            </p>
+          </div>
+          <img src="/sgk/images/bai-02/h1-5-tap-hop-so.png" alt="Hình 1.5 Sơ đồ Ven các tập hợp số lồng nhau" style="max-width: 260px; border-radius: 8px; background: white; padding: 4px;" />
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 4</div>
+          <p>Hãy xác định tính đúng sai của các mệnh đề sau:</p>
+          <p>a) $3{,}274 \in \mathbb{Q}$; &nbsp;&nbsp;&nbsp;&nbsp; b) $\sqrt{2} \in \mathbb{R}$; &nbsp;&nbsp;&nbsp;&nbsp; c) $\frac{3}{4} \in \mathbb{Z}$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            a) $3{,}274 = \frac{3274}{1000} \in \mathbb{Q}$ là mệnh đề <strong>ĐÚNG</strong>.<br />
+            b) $\sqrt{2}$ là số vô tỉ nên $\sqrt{2} \in \mathbb{R}$ là mệnh đề <strong>ĐÚNG</strong>.<br />
+            c) $\frac{3}{4}$ không phải là số nguyên nên $\frac{3}{4} \in \mathbb{Z}$ là mệnh đề <strong>SAI</strong>.
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 3</div>
+          <p>Cho tập hợp $C = \{-4; 0; 1; 2\}$. Các mệnh đề sau đúng hay sai?</p>
+          <p>a) $C$ là tập con của $\mathbb{Z}$; &nbsp;&nbsp;&nbsp;&nbsp; b) $C$ là tập con của $\mathbb{N}$; &nbsp;&nbsp;&nbsp;&nbsp; c) $C$ là tập con của $\mathbb{R}$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Luyện tập 3</summary>
+            a) Mọi phần tử của $C$ đều là số nguyên, do đó $C \subset \mathbb{Z}$ là <strong>ĐÚNG</strong>.<br />
+            b) Phần tử $-4 \in C$ nhưng $-4 \notin \mathbb{N}$, do đó $C \subset \mathbb{N}$ là <strong>SAI</strong>.<br />
+            c) Vì $\mathbb{Z} \subset \mathbb{R}$ nên $C \subset \mathbb{R}$ là <strong>ĐÚNG</strong>.
+          </details>
+        </div>
+
+        <h3 class="sec-h2">b. Các tập con thường dùng của $\mathbb{R}$</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ6</div>
+          <p>Cho hai tập hợp $C = \{x \in \mathbb{R} \mid x \ge 3\}$ và $D = \{x \in \mathbb{R} \mid x > 3\}$. Các mệnh đề sau đúng hay sai?</p>
+          <p>a) $C, D$ là các tập con của $\mathbb{R}$; &nbsp;&nbsp;&nbsp;&nbsp; b) $\forall x, x \in C \Rightarrow x \in D$; &nbsp;&nbsp;&nbsp;&nbsp; c) $3 \in C$ nhưng $3 \notin D$; &nbsp;&nbsp;&nbsp;&nbsp; d) $C = D$.</p>
+        </div>
+
+        <div class="img-center">
+          <img src="/sgk/images/bai-02/bang-tap-con-r.png" alt="Bảng các tập con thường dùng của R và trục số" />
+          <div class="img-caption">Bảng các tập con thường dùng của tập số thực R (Khoảng, Đoạn, Nửa khoảng)</div>
+        </div>
+
+        <table class="math-table">
+          <thead>
+            <tr>
+              <th>Tên gọi</th>
+              <th>Kí hiệu</th>
+              <th>Định nghĩa tập hợp</th>
+              <th>Biểu diễn trên trục số</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td rowspan="4"><strong>Khoảng</strong></td>
+              <td>$(a; b)$</td>
+              <td>$\{x \in \mathbb{R} \mid a < x < b\}$</td>
+              <td>Phần gạch bỏ: $x \le a$ hoặc $x \ge b$, dùng $( \dots )$ tại $a, b$</td>
+            </tr>
+            <tr>
+              <td>$(a; +\infty)$</td>
+              <td>$\{x \in \mathbb{R} \mid x > a\}$</td>
+              <td>Lấy phần bên phải $a$, gạch bỏ bên trái $x \le a$</td>
+            </tr>
+            <tr>
+              <td>$(-\infty; b)$</td>
+              <td>$\{x \in \mathbb{R} \mid x < b\}$</td>
+              <td>Lấy phần bên trái $b$, gạch bỏ bên phải $x \ge b$</td>
+            </tr>
+            <tr>
+              <td>$(-\infty; +\infty)$</td>
+              <td>$\mathbb{R}$ (toàn bộ trục số)</td>
+              <td>Không gạch bỏ phần nào</td>
+            </tr>
+            <tr>
+              <td><strong>Đoạn</strong></td>
+              <td>$[a; b]$</td>
+              <td>$\{x \in \mathbb{R} \mid a \le x \le b\}$</td>
+              <td>Lấy cả 2 đầu mút $a, b$, dùng $[ \dots ]$</td>
+            </tr>
+            <tr>
+              <td rowspan="4"><strong>Nửa khoảng</strong></td>
+              <td>$[a; b)$</td>
+              <td>$\{x \in \mathbb{R} \mid a \le x < b\}$</td>
+              <td>Lấy mút $a$ (ngoặc $[$), không lấy mút $b$ (ngoặc $)$)</td>
+            </tr>
+            <tr>
+              <td>$(a; b]$</td>
+              <td>$\{x \in \mathbb{R} \mid a < x \le b\}$</td>
+              <td>Không lấy mút $a$ (ngoặc $($), lấy mút $b$ (ngoặc $]$)</td>
+            </tr>
+            <tr>
+              <td>$[a; +\infty)$</td>
+              <td>$\{x \in \mathbb{R} \mid x \ge a\}$</td>
+              <td>Lấy mút $a$ và phần bên phải $a$</td>
+            </tr>
+            <tr>
+              <td>$(-\infty; b]$</td>
+              <td>$\{x \in \mathbb{R} \mid x \le b\}$</td>
+              <td>Lấy mút $b$ và phần bên trái $b$</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 5</div>
+          <p>Viết các tập hợp sau dưới dạng các khoảng, đoạn, nửa khoảng trong $\mathbb{R}$ rồi biểu diễn trên trục số:</p>
+          <p style="text-align: center; margin: 6px 0;">$C = \{x \in \mathbb{R} \mid 2 \le x \le 7\}; \quad D = \{x \in \mathbb{R} \mid x < 2\}$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            • $C = [2; 7]$ (đoạn từ 2 đến 7).<br />
+            • $D = (-\infty; 2)$ (khoảng từ âm vô cực đến 2).
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 4 (Nối cột)</div>
+          <p>Hãy ghép mỗi dòng ở cột bên trái với một dòng thích hợp ở cột bên phải:</p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 10px 0; font-size: 0.93rem;">
+            <div style="background: rgba(0,0,0,0.25); padding: 10px; border-radius: 8px;">
+              1) $x \in [2; 5]$<br />
+              2) $x \in (2; 5]$<br />
+              3) $x \in [7; +\infty)$<br />
+              4) $x \in (7; 10)$
+            </div>
+            <div style="background: rgba(0,0,0,0.25); padding: 10px; border-radius: 8px;">
+              a) $2 < x \le 5$<br />
+              b) $x \ge 7$<br />
+              c) $7 < x < 10$<br />
+              d) $2 \le x \le 5$<br />
+              e) $2 \le x < 5$
+            </div>
+          </div>
+          <details class="solution">
+            <summary>Xem kết quả ghép Luyện tập 4</summary>
+            <strong>1) ghép với d:</strong> $x \in [2; 5] \Leftrightarrow 2 \le x \le 5$.<br />
+            <strong>2) ghép với a:</strong> $x \in (2; 5] \Leftrightarrow 2 < x \le 5$.<br />
+            <strong>3) ghép với b:</strong> $x \in [7; +\infty) \Leftrightarrow x \ge 7$.<br />
+            <strong>4) ghép với c:</strong> $x \in (7; 10) \Leftrightarrow 7 < x < 10$.
+          </details>
+        </div>
+      </section>
+
+      <!-- 3. CÁC PHÉP TOÁN TRÊN TẬP HỢP -->
+      <section class="sec-card">
+        <h2 class="sec-h1">3. Các phép toán trên tập hợp</h2>
+
+        <h3 class="sec-h2">a. Giao của hai tập hợp</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ7</div>
+          <p>Viết tập hợp $X$ gồm những thành viên tham gia cả hai chuyên đề 1 và 2 trong tình huống mở đầu. Tập $X$ có phải là tập con của tập $A$ không? Tập $X$ có phải là tập con của tập $B$ không? (A, B là các tập hợp trong HĐ1).</p>
+        </div>
+
+        <div class="def-box" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div>
+            <p><strong>Tập hợp gồm các phần tử thuộc cả hai tập hợp $S$ và $T$ gọi là giao của hai tập hợp $S$ và $T$, kí hiệu là $S \cap T$.</strong></p>
+            <p style="font-size: 1.15rem; color: #f43f5e; font-weight: 700; margin-top: 6px;">
+              $$S \cap T = \{x \mid x \in S \text{ và } x \in T\}$$
+            </p>
+          </div>
+          <img src="/sgk/images/bai-02/h1-6-giao-ven.png" alt="Hình 1.6 Biểu đồ Ven giao S cap T" style="max-width: 220px; background: white; padding: 4px; border-radius: 8px;" />
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 6</div>
+          <p>a) Cho hai tập hợp $C = \{4; 7; 27\}$ và $D = \{2; 4; 9; 27; 36\}$. Hãy xác định tập hợp $C \cap D$.</p>
+          <p>b) Cho hai tập hợp $E = [1; +\infty)$ và $F = (-\infty; 3]$. Hãy xác định tập hợp $E \cap F$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            a) Phần tử chung của $C$ và $D$ là 4 và 27. Do đó $C \cap D = \{4; 27\}$.<br />
+            b) Giao của hai tập hợp $E$ và $F$ là phần vừa thuộc $[1; +\infty)$ vừa thuộc $(-\infty; 3]$, tức là $1 \le x \le 3$.<br />
+            Vậy $E \cap F = [1; +\infty) \cap (-\infty; 3] = [1; 3]$.
+          </div>
+          <div class="img-center" style="margin-top: 10px;">
+            <img src="/sgk/images/bai-02/vi-du-6b-truc-so.png" alt="Biểu diễn giao trên trục số" style="max-width: 650px;" />
+            <div class="img-caption">Minh họa giao của hai khoảng/nửa khoảng trên trục số</div>
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 5</div>
+          <p>Cho các tập hợp $C = [1; 5], D = [-2; 3]$. Hãy xác định tập hợp $C \cap D$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Luyện tập 5</summary>
+            $C \cap D = [1; 5] \cap [-2; 3]$.<br />
+            Ta tìm các phần tử $x$ thoả mãn đồng thời: $1 \le x \le 5$ và $-2 \le x \le 3$.<br />
+            Suy ra: $1 \le x \le 3$.<br />
+            Vậy $C \cap D = [1; 3]$.
+          </details>
+        </div>
+
+        <h3 class="sec-h2">b. Hợp của hai tập hợp</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ8</div>
+          <p>Trở lại tình huống mở đầu, hãy xác định tập hợp các thành viên tham gia Chuyên đề 1 hoặc Chuyên đề 2.</p>
+        </div>
+
+        <div class="def-box" style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap;">
+          <div>
+            <p><strong>Tập hợp gồm các phần tử thuộc tập hợp $S$ hoặc thuộc tập hợp $T$ gọi là hợp của hai tập hợp $S$ và $T$, kí hiệu là $S \cup T$.</strong></p>
+            <p style="font-size: 1.15rem; color: #10b981; font-weight: 700; margin-top: 6px;">
+              $$S \cup T = \{x \mid x \in S \text{ hoặc } x \in T\}$$
+            </p>
+          </div>
+          <img src="/sgk/images/bai-02/h1-7-hop-ven.png" alt="Hình 1.7 Biểu đồ Ven hợp S cup T" style="max-width: 220px; background: white; padding: 4px; border-radius: 8px;" />
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 7</div>
+          <p>Cho hai tập hợp: $C = \{2; 3; 4; 7\}; D = \{-1; 2; 3; 4; 6\}$. Hãy xác định tập hợp $C \cup D$.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            Hợp của hai tập hợp $C$ và $D$ là: $C \cup D = \{-1; 2; 3; 4; 6; 7\}$.
+          </div>
+          <div class="img-center" style="margin-top: 10px;">
+            <img src="/sgk/images/bai-02/h1-8-vi-du-7.png" alt="Hình 1.8 Biểu đồ Ven ví dụ 7" style="max-width: 360px;" />
+            <div class="img-caption">Hình 1.8: Biểu đồ Ven minh họa hợp của hai tập hợp C và D</div>
+          </div>
+        </div>
+
+        <div class="example-box" style="border-left: 4px solid #fbbf24;">
+          <div class="example-title" style="color: #fbbf24;">💡 Ví dụ 8 (Giải quyết tình huống mở đầu)</div>
+          <p>Trở lại câu hỏi trong tình huống mở đầu. Gọi $A$ là tập hợp những thành viên tham gia Chuyên đề 1, $B$ là tập hợp những thành viên tham gia Chuyên đề 2.</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            Ta có: $A \cup B = \{\text{Nam; Hương; Chi; Tú; Bình; Ngân; Khánh; Hân; Hiền; Lam}\}$.<br />
+            Tập hợp $A \cup B$ có 10 phần tử, tức là có 10 thành viên tham gia một hoặc hai chuyên đề.<br />
+            Vì câu lạc bộ có tất cả 12 thành viên nên số thành viên vắng mặt trong cả hai chuyên đề là:<br />
+            <p style="text-align: center; font-size: 1.1rem; font-weight: 700; color: #38bdf8; margin-top: 4px;">
+              $$12 - 10 = 2 \text{ (thành viên)}.$$
+            </p>
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 6</div>
+          <p>Hãy biểu diễn tập hợp $A \cup B$ bằng biểu đồ Ven, với $A, B$ được cho trong HĐ1.</p>
+        </div>
+
+        <h3 class="sec-h2">c. Hiệu của hai tập hợp & Phần bù</h3>
+        <div class="activity-box">
+          <div class="activity-title">⚡ HĐ9</div>
+          <p>Trở lại tình huống mở đầu, hãy xác định tập hợp các thành viên chỉ tham gia Chuyên đề 1 mà không tham gia Chuyên đề 2.</p>
+        </div>
+
+        <div class="def-box">
+          <p>
+            <strong>• Hiệu của hai tập hợp $S$ và $T$ là tập hợp gồm các phần tử thuộc $S$ nhưng không thuộc $T$, kí hiệu là $S \setminus T$.</strong>
+          </p>
+          <p style="font-size: 1.1rem; color: #38bdf8; font-weight: 700; margin: 4px 0 10px 0;">
+            $$S \setminus T = \{x \mid x \in S \text{ và } x \notin T\}$$
+          </p>
+          <p>
+            <strong>• Nếu $T \subset S$ thì $S \setminus T$ được gọi là phần bù của $T$ trong $S$, kí hiệu là $C_S T$.</strong>
+          </p>
+          <div style="display: flex; align-items: center; justify-content: space-around; margin-top: 12px; flex-wrap: wrap; gap: 12px;">
+            <div style="text-align: center;">
+              <img src="/sgk/images/bai-02/h1-9-hieu-ven.png" alt="Hình 1.9 Hiệu S \ T" style="max-width: 200px; background: white; padding: 4px; border-radius: 8px;" />
+              <div class="img-caption">Hình 1.9: Hiệu $S \setminus T$</div>
+            </div>
+            <div style="text-align: center;">
+              <img src="/sgk/images/bai-02/h1-10-phan-bu-ven.png" alt="Hình 1.10 Phần bù C_S T" style="max-width: 200px; background: white; padding: 4px; border-radius: 8px;" />
+              <div class="img-caption">Hình 1.10: Phần bù $C_S T$ (khi $T \subset S$)</div>
+            </div>
+          </div>
+          <p style="margin-top: 8px; font-size: 0.92rem; color: #cbd5e1;">
+            📌 <em>Chú ý:</em> $C_S S = \emptyset$. Phần bù của một tập hợp trong chính nó là tập rỗng.
+          </p>
+        </div>
+
+        <div class="example-box">
+          <div class="example-title">💡 Ví dụ 9</div>
+          <p>Cho các tập hợp: $D = \{-2; 3; 5; 6\}; E = \{x \mid x \text{ là số nguyên tố nhỏ hơn } 10\}; X = \{x \mid x \text{ là số nguyên dương nhỏ hơn } 10\}$.</p>
+          <p>a) Tìm $D \setminus E$ và $E \setminus D$.</p>
+          <p>b) $E$ có là tập con của $X$ không? Hãy tìm phần bù của $E$ trong $X$ (nếu có).</p>
+          <div class="example-sol">
+            <strong>Giải:</strong><br />
+            a) Ta có $E = \{2; 3; 5; 7\}$.<br />
+            Do đó: $D \setminus E = \{-2; 6\}; \quad E \setminus D = \{2; 7\}$.<br />
+            b) Ta có: $X = \{1; 2; 3; 4; 5; 6; 7; 8; 9\}$. Rõ ràng $E \subset X$.<br />
+            Phần bù của $E$ trong $X$ là: $X \setminus E = C_X E = \{1; 4; 6; 8; 9\}$.
+          </div>
+        </div>
+
+        <div class="practice-box">
+          <div class="practice-title">✏️ Luyện tập 7</div>
+          <p>Tìm phần bù của các tập hợp sau trong $\mathbb{R}$ (tức tìm $C_{\mathbb{R}} A = \mathbb{R} \setminus A$):</p>
+          <p>a) $(-\infty; -2)$; &nbsp;&nbsp;&nbsp;&nbsp; b) $[-5; +\infty)$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Luyện tập 7</summary>
+            a) Phần bù của $(-\infty; -2)$ trong $\mathbb{R}$ là tập các số thực $x \ge -2$. Vậy $\mathbb{R} \setminus (-\infty; -2) = [-2; +\infty)$.<br />
+            b) Phần bù của $[-5; +\infty)$ trong $\mathbb{R}$ là tập các số thực $x < -5$. Vậy $\mathbb{R} \setminus [-5; +\infty) = (-\infty; -5)$.
+          </details>
+        </div>
+
+        <div class="applied-box">
+          <div class="applied-title">🌟 VẬN DỤNG THỰC TIỄN (Bài toán đếm Venn)</div>
+          <p>
+            Lớp 10A có 24 bạn tham gia thi đấu bóng đá và cầu lông, trong đó có 16 bạn thi đấu bóng đá và 11 bạn thi đấu cầu lông. Giả sử các trận bóng đá và cầu lông không tổ chức đồng thời. Hỏi có bao nhiêu bạn lớp 10A tham gia thi đấu cả bóng đá và cầu lông?
+          </p>
+          <div class="img-center">
+            <img src="/sgk/images/bai-02/van-dung-bong-da-cau-long.png" alt="Sơ đồ Ven bài toán bóng đá cầu lông" />
+          </div>
+          <details class="solution">
+            <summary>Xem lời giải chi tiết bài Vận dụng</summary>
+            Gọi $A$ là tập hợp các bạn thi đấu bóng đá, $B$ là tập hợp các bạn thi đấu cầu lông.<br />
+            Theo đề bài: $n(A \cup B) = 24$, $n(A) = 16$, $n(B) = 11$.<br />
+            Tập hợp các bạn thi đấu cả bóng đá và cầu lông là $A \cap B$.<br />
+            Áp dụng công thức đếm phần tử hợp hai tập hợp:<br />
+            <p style="text-align: center; font-size: 1.05rem; font-weight: 700; color: #38bdf8; margin: 6px 0;">
+              $$n(A \cup B) = n(A) + n(B) - n(A \cap B)$$
+            </p>
+            Suy ra: $n(A \cap B) = n(A) + n(B) - n(A \cup B) = 16 + 11 - 24 = 3$.<br />
+            Vậy có <strong>3 bạn</strong> lớp 10A tham gia thi đấu cả bóng đá và cầu lông.
+          </details>
+        </div>
+      </section>
+
+      <!-- BÀI TẬP CUỐI BÀI -->
+      <section class="sec-card">
+        <h2 class="sec-h1" style="color: #f43f5e; border-bottom-color: rgba(244, 63, 94, 0.3);">
+          Bài tập cuối bài (Trang 19 SGK)
+        </h2>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.8</div>
+          <p>Gọi $X$ là tập hợp các quốc gia tiếp giáp với Việt Nam. Hãy liệt kê các phần tử của tập hợp $X$ và biểu diễn tập $X$ bằng biểu đồ Ven.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.8</summary>
+            Các quốc gia có đường biên giới trên đất liền tiếp giáp với Việt Nam là: Trung Quốc, Lào, Campuchia.<br />
+            Vậy $X = \{\text{Trung Quốc; Lào; Campuchia}\}$.<br />
+            Biểu đồ Ven: Vẽ một đường cong khép kín có tên $X$, bên trong chứa 3 phần tử: Trung Quốc, Lào, Campuchia.
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.9</div>
+          <p>Kí hiệu $E$ là tập hợp các quốc gia tại khu vực Đông Nam Á.</p>
+          <p>a) Nêu ít nhất hai phần tử thuộc tập hợp $E$.</p>
+          <p>b) Nêu ít nhất hai phần tử không thuộc tập hợp $E$.</p>
+          <p>c) Liệt kê các phần tử thuộc tập hợp $E$. Tập hợp $E$ có bao nhiêu phần tử?</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.9</summary>
+            a) Hai phần tử thuộc $E$: Việt Nam, Thái Lan.<br />
+            b) Hai phần tử không thuộc $E$: Nhật Bản, Pháp.<br />
+            c) Khu vực Đông Nam Á gồm 11 quốc gia:<br />
+            $E = \{\text{Việt Nam; Lào; Campuchia; Thái Lan; Myanmar; Malaysia; Singapore; Indonesia; Brunei; Philippines; Đông Timor}\}$.<br />
+            Tập hợp $E$ có 11 phần tử, tức là $n(E) = 11$.
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.10</div>
+          <p>Hãy viết tập hợp sau bằng cách nêu tính chất đặc trưng cho các phần tử của tập hợp: $A = \{0; 4; 8; 12; 16\}$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.10</summary>
+            Các phần tử của $A$ là các số tự nhiên chia hết cho 4 và không vượt quá 16.<br />
+            Ta có thể viết:<br />
+            • $A = \{n \in \mathbb{N} \mid n \ \vdots \ 4 \text{ và } n \le 16\}$<br />
+            • Hoặc: $A = \{4k \mid k \in \mathbb{N}, 0 \le k \le 4\}$.
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.11</div>
+          <p>Trong các tập hợp sau, tập nào là tập rỗng?</p>
+          <p style="margin: 6px 0;">$A = \{x \in \mathbb{R} \mid x^2 - 6 = 0\}; \quad B = \{x \in \mathbb{Z} \mid x^2 - 6 = 0\}$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.11</summary>
+            Phương trình $x^2 - 6 = 0 \Leftrightarrow x = \pm\sqrt{6}$.<br />
+            • Vì $\pm\sqrt{6} \in \mathbb{R}$ nên $A = \{-\sqrt{6}; \sqrt{6}\} \neq \emptyset$.<br />
+            • Vì $\pm\sqrt{6} \notin \mathbb{Z}$ nên phương trình không có nghiệm nguyên nào. Vậy $B = \emptyset$.<br />
+            Kết luận: <strong>Tập $B$ là tập rỗng.</strong>
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.12</div>
+          <p>Cho $X = \{a; b\}$. Các cách viết sau đúng hay sai? Giải thích kết luận đưa ra:</p>
+          <p>a) $a \subset X$; &nbsp;&nbsp;&nbsp;&nbsp; b) $\{a\} \subset X$; &nbsp;&nbsp;&nbsp;&nbsp; c) $\emptyset \in X$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.12</summary>
+            a) <strong>SAI:</strong> $a$ là phần tử, nên phải dùng kí hiệu thuộc ($a \in X$), không dùng kí hiệu con $\subset$.<br />
+            b) <strong>ĐÚNG:</strong> $\{a\}$ là tập hợp chứa phần tử $a$, và $a \in X$ nên $\{a\} \subset X$.<br />
+            c) <strong>SAI:</strong> $\emptyset$ là một tập con của $X$ ($\emptyset \subset X$), chứ $\emptyset$ không phải là một phần tử thuộc tập $X$ (tập $X$ chỉ gồm hai phần tử là $a$ và $b$).
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.13</div>
+          <p>Cho $A = \{2; 5\}, B = \{5; x\}, C = \{2; y\}$. Tìm $x$ và $y$ để $A = B = C$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.13</summary>
+            Để $A = B$ thì tập $B$ phải chứa đúng các phần tử của $A$. Do đó $x = 2$.<br />
+            Để $A = C$ thì tập $C$ phải chứa đúng các phần tử của $A$. Do đó $y = 5$.<br />
+            Vậy $x = 2$ và $y = 5$.
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.14</div>
+          <p>Cho hai tập hợp:</p>
+          <p>$A = \{x \in \mathbb{Z} \mid x < 4\}; \quad B = \{x \in \mathbb{Z} \mid (5x - 3x^2)(x^2 + 2x - 3) = 0\}$.</p>
+          <p>a) Liệt kê các phần tử của hai tập hợp $A$ và $B$.</p>
+          <p>b) Hãy xác định các tập hợp $A \cap B, A \cup B$ và $A \setminus B$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.14</summary>
+            a) Giải phương trình trong tập $B$:<br />
+            $(5x - 3x^2)(x^2 + 2x - 3) = 0 \Leftrightarrow x(5 - 3x)(x - 1)(x + 3) = 0 \Leftrightarrow x \in \{0; \frac{5}{3}; 1; -3\}$.<br />
+            Vì $x \in \mathbb{Z}$ nên $B = \{-3; 0; 1\}$.<br />
+            Tập hợp $A$ là các số nguyên nhỏ hơn 4: $A = \{\dots; -4; -3; -2; -1; 0; 1; 2; 3\}$.<br />
+            b) Ta thấy mọi phần tử của $B$ đều là số nguyên nhỏ hơn 4 nên $B \subset A$.<br />
+            • $A \cap B = B = \{-3; 0; 1\}$.<br />
+            • $A \cup B = A = \{x \in \mathbb{Z} \mid x < 4\}$.<br />
+            • $A \setminus B = \{\dots; -4; -2; -1; 2; 3\}$ (tập $A$ bỏ đi 3 phần tử $-3; 0; 1$).
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.15</div>
+          <p>Xác định các tập hợp sau và biểu diễn chúng trên trục số:</p>
+          <p>a) $(-4; 1] \cap [0; 3)$; &nbsp;&nbsp;&nbsp;&nbsp; b) $(0; 2] \cup (-3; 1]$; &nbsp;&nbsp;&nbsp;&nbsp; c) $(-2; 1) \cap (-\infty; 1]$; &nbsp;&nbsp;&nbsp;&nbsp; d) $\mathbb{R} \setminus (-\infty; 3]$.</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.15</summary>
+            a) $(-4; 1] \cap [0; 3) = [0; 1]$.<br />
+            b) $(0; 2] \cup (-3; 1] = (-3; 2]$.<br />
+            c) $(-2; 1) \cap (-\infty; 1] = (-2; 1)$.<br />
+            d) $\mathbb{R} \setminus (-\infty; 3] = (3; +\infty)$.
+          </details>
+        </div>
+
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 1.16</div>
+          <p>
+            Để phục vụ cho một hội nghị quốc tế, ban tổ chức huy động 35 người phiên dịch tiếng Anh, 30 người phiên dịch tiếng Pháp, trong đó có 16 người phiên dịch được cả hai thứ tiếng Anh và Pháp. Hãy trả lời các câu hỏi sau:
+          </p>
+          <p>a) Ban tổ chức đã huy động bao nhiêu người phiên dịch cho hội nghị đó?</p>
+          <p>b) Có bao nhiêu người chỉ phiên dịch được tiếng Anh?</p>
+          <p>c) Có bao nhiêu người chỉ phiên dịch được tiếng Pháp?</p>
+          <details class="solution">
+            <summary>Xem lời giải Bài 1.16</summary>
+            Gọi $E$ là tập hợp người phiên dịch tiếng Anh, $F$ là tập hợp người phiên dịch tiếng Pháp.<br />
+            Theo bài ra: $n(E) = 35, n(F) = 30, n(E \cap F) = 16$.<br />
+            a) Tổng số người phiên dịch ban tổ chức đã huy động là $n(E \cup F)$:<br />
+            $n(E \cup F) = n(E) + n(F) - n(E \cap F) = 35 + 30 - 16 = 49$ (người).<br />
+            b) Số người chỉ phiên dịch được tiếng Anh là $n(E \setminus F)$:<br />
+            $n(E \setminus F) = n(E) - n(E \cap F) = 35 - 16 = 19$ (người).<br />
+            c) Số người chỉ phiên dịch được tiếng Pháp là $n(F \setminus E)$:<br />
+            $n(F \setminus E) = n(F) - n(E \cap F) = 30 - 16 = 14$ (người).
+          </details>
+        </div>
+      </section>
+
+      <!-- EM CÓ BIẾ -->
+      <section class="did-you-know">
+        <div class="did-you-know-title">
+          <span>🌟</span>
+          <span>Em có biết? John Venn và Biểu đồ Ven</span>
+        </div>
+        <p style="font-size: 0.95rem; line-height: 1.75; color: #cbd5e1;">
+          <strong>John Venn (1834 – 1923)</strong> là nhà toán học, lôgic học và triết học lỗi lạc người Anh. Năm 1880, ông đã giới thiệu phương pháp biểu diễn trực quan các tập hợp và mối quan hệ giữa chúng bằng các đường cong tròn khép kín lồng nhau hoặc giao nhau, ngày nay được cả thế giới gọi là <strong>Biểu đồ Ven (Venn Diagram)</strong>.
+        </p>
+        <p style="font-size: 0.93rem; line-height: 1.75; color: #94a3b8; margin-top: 10px;">
+          Biểu đồ Ven không chỉ là công cụ nền tảng trong toán học thuần túy, lý thuyết tập hợp và xác suất thống kê, mà còn được ứng dụng rộng rãi trong khoa học máy tính, trí tuệ nhân tạo, lý thuyết cơ sở dữ liệu (các phép JOIN trong SQL) và sơ đồ tư duy phân tích thông tin hiện đại.
+        </p>
+      </section>
+    </div>
+
+    <!-- Nút cuộn lên đầu trang -->
+    <button class="btn-top" id="btn-top" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" title="Lên đầu trang">
+      ↑
+    </button>
+
+    <script>
+      window.addEventListener("scroll", function () {
+        var winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+        var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        var scrolled = (winScroll / height) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+
+        var btnTop = document.getElementById("btn-top");
+        if (winScroll > 300) {
+          btnTop.style.display = "flex";
+        } else {
+          btnTop.style.display = "none";
+        }
+      });
+    </script>
+  </body>
+</html>

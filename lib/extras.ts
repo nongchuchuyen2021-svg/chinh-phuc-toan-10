@@ -97,12 +97,38 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
           {
             text: "Hiệu $A \\setminus B = [-3; 0)$.",
             answer: false,
-            explain: "$A \\setminus B = [-3; 0]$ vì số 0 thuộc $A$ nhưng không thuộc $B$."
+            explain: "$A \\setminus B = [-3; 0]$ vì số 0 thuộc $A$ nhưng không thuộc $B$ (tại $B$ là ngoặc tròn $(0$). Phát biểu là $[-3; 0)$ là sai."
           },
           {
             text: "Tập hợp $A$ có chứa đúng 7 số nguyên.",
             answer: true,
-            explain: "Các số nguyên trong $[-3; 4)$ là $-3, -2, -1, 0, 1, 2, 3$ (tổng cộng 7 số)."
+            explain: "Các số nguyên trong $[-3; 4)$ là $-3, -2, -1, 0, 1, 2, 3$ (tổng cộng 7 số nguyên)."
+          }
+        ]
+      },
+      {
+        id: "b2-tf2",
+        context: "Cho hai tập hợp $X = \\{x \\in \\mathbb{Z} \\mid (2x^2 - 5x + 2)(x^2 - 9) = 0\\}$ và $Y = \\{x \\in \\mathbb{N} \\mid x^2 \\le 16\\}$.",
+        statements: [
+          {
+            text: "Tập hợp $X$ có đúng 4 phần tử.",
+            answer: false,
+            explain: "Phương trình $(2x^2 - 5x + 2)(x^2 - 9) = 0$ có các nghiệm là $x = \\frac{1}{2}, x = 2, x = 3, x = -3$. Vì $x \\in \\mathbb{Z}$ nên ta loại $x = \\frac{1}{2}$. Vậy $X = \\{-3; 2; 3\\}$ chỉ có 3 phần tử."
+          },
+          {
+            text: "Tập hợp $Y$ được viết dưới dạng liệt kê là $Y = \\{0; 1; 2; 3; 4\\}$.",
+            answer: true,
+            explain: "Vì $x \\in \\mathbb{N}$ và $x^2 \\le 16 \\Leftrightarrow 0 \\le x \\le 4$, các số tự nhiên thỏa mãn là $0, 1, 2, 3, 4$."
+          },
+          {
+            text: "Giao của hai tập hợp là $X \\cap Y = \\{2; 3\\}$.",
+            answer: true,
+            explain: "Các phần tử chung giữa $X = \\{-3; 2; 3\\}$ và $Y = \\{0; 1; 2; 3; 4\\}$ là $2$ và $3$."
+          },
+          {
+            text: "Số tập hợp con của tập hợp $X \\cap Y$ bằng 4.",
+            answer: true,
+            explain: "Tập hợp $X \\cap Y$ có 2 phần tử, do đó số tập hợp con là $2^2 = 4$ (gồm $\\emptyset, \\{2\\}, \\{3\\}, \\{2; 3\\}$)."
           }
         ]
       }
@@ -110,9 +136,21 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     essay: [
       {
         id: "b2-es1",
-        q: "Cho $A = \\{x \\in \\mathbb{R} \\mid (x^2 - 4)(2x - 1) = 0\\}$. Liệt kê các phần tử của tập hợp $A$.",
-        answer: "{-2; 1/2; 2}",
-        explain: "$(x^2 - 4)(2x - 1) = 0 \\Leftrightarrow x = 2, x = -2, x = 1/2$. Do đó $A = \\{-2; \\frac{1}{2}; 2\\}$."
+        q: "Cho tập hợp $A = \\{x \\in \\mathbb{Q} \\mid (2x^2 - 3x + 1)(x^2 - 2) = 0\\}$. Hỏi tập hợp $A$ có bao nhiêu phần tử?",
+        answer: "2",
+        explain: "Phương trình $(2x^2 - 3x + 1)(x^2 - 2) = 0 \\Leftrightarrow x \\in \\{1; \\frac{1}{2}; \\sqrt{2}; -\\sqrt{2}\\}$. Vì điều kiện $x \\in \\mathbb{Q}$ (số hữu tỉ) nên chỉ nhận $x = 1$ và $x = \\frac{1}{2}$ (hai nghiệm $\\pm\\sqrt{2}$ là số vô tỉ, không thuộc $\\mathbb{Q}$). Vậy tập hợp $A = \\{1; \\frac{1}{2}\\}$ có đúng 2 phần tử."
+      },
+      {
+        id: "b2-es2",
+        q: "Lớp 10A có 45 học sinh. Trong đó có 25 bạn đăng kí tham gia câu lạc bộ Bóng đá, 23 bạn tham gia câu lạc bộ Cầu lông, và 11 bạn tham gia cả hai câu lạc bộ. Hỏi lớp 10A có bao nhiêu bạn không tham gia câu lạc bộ nào trong hai câu lạc bộ trên?",
+        answer: "8",
+        explain: "Số bạn tham gia ít nhất một câu lạc bộ là: $n(B \\cup C) = n(B) + n(C) - n(B \\cap C) = 25 + 23 - 11 = 37$ học sinh. Số bạn không tham gia câu lạc bộ nào là: $45 - 37 = 8$ học sinh."
+      },
+      {
+        id: "b2-es3",
+        q: "Có bao nhiêu giá trị nguyên của tham số $m \\in [-5; 5]$ để hai tập hợp $A = [-2; 3]$ và $B = (m; m + 4)$ có giao khác rỗng ($A \\cap B \\ne \\emptyset$)?",
+        answer: "8",
+        explain: "Hai tập hợp $A = [-2; 3]$ và $B = (m; m + 4)$ giao nhau khác rỗng khi và chỉ khi: $\\begin{cases} m < 3 \\\\ m + 4 > -2 \\end{cases} \\Leftrightarrow \\begin{cases} m < 3 \\\\ m > -6 \\end{cases} \\Leftrightarrow -6 < m < 3$. Với điều kiện $m \\in \\mathbb{Z}$ và $m \\in [-5; 5]$, ta nhận các giá trị $m \\in \\{-5; -4; -3; -2; -1; 0; 1; 2\\}$. Tổng cộng có 8 giá trị nguyên."
       }
     ]
   },
