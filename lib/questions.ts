@@ -141,15 +141,15 @@ export const QUESTION_BANK: Record<string, Question[]> = {
     },
     {
       id: "b7-q2",
-      q: "Cho hình bình hành $ABCD$. Vectơ nào sau đây bằng vectơ $\\vec{AB}$?",
+      q: "Cho hình bình hành $ABCD$. Vectơ nào sau đây bằng vectơ $\\overrightarrow{AB}$?",
       options: [
-        "$\\vec{CD}$",
-        "$\\vec{DC}$",
-        "$\\vec{BC}$",
-        "$\\vec{AD}$"
+        "$\\overrightarrow{CD}$",
+        "$\\overrightarrow{DC}$",
+        "$\\overrightarrow{BC}$",
+        "$\\overrightarrow{AD}$"
       ],
       answer: 1,
-      explain: "Trong hình bình hành $ABCD$, đoạn thẳng $AB$ song song và bằng $CD$, hướng từ $A$ sang $B$ cùng hướng từ $D$ sang $C$. Vậy $\\vec{AB} = \\vec{DC}$."
+      explain: "Trong hình bình hành $ABCD$, đoạn thẳng $AB$ song song và bằng $CD$, hướng từ $A$ sang $B$ cùng hướng từ $D$ sang $C$. Vậy $\\overrightarrow{AB} = \\overrightarrow{DC}$."
     }
   ],
 
@@ -158,25 +158,25 @@ export const QUESTION_BANK: Record<string, Question[]> = {
       id: "b8-q1",
       q: "Với ba điểm phân biệt $A, B, C$ tuỳ ý, đẳng thức nào sau đây luôn đúng (Quy tắc ba điểm)?",
       options: [
-        "$\\vec{AB} + \\vec{BC} = \\vec{AC}$",
-        "$\\vec{AB} + \\vec{CA} = \\vec{BC}$",
-        "$\\vec{AB} - \\vec{AC} = \\vec{BC}$",
-        "$\\vec{BA} + \\vec{AC} = \\vec{CB}$"
+        "$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$",
+        "$\\overrightarrow{AB} + \\overrightarrow{CA} = \\overrightarrow{BC}$",
+        "$\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{BC}$",
+        "$\\overrightarrow{BA} + \\overrightarrow{AC} = \\overrightarrow{CB}$"
       ],
       answer: 0,
-      explain: "Theo quy tắc ba điểm: $\\vec{AB} + \\vec{BC} = \\vec{AC}$."
+      explain: "Theo quy tắc ba điểm: $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$."
     },
     {
       id: "b8-q2",
-      q: "Cho hình bình hành $ABCD$. Tổng vectơ $\\vec{AB} + \\vec{AD}$ bằng:",
+      q: "Cho hình bình hành $ABCD$. Tổng vectơ $\\overrightarrow{AB} + \\overrightarrow{AD}$ bằng:",
       options: [
-        "$\\vec{CA}$",
-        "$\\vec{BD}$",
-        "$\\vec{AC}$",
-        "$\\vec{DB}$"
+        "$\\overrightarrow{CA}$",
+        "$\\overrightarrow{BD}$",
+        "$\\overrightarrow{AC}$",
+        "$\\overrightarrow{DB}$"
       ],
       answer: 2,
-      explain: "Theo quy tắc hình bình hành: $\\vec{AB} + \\vec{AD} = \\vec{AC}$."
+      explain: "Theo quy tắc hình bình hành: $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$."
     }
   ],
 
@@ -185,32 +185,32 @@ export const QUESTION_BANK: Record<string, Question[]> = {
       id: "b9-q1",
       q: "Cho điểm $I$ là trung điểm của đoạn thẳng $AB$. Với điểm $M$ bất kì, đẳng thức vectơ nào sau đây là đúng?",
       options: [
-        "$\\vec{MA} + \\vec{MB} = \\vec{MI}$",
-        "$\\vec{MA} + \\vec{MB} = 2\\vec{MI}$",
-        "$\\vec{MA} + \\vec{MB} = 3\\vec{MI}$",
-        "$\\vec{MA} - \\vec{MB} = 2\\vec{MI}$"
+        "$\\overrightarrow{MA} + \\overrightarrow{MB} = \\overrightarrow{MI}$",
+        "$\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$",
+        "$\\overrightarrow{MA} + \\overrightarrow{MB} = 3\\overrightarrow{MI}$",
+        "$\\overrightarrow{MA} - \\overrightarrow{MB} = 2\\overrightarrow{MI}$"
       ],
       answer: 1,
-      explain: "Tính chất trung điểm: $\\vec{MA} + \\vec{MB} = 2\\vec{MI}$ với mọi điểm $M$."
+      explain: "Tính chất trung điểm: $\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$ với mọi điểm $M$."
     },
     {
       id: "b9-q2",
       q: "Cho tam giác $ABC$ có trọng tâm $G$. Đẳng thức nào sau đây là đúng?",
       options: [
-        "$\\vec{GA} + \\vec{GB} + \\vec{GC} = \\vec{0}$",
-        "$\\vec{GA} + \\vec{GB} + \\vec{GC} = 3\\vec{AB}$",
-        "$\\vec{AB} + \\vec{BC} + \\vec{CA} = 3\\vec{AG}$",
-        "$\\vec{GA} + \\vec{GB} = \\vec{GC}$"
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = 3\\overrightarrow{AB}$",
+        "$\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CA} = 3\\overrightarrow{AG}$",
+        "$\\overrightarrow{GA} + \\overrightarrow{GB} = \\overrightarrow{GC}$"
       ],
       answer: 0,
-      explain: "Tính chất trọng tâm tam giác: $\\vec{GA} + \\vec{GB} + \\vec{GC} = \\vec{0}$."
+      explain: "Tính chất trọng tâm tam giác: $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$."
     }
   ],
 
   "bai-10": [
     {
       id: "b10-q1",
-      q: "Trong mặt phẳng toạ độ $Oxy$, cho điểm $A(2; -3)$ và $B(4; 1)$. Toạ độ của vectơ $\\vec{AB}$ là:",
+      q: "Trong mặt phẳng toạ độ $Oxy$, cho điểm $A(2; -3)$ và $B(4; 1)$. Toạ độ của vectơ $\\overrightarrow{AB}$ là:",
       options: [
         "$(6; -2)$",
         "$(2; 4)$",
@@ -218,7 +218,7 @@ export const QUESTION_BANK: Record<string, Question[]> = {
         "$(-2; -4)$"
       ],
       answer: 1,
-      explain: "Toạ độ vectơ $\\vec{AB} = (x_B - x_A; y_B - y_A) = (4 - 2; 1 - (-3)) = (2; 4)$."
+      explain: "Toạ độ vectơ $\\overrightarrow{AB} = (x_B - x_A; y_B - y_A) = (4 - 2; 1 - (-3)) = (2; 4)$."
     },
     {
       id: "b10-q2",

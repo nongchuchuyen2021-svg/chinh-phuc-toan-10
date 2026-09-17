@@ -20,8 +20,16 @@ function renderBoldSegments(content: string): React.ReactNode[] {
   });
 }
 
+// Chuẩn hóa cú pháp LaTeX tự động: chuyển các vectơ 2 chữ cái viết hoa (\vec{AB})
+// thành \overrightarrow{AB} để mũi tên kéo dài phủ kín toàn bộ tên vectơ theo chuẩn SGK
+function normalizeLatex(text: string): string {
+  if (!text) return "";
+  return text.replace(/\\vec\{([A-Z]{2,})\}/g, "\\overrightarrow{$1}");
+}
+
 export default function MathText({ content, className = "" }: MathTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
+  const normalized = React.useMemo(() => normalizeLatex(content), [content]);
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -40,11 +48,11 @@ export default function MathText({ content, className = "" }: MathTextProps) {
     } catch (e) {
       console.error("KaTeX render error:", e);
     }
-  }, [content]);
+  }, [normalized]);
 
   return (
     <span ref={containerRef} className={`math-content ${className}`}>
-      {renderBoldSegments(content)}
+      {renderBoldSegments(normalized)}
     </span>
   );
 }

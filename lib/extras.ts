@@ -278,24 +278,24 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
         context: "Trong mặt phẳng toạ độ $Oxy$, cho ba điểm $A(1; 2), B(-2; 6), C(9; 8)$.",
         statements: [
           {
-            text: "Vectơ $\\vec{AB} = (-3; 4)$ và độ dài $|\\vec{AB}| = 5$.",
+            text: "Vectơ $\\overrightarrow{AB} = (-3; 4)$ và độ dài $|\\overrightarrow{AB}| = 5$.",
             answer: true,
-            explain: "$\\vec{AB} = (-2-1; 6-2) = (-3; 4) \\Rightarrow |\\vec{AB}| = \\sqrt{(-3)^2 + 4^2} = 5$."
+            explain: "$\\overrightarrow{AB} = (-2-1; 6-2) = (-3; 4) \\Rightarrow |\\overrightarrow{AB}| = \\sqrt{(-3)^2 + 4^2} = 5$."
           },
           {
-            text: "Vectơ $\\vec{AC} = (8; 6)$.",
+            text: "Vectơ $\\overrightarrow{AC} = (8; 6)$.",
             answer: true,
-            explain: "$\\vec{AC} = (9-1; 8-2) = (8; 6)$."
+            explain: "$\\overrightarrow{AC} = (9-1; 8-2) = (8; 6)$."
           },
           {
-            text: "Tích vô hướng $\\vec{AB} \\cdot \\vec{AC} = 0$.",
+            text: "Tích vô hướng $\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 0$.",
             answer: true,
-            explain: "$\\vec{AB} \\cdot \\vec{AC} = (-3)(8) + 4(6) = -24 + 24 = 0$."
+            explain: "$\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = (-3)(8) + 4(6) = -24 + 24 = 0$."
           },
           {
             text: "Tam giác $ABC$ là tam giác nhọn.",
             answer: false,
-            explain: "Vì $\\vec{AB} \\cdot \\vec{AC} = 0 \\Rightarrow AB \\perp AC$, tam giác $ABC$ vuông tại $A$."
+            explain: "Vì $\\overrightarrow{AB} \\cdot \\overrightarrow{AC} = 0 \\Rightarrow AB \\perp AC$, tam giác $ABC$ vuông tại $A$."
           }
         ]
       }

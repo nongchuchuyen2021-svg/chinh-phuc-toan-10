@@ -58,14 +58,20 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
       {
         id: "quy-tac-3-diem",
         name: "Quy tắc ba điểm & Hình bình hành",
-        latex: "\\vec{AB} + \\vec{BC} = \\vec{AC}, \\quad \\vec{AB} + \\vec{AD} = \\vec{AC} \\text{ (hình bình hành)}",
+        latex: "\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}, \\quad \\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC} \\text{ (hình bình hành)}",
+        tag: "Vectơ"
+      },
+      {
+        id: "quy-tac-hieu",
+        name: "Quy tắc hiệu hai vectơ",
+        latex: "\\overrightarrow{AB} = \\overrightarrow{OB} - \\overrightarrow{OA}, \\quad \\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB}",
         tag: "Vectơ"
       },
       {
         id: "trung-diem-trong-tam",
         name: "Công thức Trung điểm & Trọng tâm",
-        latex: "\\vec{MA} + \\vec{MB} = 2\\vec{MI}, \\quad \\vec{MA} + \\vec{MB} + \\vec{MC} = 3\\vec{MG}",
-        note: "I là trung điểm AB, G là trọng tâm tam giác ABC",
+        latex: "\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}, \\quad \\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}",
+        note: "$I$ là trung điểm đoạn thẳng $AB$, $G$ là trọng tâm $\\Delta ABC$",
         tag: "Vectơ"
       },
       {
@@ -76,9 +82,15 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         tag: "Tích vô hướng"
       },
       {
+        id: "toa-do-vecto",
+        name: "Toạ độ của vectơ theo hai điểm",
+        latex: "\\overrightarrow{AB} = (x_B - x_A; y_B - y_A), \\quad |\\overrightarrow{AB}| = \\sqrt{(x_B - x_A)^2 + (y_B - y_A)^2}",
+        tag: "Toạ độ Oxy"
+      },
+      {
         id: "toa-do-tich-vo-huong",
-        name: "Biểu thức toạ độ tích vô hướng",
-        latex: "\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2",
+        name: "Biểu thức toạ độ tích vô hướng & Góc",
+        latex: "\\vec{u} \\cdot \\vec{v} = x_1 x_2 + y_1 y_2, \\quad \\cos(\\vec{u}, \\vec{v}) = \\frac{x_1 x_2 + y_1 y_2}{\\sqrt{x_1^2 + y_1^2} \\cdot \\sqrt{x_2^2 + y_2^2}}",
         note: "với $\\vec{u} = (x_1; y_1)$, $\\vec{v} = (x_2; y_2)$",
         tag: "Toạ độ Oxy"
       },

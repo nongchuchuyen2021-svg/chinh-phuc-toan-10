@@ -362,26 +362,26 @@ export const EXAM_PAPERS: ExamPaper[] = [
       {
         id: "ck1-p1-10",
         part: 1,
-        q: "Cho hình bình hành $ABCD$. Vectơ nào sau đây bằng vectơ $\\vec{AB}$?",
-        options: ["$\\vec{DC}$", "$\\vec{CD}$", "$\\vec{BC}$", "$\\vec{AD}$"],
+        q: "Cho hình bình hành $ABCD$. Vectơ nào sau đây bằng vectơ $\\overrightarrow{AB}$?",
+        options: ["$\\overrightarrow{DC}$", "$\\overrightarrow{CD}$", "$\\overrightarrow{BC}$", "$\\overrightarrow{AD}$"],
         answer: 0,
-        explain: "$\\vec{AB}$ cùng hướng, cùng độ dài với $\\vec{DC}$."
+        explain: "$\\overrightarrow{AB}$ cùng hướng, cùng độ dài với $\\overrightarrow{DC}$."
       },
       {
         id: "ck1-p1-11",
         part: 1,
         q: "Với ba điểm phân biệt $A, B, C$ tuỳ ý, đẳng thức nào sau đây luôn đúng (Quy tắc ba điểm)?",
-        options: ["$\\vec{AB} + \\vec{BC} = \\vec{AC}$", "$\\vec{AB} + \\vec{CA} = \\vec{BC}$", "$\\vec{AB} - \\vec{AC} = \\vec{BC}$", "$\\vec{BA} + \\vec{AC} = \\vec{CB}$"],
+        options: ["$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$", "$\\overrightarrow{AB} + \\overrightarrow{CA} = \\overrightarrow{BC}$", "$\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{BC}$", "$\\overrightarrow{BA} + \\overrightarrow{AC} = \\overrightarrow{CB}$"],
         answer: 0,
-        explain: "Quy tắc ba điểm: $\\vec{AB} + \\vec{BC} = \\vec{AC}$."
+        explain: "Quy tắc ba điểm: $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$."
       },
       {
         id: "ck1-p1-12",
         part: 1,
         q: "Cho điểm $I$ là trung điểm đoạn thẳng $AB$. Với điểm $M$ bất kì, đẳng thức nào đúng?",
-        options: ["$\\vec{MA} + \\vec{MB} = 2\\vec{MI}$", "$\\vec{MA} + \\vec{MB} = \\vec{MI}$", "$\\vec{MA} + \\vec{MB} = 3\\vec{MI}$", "$\\vec{MA} - \\vec{MB} = 2\\vec{MI}$"],
+        options: ["$\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$", "$\\overrightarrow{MA} + \\overrightarrow{MB} = \\overrightarrow{MI}$", "$\\overrightarrow{MA} + \\overrightarrow{MB} = 3\\overrightarrow{MI}$", "$\\overrightarrow{MA} - \\overrightarrow{MB} = 2\\overrightarrow{MI}$"],
         answer: 0,
-        explain: "Tính chất trung điểm: $\\vec{MA} + \\vec{MB} = 2\\vec{MI}$."
+        explain: "Tính chất trung điểm: $\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$."
       },
 
       // ─── PHẦN II ─────────────────────────────────────────────────────────
@@ -532,7 +532,7 @@ export const EXAM_PAPERS: ExamPaper[] = [
         part: 3,
         q: "Cho hình bình hành $ABCD$ với $A(1; 2), B(4; 2), D(1; 6)$. Tìm toạ độ điểm $C$.",
         answer: "(4;6)",
-        explain: "$\\vec{AB}=\\vec{DC} \\Rightarrow C = D + \\vec{AB} = (1;6)+(3;0) = (4;6)$."
+        explain: "$\\overrightarrow{AB}=\\overrightarrow{DC} \\Rightarrow C = D + \\overrightarrow{AB} = (1;6)+(3;0) = (4;6)$."
       },
       {
         id: "ck1-p3-6",
