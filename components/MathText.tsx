@@ -8,6 +8,18 @@ interface MathTextProps {
   className?: string;
 }
 
+// Chia nội dung theo cú pháp markdown nhẹ "**đậm**" thành các đoạn text
+// thường / đậm xen kẽ, để React tự render (không dùng dangerouslySetInnerHTML).
+function renderBoldSegments(content: string): React.ReactNode[] {
+  const parts = content.split(/(\*\*[^*]+\*\*)/g).filter((p) => p !== "");
+  return parts.map((part, i) => {
+    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+      return <strong key={i}>{part.slice(2, -2)}</strong>;
+    }
+    return <React.Fragment key={i}>{part}</React.Fragment>;
+  });
+}
+
 export default function MathText({ content, className = "" }: MathTextProps) {
   const containerRef = useRef<HTMLSpanElement>(null);
 
@@ -32,7 +44,7 @@ export default function MathText({ content, className = "" }: MathTextProps) {
 
   return (
     <span ref={containerRef} className={`math-content ${className}`}>
-      {content}
+      {renderBoldSegments(content)}
     </span>
   );
 }

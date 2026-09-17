@@ -238,7 +238,7 @@ export default function QuizClient({
       </div>
 
       {/* Question Card */}
-      <div className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
+      <div key={q.id} className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
         <div className="text-base sm:text-lg font-medium text-star leading-relaxed">
           <MathText content={q.q} />
         </div>

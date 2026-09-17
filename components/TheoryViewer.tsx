@@ -239,7 +239,7 @@ export default function TheoryViewer({
                 {block.kind === "note" && (
                   <div className="p-4 sm:p-5 rounded-2xl bg-amber/10 border border-amber/30 text-xs sm:text-sm text-amber-200/90 flex items-start gap-3 shadow-glow-amber">
                     <span className="text-lg shrink-0">📌</span>
-                    <div className="leading-relaxed">
+                    <div className="leading-relaxed whitespace-pre-line">
                       <MathText content={block.text} />
                     </div>
                   </div>

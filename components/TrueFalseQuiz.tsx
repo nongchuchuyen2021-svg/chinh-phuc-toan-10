@@ -174,7 +174,7 @@ export default function TrueFalseQuiz({
       </div>
 
       {/* Context Card */}
-      <div className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
+      <div key={q.id} className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
         <div>
           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald/10 border border-emerald/30 text-emerald-glow text-[11px] font-mono font-bold uppercase tracking-wider mb-3">
             ⚖️ Dạng thức Đúng / Sai 4 mệnh đề
