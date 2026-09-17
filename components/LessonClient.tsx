@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import Link from "next/link";
 import type {
   EssayQuestion,
+  LessonGame,
   LessonReview,
   LessonTheory,
   Question,
@@ -16,8 +17,9 @@ import TrueFalseQuiz from "@/components/TrueFalseQuiz";
 import EssayViewer from "@/components/EssayViewer";
 import TheoryViewer from "@/components/TheoryViewer";
 import ReviewViewer from "@/components/ReviewViewer";
+import GameHub from "@/components/GameHub";
 
-type TabKey = "sgk" | "theory" | "mcq" | "tf" | "essay" | "review";
+type TabKey = "sgk" | "theory" | "games" | "mcq" | "tf" | "essay" | "review";
 
 export default function LessonClient({
   lessonId,
@@ -28,6 +30,7 @@ export default function LessonClient({
   tf,
   essay,
   review,
+  games = [],
   hasSgk = false,
 }: {
   lessonId: string;
@@ -38,6 +41,7 @@ export default function LessonClient({
   tf: TFQuestion[];
   essay: EssayQuestion[];
   review: LessonReview;
+  games?: LessonGame[];
   hasSgk?: boolean;
 }) {
   const [activeTab, setActiveTab] = useState<TabKey>(hasSgk ? "sgk" : "theory");
@@ -45,6 +49,16 @@ export default function LessonClient({
   const tabs: { key: TabKey; label: string; icon: string; count?: number }[] = [
     ...(hasSgk ? [{ key: "sgk" as TabKey, label: "SGK Chuẩn", icon: "📖" }] : []),
     { key: "theory", label: "Tóm tắt & Khắc sâu", icon: "⚡" },
+    ...(games && games.length > 0
+      ? [
+          {
+            key: "games" as TabKey,
+            label: games.length === 1 ? games[0].title : "Đấu trường Game",
+            icon: "🎮",
+            count: games.length,
+          },
+        ]
+      : []),
     { key: "mcq", label: "Trắc nghiệm 4 lựa chọn", icon: "🎯", count: mcq.length },
     { key: "tf", label: "Đúng / Sai 4 ý", icon: "⚖️", count: tf.length },
     { key: "essay", label: "Tự luận / Trả lời ngắn", icon: "✍️", count: essay.length },
@@ -114,6 +128,7 @@ export default function LessonClient({
               if (isActive) {
                 if (t.key === "sgk") activeStyle = "bg-gradient-to-r from-amber to-amber-deep text-white shadow-glow-amber border border-amber/40";
                 else if (t.key === "theory") activeStyle = "bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan border border-cyan/40";
+                else if (t.key === "games") activeStyle = "bg-gradient-to-r from-cyan via-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
                 else if (t.key === "mcq") activeStyle = "bg-gradient-to-r from-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
                 else if (t.key === "tf") activeStyle = "bg-gradient-to-r from-emerald to-emerald-deep text-white shadow-glow-emerald border border-emerald/40";
                 else if (t.key === "essay") activeStyle = "bg-gradient-to-r from-rose to-rose-deep text-white shadow-glow-rose border border-rose/40";
@@ -182,6 +197,14 @@ export default function LessonClient({
                 Lý thuyết đang được cập nhật.
               </div>
             )
+          )}
+
+          {activeTab === "games" && games && games.length > 0 && (
+            <GameHub
+              lessonId={lessonId}
+              games={games}
+              onBack={() => handleTabChange("theory")}
+            />
           )}
 
           {activeTab === "mcq" && (

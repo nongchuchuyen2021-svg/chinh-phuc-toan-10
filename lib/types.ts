@@ -123,6 +123,19 @@ export type CommonMistakeItem = {
   fix: string;
 };
 
+export type MindmapNode = {
+  id: string;
+  title: string;
+  emoji: string;
+  description: string;
+  formula?: string;
+  children?: {
+    title: string;
+    detail: string;
+    formula?: string;
+  }[];
+};
+
 export type LessonReview = {
   summary: string;
   keyPoints: string[];
@@ -130,6 +143,7 @@ export type LessonReview = {
   tips: string[];
   flashcards: FlashcardItem[];
   checklist: string[];
+  mindmap?: MindmapNode[];
 };
 
 // ─── 7. Sổ tay Công thức Toán 10 ───────────────────────────────────────────
@@ -170,3 +184,43 @@ export type ExamPaper = {
   maxScore: number;
   questions: MockExamQuestion[];
 };
+
+// ─── 9. Đấu trường Mini-Game Toán học ───────────────────────────────────────
+export type SortGameItem = {
+  id: string;
+  emoji: string;
+  label: string;
+  isMatch: boolean;
+  explain: string;
+};
+
+export type SortGame = {
+  kind: "sort";
+  id: string;
+  title: string;
+  emoji: string;
+  instructions: string;
+  matchLabel: string;
+  matchEmoji: string;
+  noMatchLabel: string;
+  noMatchEmoji: string;
+  items: SortGameItem[];
+};
+
+export type MatchPairItem = {
+  id: string;
+  left: string; // Mệnh đề P
+  right: string; // Mệnh đề phủ định P_bar
+  explain: string;
+};
+
+export type MatchGame = {
+  kind: "match";
+  id: string;
+  title: string;
+  emoji: string;
+  instructions: string;
+  pairs: MatchPairItem[];
+};
+
+export type LessonGame = SortGame | MatchGame;
