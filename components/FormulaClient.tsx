@@ -163,7 +163,7 @@ export default function FormulaClient() {
                           </div>
 
                           {f.note && (
-                            <div className="text-xs text-star-soft leading-relaxed mb-3">
+                            <div className="text-xs sm:text-sm text-star-soft leading-relaxed mb-3.5 pt-0.5">
                               <MathText content={f.note} />
                             </div>
                           )}

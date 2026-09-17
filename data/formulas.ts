@@ -11,7 +11,7 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
         id: "cosin",
         name: "Định lí Côsin",
         latex: "a^2 = b^2 + c^2 - 2bc \\cos A",
-        note: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$",
+        note: "Hệ quả tính góc: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$",
         tag: "Hình học"
       },
       {
