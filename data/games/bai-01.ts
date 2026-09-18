@@ -180,6 +180,111 @@ const matchGame: MatchGame = {
   ],
 };
 
-const games: LessonGame[] = [sortGame, matchGame];
+// Game 3: Trọng tài Cần & Đủ (Phân loại vuốt thẻ)
+// Điểm hay bị nhầm nhất của mệnh đề kéo theo P ⇒ Q: trong định lí "Nếu P thì Q"
+// (luôn đúng), P (đứng TRƯỚC mũi tên) là điều kiện ĐỦ để có Q; Q (đứng SAU mũi
+// tên) là điều kiện CẦN để có P. Mỗi định lí dưới đây xuất hiện 2 lần liền
+// nhau: một câu phát biểu ĐÚNG chiều, một câu ĐẢO NGƯỢC — cố tình đặt sát
+// nhau để học sinh thấy rõ bẫy chỉ khác nhau ở chiều "cần/đủ".
+const canDuGame: SortGame = {
+  kind: "sort",
+  id: "trong-tai-can-du",
+  title: "Trọng tài Cần & Đủ",
+  emoji: "⚖️",
+  instructions:
+    "Vuốt thẻ (hoặc bấm nút) để phân loại: câu phát biểu 'điều kiện cần / điều kiện đủ' này ĐÚNG chiều, hay bị ĐẢO NGƯỢC (P và Q bị đổi chỗ cho nhau)?",
+  matchLabel: "Đúng chiều",
+  matchEmoji: "✅",
+  noMatchLabel: "Đảo ngược (Sai)",
+  noMatchEmoji: "🔄",
+  items: [
+    {
+      id: "cd-1",
+      emoji: "🔷",
+      label: "Định lí: 'Nếu tứ giác là hình vuông thì tứ giác có 4 góc vuông.' Phát biểu: 'Là hình vuông là điều kiện ĐỦ để có 4 góc vuông.'",
+      isMatch: true,
+      explain: "Đúng — 'là hình vuông' đứng TRƯỚC mũi tên nên là điều kiện ĐỦ để có kết luận '4 góc vuông'.",
+    },
+    {
+      id: "cd-2",
+      emoji: "🔶",
+      label: "Cùng định lí trên. Phát biểu: 'Có 4 góc vuông là điều kiện ĐỦ để tứ giác là hình vuông.'",
+      isMatch: false,
+      explain: "Sai — đã đảo ngược! 'Có 4 góc vuông' đứng SAU mũi tên nên chỉ là điều kiện CẦN, không phải đủ (hình chữ nhật cũng có 4 góc vuông mà chưa chắc là hình vuông).",
+    },
+    {
+      id: "cd-3",
+      emoji: "🔢",
+      label: "Định lí: 'Nếu n chia hết cho 6 thì n chia hết cho 3.' Phát biểu: 'n chia hết cho 6 là điều kiện ĐỦ để n chia hết cho 3.'",
+      isMatch: true,
+      explain: "Đúng — 'chia hết cho 6' đứng trước mũi tên nên là điều kiện đủ để suy ra 'chia hết cho 3'.",
+    },
+    {
+      id: "cd-4",
+      emoji: "🔢",
+      label: "Cùng định lí trên. Phát biểu: 'n chia hết cho 3 là điều kiện ĐỦ để n chia hết cho 6.'",
+      isMatch: false,
+      explain: "Sai — đảo ngược. Phản ví dụ: $n = 3$ chia hết cho 3 nhưng không chia hết cho 6. 'Chia hết cho 3' chỉ là điều kiện CẦN.",
+    },
+    {
+      id: "cd-5",
+      emoji: "🔺",
+      label: "Định lí: 'Nếu tam giác đều thì tam giác cân.' Phát biểu: 'Tam giác cân là điều kiện CẦN để tam giác đều.'",
+      isMatch: true,
+      explain: "Đúng — 'tam giác cân' đứng sau mũi tên nên đúng là điều kiện cần để có 'tam giác đều'.",
+    },
+    {
+      id: "cd-6",
+      emoji: "🔻",
+      label: "Cùng định lí trên. Phát biểu: 'Tam giác cân là điều kiện ĐỦ để tam giác đều.'",
+      isMatch: false,
+      explain: "Sai — một tam giác cân (ví dụ cân nhưng góc ở đỉnh 100°) chưa chắc đã đều, nên 'cân' không đủ để suy ra 'đều'.",
+    },
+    {
+      id: "cd-7",
+      emoji: "✖️",
+      label: "Định lí: 'Nếu x = 2 thì x² = 4.' Phát biểu: 'x = 2 là điều kiện ĐỦ để x² = 4.'",
+      isMatch: true,
+      explain: "Đúng — 'x = 2' đứng trước mũi tên nên là điều kiện đủ để có 'x² = 4'.",
+    },
+    {
+      id: "cd-8",
+      emoji: "➗",
+      label: "Cùng định lí trên. Phát biểu: 'x² = 4 là điều kiện ĐỦ để x = 2.'",
+      isMatch: false,
+      explain: "Sai — đảo ngược. $x = -2$ cũng cho $x^2 = 4$ nhưng không phải $x = 2$, nên 'x² = 4' không đủ để suy ra 'x = 2'.",
+    },
+    {
+      id: "cd-9",
+      emoji: "🧮",
+      label: "Định lí: 'Nếu n chia hết cho 4 thì n chia hết cho 2.' Phát biểu: 'n chia hết cho 2 là điều kiện CẦN để n chia hết cho 4.'",
+      isMatch: true,
+      explain: "Đúng — 'chia hết cho 2' đứng sau mũi tên nên đúng là điều kiện cần để có 'chia hết cho 4'.",
+    },
+    {
+      id: "cd-10",
+      emoji: "🧮",
+      label: "Cùng định lí trên. Phát biểu: 'n chia hết cho 2 là điều kiện ĐỦ để n chia hết cho 4.'",
+      isMatch: false,
+      explain: "Sai — phản ví dụ: $n = 2$ chia hết cho 2 nhưng không chia hết cho 4. 'Chia hết cho 2' chỉ là điều kiện cần, không đủ.",
+    },
+    {
+      id: "cd-11",
+      emoji: "📐",
+      label: "Định lí: 'Nếu ABCD là hình chữ nhật thì ABCD có hai đường chéo bằng nhau.' Phát biểu: 'Là hình chữ nhật là điều kiện ĐỦ để có hai đường chéo bằng nhau.'",
+      isMatch: true,
+      explain: "Đúng — 'là hình chữ nhật' đứng trước mũi tên nên là điều kiện đủ để có 'hai đường chéo bằng nhau'.",
+    },
+    {
+      id: "cd-12",
+      emoji: "📏",
+      label: "Cùng định lí trên. Phát biểu: 'Có hai đường chéo bằng nhau là điều kiện ĐỦ để ABCD là hình chữ nhật.'",
+      isMatch: false,
+      explain: "Sai — đảo ngược. Hình thang cân cũng có hai đường chéo bằng nhau mà không phải hình chữ nhật, nên điều kiện này chưa đủ.",
+    },
+  ],
+};
+
+const games: LessonGame[] = [sortGame, matchGame, canDuGame];
 
 export default games;
