@@ -2,33 +2,33 @@ import type { LessonReview } from "./types";
 
 export const REVIEWS_BANK: Record<string, LessonReview> = {
   "bai-01": {
-    summary: "Nắm vững bản chất Mệnh đề toán học, mệnh đề phủ định, mệnh đề kéo theo, mệnh đề tương đương, cùng kĩ năng biến đổi lượng từ ∀ và ∃.",
+    summary: "Nắm vững bản chất Mệnh đề toán học, mệnh đề phủ định, mệnh đề kéo theo, mệnh đề tương đương, cùng kĩ năng biến đổi lượng từ $\\forall$ và $\\exists$.",
     keyPoints: [
       "Mệnh đề toán học là một khẳng định đúng hoặc sai, không thể vừa đúng vừa sai.",
-      "Mệnh đề chứa biến P(x) chỉ trở thành mệnh đề khi gán cho x một giá trị cụ thể.",
-      "Phủ định của ∀ là ∃ và ngược lại. Phủ định của > là ≤, của < là ≥, của = là ≠.",
-      "Mệnh đề kéo theo P ⇒ Q chỉ SAI trong trường hợp duy nhất: P đúng mà Q sai.",
-      "Trong P ⇒ Q: P là điều kiện ĐỦ để có Q; Q là điều kiện CẦN để có P.",
-      "Mệnh đề P ⇔ Q đúng khi cả P và Q cùng đúng hoặc cùng sai (P là điều kiện cần và đủ để có Q)."
+      "Mệnh đề chứa biến $P(x)$ chỉ trở thành mệnh đề khi gán cho $x$ một giá trị cụ thể.",
+      "Phủ định của $\\forall$ là $\\exists$ và ngược lại. Phủ định của $>$ là $\\le$, của $<$ là $\\ge$, của $=$ là $\\ne$.",
+      "Mệnh đề kéo theo $P \\Rightarrow Q$ chỉ SAI trong trường hợp duy nhất: $P$ đúng mà $Q$ sai.",
+      "Trong $P \\Rightarrow Q$: $P$ là điều kiện ĐỦ để có $Q$; $Q$ là điều kiện CẦN để có $P$.",
+      "Mệnh đề $P \\Leftrightarrow Q$ đúng khi cả $P$ và $Q$ cùng đúng hoặc cùng sai ($P$ là điều kiện cần và đủ để có $Q$)."
     ],
     commonMistakes: [
       {
-        mistake: "Quên phủ định dấu bất đẳng thức hoặc nhầm phủ định của > là < thay vì ≤.",
-        fix: "Phủ định của '>' là '≤' (phải lấy cả dấu bằng). Tương tự, phủ định của '≥' là '<'."
+        mistake: "Quên phủ định dấu bất đẳng thức hoặc nhầm phủ định của $>$ là $<$ thay vì $\\le$.",
+        fix: "Phủ định của '$>$' là '$\\le$' (phải lấy cả dấu bằng). Tương tự, phủ định của '$\\ge$' là '$<$'."
       },
       {
-        mistake: "Nhầm lẫn giữa 'Điều kiện cần' và 'Điều kiện đủ' trong mệnh đề P ⇒ Q.",
-        fix: "Ghi nhớ quy tắc: 'P đứng trước là ĐỦ, Q đứng sau là CẦN' (Nếu P thì Q ⇔ Có P là đủ để có Q, muốn có P thì cần phải có Q)."
+        mistake: "Nhầm lẫn giữa 'Điều kiện cần' và 'Điều kiện đủ' trong mệnh đề $P \\Rightarrow Q$.",
+        fix: "Ghi nhớ quy tắc: '$P$ đứng trước là ĐỦ, $Q$ đứng sau là CẦN' (Nếu $P$ thì $Q \\Leftrightarrow$ Có $P$ là đủ để có $Q$, muốn có $P$ thì cần phải có $Q$)."
       },
       {
-        mistake: "Cho rằng câu chứa biến x luôn là mệnh đề toán học.",
-        fix: "Câu 'x + 1 > 0' là mệnh đề chứa biến P(x), không phải mệnh đề vì chưa xác định x. Tuy nhiên, '∀x ∈ ℝ, x² + 1 > 0' lại là mệnh đề đúng."
+        mistake: "Cho rằng câu chứa biến $x$ luôn là mệnh đề toán học.",
+        fix: "Câu '$x + 1 > 0$' là mệnh đề chứa biến $P(x)$, không phải mệnh đề vì chưa xác định $x$. Tuy nhiên, '$\\forall x \\in \\mathbb{R},\\ x^2 + 1 > 0$' lại là mệnh đề đúng."
       }
     ],
     tips: [
-      "Bác bỏ mệnh đề '∀x ∈ X, P(x)': Chỉ cần tìm đúng 1 phản ví dụ x₀ sao cho P(x₀) sai.",
-      "Chứng minh mệnh đề '∃x ∈ X, P(x)': Chỉ cần chỉ ra ít nhất 1 phần tử thoả mãn là đủ.",
-      "Mẹo nhớ chân trị P ⇒ Q: 'Hứa đúng mà không làm (P đúng, Q sai) mới là thất hứa (Sai)'."
+      "Bác bỏ mệnh đề '$\\forall x \\in X,\\ P(x)$': Chỉ cần tìm đúng 1 phản ví dụ $x_0$ sao cho $P(x_0)$ sai.",
+      "Chứng minh mệnh đề '$\\exists x \\in X,\\ P(x)$': Chỉ cần chỉ ra ít nhất 1 phần tử thoả mãn là đủ.",
+      "Mẹo nhớ chân trị $P \\Rightarrow Q$: 'Hứa đúng mà không làm ($P$ đúng, $Q$ sai) mới là thất hứa (Sai)'."
     ],
     flashcards: [
       {
@@ -40,8 +40,8 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
         back: "Khi ta gán cho biến $x$ một giá trị cụ thể thuộc tập xác định."
       },
       {
-        front: "Phát biểu mệnh đề phủ định của '$\\forall x \\in \\mathbb{R}, x^2 + 1 > 0$'?",
-        back: "$\\exists x \\in \\mathbb{R}, x^2 + 1 \\le 0$."
+        front: "Phát biểu mệnh đề phủ định của '$\\forall x \\in \\mathbb{R},\\ x^2 + 1 > 0$'?",
+        back: "$\\exists x \\in \\mathbb{R},\\ x^2 + 1 \\le 0$."
       },
       {
         front: "Mệnh đề kéo theo $P \\Rightarrow Q$ SAI trong trường hợp duy nhất nào?",
@@ -60,16 +60,16 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
         back: "Tồn tại ít nhất một số nguyên tố không phải là số lẻ (số 2)."
       },
       {
-        front: "Để bác bỏ mệnh đề '$\\forall x \\in X, P(x)$', ta làm thế nào?",
+        front: "Để bác bỏ mệnh đề '$\\forall x \\in X,\\ P(x)$', ta làm thế nào?",
         back: "Chỉ cần chỉ ra một giá trị cụ thể $x_0 \\in X$ (phản ví dụ) sao cho $P(x_0)$ sai."
       }
     ],
     checklist: [
       "Tôi phân biệt rành rọt câu nào là mệnh đề, câu nào không phải là mệnh đề.",
       "Tôi nhận biết và xác định được chân trị của mệnh đề chứa biến khi gán giá trị.",
-      "Tôi lập thành thạo mệnh đề phủ định (kể cả mệnh đề chứa lượng từ ∀ và ∃).",
-      "Tôi hiểu bản chất điều kiện CẦN, điều kiện ĐỦ và bảng chân trị của P ⇒ Q.",
-      "Tôi biết phát biểu mệnh đề đảo và mệnh đề tương đương P ⇔ Q.",
+      "Tôi lập thành thạo mệnh đề phủ định (kể cả mệnh đề chứa lượng từ $\\forall$ và $\\exists$).",
+      "Tôi hiểu bản chất điều kiện CẦN, điều kiện ĐỦ và bảng chân trị của $P \\Rightarrow Q$.",
+      "Tôi biết phát biểu mệnh đề đảo và mệnh đề tương đương $P \\Leftrightarrow Q$.",
       "Tôi biết cách tìm phản ví dụ để chứng minh một mệnh đề 'với mọi' là sai."
     ],
     mindmap: [
@@ -88,18 +88,18 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
             detail: "Câu hỏi (?), câu cảm thán (!), câu cầu khiến, câu bày tỏ ý kiến chủ quan.",
           },
           {
-            title: "Mệnh đề chứa biến P(x)",
-            detail: "Chưa xác định tính đúng sai. Chỉ trở thành mệnh đề khi thay x bằng giá trị cụ thể.",
-            formula: "P(n): \"n \\text{ chia hết cho 3}\""
+            title: "Mệnh đề chứa biến $P(x)$",
+            detail: "Chưa xác định tính đúng sai. Chỉ trở thành mệnh đề khi thay $x$ bằng giá trị cụ thể.",
+            formula: "$P(n): \\text{'$n$ chia hết cho 3'}$"
           }
         ]
       },
       {
         id: "mm-2",
-        title: "2. Mệnh đề Phủ định \\overline{P}",
+        title: "2. Mệnh đề Phủ định $\\overline{P}$",
         emoji: "🔄",
         description: "Khẳng định điều trái ngược với P",
-        formula: "P \\text{ đúng} \\iff \\overline{P} \\text{ sai}",
+        formula: "$P \\text{ đúng} \\iff \\overline{P} \\text{ sai}$",
         children: [
           {
             title: "Quy tắc lập",
@@ -107,16 +107,16 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
           },
           {
             title: "Chân trị",
-            detail: "P và \\overline{P} luôn có tính đúng sai trái ngược nhau.",
+            detail: "$P$ và $\\overline{P}$ luôn có tính đúng sai trái ngược nhau.",
           }
         ]
       },
       {
         id: "mm-3",
-        title: "3. Mệnh đề Kéo theo (P ⇒ Q)",
+        title: "3. Mệnh đề Kéo theo ($P \\Rightarrow Q$)",
         emoji: "➡️",
         description: "Mối quan hệ nhân quả và logic suy luận",
-        formula: "P \\Rightarrow Q \\text{ chỉ sai khi } P \\text{ đúng, } Q \\text{ sai}",
+        formula: "$P \\Rightarrow Q \\text{ chỉ sai khi } P \\text{ đúng, } Q \\text{ sai}$",
         children: [
           {
             title: "Cách phát biểu",
@@ -124,21 +124,21 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
           },
           {
             title: "Điều kiện Cần và Đủ",
-            detail: "P là điều kiện ĐỦ để có Q; Q là điều kiện CẦN để có P.",
+            detail: "$P$ là điều kiện ĐỦ để có $Q$; $Q$ là điều kiện CẦN để có $P$.",
           },
           {
             title: "Mệnh đề đảo",
-            detail: "Mệnh đề đảo của P ⇒ Q là Q ⇒ P (không nhất thiết cùng chân trị).",
-            formula: "Q \\Rightarrow P"
+            detail: "Mệnh đề đảo của $P \\Rightarrow Q$ là $Q \\Rightarrow P$ (không nhất thiết cùng chân trị).",
+            formula: "$Q \\Rightarrow P$"
           }
         ]
       },
       {
         id: "mm-4",
-        title: "4. Mệnh đề Tương đương (P ⇔ Q)",
+        title: "4. Mệnh đề Tương đương ($P \\Leftrightarrow Q$)",
         emoji: "⚖️",
         description: "Hai mệnh đề kéo theo nhau cả hai chiều",
-        formula: "P \\Leftrightarrow Q \\iff (P \\Rightarrow Q) \\text{ và } (Q \\Rightarrow P)",
+        formula: "$P \\Leftrightarrow Q \\iff (P \\Rightarrow Q) \\text{ và } (Q \\Rightarrow P)$",
         children: [
           {
             title: "Cách phát biểu",
@@ -146,28 +146,28 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
           },
           {
             title: "Chân trị",
-            detail: "Đúng khi cả P và Q cùng đúng hoặc cùng sai.",
+            detail: "Đúng khi cả $P$ và $Q$ cùng đúng hoặc cùng sai.",
           }
         ]
       },
       {
         id: "mm-5",
-        title: "5. Lượng từ Với mọi (∀) & Tồn tại (∃)",
+        title: "5. Lượng từ Với mọi ($\\forall$) & Tồn tại ($\\exists$)",
         emoji: "🌐",
         description: "Mở rộng mệnh đề chứa biến trên một tập hợp",
         children: [
           {
-            title: "Kí hiệu ∀",
-            detail: "\"∀x ∈ X, P(x)\" đúng khi P(x) đúng với TẤT CẢ x. Sai khi có ít nhất 1 phản ví dụ.",
+            title: "Kí hiệu $\\forall$",
+            detail: "\"$\\forall x \\in X,\\ P(x)$\" đúng khi $P(x)$ đúng với TẤT CẢ $x$. Sai khi có ít nhất 1 phản ví dụ.",
           },
           {
-            title: "Kí hiệu ∃",
-            detail: "\"∃x ∈ X, P(x)\" đúng khi có ÍT NHẤT 1 phần tử thoả mãn. Sai khi mọi x đều sai.",
+            title: "Kí hiệu $\\exists$",
+            detail: "\"$\\exists x \\in X,\\ P(x)$\" đúng khi có ÍT NHẤT 1 phần tử thoả mãn. Sai khi mọi $x$ đều sai.",
           },
           {
             title: "Quy tắc phủ định",
-            detail: "Phủ định của ∀ là ∃; phủ định của ∃ là ∀. Đổi dấu bất đẳng thức kèm dấu bằng.",
-            formula: "\\overline{\\forall x \\in X, P(x)} \\iff \\exists x \\in X, \\overline{P(x)}"
+            detail: "Phủ định của $\\forall$ là $\\exists$; phủ định của $\\exists$ là $\\forall$. Đổi dấu bất đẳng thức kèm dấu bằng.",
+            formula: "$\\overline{\\forall x \\in X,\\ P(x)} \\iff \\exists x \\in X,\\ \\overline{P(x)}$"
           }
         ]
       }

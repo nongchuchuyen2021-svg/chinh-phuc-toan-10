@@ -226,7 +226,7 @@ export default function ReviewViewer({
               </div>
 
               <div className="my-auto py-6 text-base sm:text-xl font-semibold text-star leading-relaxed px-2">
-                <MathText content={isFlipped ? card.back : card.front} />
+                <MathText key={`${currentCard}-${isFlipped}`} content={isFlipped ? card.back : card.front} />
               </div>
 
               <div className="flex items-center justify-between text-[11px] font-mono text-star-mute border-t border-void-border/50 pt-3">
@@ -317,9 +317,11 @@ export default function ReviewViewer({
                       </span>
                       <div>
                         <h4 className="font-display font-bold text-base sm:text-lg text-star">
-                          {node.title}
+                          <MathText content={node.title} />
                         </h4>
-                        <p className="text-xs text-star-soft mt-0.5">{node.description}</p>
+                        <div className="text-xs text-star-soft mt-0.5">
+                          <MathText content={node.description} />
+                        </div>
                       </div>
                     </div>
                     <span className="font-mono text-xs text-star-mute p-2">
@@ -344,11 +346,11 @@ export default function ReviewViewer({
                             >
                               <div className="font-semibold text-xs sm:text-sm text-star flex items-center gap-2">
                                 <span className="text-cyan-glow">●</span>
-                                <span>{c.title}</span>
+                                <MathText content={c.title} />
                               </div>
-                              <p className="text-xs text-star-soft leading-relaxed pl-4">
-                                {c.detail}
-                              </p>
+                              <div className="text-xs text-star-soft leading-relaxed pl-4">
+                                <MathText content={c.detail} />
+                              </div>
                               {c.formula && (
                                 <div className="pl-4 pt-1 font-mono text-xs text-amber-glow">
                                   <MathText content={c.formula} />

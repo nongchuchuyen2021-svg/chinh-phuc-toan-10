@@ -190,15 +190,15 @@ export default function MatchGameClient({
       </div>
 
       {/* Instructions */}
-      <p className="text-center text-xs text-star-soft/80 font-mono px-2">
-        {game.instructions}
-      </p>
+      <div className="text-center text-xs text-star-soft/80 font-mono px-2">
+        <MathText content={game.instructions} />
+      </div>
 
       {/* Arena: 2 Columns */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <div className="grid grid-cols-2 gap-2 sm:gap-4">
         {/* Cột Trái: Mệnh đề P */}
-        <div className="space-y-2.5">
-          <div className="font-mono text-xs font-bold uppercase tracking-wider text-cyan-glow text-center pb-1">
+        <div className="space-y-2 sm:space-y-2.5">
+          <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-glow text-center pb-1">
             <MathText content="📌 Mệnh đề $P$" />
           </div>
           {game.pairs.map((p) => {
@@ -211,7 +211,7 @@ export default function MatchGameClient({
                 key={p.id}
                 disabled={isMatched}
                 onClick={() => handleSelectLeft(p.id)}
-                className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 text-xs sm:text-sm font-semibold flex items-center justify-between gap-3 ${
+                className={`w-full text-left p-2.5 sm:p-4 rounded-2xl border transition-all duration-200 text-xs sm:text-sm font-semibold flex items-center justify-between gap-2 sm:gap-3 ${
                   isMatched
                     ? "border-emerald/40 bg-emerald/10 text-emerald-glow line-through opacity-70 cursor-default"
                     : isShake
@@ -231,8 +231,8 @@ export default function MatchGameClient({
         </div>
 
         {/* Cột Phải: Mệnh đề phủ định \overline{P} */}
-        <div className="space-y-2.5">
-          <div className="font-mono text-xs font-bold uppercase tracking-wider text-amber-glow text-center pb-1">
+        <div className="space-y-2 sm:space-y-2.5">
+          <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-glow text-center pb-1">
             <MathText content="🔄 Mệnh đề Phủ định $\overline{P}$" />
           </div>
           {rightItems.map((r) => {
@@ -245,7 +245,7 @@ export default function MatchGameClient({
                 key={r.id}
                 disabled={isMatched}
                 onClick={() => handleSelectRight(r.id)}
-                className={`w-full text-left p-4 rounded-2xl border transition-all duration-200 text-xs sm:text-sm font-semibold flex items-center justify-between gap-3 ${
+                className={`w-full text-left p-2.5 sm:p-4 rounded-2xl border transition-all duration-200 text-xs sm:text-sm font-semibold flex items-center justify-between gap-2 sm:gap-3 ${
                   isMatched
                     ? "border-emerald/40 bg-emerald/10 text-emerald-glow line-through opacity-70 cursor-default"
                     : isShake
@@ -271,9 +271,9 @@ export default function MatchGameClient({
           <div className="font-bold flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
             <span>💡 Giải thích logic vừa ghép:</span>
           </div>
-          <p className="leading-relaxed text-star">
-            {lastMatchedExplanation}
-          </p>
+          <div className="leading-relaxed text-star">
+            <MathText content={lastMatchedExplanation} />
+          </div>
         </div>
       )}
     </div>

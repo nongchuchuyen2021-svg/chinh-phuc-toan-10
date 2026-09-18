@@ -20,16 +20,29 @@
     <script
       defer
       src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
-      onload="
-        renderMathInElement(document.body, {
-          delimiters: [
-            { left: '$$', right: '$$', display: true },
-            { left: '$', right: '$', display: false },
-          ],
-          throwOnError: false,
-        })
-      "
+      onload="doRenderMath()"
     ></script>
+    <script>
+      function doRenderMath() {
+        if (typeof renderMathInElement === "function" && document.body) {
+          try {
+            renderMathInElement(document.body, {
+              delimiters: [
+                { left: "$$", right: "$$", display: true },
+                { left: "$", right: "$", display: false },
+                { left: "\\[", right: "\\]", display: true },
+                { left: "\\(", right: "\\)", display: false },
+              ],
+              throwOnError: false,
+            });
+          } catch (e) {
+            console.warn("KaTeX render issue:", e);
+          }
+        }
+      }
+      document.addEventListener("DOMContentLoaded", doRenderMath);
+      window.addEventListener("load", doRenderMath);
+    </script>
 
     <style>
       :root {

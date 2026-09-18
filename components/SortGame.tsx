@@ -70,7 +70,7 @@ export default function SortGameClient({
       playWrong();
       setWrongItems((list) => [...list, item]);
     }
-    setDragX(pickedMatch ? 280 : -280);
+    setDragX(0);
   }
 
   function next() {
@@ -192,9 +192,9 @@ export default function SortGameClient({
                     <span>Chuẩn:</span>
                     <span className="font-bold">{w.isMatch ? game.matchLabel : game.noMatchLabel}</span>
                   </div>
-                  <p className="text-xs text-star-soft leading-relaxed border-t border-void-border/60 pt-1 mt-1">
-                    💡 {w.explain}
-                  </p>
+                  <div className="text-xs text-star-soft leading-relaxed border-t border-void-border/60 pt-1 mt-1">
+                    💡 <MathText content={w.explain} />
+                  </div>
                 </div>
               ))}
             </div>
@@ -244,9 +244,9 @@ export default function SortGameClient({
       </div>
 
       {/* Instructions */}
-      <p className="text-center text-xs text-star-soft/80 font-mono px-2">
-        {game.instructions}
-      </p>
+      <div className="text-center text-xs text-star-soft/80 font-mono px-2">
+        <MathText content={game.instructions} />
+      </div>
 
       {/* Swipe Arena */}
       <div className="relative min-h-[340px] flex items-center justify-center perspective-[1000px] overflow-hidden py-4">
@@ -268,6 +268,7 @@ export default function SortGameClient({
         {/* The Card */}
         {item && (
           <div
+            key={item.id}
             ref={cardRef}
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
@@ -292,7 +293,7 @@ export default function SortGameClient({
           >
             <div className="text-4xl mb-4">{item.emoji}</div>
             <div className="min-h-[90px] flex items-center justify-center text-base sm:text-lg font-semibold text-star leading-relaxed px-2">
-              <MathText content={item.label} />
+              <MathText key={item.id} content={item.label} />
             </div>
 
             {answered && (
@@ -305,9 +306,9 @@ export default function SortGameClient({
                   )}
                   <span className="text-star-mute">· Đáp án: {item.isMatch ? game.matchLabel : game.noMatchLabel}</span>
                 </div>
-                <p className="mt-1 text-xs text-star-soft leading-relaxed">
-                  {item.explain}
-                </p>
+                <div className="mt-1 text-xs text-star-soft leading-relaxed">
+                  <MathText content={item.explain} />
+                </div>
               </div>
             )}
 

@@ -35,7 +35,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               },
               {
                 emoji: "🧬",
-                title: "Mệnh đề chứa biến P(x)",
+                title: "Mệnh đề chứa biến $P(x)$",
                 text: "Câu khẳng định chứa biến, chỉ trở thành mệnh đề khi thay biến bằng giá trị cụ thể.\nVí dụ: $P(n)$: '$n$ chia hết cho 3'."
               }
             ]

@@ -239,7 +239,7 @@ export default function QuizClient({
 
       {/* Question Card */}
       <div key={q.id} className="rounded-3xl border border-void-border bg-void-card/95 p-6 sm:p-8 shadow-card backdrop-blur-xl space-y-6">
-        <div className="text-base sm:text-lg font-medium text-star leading-relaxed">
+        <div className="text-base sm:text-lg font-medium text-star leading-relaxed whitespace-pre-line">
           <MathText content={q.q} />
         </div>
 
@@ -296,7 +296,7 @@ export default function QuizClient({
               <span>💡</span>
               <span>Giải thích chi tiết:</span>
             </p>
-            <div className="text-star-soft leading-relaxed">
+            <div className="text-star-soft leading-relaxed whitespace-pre-line">
               <MathText content={q.explain} />
             </div>
           </div>
