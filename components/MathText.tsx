@@ -27,11 +27,23 @@ function formatBoldToHtml(content: string): string {
     .join("");
 }
 
-// Chuẩn hóa cú pháp LaTeX tự động: chuyển các vectơ 2 chữ cái viết hoa (\vec{AB})
-// thành \overrightarrow{AB} để mũi tên kéo dài phủ kín toàn bộ tên vectơ theo chuẩn SGK
+// Chuẩn hóa cú pháp LaTeX tự động:
+// 1. Chuyển các vectơ 2 chữ cái viết hoa (\vec{AB}) thành \overrightarrow{AB}
+// 2. Tự động bọc $..$ nếu chuỗi chứa cú pháp LaTeX (\le, \ge, \frac,...) nhưng thiếu dấu $
 function normalizeLatex(text: string): string {
   if (!text) return "";
-  return text.replace(/\\vec\{([A-Z]{2,})\}/g, "\\overrightarrow{$1}");
+  let res = text.replace(/\\vec\{([A-Z]{2,})\}/g, "\\overrightarrow{$1}");
+
+  // Kiểm tra nếu chưa có dấu $ hoặc \[ hoặc \(
+  const hasDelimiters = res.includes("$") || res.includes("\\[") || res.includes("\\(");
+  const hasLatexCommands = /\\[a-zA-Z]+/.test(res);
+
+  if (!hasDelimiters && hasLatexCommands) {
+    // Nếu chứa \text{...} lẫn toán, tự động bọc toàn bộ chuỗi
+    res = `$${res}$`;
+  }
+
+  return res;
 }
 
 export default function MathText({ content, className = "" }: MathTextProps) {

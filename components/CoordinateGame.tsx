@@ -206,12 +206,14 @@ export default function CoordinateGameClient({
                       <span className="text-cyan-glow">BPT:</span>
                       <MathText content={item.q.inequality} />
                     </div>
-                    <div className="text-xs text-rose-glow">
-                      Bạn đã chọn nhầm: Điểm <strong>{item.picked.name}({item.picked.x}; {item.picked.y})</strong> ({item.picked.calcSteps})
+                    <div className="text-xs text-rose-glow flex items-center gap-1.5 flex-wrap">
+                      <span>Bạn đã chọn nhầm: Điểm <strong>{item.picked.name}({item.picked.x}; {item.picked.y})</strong> —</span>
+                      <MathText content={item.picked.calcSteps} />
                     </div>
                     {solPoint && (
-                      <div className="text-xs text-emerald-glow">
-                        Đáp án đúng là: Điểm <strong>{solPoint.name}({solPoint.x}; {solPoint.y})</strong> ({solPoint.calcSteps})
+                      <div className="text-xs text-emerald-glow flex items-center gap-1.5 flex-wrap">
+                        <span>Đáp án đúng là: Điểm <strong>{solPoint.name}({solPoint.x}; {solPoint.y})</strong> —</span>
+                        <MathText content={solPoint.calcSteps} />
                       </div>
                     )}
                     <div className="text-xs text-star-soft border-t border-void-border/60 pt-1.5 mt-1 leading-relaxed">
@@ -273,9 +275,9 @@ export default function CoordinateGameClient({
         <div className="font-display text-2xl sm:text-3xl font-bold text-star drop-shadow-[0_0_15px_rgba(6,182,212,0.4)]">
           <MathText content={q.inequality} />
         </div>
-        <p className="text-xs text-star-soft font-mono">
-          {q.prompt ?? "Bấm vào Điểm mục tiêu nằm TRONG MIỀN NGHIỆM của BPT!"}
-        </p>
+        <div className="text-xs text-star-soft font-mono">
+          <MathText content={q.prompt ?? "Bấm vào Điểm mục tiêu nằm TRONG MIỀN NGHIỆM của BPT!"} />
+        </div>
       </div>
 
       {/* Interactive Cartesian Coordinate System (SVG) */}

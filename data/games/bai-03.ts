@@ -14,7 +14,7 @@ const coordinateGame: CoordinateGame = {
   questions: [
     {
       id: "coord-1",
-      inequality: "x + y - 2 \\le 0",
+      inequality: "$x + y - 2 \\le 0$",
       boundary: {
         a: 1,
         b: 1,
@@ -31,7 +31,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 0,
           isSolution: true,
-          calcSteps: "Thay A(0; 0): 0 + 0 - 2 = -2 \\le 0 \\text{ (Đúng!)}",
+          calcSteps: "Thay A(0; 0): $0 + 0 - 2 = -2 \\le 0$ (Đúng!)",
         },
         {
           id: "pt-1b",
@@ -39,7 +39,7 @@ const coordinateGame: CoordinateGame = {
           x: 2,
           y: 2,
           isSolution: false,
-          calcSteps: "Thay B(2; 2): 2 + 2 - 2 = 2 > 0 \\text{ (Không thoả mãn)}",
+          calcSteps: "Thay B(2; 2): $2 + 2 - 2 = 2 > 0$ (Không thoả mãn)",
         },
         {
           id: "pt-1c",
@@ -47,7 +47,7 @@ const coordinateGame: CoordinateGame = {
           x: 3,
           y: 1,
           isSolution: false,
-          calcSteps: "Thay C(3; 1): 3 + 1 - 2 = 2 > 0 \\text{ (Không thoả mãn)}",
+          calcSteps: "Thay C(3; 1): $3 + 1 - 2 = 2 > 0$ (Không thoả mãn)",
         },
         {
           id: "pt-1d",
@@ -55,7 +55,7 @@ const coordinateGame: CoordinateGame = {
           x: 1,
           y: 3,
           isSolution: false,
-          calcSteps: "Thay D(1; 3): 1 + 3 - 2 = 2 > 0 \\text{ (Không thoả mãn)}",
+          calcSteps: "Thay D(1; 3): $1 + 3 - 2 = 2 > 0$ (Không thoả mãn)",
         },
       ],
       explain:
@@ -63,7 +63,7 @@ const coordinateGame: CoordinateGame = {
     },
     {
       id: "coord-2",
-      inequality: "2x - y + 1 > 0",
+      inequality: "$2x - y + 1 > 0$",
       boundary: {
         a: 2,
         b: -1,
@@ -80,7 +80,7 @@ const coordinateGame: CoordinateGame = {
           x: -2,
           y: 1,
           isSolution: false,
-          calcSteps: "Thay A(-2; 1): 2(-2) - 1 + 1 = -4 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay A(-2; 1): $2(-2) - 1 + 1 = -4 < 0$ (Không thoả)",
         },
         {
           id: "pt-2b",
@@ -88,7 +88,7 @@ const coordinateGame: CoordinateGame = {
           x: 1,
           y: 1,
           isSolution: true,
-          calcSteps: "Thay B(1; 1): 2(1) - 1 + 1 = 2 > 0 \\text{ (Đúng!)}",
+          calcSteps: "Thay B(1; 1): $2(1) - 1 + 1 = 2 > 0$ (Đúng!)",
         },
         {
           id: "pt-2c",
@@ -96,7 +96,7 @@ const coordinateGame: CoordinateGame = {
           x: -1,
           y: 0,
           isSolution: false,
-          calcSteps: "Thay C(-1; 0): 2(-1) - 0 + 1 = -1 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay C(-1; 0): $2(-1) - 0 + 1 = -1 < 0$ (Không thoả)",
         },
         {
           id: "pt-2d",
@@ -104,7 +104,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 2,
           isSolution: false,
-          calcSteps: "Thay D(0; 2): 2(0) - 2 + 1 = -1 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay D(0; 2): $2(0) - 2 + 1 = -1 < 0$ (Không thoả)",
         },
       ],
       explain:
@@ -112,7 +112,7 @@ const coordinateGame: CoordinateGame = {
     },
     {
       id: "coord-3",
-      inequality: "x - 2y \\ge 0",
+      inequality: "$x - 2y \\ge 0$",
       boundary: {
         a: 1,
         b: -2,
@@ -129,7 +129,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 2,
           isSolution: false,
-          calcSteps: "Thay A(0; 2): 0 - 2(2) = -4 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay A(0; 2): $0 - 2(2) = -4 < 0$ (Không thoả)",
         },
         {
           id: "pt-3b",
@@ -137,7 +137,7 @@ const coordinateGame: CoordinateGame = {
           x: -2,
           y: 1,
           isSolution: false,
-          calcSteps: "Thay B(-2; 1): -2 - 2(1) = -4 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay B(-2; 1): $-2 - 2(1) = -4 < 0$ (Không thoả)",
         },
         {
           id: "pt-3c",
@@ -145,7 +145,7 @@ const coordinateGame: CoordinateGame = {
           x: 2,
           y: 1,
           isSolution: true,
-          calcSteps: "Thay C(2; 1): 2 - 2(1) = 0 \\ge 0 \\text{ (Đúng! Nằm trên bờ d)}",
+          calcSteps: "Thay C(2; 1): $2 - 2(1) = 0 \\ge 0$ (Đúng! Nằm trên bờ d)",
         },
         {
           id: "pt-3d",
@@ -153,7 +153,7 @@ const coordinateGame: CoordinateGame = {
           x: 1,
           y: 2,
           isSolution: false,
-          calcSteps: "Thay D(1; 2): 1 - 2(2) = -3 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay D(1; 2): $1 - 2(2) = -3 < 0$ (Không thoả)",
         },
       ],
       explain:
@@ -161,7 +161,7 @@ const coordinateGame: CoordinateGame = {
     },
     {
       id: "coord-4",
-      inequality: "-x + 2y - 4 < 0",
+      inequality: "$-x + 2y - 4 < 0$",
       boundary: {
         a: -1,
         b: 2,
@@ -178,7 +178,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 0,
           isSolution: true,
-          calcSteps: "Thay A(0; 0): -0 + 2(0) - 4 = -4 < 0 \\text{ (Đúng!)}",
+          calcSteps: "Thay A(0; 0): $-0 + 2(0) - 4 = -4 < 0$ (Đúng!)",
         },
         {
           id: "pt-4b",
@@ -186,7 +186,7 @@ const coordinateGame: CoordinateGame = {
           x: -2,
           y: 3,
           isSolution: false,
-          calcSteps: "Thay B(-2; 3): -(-2) + 2(3) - 4 = 4 > 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay B(-2; 3): $-(-2) + 2(3) - 4 = 4 > 0$ (Không thoả)",
         },
         {
           id: "pt-4c",
@@ -194,7 +194,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 3,
           isSolution: false,
-          calcSteps: "Thay C(0; 3): -0 + 2(3) - 4 = 2 > 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay C(0; 3): $-0 + 2(3) - 4 = 2 > 0$ (Không thoả)",
         },
         {
           id: "pt-4d",
@@ -202,7 +202,7 @@ const coordinateGame: CoordinateGame = {
           x: 2,
           y: 4,
           isSolution: false,
-          calcSteps: "Thay D(2; 4): -2 + 2(4) - 4 = 2 > 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay D(2; 4): $-2 + 2(4) - 4 = 2 > 0$ (Không thoả)",
         },
       ],
       explain:
@@ -210,7 +210,7 @@ const coordinateGame: CoordinateGame = {
     },
     {
       id: "coord-5",
-      inequality: "3x + 2y + 6 \\ge 0",
+      inequality: "$3x + 2y + 6 \\ge 0$",
       boundary: {
         a: 3,
         b: 2,
@@ -227,7 +227,7 @@ const coordinateGame: CoordinateGame = {
           x: -3,
           y: 0,
           isSolution: false,
-          calcSteps: "Thay A(-3; 0): 3(-3) + 2(0) + 6 = -3 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay A(-3; 0): $3(-3) + 2(0) + 6 = -3 < 0$ (Không thoả)",
         },
         {
           id: "pt-5b",
@@ -235,7 +235,7 @@ const coordinateGame: CoordinateGame = {
           x: -1,
           y: 0,
           isSolution: true,
-          calcSteps: "Thay B(-1; 0): 3(-1) + 2(0) + 6 = 3 \\ge 0 \\text{ (Đúng!)}",
+          calcSteps: "Thay B(-1; 0): $3(-1) + 2(0) + 6 = 3 \\ge 0$ (Đúng!)",
         },
         {
           id: "pt-5c",
@@ -243,7 +243,7 @@ const coordinateGame: CoordinateGame = {
           x: -4,
           y: 1,
           isSolution: false,
-          calcSteps: "Thay C(-4; 1): 3(-4) + 2(1) + 6 = -4 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay C(-4; 1): $3(-4) + 2(1) + 6 = -4 < 0$ (Không thoả)",
         },
         {
           id: "pt-5d",
@@ -251,7 +251,7 @@ const coordinateGame: CoordinateGame = {
           x: -2,
           y: -2,
           isSolution: false,
-          calcSteps: "Thay D(-2; -2): 3(-2) + 2(-2) + 6 = -4 < 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay D(-2; -2): $3(-2) + 2(-2) + 6 = -4 < 0$ (Không thoả)",
         },
       ],
       explain:
@@ -259,7 +259,7 @@ const coordinateGame: CoordinateGame = {
     },
     {
       id: "coord-6",
-      inequality: "x - y + 1 \\le 0",
+      inequality: "$x - y + 1 \\le 0$",
       boundary: {
         a: 1,
         b: -1,
@@ -276,7 +276,7 @@ const coordinateGame: CoordinateGame = {
           x: 0,
           y: 0,
           isSolution: false,
-          calcSteps: "Thay A(0; 0): 0 - 0 + 1 = 1 > 0 \\text{ (Bẫy: O không thuộc miền nghiệm)}",
+          calcSteps: "Thay A(0; 0): $0 - 0 + 1 = 1 > 0$ (Bẫy: O không thuộc miền nghiệm)",
         },
         {
           id: "pt-6b",
@@ -284,7 +284,7 @@ const coordinateGame: CoordinateGame = {
           x: 2,
           y: 1,
           isSolution: false,
-          calcSteps: "Thay B(2; 1): 2 - 1 + 1 = 2 > 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay B(2; 1): $2 - 1 + 1 = 2 > 0$ (Không thoả)",
         },
         {
           id: "pt-6c",
@@ -292,7 +292,7 @@ const coordinateGame: CoordinateGame = {
           x: -1,
           y: 2,
           isSolution: true,
-          calcSteps: "Thay C(-1; 2): -1 - 2 + 1 = -2 \\le 0 \\text{ (Đúng!)}",
+          calcSteps: "Thay C(-1; 2): $-1 - 2 + 1 = -2 \\le 0$ (Đúng!)",
         },
         {
           id: "pt-6d",
@@ -300,7 +300,7 @@ const coordinateGame: CoordinateGame = {
           x: 1,
           y: 0,
           isSolution: false,
-          calcSteps: "Thay D(1; 0): 1 - 0 + 1 = 2 > 0 \\text{ (Không thoả)}",
+          calcSteps: "Thay D(1; 0): $1 - 0 + 1 = 2 > 0$ (Không thoả)",
         },
       ],
       explain:
