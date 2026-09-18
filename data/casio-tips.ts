@@ -182,7 +182,7 @@ export const CASIO_TIPS: CasioTip[] = [
   {
     id: "casio-08",
     category: "Đại số tổ hợp",
-    title: "Tính Giai thừa n!, Chỉnh hợp A_n^k & Tổ hợp C_n^k",
+    title: "Tính Giai thừa $n!$, Chỉnh hợp $A_n^k$ & Tổ hợp $C_n^k$",
     model: "fx-580VNX & fx-880BTG",
     icon: "🎲",
     shortcut: "[x!] (Giai thừa) | [SHIFT] [×] (P) | [SHIFT] [÷] (C)",
@@ -273,7 +273,7 @@ export const CASIO_TIPS: CasioTip[] = [
   {
     id: "casio-12",
     category: "Đường tròn trong Oxy",
-    title: "Xác Định Tâm & Bán Kính Đường Tròn x² + y² - 2ax - 2by + c = 0",
+    title: "Xác Định Tâm & Bán Kính Đường Tròn $x^2 + y^2 - 2ax - 2by + c = 0$",
     model: "fx-580VNX & fx-880BTG",
     icon: "⭕",
     shortcut: "Biểu thức R = sqrt(a^2 + b^2 - c)",

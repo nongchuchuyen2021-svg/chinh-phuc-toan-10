@@ -29,10 +29,19 @@ function formatBoldToHtml(content: string): string {
 
 // Chuẩn hóa cú pháp LaTeX tự động:
 // 1. Chuyển các vectơ 2 chữ cái viết hoa (\vec{AB}) thành \overrightarrow{AB}
-// 2. Tự động bọc $..$ nếu chuỗi chứa cú pháp LaTeX (\le, \ge, \frac,...) nhưng thiếu dấu $
+// 2. Tự động bọc $..$ cho các ký hiệu tổ hợp, chỉnh hợp, hoán vị thô (A_n^k, C_n^k, P_n) nếu chưa có $
+// 3. Tự động bọc $..$ nếu chuỗi chứa cú pháp LaTeX (\le, \ge, \frac,...) nhưng thiếu dấu $
 function normalizeLatex(text: string): string {
   if (!text) return "";
   let res = text.replace(/\\vec\{([A-Z]{2,})\}/g, "\\overrightarrow{$1}");
+
+  // Tự động nhận diện công thức tổ hợp thô dạng A_n^k, C_n^k, P_n nếu chưa có dấu $
+  res = res.replace(/(^|[^\$])\b([AC])_([0-9a-zA-Z]+)\^([0-9a-zA-Z]+)\b(?!\$)/g, (_, p1, p2, p3, p4) => {
+    return `${p1}$${p2}_{${p3}}^{${p4}}$`;
+  });
+  res = res.replace(/(^|[^\$])\b(P)_([0-9a-zA-Z]+)\b(?!\$)/g, (_, p1, p2, p3) => {
+    return `${p1}$${p2}_{${p3}}$`;
+  });
 
   // Kiểm tra nếu chưa có dấu $ hoặc \[ hoặc \(
   const hasDelimiters = res.includes("$") || res.includes("\\[") || res.includes("\\(");

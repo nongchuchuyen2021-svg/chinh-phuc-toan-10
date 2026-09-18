@@ -186,7 +186,7 @@ export default function CasioPage() {
                           {tip.category}
                         </span>
                         <h3 className="text-base sm:text-lg font-bold text-star group-hover:text-cyan-glow transition">
-                          {tip.title}
+                          <MathText content={tip.title} />
                         </h3>
                       </div>
                     </div>

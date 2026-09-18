@@ -37,13 +37,13 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
       },
       {
         id: "dien-tich-r-lon",
-        name: "Diện tích theo bán kính ngoại tiếp R",
+        name: "Diện tích theo bán kính ngoại tiếp $R$",
         latex: "S = \\frac{abc}{4R} \\implies R = \\frac{abc}{4S}",
         tag: "Diện tích"
       },
       {
         id: "dien-tich-r-nho",
-        name: "Diện tích theo bán kính nội tiếp r",
+        name: "Diện tích theo bán kính nội tiếp $r$",
         latex: "S = p \\cdot r \\implies r = \\frac{S}{p}",
         tag: "Diện tích"
       }
@@ -145,21 +145,21 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
     formulas: [
       {
         id: "hoan-vi",
-        name: "Số hoán vị (P_n)",
+        name: "Số hoán vị ($P_n$)",
         latex: "P_n = n! = n \\times (n-1) \\times \\dots \\times 1",
         note: "Quy ước: $0! = 1$",
         tag: "Tổ hợp"
       },
       {
         id: "chinh-hop",
-        name: "Số chỉnh hợp (A_n^k)",
+        name: "Số chỉnh hợp ($A_n^k$)",
         latex: "A_n^k = \\frac{n!}{(n-k)!} \\quad (1 \\le k \\le n)",
         note: "Chọn k phần tử trong n phần tử CÓ XẾP THỨ TỰ",
         tag: "Tổ hợp"
       },
       {
         id: "to-hop",
-        name: "Số tổ hợp (C_n^k)",
+        name: "Số tổ hợp ($C_n^k$)",
         latex: "C_n^k = \\frac{n!}{k!(n-k)!} \\quad (0 \\le k \\le n)",
         note: "Chọn k phần tử trong n phần tử KHÔNG KỂ THỨ TỰ",
         tag: "Tổ hợp"
@@ -193,19 +193,19 @@ export const FORMULA_CATEGORIES: FormulaCategory[] = [
     formulas: [
       {
         id: "so-trung-binh",
-        name: "Số trung bình cộng (x̄)",
+        name: "Số trung bình cộng ($\\bar{x}$)",
         latex: "\\bar{x} = \\frac{x_1 + x_2 + \\dots + x_n}{n} = \\frac{1}{n} \\sum_{i=1}^k m_i x_i",
         tag: "Số đo xu thế"
       },
       {
         id: "phuong-sai",
-        name: "Phương sai mẫu (s²)",
+        name: "Phương sai mẫu ($s^2$)",
         latex: "s^2 = \\frac{1}{n} \\sum_{i=1}^n (x_i - \\bar{x})^2 = \\frac{1}{n} \\sum_{i=1}^n x_i^2 - (\\bar{x})^2",
         tag: "Độ phân tán"
       },
       {
         id: "do-lech-chuan",
-        name: "Độ lệch chuẩn (s)",
+        name: "Độ lệch chuẩn ($s$)",
         latex: "s = \\sqrt{s^2}",
         note: "Đơn vị cùng đơn vị với mẫu số liệu ban đầu",
         tag: "Độ phân tán"

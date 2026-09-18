@@ -61,7 +61,7 @@ export const CURRICULUM: Topic[] = [
       { id: "bai-15", title: "Bài 15. Hàm số", desc: "Khái niệm hàm số, tập xác định, tập giá trị, đồ thị và tính đơn điệu của hàm số.", available: true },
       { id: "bai-16", title: "Bài 16. Hàm số bậc hai", desc: "Đồ thị hàm số bậc hai parabol, đỉnh, trục đối xứng và sự biến thiên.", available: true },
       { id: "bai-17", title: "Bài 17. Dấu của tam thức bậc hai", desc: "Định lí về dấu của tam thức bậc hai và bất phương trình bậc hai một ẩn.", available: true },
-      { id: "bai-18", title: "Bài 18. Phương trình quy về phương trình bậc hai", desc: "Phương trình chứa căn bậc hai dạng √(ax²+bx+c) = √(dx²+ex+f) và √(ax²+bx+c) = dx+e.", available: true },
+      { id: "bai-18", title: "Bài 18. Phương trình quy về phương trình bậc hai", desc: "Phương trình chứa căn bậc hai dạng $\\sqrt{ax^2+bx+c} = \\sqrt{dx^2+ex+f}$ và $\\sqrt{ax^2+bx+c} = dx+e$.", available: true },
     ],
   },
   {
@@ -81,8 +81,8 @@ export const CURRICULUM: Topic[] = [
     emoji: "🎲",
     lessons: [
       { id: "bai-23", title: "Bài 23. Quy tắc đếm", desc: "Quy tắc cộng, quy tắc nhân và sơ đồ hình cây trong các bài toán đếm.", available: true },
-      { id: "bai-24", title: "Bài 24. Hoán vị, chỉnh hợp và tổ hợp", desc: "Định nghĩa và công thức tính số hoán vị P_n, chỉnh hợp A_n^k, tổ hợp C_n^k.", available: true },
-      { id: "bai-25", title: "Bài 25. Nhị thức Newton", desc: "Công thức khai triển nhị thức Newton (a+b)⁴ và (a+b)⁵.", available: true },
+      { id: "bai-24", title: "Bài 24. Hoán vị, chỉnh hợp và tổ hợp", desc: "Định nghĩa và công thức tính số hoán vị $P_n$, chỉnh hợp $A_n^k$, tổ hợp $C_n^k$.", available: true },
+      { id: "bai-25", title: "Bài 25. Nhị thức Newton", desc: "Công thức khai triển nhị thức Newton $(a+b)^4$ và $(a+b)^5$.", available: true },
     ],
   },
   {
@@ -90,7 +90,7 @@ export const CURRICULUM: Topic[] = [
     name: "Chương IX. Tính xác suất theo định nghĩa cổ điển",
     emoji: "🎯",
     lessons: [
-      { id: "bai-26", title: "Bài 26. Biến cố và định nghĩa cổ điển của xác suất", desc: "Không gian mẫu, biến cố, định nghĩa cổ điển xác suất P(A) = n(A)/n(Ω).", available: true },
+      { id: "bai-26", title: "Bài 26. Biến cố và định nghĩa cổ điển của xác suất", desc: "Không gian mẫu, biến cố, định nghĩa cổ điển xác suất $P(A) = \\frac{n(A)}{n(\\Omega)}$.", available: true },
       { id: "bai-27", title: "Bài 27. Thực hành tính xác suất theo định nghĩa cổ điển", desc: "Sử dụng các quy tắc đếm, hoán vị, chỉnh hợp, tổ hợp để tính xác suất biến cố.", available: true },
     ],
   },

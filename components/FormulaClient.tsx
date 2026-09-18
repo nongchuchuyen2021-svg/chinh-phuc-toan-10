@@ -151,7 +151,7 @@ export default function FormulaClient() {
                                 </span>
                               )}
                               <h3 className="font-display font-bold text-sm sm:text-base text-star">
-                                {f.name}
+                                <MathText content={f.name} />
                               </h3>
                             </div>
                             <button

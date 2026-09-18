@@ -301,7 +301,7 @@ export default function HomeClient({ counts }: { counts: Record<string, LessonCo
 
                           {lesson.desc && (
                             <p className="mt-1.5 text-xs text-star-soft line-clamp-2 leading-relaxed">
-                              {lesson.desc}
+                              <MathText content={lesson.desc} />
                             </p>
                           )}
                         </div>
