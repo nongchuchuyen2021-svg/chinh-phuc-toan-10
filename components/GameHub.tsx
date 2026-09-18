@@ -6,6 +6,7 @@ import { getLessonProgress } from "@/lib/progress";
 import { playClick } from "@/lib/sound";
 import SortGameClient from "@/components/SortGame";
 import MatchGameClient from "@/components/MatchGame";
+import VennGameClient from "@/components/VennGame";
 
 export default function GameHub({
   lessonId,
@@ -30,11 +31,13 @@ export default function GameHub({
 
   if (active) {
     const handleBack = games.length === 1 ? onBack : () => setActive(null);
-    return active.kind === "sort" ? (
-      <SortGameClient lessonId={lessonId} game={active} onBack={handleBack} />
-    ) : (
-      <MatchGameClient lessonId={lessonId} game={active} onBack={handleBack} />
-    );
+    if (active.kind === "sort") {
+      return <SortGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
+    }
+    if (active.kind === "match") {
+      return <MatchGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
+    }
+    return <VennGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
   }
 
   return (
@@ -63,7 +66,9 @@ export default function GameHub({
           const desc =
             g.kind === "sort"
               ? `${g.items.length} thẻ câu · Vuốt kéo phân loại nhanh`
-              : `${g.pairs.length} cặp đôi · Ghép đôi mệnh đề & phủ định`;
+              : g.kind === "match"
+              ? `${g.pairs.length} cặp đôi · Ghép đôi mệnh đề & phủ định`
+              : `${g.questions.length} câu · Tô đúng vùng trên biểu đồ Venn`;
           const best = bestByGame[g.id] ?? null;
 
           return (
@@ -85,7 +90,7 @@ export default function GameHub({
                     {g.title}
                   </span>
                   <span className="rounded-full bg-void-subtle border border-void-border px-2 py-0.5 font-mono text-[10px] text-star-mute uppercase">
-                    {g.kind === "sort" ? "Swipe Card" : "Match Pair"}
+                    {g.kind === "sort" ? "Swipe Card" : g.kind === "match" ? "Match Pair" : "Venn Click"}
                   </span>
                 </div>
                 <p className="mt-1 text-xs text-star-soft">{desc}</p>

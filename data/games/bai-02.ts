@@ -1,4 +1,4 @@
-import type { LessonGame, SortGame, MatchGame } from "@/lib/types";
+import type { LessonGame, SortGame, MatchGame, VennGame } from "@/lib/types";
 
 // Game 1: Máy dò Phần tử — phân biệt cạm bẫy kinh điển nhất của Bài 2:
 // kí hiệu THUỘC (∈, dùng cho phần tử) và kí hiệu TẬP CON (⊂, dùng cho tập hợp),
@@ -153,6 +153,70 @@ const matchGame: MatchGame = {
   ],
 };
 
-const games: LessonGame[] = [sortGame, matchGame];
+// Game 3: Vùng Venn — tô đúng (các) vùng trên biểu đồ Venn 2 tập hợp
+// ứng với mỗi phép toán: giao, hợp, hiệu, phần bù. Rèn tư duy trực quan hóa
+// tập hợp thay vì chỉ làm việc với kí hiệu thuần túy như 2 game trên.
+const vennGame: VennGame = {
+  kind: "venn",
+  id: "vung-venn",
+  title: "Vùng Venn Tập hợp",
+  emoji: "🌈",
+  instructions:
+    "Bấm vào (các) vùng trên biểu đồ để chọn, rồi bấm Kiểm tra. Một phép toán có thể ứng với NHIỀU vùng cùng lúc (ví dụ hợp $A \\cup B$).",
+  labelA: "A",
+  labelB: "B",
+  questions: [
+    {
+      id: "vv-1",
+      expression: "$A \\cap B$ — Giao của $A$ và $B$",
+      answer: ["both"],
+      explain: "Giao $A \\cap B$ chỉ gồm những phần tử vừa thuộc $A$ vừa thuộc $B$ — đúng là vùng chồng lấn ở giữa hai hình tròn.",
+    },
+    {
+      id: "vv-2",
+      expression: "$A \\cup B$ — Hợp của $A$ và $B$",
+      answer: ["onlyA", "onlyB", "both"],
+      explain: "Hợp $A \\cup B$ gồm mọi phần tử thuộc $A$ HOẶC thuộc $B$ (hoặc cả hai) — tức là toàn bộ 2 hình tròn, kể cả phần chồng lấn.",
+    },
+    {
+      id: "vv-3",
+      expression: "$A \\setminus B$ — Hiệu $A$ trừ $B$",
+      answer: ["onlyA"],
+      explain: "Hiệu $A \\setminus B$ gồm những phần tử thuộc $A$ nhưng KHÔNG thuộc $B$ — nên phải loại bỏ phần chồng lấn ra khỏi hình tròn $A$.",
+    },
+    {
+      id: "vv-4",
+      expression: "$B \\setminus A$ — Hiệu $B$ trừ $A$",
+      answer: ["onlyB"],
+      explain: "Tương tự, $B \\setminus A$ gồm phần tử thuộc $B$ nhưng không thuộc $A$ — là hình tròn $B$ sau khi đã bỏ đi phần chung với $A$.",
+    },
+    {
+      id: "vv-5",
+      expression: "$\\overline{A \\cup B}$ — Phần bù của $A \\cup B$ (trong $U$)",
+      answer: ["outside"],
+      explain: "Phần bù của hợp là mọi phần tử KHÔNG thuộc cả $A$ lẫn $B$ — tức là toàn bộ phần nằm ngoài cả hai hình tròn, trong tập vũ trụ $U$.",
+    },
+    {
+      id: "vv-6",
+      expression: "$\\overline{A}$ — Phần bù của $A$ (trong $U$)",
+      answer: ["onlyB", "outside"],
+      explain: "Phần bù của $A$ là mọi phần tử của $U$ không thuộc $A$ — gồm cả phần riêng của $B$ (vì $B$ không nằm trong $A$) lẫn phần ngoài cả hai hình tròn.",
+    },
+    {
+      id: "vv-7",
+      expression: "$\\overline{A \\cap B}$ — Phần bù của $A \\cap B$ (trong $U$)",
+      answer: ["onlyA", "onlyB", "outside"],
+      explain: "Phần bù của giao là mọi phần tử KHÔNG đồng thời thuộc cả $A$ và $B$ — tức là mọi vùng trừ đi đúng phần chồng lấn ở giữa.",
+    },
+    {
+      id: "vv-8",
+      expression: "$(A \\setminus B) \\cup (B \\setminus A)$ — Phần tử chỉ thuộc đúng một tập",
+      answer: ["onlyA", "onlyB"],
+      explain: "Đây là 'hiệu đối xứng': gồm những phần tử thuộc đúng một trong hai tập (thuộc $A$ mà không thuộc $B$, hoặc ngược lại) — loại bỏ cả phần chung lẫn phần ngoài.",
+    },
+  ],
+};
+
+const games: LessonGame[] = [sortGame, matchGame, vennGame];
 
 export default games;

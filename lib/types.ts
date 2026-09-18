@@ -227,4 +227,25 @@ export type MatchGame = {
   pairs: MatchPairItem[];
 };
 
-export type LessonGame = SortGame | MatchGame;
+// ─── 10. Vùng Venn — Chọn đúng vùng tô màu trên biểu đồ Venn ────────────────
+export type VennRegionId = "onlyA" | "onlyB" | "both" | "outside";
+
+export type VennQuestion = {
+  id: string;
+  expression: string; // Biểu thức tập hợp cần tô đúng vùng, có $KaTeX$
+  answer: VennRegionId[]; // Tập hợp các vùng đúng (có thể nhiều vùng, vd A ∪ B)
+  explain: string;
+};
+
+export type VennGame = {
+  kind: "venn";
+  id: string;
+  title: string;
+  emoji: string;
+  instructions: string;
+  labelA?: string; // Mặc định "A"
+  labelB?: string; // Mặc định "B"
+  questions: VennQuestion[];
+};
+
+export type LessonGame = SortGame | MatchGame | VennGame;
