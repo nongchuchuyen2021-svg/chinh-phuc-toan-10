@@ -43,6 +43,11 @@ function normalizeLatex(text: string): string {
     return `${p1}$${p2}_{${p3}}$`;
   });
 
+  // Tự động nhận diện căn bậc hai thô sqrt(...) nếu chưa bọc LaTeX
+  res = res.replace(/(^|[^\$\\])\bsqrt\(([^)]+)\)(?!\$)/g, (_, p1, p2) => {
+    return `${p1}$\\sqrt{${p2}}$`;
+  });
+
   // Kiểm tra nếu chưa có dấu $ hoặc \[ hoặc \(
   const hasDelimiters = res.includes("$") || res.includes("\\[") || res.includes("\\(");
   const hasLatexCommands = /\\[a-zA-Z]+/.test(res);

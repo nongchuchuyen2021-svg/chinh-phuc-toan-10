@@ -207,7 +207,7 @@ export const CASIO_TIPS: CasioTip[] = [
     title: "Tính Khoảng Cách Từ Điểm Đến Đường Thẳng Trong Oxy",
     model: "fx-580VNX & fx-880BTG",
     icon: "📏",
-    shortcut: "Biểu thức phân thức có Trị tuyệt đối [ABS]",
+    shortcut: "[SHIFT] [(] (Abs) | [√] (Căn) | [CALC]",
     description:
       "Sử dụng công thức $d(M, \\Delta) = \\dfrac{|a x_0 + b y_0 + c|}{\\sqrt{a^2 + b^2}}$ với chức năng [CALC] để tính nhanh khoảng cách mà không sợ nhầm dấu.",
     steps: [
@@ -230,7 +230,7 @@ export const CASIO_TIPS: CasioTip[] = [
     title: "Tính Xác Suất Biến Cố & Phép Thử Cổ Điển",
     model: "fx-580VNX & fx-880BTG",
     icon: "🎯",
-    shortcut: "Phân thức n(A) / n(Omega)",
+    shortcut: "[a/b] (Phân số) | $P(A) = \\frac{n(A)}{n(\\Omega)}$ | [S⇔D]",
     description:
       "Tự động tính tỉ số giữa số kết quả thuận lợi và số kết quả có thể, rút gọn phân số tối giản và chuyển đổi giữa phân số và số thập phân bằng phím [S<=>D].",
     steps: [
@@ -276,7 +276,7 @@ export const CASIO_TIPS: CasioTip[] = [
     title: "Xác Định Tâm & Bán Kính Đường Tròn $x^2 + y^2 - 2ax - 2by + c = 0$",
     model: "fx-580VNX & fx-880BTG",
     icon: "⭕",
-    shortcut: "Biểu thức R = sqrt(a^2 + b^2 - c)",
+    shortcut: "Bấm [√] | Biểu thức $R = \\sqrt{a^2 + b^2 - c}$",
     description:
       "Từ phương trình tổng quát, chia đôi hệ số của $x$ và $y$ đổi dấu để tìm tâm $I(a; b)$, sau đó bấm nhanh căn bậc hai để kiểm tra $a^2 + b^2 - c > 0$ và tính bán kính $R$.",
     steps: [

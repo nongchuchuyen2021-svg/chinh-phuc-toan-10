@@ -207,7 +207,9 @@ export default function CasioPage() {
                   <div className="flex items-center justify-between gap-2 px-3 py-2 rounded-xl bg-void-subtle border border-void-border my-3">
                     <div className="flex items-center gap-2 font-mono text-xs text-star">
                       <span className="text-amber-glow font-bold">Phím bấm:</span>
-                      <span className="text-cyan-glow font-semibold select-all">{tip.shortcut}</span>
+                      <span className="text-cyan-glow font-semibold select-all">
+                        <MathText content={tip.shortcut} />
+                      </span>
                     </div>
                     <button
                       onClick={() => handleCopyShortcut(tip)}
@@ -230,7 +232,7 @@ export default function CasioPage() {
                     {tip.steps.map((st, sIdx) => (
                       <div key={sIdx} className="flex items-start gap-2.5 text-xs">
                         <span className="px-2 py-0.5 rounded-md bg-void-border text-cyan-glow font-mono font-bold text-[10px] shrink-0 mt-0.5">
-                          {st.key}
+                          <MathText content={st.key} />
                         </span>
                         <span className="text-star-soft leading-relaxed">
                           <MathText content={st.note} />
