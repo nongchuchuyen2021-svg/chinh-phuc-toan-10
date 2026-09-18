@@ -232,6 +232,83 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     ]
   },
 
+  "bai-04": {
+    tf: [
+      {
+        id: "b4-tf1",
+        context: "Cho hệ bất phương trình bậc nhất hai ẩn $(I): \\begin{cases} x + y - 2 \\le 0 \\\\ 2x - 3y + 6 > 0 \\\\ x \\ge 0 \\end{cases}$.",
+        statements: [
+          {
+            text: "Điểm $O(0; 0)$ thuộc miền nghiệm của hệ bất phương trình $(I)$.",
+            answer: true,
+            explain: "Thay $(0; 0)$ vào từng BPT: $0 + 0 - 2 = -2 \\le 0$ (đúng), $2(0) - 3(0) + 6 = 6 > 0$ (đúng), $0 \\ge 0$ (đúng). Do đó $O(0; 0)$ thuộc miền nghiệm."
+          },
+          {
+            text: "Điểm $M(1; 1)$ thuộc miền nghiệm của hệ bất phương trình $(I)$.",
+            answer: true,
+            explain: "Thay $(1; 1)$: $1 + 1 - 2 = 0 \\le 0$ (đúng), $2(1) - 3(1) + 6 = 5 > 0$ (đúng), $1 \\ge 0$ (đúng). Cả 3 BPT đều thỏa mãn."
+          },
+          {
+            text: "Điểm $N(0; 2)$ thuộc miền nghiệm của hệ bất phương trình $(I)$.",
+            answer: false,
+            explain: "Thay $(0; 2)$ vào BPT thứ hai: $2(0) - 3(2) + 6 = 0 \\not> 0$ (không thoả mãn vì bất phương trình mang dấu ngặt '$>$')."
+          },
+          {
+            text: "Miền nghiệm của hệ $(I)$ trên mặt phẳng toạ độ $Oxy$ là một miền tam giác bao gồm cả 3 cạnh biên.",
+            answer: false,
+            explain: "Vì bất phương trình $2x - 3y + 6 > 0$ mang dấu ngặt '$>$' nên cạnh nằm trên đường thẳng này không thuộc miền nghiệm (được biểu diễn bằng nét đứt)."
+          }
+        ]
+      },
+      {
+        id: "b4-tf2",
+        context: "Cho miền nghiệm của hệ bất phương trình $\\begin{cases} x + 2y \\le 8 \\\\ 2x + y \\le 7 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases}$ là miền tứ giác $OABC$ với $O(0; 0), A(0; 4), B(2; 3), C(3,5; 0)$. Xét biểu thức $F(x; y) = 3x + 2y$.",
+        statements: [
+          {
+            text: "Điểm $B(2; 3)$ là giao điểm của hai đường thẳng $x + 2y = 8$ và $2x + y = 7$.",
+            answer: true,
+            explain: "Giải hệ $\\begin{cases} x + 2y = 8 \\\\ 2x + y = 7 \\end{cases} \\Leftrightarrow \\begin{cases} 2x + 4y = 16 \\\\ 2x + y = 7 \\end{cases} \\Leftrightarrow \\begin{cases} 3y = 9 \\\\ x = 8 - 2y \\end{cases} \\Leftrightarrow \\begin{cases} x = 2 \\\\ y = 3 \\end{cases}$."
+          },
+          {
+            text: "Giá trị của biểu thức $F(x; y)$ tại đỉnh $A(0; 4)$ bằng 8.",
+            answer: true,
+            explain: "$F(A) = F(0; 4) = 3(0) + 2(4) = 8$."
+          },
+          {
+            text: "Giá trị lớn nhất của biểu thức $F(x; y)$ trên miền tứ giác $OABC$ bằng 12.",
+            answer: true,
+            explain: "Tính giá trị tại 4 đỉnh: $F(O) = 0$, $F(A) = 8$, $F(B) = 3(2) + 2(3) = 12$, $F(C) = 3(3,5) + 2(0) = 10,5$. Giá trị lớn nhất là 12 đạt tại đỉnh $B(2; 3)$."
+          },
+          {
+            text: "Biểu thức $F(x; y)$ đạt giá trị nhỏ nhất tại điểm $C(3,5; 0)$.",
+            answer: false,
+            explain: "Giá trị nhỏ nhất của $F(x; y)$ trên miền tứ giác là $F(O) = 0$ tại gốc toạ độ $O(0; 0)$ chứ không phải tại điểm $C$ ($F(C) = 10,5$)."
+          }
+        ]
+      }
+    ],
+    essay: [
+      {
+        id: "b4-es1",
+        q: "Cho hệ bất phương trình $\\begin{cases} x + y \\le 4 \\\\ 2x + y \\le 6 \\\\ x \\ge 0 \\\\ y \\ge 0 \\end{cases}$. Tìm toạ độ giao điểm của hai đường thẳng biên $x + y = 4$ và $2x + y = 6$.",
+        answer: "(2; 2)",
+        explain: "Trừ vế theo vế hai phương trình: $(2x + y) - (x + y) = 6 - 4 \\Leftrightarrow x = 2$. Thay $x = 2$ vào phương trình thứ nhất: $2 + y = 4 \\Leftrightarrow y = 2$. Vậy toạ độ giao điểm là $(2; 2)$."
+      },
+      {
+        id: "b4-es2",
+        q: "Cho miền nghiệm của một hệ bất phương trình là miền đa giác có toạ độ các đỉnh $O(0; 0), A(0; 5), B(3; 4), C(5; 0)$. Tìm giá trị lớn nhất của biểu thức $F(x; y) = 2x + 5y$ trên miền đa giác này.",
+        answer: "26",
+        explain: "Tính giá trị của $F(x; y)$ tại 4 đỉnh:\\n• $F(O) = 2(0) + 5(0) = 0$\\n• $F(A) = 2(0) + 5(5) = 25$\\n• $F(B) = 2(3) + 5(4) = 6 + 20 = 26$\\n• $F(C) = 2(5) + 5(0) = 10$\\nTheo định lí cực trị trên miền đa giác, giá trị lớn nhất của $F(x; y)$ bằng 26 đạt tại đỉnh $B(3; 4)$."
+      },
+      {
+        id: "b4-es3",
+        q: "Trong bài toán kinh doanh máy tính ở phần Vận dụng SGK, công ty nhập $x$ máy loại A (lãi 2,5 triệu/máy) và $y$ máy loại B (lãi 4 triệu/máy) thoả mãn hệ $\\begin{cases} x \\ge 0, y \\ge 0 \\\\ x + y \\le 250 \\\\ x + 2y \\le 400 \\end{cases}$. Lợi nhuận lớn nhất mà công ty thu được là bao nhiêu triệu đồng?",
+        answer: "850",
+        explain: "Miền nghiệm là tứ giác có các đỉnh $O(0; 0), M(0; 200), N(100; 150), P(250; 0)$.\\nTính lợi nhuận $F(x; y) = 2,5x + 4y$:\\n• $F(O) = 0$\\n• $F(M) = 4(200) = 800$\\n• $F(N) = 2,5(100) + 4(150) = 250 + 600 = 850$\\n• $F(P) = 2,5(250) = 625$\\nVậy lợi nhuận lớn nhất bằng 850 triệu đồng khi nhập 100 máy loại A và 150 máy loại B."
+      }
+    ]
+  },
+
   "bai-06": {
     tf: [
       {

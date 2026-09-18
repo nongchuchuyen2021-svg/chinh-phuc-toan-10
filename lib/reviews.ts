@@ -391,6 +391,150 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
     ]
   },
 
+  "bai-04": {
+    summary: "Nắm trọn bản chất Hệ bất phương trình bậc nhất hai ẩn, thành thạo phương pháp biểu diễn miền nghiệm đa giác bằng kỹ thuật gạch bỏ, nằm lòng Định lí Cực trị trên miền đa giác và chinh phục các bài toán tối ưu hoá kinh tế thực tế.",
+    keyPoints: [
+      "Hệ bất phương trình bậc nhất hai ẩn gồm nhiều BPT bậc nhất hai ẩn. Cặp $(x_0; y_0)$ là nghiệm của hệ khi thoả mãn đồng thời tất cả các BPT trong hệ.",
+      "Miền nghiệm của hệ là PHẦN GIAO của miền nghiệm từng BPT thành phần. Biểu diễn bằng cách gạch bỏ các phần không thoả mãn, miền trắng còn lại chính là nghiệm.",
+      "Quy tắc đường biên: BPT có dấu bằng ($\\le, \\ge$) vẽ NÉT LIỀN (thuộc miền nghiệm); BPT dấu ngặt ($<, >$) vẽ NÉT ĐỨT (không thuộc miền nghiệm).",
+      "Miền đa giác: Khi hệ giới hạn bởi các đường thẳng cắt nhau khép kín, miền nghiệm là miền đa giác (tam giác, tứ giác). Toạ độ các đỉnh tìm bằng cách giải hệ 2 phương trình từng cặp đường biên.",
+      "Định lí cực trị: Giá trị lớn nhất (hoặc nhỏ nhất) của biểu thức bậc nhất $F(x; y) = ax + by$ trên một miền đa giác đóng LUÔN ĐẠT ĐƯỢC TẠI MỘT TRONG CÁC ĐỈNH của đa giác đó.",
+      "Mô hình quy hoạch tuyến tính: Thiết lập hệ điều kiện ràng buộc tài nguyên $\\to$ Xác định miền nghiệm và toạ độ các đỉnh $\\to$ Lập bảng tính $F$ tại từng đỉnh $\\to$ Kết luận phương án tối ưu."
+    ],
+    commonMistakes: [
+      {
+        mistake: "Quên đặt điều kiện không âm $x \\ge 0, y \\ge 0$ (hoặc $x, y \\in \\mathbb{N}$) khi mô hình hoá bài toán thực tế.",
+        fix: "Số sản phẩm, số máy điều hoà, diện tích trồng trọt, số lượng thực phẩm trong đời sống không thể nhận giá trị âm. Luôn luôn bổ sung $x \\ge 0, y \\ge 0$ vào hệ ràng buộc."
+      },
+      {
+        mistake: "Lấy cả các đỉnh nằm trên đường biên nét đứt khi hệ có bất phương trình dấu ngặt ($<, >$).",
+        fix: "Nếu một đỉnh là giao điểm của một đường nét đứt với một đường khác, đỉnh đó KHÔNG THUỘC miền nghiệm. Không được lấy giá trị tại đỉnh này làm nghiệm tối ưu."
+      },
+      {
+        mistake: "Giải sai hệ phương trình dẫn đến toạ độ đỉnh bị lệch, kéo theo tính sai giá trị $F_{\\max}, F_{\\min}$.",
+        fix: "Sau khi giải hệ tìm toạ độ giao điểm $(x; y)$, luôn thay ngược lại vào cả hai phương trình đường thẳng để kiểm tra đẳng thức trước khi tính biểu thức $F$."
+      }
+    ],
+    tips: [
+      "Bí quyết trắc nghiệm 30s: Thay trực tiếp các phương án $(x; y)$ của 4 đáp án vào hệ BPT. Phương án nào vi phạm loại ngay, phương án nào thoả mãn cho giá trị $F$ cao nhất là đáp án đúng!",
+      "Kĩ thuật Lập bảng đỉnh: Liệt kê danh sách các đỉnh theo thứ tự ngược chiều kim đồng hồ quanh đa giác. Lập cột Toạ độ và cột Giá trị $F(x; y)$ để không bao giờ bị tính sót đỉnh.",
+      "Đỉnh tối ưu thường gặp: Trong các bài toán kinh tế có hai ràng buộc lớn (vốn và số lượng), đỉnh tối ưu hầu như luôn là GIAO ĐIỂM của hai đường thẳng giới hạn hai tài nguyên đó."
+    ],
+    flashcards: [
+      {
+        front: "Khi nào cặp số $(x_0; y_0)$ là nghiệm của một hệ bất phương trình?",
+        back: "Khi nó đồng thời là nghiệm của TẤT CẢ các bất phương trình trong hệ đó."
+      },
+      {
+        front: "Miền nghiệm của hệ bất phương trình bậc nhất hai ẩn được xác định như thế nào?",
+        back: "Là giao (phần chung) của miền nghiệm tất cả các bất phương trình có trong hệ."
+      },
+      {
+        front: "Nêu nội dung Định lí cực trị của biểu thức $F(x; y) = ax + by$ trên miền đa giác?",
+        back: "Giá trị lớn nhất (hoặc nhỏ nhất) của $F(x; y)$ luôn đạt được tại một trong các đỉnh của đa giác đó."
+      },
+      {
+        front: "Làm thế nào để tìm toạ độ một đỉnh của miền đa giác nghiệm?",
+        back: "Giải hệ gồm hai phương trình của hai đường thẳng biên cắt nhau tạo nên đỉnh đó."
+      },
+      {
+        front: "Miền nghiệm của hệ $\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\end{cases}$ là miền nào?",
+        back: "Là góc phần tư thứ nhất của mặt phẳng toạ độ $Oxy$ (kể cả hai trục toạ độ)."
+      },
+      {
+        front: "Nếu hai đỉnh $A$ và $B$ của đa giác cùng cho giá trị $F$ lớn nhất thì kết luận gì?",
+        back: "Mọi điểm thuộc đoạn thẳng $AB$ đều cho giá trị lớn nhất đó."
+      },
+      {
+        front: "Đường thẳng biên nét đứt biểu diễn điều gì?",
+        back: "Biểu diễn BPT dấu ngặt ($<, >$); các điểm trên đường này không thuộc miền nghiệm."
+      },
+      {
+        front: "Trong bài toán quy hoạch tuyến tính, $F(x; y) = ax + by$ được gọi là gì?",
+        back: "Được gọi là hàm mục tiêu (Objective Function) cần tìm giá trị lớn nhất hoặc nhỏ nhất."
+      }
+    ],
+    checklist: [
+      "Tôi nhận biết chính xác hệ bất phương trình bậc nhất hai ẩn.",
+      "Tôi kiểm tra nhanh một điểm có phải là nghiệm của hệ hay không.",
+      "Tôi biểu diễn thành thạo miền nghiệm của hệ trên mặt phẳng toạ độ bằng phương pháp gạch bỏ.",
+      "Tôi tìm chuẩn xác toạ độ các đỉnh của miền đa giác nghiệm.",
+      "Tôi vận dụng thành thạo định lí cực trị để giải các bài toán tối ưu kinh tế thực tế."
+    ],
+    mindmap: [
+      {
+        id: "mm-b4-1",
+        title: "1. Khái niệm & Nghiệm của hệ",
+        emoji: "🎯",
+        description: "Định nghĩa đại số và tính chất giao",
+        formula: "$\\begin{cases} a_1 x + b_1 y \\le c_1 \\\\ a_2 x + b_2 y \\le c_2 \\end{cases}$",
+        children: [
+          {
+            title: "Hệ BPT bậc nhất 2 ẩn",
+            detail: "Gồm từ hai BPT bậc nhất hai ẩn trở lên. Chỉ chứa bậc 1 của $x$ và $y$."
+          },
+          {
+            title: "Nghiệm của hệ",
+            detail: "Thoả mãn đồng thời mọi BPT trong hệ. Chỉ cần vi phạm một BPT là bị loại."
+          }
+        ]
+      },
+      {
+        id: "mm-b4-2",
+        title: "2. Biểu diễn miền nghiệm hình học",
+        emoji: "🗺️",
+        description: "Phương pháp gạch bỏ trên mặt phẳng Oxy",
+        children: [
+          {
+            title: "Vẽ đường biên",
+            detail: "Vẽ các đường thẳng $d_i$. BPT có bằng $\\to$ nét liền; BPT ngặt $\\to$ nét đứt."
+          },
+          {
+            title: "Gạch bỏ phần sai",
+            detail: "Thử điểm $O(0;0)$ cho từng BPT, gạch bỏ nửa mặt phẳng không chứa nghiệm."
+          },
+          {
+            title: "Miền nghiệm đa giác",
+            detail: "Phần mặt phẳng không bị gạch chính là miền nghiệm (tam giác, tứ giác)."
+          }
+        ]
+      },
+      {
+        id: "mm-b4-3",
+        title: "3. Định lí cực trị & Tìm GTLN, GTNN",
+        emoji: "⭐",
+        description: "Quy tắc vàng của Quy hoạch tuyến tính",
+        formula: "$F(x; y) = ax + by \\to \\text{cực trị tại các đỉnh}$",
+        children: [
+          {
+            title: "Tìm toạ độ các đỉnh",
+            detail: "Giải hệ phương trình từng cặp đường biên cắt nhau để lập danh sách đỉnh $A_i$."
+          },
+          {
+            title: "Tính giá trị tại đỉnh",
+            detail: "Thay toạ độ từng đỉnh vào $F(x; y)$ để so sánh tìm $\\max$ và $\\min$."
+          }
+        ]
+      },
+      {
+        id: "mm-b4-4",
+        title: "4. Bài toán tối ưu thực tế",
+        emoji: "💼",
+        description: "Ứng dụng trong sản xuất, kinh doanh, dinh dưỡng",
+        children: [
+          {
+            title: "Ràng buộc tài nguyên",
+            detail: "Hạn mức vốn, nhân lực, diện tích, kho bãi: $a x + b y \\le C$ cùng với $x, y \\ge 0$."
+          },
+          {
+            title: "Hàm mục tiêu",
+            detail: "Lợi nhuận cần tối đa hoá ($L \\to \\max$) hoặc chi phí cần tối thiểu hoá ($C \\to \\min$)."
+          }
+        ]
+      }
+    ]
+  },
+
   "bai-06": {
     summary: "Định lí côsin, định lí sin, các công thức tính diện tích tam giác và giải tam giác.",
     keyPoints: [

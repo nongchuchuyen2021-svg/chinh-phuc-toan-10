@@ -903,6 +903,252 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
     ]
   },
 
+  "bai-04": {
+    intro: "Hệ bất phương trình bậc nhất hai ẩn là công cụ toán học nền tảng của Quy hoạch tuyến tính (Linear Programming). Nắm vững phương pháp biểu diễn miền nghiệm đa giác và định lí cực trị giúp em tự tin giải quyết xuất sắc các bài toán tối ưu hoá lợi nhuận, giảm thiểu chi phí trong kinh tế và đời sống thực tế.",
+    minutes: 15,
+    sections: [
+      {
+        id: "sec-1",
+        emoji: "🎯",
+        heading: "1. Khái niệm Hệ bất phương trình bậc nhất hai ẩn & Nghiệm",
+        blocks: [
+          {
+            kind: "text",
+            text: "Hệ bất phương trình bậc nhất hai ẩn là hệ gồm từ hai bất phương trình bậc nhất hai ẩn trở lên. Mỗi cặp số $(x_0; y_0)$ đồng thời là nghiệm của tất cả các bất phương trình trong hệ được gọi là một nghiệm của hệ."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "✅",
+                title: "Dạng tổng quát chuẩn",
+                text: "Gồm các BPT dạng $a_i x + b_i y \\le c_i$ (hoặc $<, \\ge, >$).\nVí dụ: $\\begin{cases} x + y \\le 100 \\\\ 2x + y \\le 120 \\\\ x \\ge 0, y \\ge 0 \\end{cases}$."
+              },
+              {
+                emoji: "🔍",
+                title: "Nghiệm của hệ",
+                text: "Cặp $(x_0; y_0)$ phải thoả mãn ĐỒNG THỜI TẤT CẢ các BPT. Chỉ cần vi phạm một BPT duy nhất là cặp số bị loại ngay lập tức!"
+              },
+              {
+                emoji: "⚠️",
+                title: "Nhận diện bẫy phi tuyến",
+                text: "Không được chứa tích $xy$, không chứa căn $\\sqrt{x}$, không chứa ẩn ở mẫu $\\frac{1}{x}$, và bậc của mỗi ẩn không được vượt quá 1 ($x^2, y^2$)."
+              },
+              {
+                emoji: "🌐",
+                title: "Miền nghiệm hình học",
+                text: "Là PHẦN GIAO (phần chung) của miền nghiệm tất cả các bất phương trình thành phần trong hệ trên cùng mặt phẳng $Oxy$."
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Cặp số nào sau đây là nghiệm của hệ bất phương trình $\\begin{cases} x + y - 3 \\le 0 \\\\ 2x - y + 1 > 0 \\\\ x \\ge 0 \\end{cases}$?",
+            options: [
+              "$(1; 1)$",
+              "$(2; 2)$",
+              "$(0; 4)$",
+              "$(-1; 0)$"
+            ],
+            answer: 0,
+            explain: "Thử $(1; 1)$:\\n• $1 + 1 - 3 = -1 \\le 0$ (thoả mãn).\\n• $2(1) - 1 + 1 = 2 > 0$ (thoả mãn).\\n• $1 \\ge 0$ (thoả mãn).\\nCả 3 BPT đều đúng nên $(1; 1)$ là nghiệm. Với $(2; 2)$ thì $2 + 2 - 3 = 1 > 0$ vi phạm BPT đầu."
+          }
+        ]
+      },
+      {
+        id: "sec-2",
+        emoji: "🎨",
+        heading: "2. Quy trình biểu diễn miền nghiệm bằng phương pháp gạch bỏ",
+        blocks: [
+          {
+            kind: "text",
+            text: "Để tìm miền nghiệm của hệ trên mặt phẳng toạ độ $Oxy$, phương pháp chuẩn mực và không bao giờ nhầm lẫn là 'vẽ đường biên và gạch bỏ phần sai'."
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Vẽ các đường thẳng biên",
+                text: "Vẽ các đường thẳng $d_i: a_i x + b_i y = c_i$. Chú ý: Dấu $\\le, \\ge$ vẽ NÉT LIỀN; dấu $<, >$ vẽ NÉT ĐỨT."
+              },
+              {
+                label: "Bước 2",
+                title: "Thử điểm & Gạch bỏ phần sai",
+                text: "Với từng BPT, chọn điểm thử (thường là gốc $O(0; 0)$). Gạch bỏ nửa mặt phẳng KHÔNG chứa nghiệm của BPT đó."
+              },
+              {
+                label: "Bước 3",
+                title: "Xác định miền trắng còn lại",
+                text: "Miền không bị gạch sau khi xét hết tất cả các BPT trong hệ chính là miền nghiệm cần tìm."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "💡 **QUY TẮC BỜ ĐA GIÁC**:\n• Nếu tất cả các BPT đều có dấu bằng ($\\le, \\ge$), miền nghiệm nhận TOÀN BỘ các cạnh và đỉnh của đa giác.\n• Nếu có bất kì BPT nào mang dấu ngặt ($<, >$), toàn bộ cạnh nằm trên đường thẳng đó (và các đỉnh tương ứng) BỊ LOẠI khỏi miền nghiệm!"
+          },
+          {
+            kind: "check",
+            q: "Miền nghiệm của hệ bất phương trình $\\begin{cases} x \\ge 0 \\\\ y \\ge 0 \\\\ x + y \\le 4 \\end{cases}$ là hình gì trên mặt phẳng toạ độ?",
+            options: [
+              "Một tam giác vuông cân có diện tích bằng 8.",
+              "Một hình vuông cạnh bằng 4.",
+              "Một nửa mặt phẳng không bị chặn.",
+              "Một tam giác đều cạnh bằng 4."
+            ],
+            answer: 0,
+            explain: "Hệ bị giới hạn bởi hai trục toạ độ $Ox, Oy$ và đường thẳng $x + y = 4$. Miền nghiệm là tam giác vuông $OAB$ tại gốc $O(0; 0)$ với $A(4; 0)$ và $B(0; 4)$. Đây là tam giác vuông cân có diện tích $S = \\frac{1}{2} \\cdot 4 \\cdot 4 = 8$."
+          }
+        ]
+      },
+      {
+        id: "sec-3",
+        emoji: "📐",
+        heading: "3. Miền đa giác & Toạ độ các đỉnh giao điểm",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong các bài toán thực tế, miền nghiệm thường là một miền đa giác lồi bị chặn (tam giác, tứ giác, ngũ giác). Việc xác định chính xác toạ độ các đỉnh là chìa khoá quyết định để tìm nghiệm tối ưu."
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Miền bị chặn (Đa giác đóng)",
+              emoji: "🔷",
+              items: [
+                "Được bao bọc hoàn toàn bởi các đoạn thẳng khép kín.",
+                "Thường xuất hiện khi có đồng thời các điều kiện chặn trên và chặn dưới ($x \\ge 0, y \\ge 0$ kết hợp $ax + by \\le c$).",
+                "Luôn tồn tại cả GTLN và GTNN cho mọi biểu thức $F(x; y) = ax + by$."
+              ]
+            },
+            right: {
+              title: "Miền không bị chặn (Mở vô tận)",
+              emoji: "↗️",
+              items: [
+                "Trải dài vô tận về một hướng (chẳng hạn chỉ có điều kiện $\\ge$ mà không có trần trên).",
+                "Thường chỉ tìm được GTNN (như bài toán chi phí dinh dưỡng tối thiểu) mà không có GTLN.",
+                "Cần kiểm tra kĩ hướng vô cực khi lập luận cực trị."
+              ]
+            }
+          },
+          {
+            kind: "check",
+            q: "Cho miền tứ giác nghiệm giới hạn bởi các đường thẳng $x = 0, y = 0, x + y = 6, 2x + y = 8$. Toạ độ đỉnh nằm ở góc nhọn giao nhau của hai đường thẳng chéo là:",
+            options: [
+              "$(2; 4)$",
+              "$(4; 2)$",
+              "$(3; 3)$",
+              "$(1; 5)$"
+            ],
+            answer: 0,
+            explain: "Giải hệ phương trình hai đường thẳng: $\\begin{cases} x + y = 6 \\\\ 2x + y = 8 \\end{cases}$. Lấy phương trình dưới trừ phương trình trên ta được $x = 2$. Thay $x = 2$ vào phương trình đầu: $2 + y = 6 \\implies y = 4$. Vậy toạ độ giao điểm là $(2; 4)$."
+          }
+        ]
+      },
+      {
+        id: "sec-4",
+        emoji: "⭐",
+        heading: "4. Định lí Cực trị trên miền đa giác & Tìm GTLN, GTNN",
+        blocks: [
+          {
+            kind: "text",
+            text: "Định lí cực trị là kết quả toán học đẹp đẽ và quyền năng nhất của chương: Cho biểu thức bậc nhất $F(x; y) = ax + by$ với $(x; y)$ thuộc miền đa giác $A_1A_2...A_n$. Giá trị lớn nhất và nhỏ nhất của $F(x; y)$ LUÔN LUÔN đạt được tại một trong các đỉnh của đa giác đó."
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Vẽ miền nghiệm & Tìm toạ độ các đỉnh",
+                text: "Lập toạ độ danh sách toàn bộ các đỉnh $A_1(x_1; y_1), A_2(x_2; y_2), ..., A_n(x_n; y_n)$ bằng cách giải hệ phương trình từng cặp đường biên cắt nhau."
+              },
+              {
+                label: "Bước 2",
+                title: "Lập bảng tính giá trị F tại từng đỉnh",
+                text: "Thay lần lượt toạ độ của từng đỉnh vào biểu thức $F(x; y) = ax + by$ để tính ra các giá trị số cụ thể."
+              },
+              {
+                label: "Bước 3",
+                title: "So sánh & Kết luận",
+                text: "Số lớn nhất trong các giá trị tính được chính là GTLN ($F_{\\max}$); số nhỏ nhất chính là GTNN ($F_{\\min}$)."
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Giá trị lớn nhất của biểu thức $F(x; y) = 5x + 3y$ trên miền tam giác có các đỉnh $O(0; 0), A(3; 0), B(1; 4)$ là:",
+            options: [
+              "15",
+              "17",
+              "12",
+              "20"
+            ],
+            answer: 1,
+            explain: "Tính giá trị tại 3 đỉnh:\\n• $F(O) = 5(0) + 3(0) = 0$.\\n• $F(A) = 5(3) + 3(0) = 15$.\\n• $F(B) = 5(1) + 3(4) = 5 + 12 = 17$.\\nSo sánh: $17 > 15 > 0$. Vậy giá trị lớn nhất bằng 17 đạt tại đỉnh $B(1; 4)$."
+          }
+        ]
+      },
+      {
+        id: "sec-5",
+        emoji: "💼",
+        heading: "5. Mô hình Quy hoạch tuyến tính trong Kinh tế & Đời sống",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong thực tế, người quản lí sản xuất, chủ doanh nghiệp hay chuyên gia dinh dưỡng luôn phải đối mặt với bài toán: 'Làm sao để tối đa hoá lợi nhuận hoặc tối thiểu hoá chi phí dưới các ràng buộc hạn hẹp về vốn, nhân lực, thời gian máy móc và kho bãi?'."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "💰",
+                title: "Bài toán Kinh doanh & Đầu tư",
+                text: "Hạn mức vốn đầu tư: $\\sum c_i x_i \\le V_{\\max}$.\nNhu cầu thị trường: $\\sum x_i \\le N_{\\max}$.\nHàm lợi nhuận cần cực đại hoá: $L(x; y) = l_1 x + l_2 y \\to \\max$."
+              },
+              {
+                emoji: "🏭",
+                title: "Bài toán Xưởng may & Gia công",
+                text: "Giới hạn nguyên liệu vải: $a_1 x + a_2 y \\le M$.\nGiới hạn giờ công lao động: $b_1 x + b_2 y \\le T$.\nTối ưu hoá doanh thu hoặc sản lượng thành phẩm."
+              },
+              {
+                emoji: "🥗",
+                title: "Bài toán Dinh dưỡng & Khẩu phần",
+                text: "Đảm bảo tối thiểu lượng protein: $p_1 x + p_2 y \\ge P_{\\min}$.\nĐảm bảo lượng chất béo lipit: $l_1 x + l_2 y \\ge L_{\\min}$.\nChi phí mua thực phẩm cần tối thiểu: $C(x; y) \\to \\min$."
+              },
+              {
+                emoji: "💡",
+                title: "Bí quyết giải nhanh trắc nghiệm",
+                text: "Khi đề bài cho các phương án trắc nghiệm cụ thể (ví dụ: '100 máy A và 150 máy B'), hãy thay ngay các cặp số này vào kiểm tra xem cặp nào thoả mãn hệ điều kiện và cho giá trị $F$ cao nhất để chọn ngay trong 30 giây!"
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Trong bài toán quy hoạch kinh doanh, sau khi biểu diễn hệ điều kiện ta được 4 đỉnh của miền nghiệm: $O(0; 0), A(0; 50), B(30; 40), C(60; 0)$. Hàm lợi nhuận là $L(x; y) = 4x + 3y$ (triệu đồng). Phương án sản xuất tối ưu là:",
+            options: [
+              "Sản xuất 30 sản phẩm I và 40 sản phẩm II, lợi nhuận 240 triệu đồng.",
+              "Sản xuất 60 sản phẩm I, lợi nhuận 240 triệu đồng.",
+              "Cả hai phương án (30; 40) và (60; 0) đều đạt lợi nhuận tối ưu 240 triệu đồng.",
+              "Sản xuất 50 sản phẩm II, lợi nhuận 150 triệu đồng."
+            ],
+            answer: 2,
+            explain: "Tính lợi nhuận tại các đỉnh:\\n• $L(O) = 0$\\n• $L(A) = 3(50) = 150$\\n• $L(B) = 4(30) + 3(40) = 120 + 120 = 240$\\n• $L(C) = 4(60) + 3(0) = 240$.\\nVì cả hai đỉnh $B(30; 40)$ và $C(60; 0)$ cùng cho lợi nhuận lớn nhất bằng 240 triệu đồng, nên mọi điểm thuộc đoạn thẳng $BC$ đều cho lợi nhuận tối ưu này!"
+          }
+        ]
+      }
+    ],
+    summary: [
+      "1. Hệ bất phương trình bậc nhất hai ẩn gồm nhiều BPT bậc nhất hai ẩn. Cặp $(x_0; y_0)$ là nghiệm khi thoả mãn đồng thời mọi BPT trong hệ.",
+      "2. Miền nghiệm của hệ là giao các miền nghiệm của từng BPT thành phần. Phương pháp giải chuẩn: vẽ từng đường biên, gạch bỏ phần sai, miền trắng còn lại là nghiệm.",
+      "3. Nét vẽ đường biên: Dấu $\\le, \\ge$ vẽ nét liền (lấy bờ); Dấu $<, >$ vẽ nét đứt (không lấy bờ).",
+      "4. Định lí cực trị miền đa giác: Giá trị lớn nhất / nhỏ nhất của biểu thức bậc nhất $F(x; y) = ax + by$ trên một miền đa giác đóng LUÔN ĐẠT TẠI MỘT TRONG CÁC ĐỈNH của đa giác đó.",
+      "5. Quy trình giải bài toán tối ưu thực tế: 1) Đặt ẩn $x, y \\ge 0$; 2) Lập hệ BPT ràng buộc tài nguyên; 3) Tìm toạ độ các đỉnh của miền đa giác; 4) Tính $F(x; y)$ tại các đỉnh và chọn giá trị tối ưu."
+    ]
+  },
+
   "bai-06": {
     intro: "Hệ thức lượng trong tam giác mở rộng định lí Pythagore sang tam giác bất kì, cung cấp bộ công thức định lí côsin, định lí sin và 5 công thức tính diện tích kinh điển.",
     minutes: 12,

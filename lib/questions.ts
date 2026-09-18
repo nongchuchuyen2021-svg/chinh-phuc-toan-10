@@ -2,51 +2,14 @@ import type { Question } from "./types";
 import bai01 from "@/data/questions/bai-01";
 import bai02 from "@/data/questions/bai-02";
 import bai03 from "@/data/questions/bai-03";
+import bai04 from "@/data/questions/bai-04";
 
 // Ngân hàng câu hỏi trắc nghiệm 4 lựa chọn cho toàn bộ 27 bài học Toán 10 (Bộ sách Kết nối tri thức).
 export const QUESTION_BANK: Record<string, Question[]> = {
   "bai-01": bai01,
   "bai-02": bai02,
   "bai-03": bai03,
-
-  "bai-04": [
-    {
-      id: "b4-q1",
-      q: "Hệ bất phương trình nào sau đây là hệ bất phương trình bậc nhất hai ẩn?",
-      options: [
-        "$\\begin{cases} x - 2y \\le 3 \\\\ 2x + y^2 > 1 \\end{cases}$",
-        "$\\begin{cases} 2x + 3y > 5 \\\\ x - y \\le 4 \\end{cases}$",
-        "$\\begin{cases} xy \\le 2 \\\\ x + y > 1 \\end{cases}$",
-        "$\\begin{cases} x^2 + y^2 \\le 4 \\\\ 3x - y \\ge 0 \\end{cases}$"
-      ],
-      answer: 1,
-      explain: "Hệ BPT bậc nhất hai ẩn là hệ gồm hai hay nhiều bất phương trình bậc nhất hai ẩn. Hệ $\\begin{cases} 2x + 3y > 5 \\\\ x - y \\le 4 \\end{cases}$ chỉ chứa các biến bậc 1 nên là hệ BPT bậc nhất hai ẩn."
-    },
-    {
-      id: "b4-q2",
-      q: "Điểm nào sau đây thuộc miền nghiệm của hệ BPT $\\begin{cases} x + y > 2 \\\\ 2x - y \\le 3 \\end{cases}$?",
-      options: [
-        "$(1; 0)$",
-        "$(2; 2)$",
-        "$(0; 1)$",
-        "$(4; 0)$"
-      ],
-      answer: 1,
-      explain: "Thay toạ độ $(2; 2)$: $2 + 2 = 4 > 2$ và $2(2) - 2 = 2 \\le 3$. Cả hai BPT đều thoả mãn nên $(2; 2)$ thuộc miền nghiệm."
-    },
-    {
-      id: "b4-q3",
-      q: "Giá trị lớn nhất của biểu thức $F(x, y) = 2x + 3y$ trên miền nghiệm là tứ giác có các đỉnh $O(0; 0), A(0; 4), B(3; 2), C(4; 0)$ là:",
-      options: [
-        "12",
-        "14",
-        "8",
-        "16"
-      ],
-      answer: 0,
-      explain: "Tính giá trị tại các đỉnh: $F(0; 0) = 0$; $F(0; 4) = 2(0) + 3(4) = 12$; $F(3; 2) = 2(3) + 3(2) = 12$; $F(4; 0) = 2(4) + 3(0) = 8$. Vậy giá trị lớn nhất bằng 12 (đạt tại đoạn thẳng $AB$)."
-    }
-  ],
+  "bai-04": bai04,
 
   "bai-05": [
     {
