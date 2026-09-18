@@ -220,6 +220,10 @@ export type MatchGame = {
   title: string;
   emoji: string;
   instructions: string;
+  // Tiêu đề 2 cột (có $KaTeX$). Bỏ trống thì dùng mặc định "Mệnh đề P" / "Mệnh đề Phủ định" —
+  // luôn đặt rõ cho các bài không phải về phủ định mệnh đề (vd Bài 2: "Phép toán" / "Kết quả").
+  leftLabel?: string;
+  rightLabel?: string;
   pairs: MatchPairItem[];
 };
 

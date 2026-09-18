@@ -175,45 +175,74 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
   },
 
   "bai-02": {
-    summary: "Tập hợp, tập hợp con, hợp, giao, hiệu và phần bù của hai tập hợp.",
+    summary: "Nắm trọn bản chất Tập hợp, quan hệ tập con, các tập hợp số thực (khoảng, đoạn) và thành thạo 4 phép toán cốt lõi: Giao ($\\cap$), Hợp ($\\cup$), Hiệu ($\\setminus$) và Phần bù ($C_E A$).",
     keyPoints: [
-      "Tập hợp con: A ⊂ B khi mọi phần tử của A đều thuộc B.",
-      "Giao A ∩ B: tập hợp các phần tử chung của A và B.",
-      "Hợp A ∪ B: tập hợp các phần tử thuộc ít nhất một trong hai tập.",
-      "Hiệu A \\ B: các phần tử thuộc A nhưng không thuộc B."
+      "Tập hợp con: $A \\subset B \\Leftrightarrow (\\forall x \\in A \\Rightarrow x \\in B)$. Tập $n$ phần tử có đúng $2^n$ tập con.",
+      "Giao của hai tập hợp: $A \\cap B = \\{x \\mid x \\in A \\text{ VÀ } x \\in B\\}$ (lấy phần chung).",
+      "Hợp của hai tập hợp: $A \\cup B = \\{x \\mid x \\in A \\text{ HOẶC } x \\in B\\}$ (gom tất cả).",
+      "Hiệu của hai tập hợp: $A \\setminus B = \\{x \\mid x \\in A \\text{ VÀ } x \\notin B\\}$ (thuộc $A$, gạt bỏ $B$).",
+      "Phần bù: Khi $A \\subset E$, phần bù của $A$ trong $E$ là $C_E A = E \\setminus A$.",
+      "Công thức đếm phần tử: $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$."
     ],
     commonMistakes: [
       {
-        mistake: "Nhầm lẫn giữa ngoặc vuông [ ] (lấy đầu mút) và ngoặc tròn ( ) (không lấy đầu mút).",
-        fix: "Luôn vẽ trục số và kiểm tra kĩ dấu bằng có thuộc tập hợp ban đầu hay không."
+        mistake: "Nhầm lẫn giữa kí hiệu phần tử thuộc '∈' và tập con '⊂'.",
+        fix: "Quy tắc: Phần tử thì đi với '∈' (ví dụ $1 \\in A$), còn Tập hợp thì đi với '⊂' (ví dụ $\\{1\\} \\subset A$). Riêng tập rỗng $\\varnothing \\subset A$ với mọi $A$."
       },
       {
-        mistake: "Quên trừ đi phần giao khi tính số phần tử của hợp hai tập hợp.",
-        fix: "Luôn áp dụng công thức: n(A ∪ B) = n(A) + n(B) - n(A ∩ B)."
+        mistake: "Xác định sai ngoặc vuông '[' và ngoặc tròn '(' khi tìm hiệu hai khoảng $A \\setminus B$.",
+        fix: "Nếu mút $x_0$ thuộc tập bị trừ $B$ thì trong hiệu sẽ không còn $x_0$ (dùng ngoặc tròn). Ngược lại, nếu mút $x_0$ KHÔNG thuộc $B$ thì nó vẫn còn nguyên trong $A$ (dùng ngoặc vuông)."
+      },
+      {
+        mistake: "Quên trừ phần giao khi tính số học sinh thích ít nhất một môn.",
+        fix: "Luôn dùng biểu đồ Venn hoặc công thức $n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$ để tránh đếm trùng 2 lần phần chung."
       }
     ],
     tips: [
-      "Vẽ trục số minh hoạ là cách nhanh nhất và chính xác nhất để tìm giao, hợp, hiệu của các khoảng, đoạn.",
-      "Gạch bỏ các phần không thuộc tập hợp trên trục số để tìm kết quả."
+      "Kĩ thuật Trục số 1 chiều: Vẽ trục số, biểu diễn tập hợp bằng cách GẠCH BỎ phần không thuộc tập hợp. Phần trắng còn lại chính là kết quả.",
+      "Mẹo nhớ phép toán: Giao là VÀ (giao lưu gặp gỡ - phần chung) · Hợp là HOẶC (hợp tác gom chung) · Hiệu là BỎ (loại trừ sạch sẽ).",
+      "Số tập con: Muốn tính số tập con của tập có $n$ phần tử, bấm ngay $2^n$ trên máy tính Casio."
     ],
     flashcards: [
       {
-        front: "Tập hợp rỗng ∅ có phải là tập con của mọi tập hợp không?",
-        back: "Đúng. ∅ ⊂ A với mọi tập hợp A."
+        front: "Tập hợp rỗng $\\varnothing$ có phải là tập con của mọi tập hợp không?",
+        back: "Đúng. $\\varnothing \\subset A$ với mọi tập hợp $A$."
       },
       {
-        front: "Giao của hai tập hợp A ∩ B là gì?",
-        back: "Là tập hợp các phần tử vừa thuộc A vừa thuộc B."
+        front: "Tập hợp có $n$ phần tử thì có tất cả bao nhiêu tập con?",
+        back: "Có đúng $2^n$ tập con (bao gồm cả $\\varnothing$ và chính nó)."
       },
       {
-        front: "Công thức số phần tử của hợp hai tập hợp n(A ∪ B)?",
-        back: "n(A ∪ B) = n(A) + n(B) - n(A ∩ B)."
+        front: "Điều kiện để hai tập hợp $A$ và $B$ bằng nhau ($A = B$)?",
+        back: "$A \\subset B$ và $B \\subset A$."
+      },
+      {
+        front: "Hiệu $A \\setminus B$ là tập hợp gồm những phần tử nào?",
+        back: "Gồm các phần tử thuộc $A$ nhưng không thuộc $B$."
+      },
+      {
+        front: "Phần bù $C_E A$ được định nghĩa khi nào?",
+        back: "Chỉ được định nghĩa khi $A$ là tập con của $E$ ($A \\subset E$), khi đó $C_E A = E \\setminus A$."
+      },
+      {
+        front: "Nếu $A \\cap B = \\varnothing$ thì hai tập hợp gọi là gì?",
+        back: "Hai tập hợp rời nhau."
+      },
+      {
+        front: "Khoảng $(a; b)$ và đoạn $[a; b]$ khác nhau ở điểm nào?",
+        back: "Đoạn $[a; b]$ lấy cả 2 đầu mút $a$ và $b$ ($a \\le x \\le b$); khoảng $(a; b)$ không lấy 2 đầu mút ($a < x < b$)."
+      },
+      {
+        front: "Công thức số phần tử của hợp hai tập hữu hạn?",
+        back: "$n(A \\cup B) = n(A) + n(B) - n(A \\cap B)$."
       }
     ],
     checklist: [
-      "Tôi biết cách biểu diễn tập hợp bằng cách liệt kê hoặc nêu tính chất đặc trưng.",
-      "Tôi biểu diễn thành thạo các khoảng, đoạn trên trục số thực.",
-      "Tôi làm chuẩn xác các phép toán giao, hợp, hiệu và phần bù."
+      "Tôi phân biệt chính xác khi nào dùng kí hiệu $\\in$ và khi nào dùng $\\subset$.",
+      "Tôi thuộc công thức tính số tập con $2^n$.",
+      "Tôi biểu diễn thành thạo các khoảng, đoạn, nửa khoảng trên trục số thực.",
+      "Tôi tìm chuẩn xác giao, hợp, hiệu, phần bù của các tập số.",
+      "Tôi giải quyết được bài toán thực tế đếm số phần tử bằng biểu đồ Venn."
     ]
   },
 

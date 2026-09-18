@@ -199,7 +199,7 @@ export default function MatchGameClient({
         {/* Cột Trái: Mệnh đề P */}
         <div className="space-y-2 sm:space-y-2.5">
           <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-cyan-glow text-center pb-1">
-            <MathText content="📌 Mệnh đề $P$" />
+            <MathText content={game.leftLabel ?? "📌 Mệnh đề $P$"} />
           </div>
           {game.pairs.map((p) => {
             const isMatched = matchedIds.includes(p.id);
@@ -233,7 +233,7 @@ export default function MatchGameClient({
         {/* Cột Phải: Mệnh đề phủ định \overline{P} */}
         <div className="space-y-2 sm:space-y-2.5">
           <div className="font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider text-amber-glow text-center pb-1">
-            <MathText content="🔄 Mệnh đề Phủ định $\overline{P}$" />
+            <MathText content={game.rightLabel ?? "🔄 Mệnh đề Phủ định $\\overline{P}$"} />
           </div>
           {rightItems.map((r) => {
             const isMatched = matchedIds.includes(r.id);
