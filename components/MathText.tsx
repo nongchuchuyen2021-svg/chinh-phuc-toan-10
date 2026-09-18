@@ -8,16 +8,23 @@ interface MathTextProps {
   className?: string;
 }
 
-// Chia nội dung theo cú pháp markdown nhẹ "**đậm**" thành các đoạn text
-// thường / đậm xen kẽ, để React tự render (không dùng dangerouslySetInnerHTML).
-function renderBoldSegments(content: string): React.ReactNode[] {
-  const parts = content.split(/(\*\*[^*]+\*\*)/g).filter((p) => p !== "");
-  return parts.map((part, i) => {
-    if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
-      return <strong key={i}>{part.slice(2, -2)}</strong>;
-    }
-    return <React.Fragment key={i}>{part}</React.Fragment>;
-  });
+function escapeHtml(str: string): string {
+  return str
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+}
+
+function formatBoldToHtml(content: string): string {
+  const parts = content.split(/(\*\*[^*]+\*\*)/g);
+  return parts
+    .map((part) => {
+      if (part.startsWith("**") && part.endsWith("**") && part.length > 4) {
+        return `<strong>${escapeHtml(part.slice(2, -2))}</strong>`;
+      }
+      return escapeHtml(part);
+    })
+    .join("");
 }
 
 // Chuẩn hóa cú pháp LaTeX tự động: chuyển các vectơ 2 chữ cái viết hoa (\vec{AB})
@@ -33,6 +40,9 @@ export default function MathText({ content, className = "" }: MathTextProps) {
 
   useEffect(() => {
     if (!containerRef.current) return;
+
+    // Reset DOM an toàn bằng text & markdown đã escape
+    containerRef.current.innerHTML = formatBoldToHtml(normalized);
 
     try {
       renderMathInElement(containerRef.current, {
@@ -50,9 +60,5 @@ export default function MathText({ content, className = "" }: MathTextProps) {
     }
   }, [normalized]);
 
-  return (
-    <span ref={containerRef} className={`math-content ${className}`}>
-      {renderBoldSegments(normalized)}
-    </span>
-  );
+  return <span ref={containerRef} className={`math-content ${className}`} />;
 }
