@@ -249,21 +249,25 @@ export default function SortGameClient({
       </div>
 
       {/* Swipe Arena */}
-      <div className="relative min-h-[340px] flex items-center justify-center perspective-[1000px] overflow-hidden py-4">
-        {/* Drop zones indicators */}
-        <div className="absolute inset-y-0 left-0 w-24 flex flex-col items-center justify-center pointer-events-none opacity-40 z-0">
-          <span className="text-3xl">{game.noMatchEmoji}</span>
-          <span className="mt-1 font-mono text-[10px] font-bold text-rose-glow uppercase tracking-wider">
-            {game.noMatchLabel}
-          </span>
-        </div>
+      <div className="relative min-h-[350px] flex items-center justify-center perspective-[1000px] py-4">
+        {/* Drop zones indicators (only when not answered) */}
+        {!answered && (
+          <>
+            <div className="absolute inset-y-0 left-0 w-24 flex flex-col items-center justify-center pointer-events-none opacity-40 z-0">
+              <span className="text-3xl">{game.noMatchEmoji}</span>
+              <span className="mt-1 font-mono text-[10px] font-bold text-rose-glow uppercase tracking-wider">
+                {game.noMatchLabel}
+              </span>
+            </div>
 
-        <div className="absolute inset-y-0 right-0 w-24 flex flex-col items-center justify-center pointer-events-none opacity-40 z-0">
-          <span className="text-3xl">{game.matchEmoji}</span>
-          <span className="mt-1 font-mono text-[10px] font-bold text-emerald-glow uppercase tracking-wider">
-            {game.matchLabel}
-          </span>
-        </div>
+            <div className="absolute inset-y-0 right-0 w-24 flex flex-col items-center justify-center pointer-events-none opacity-40 z-0">
+              <span className="text-3xl">{game.matchEmoji}</span>
+              <span className="mt-1 font-mono text-[10px] font-bold text-emerald-glow uppercase tracking-wider">
+                {game.matchLabel}
+              </span>
+            </div>
+          </>
+        )}
 
         {/* The Card */}
         {item && (
@@ -275,15 +279,17 @@ export default function SortGameClient({
             onPointerUp={onPointerUp}
             onPointerCancel={onPointerUp}
             style={{
-              transform: `translate3d(${dragX}px, 0, 0) rotate(${rotation}deg)`,
+              transform: answered
+                ? "none"
+                : `translate3d(${dragX}px, 0, 0) rotate(${rotation}deg)`,
               transition: draggingRef.current ? "none" : "transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
               touchAction: "none",
             }}
-            className={`relative z-10 w-full max-w-sm cursor-grab active:cursor-grabbing rounded-3xl p-8 text-center border transition-shadow duration-200 backdrop-blur-2xl shadow-card ${
+            className={`relative z-10 w-full max-w-md cursor-grab active:cursor-grabbing rounded-3xl p-6 sm:p-7 text-center border transition-all duration-300 backdrop-blur-2xl shadow-card ${
               answered
                 ? answered.correct
-                  ? "border-emerald/60 bg-emerald/15 shadow-glow-emerald"
-                  : "border-rose/60 bg-rose/15 shadow-glow-rose"
+                  ? "border-emerald/70 bg-gradient-to-b from-void-card via-emerald/10 to-void-card shadow-glow-emerald"
+                  : "border-rose/70 bg-gradient-to-b from-void-card via-rose/10 to-void-card shadow-glow-rose"
                 : isRightGlow
                 ? "border-emerald/60 bg-void-card/95 shadow-glow-emerald"
                 : isLeftGlow
@@ -291,23 +297,39 @@ export default function SortGameClient({
                 : "border-void-border bg-void-card/95 hover:border-cyan/40 hover:shadow-glow-cyan"
             }`}
           >
-            <div className="text-4xl mb-4">{item.emoji}</div>
-            <div className="min-h-[90px] flex items-center justify-center text-base sm:text-lg font-semibold text-star leading-relaxed px-2">
+            <div className="text-4xl mb-3">{item.emoji}</div>
+            <div className="min-h-[70px] flex items-center justify-center text-base sm:text-lg font-semibold text-star leading-relaxed px-2">
               <MathText key={item.id} content={item.label} />
             </div>
 
+            {/* BẢNG GIẢI THÍCH CHI TIẾT SAU KHI HỌC SINH BẤM */}
             {answered && (
-              <div className="mt-4 pt-3 border-t border-void-border/80 animate-fade-in-up text-left">
-                <div className="flex items-center gap-2 font-mono text-xs font-bold">
-                  {answered.correct ? (
-                    <span className="text-emerald-glow">✓ CHÍNH XÁC!</span>
-                  ) : (
-                    <span className="text-rose-glow">✕ CHƯA ĐÚNG!</span>
-                  )}
-                  <span className="text-star-mute">· Đáp án: {item.isMatch ? game.matchLabel : game.noMatchLabel}</span>
+              <div className="mt-5 pt-4 border-t border-void-border/80 animate-fade-in-up text-left space-y-3">
+                {/* Result header badge */}
+                <div className="flex flex-wrap items-center justify-between gap-2">
+                  <span
+                    className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-xl font-mono text-xs font-bold ${
+                      answered.correct
+                        ? "bg-emerald/20 text-emerald-glow border border-emerald/50 shadow-glow-emerald"
+                        : "bg-rose/20 text-rose-glow border border-rose/50 shadow-glow-rose"
+                    }`}
+                  >
+                    <span>{answered.correct ? "✓ CHÍNH XÁC!" : "✕ CHƯA ĐÚNG!"}</span>
+                  </span>
+
+                  <span className="font-mono text-xs text-star-mute">
+                    Đáp án: <strong className={item.isMatch ? "text-emerald-glow" : "text-rose-glow"}>{item.isMatch ? game.matchLabel : game.noMatchLabel}</strong>
+                  </span>
                 </div>
-                <div className="mt-1 text-xs text-star-soft leading-relaxed">
-                  <MathText content={item.explain} />
+
+                {/* Detailed explanation box */}
+                <div className="rounded-2xl bg-void-subtle/90 p-4 border border-void-border space-y-1.5 shadow-card">
+                  <div className="font-bold text-cyan-glow flex items-center gap-1.5 font-mono text-xs uppercase tracking-wider">
+                    <span>💡 Giải thích bản chất:</span>
+                  </div>
+                  <div className="text-xs sm:text-sm text-star-soft leading-relaxed">
+                    <MathText content={item.explain} />
+                  </div>
                 </div>
               </div>
             )}
@@ -328,7 +350,7 @@ export default function SortGameClient({
           <>
             <button
               onClick={() => commit(false)}
-              className="flex-1 max-w-[160px] rounded-2xl border border-rose/40 bg-rose/15 py-3 font-mono text-xs font-bold text-rose-glow hover:bg-rose/25 hover:shadow-glow-rose transition active:scale-95 flex items-center justify-center gap-2"
+              className="flex-1 max-w-[170px] rounded-2xl border border-rose/40 bg-rose/15 py-3.5 font-mono text-xs font-bold text-rose-glow hover:bg-rose/25 hover:shadow-glow-rose transition active:scale-95 flex items-center justify-center gap-2"
             >
               <span>{game.noMatchEmoji}</span>
               <span>{game.noMatchLabel}</span>
@@ -336,7 +358,7 @@ export default function SortGameClient({
 
             <button
               onClick={() => commit(true)}
-              className="flex-1 max-w-[160px] rounded-2xl border border-emerald/40 bg-emerald/15 py-3 font-mono text-xs font-bold text-emerald-glow hover:bg-emerald/25 hover:shadow-glow-emerald transition active:scale-95 flex items-center justify-center gap-2"
+              className="flex-1 max-w-[170px] rounded-2xl border border-emerald/40 bg-emerald/15 py-3.5 font-mono text-xs font-bold text-emerald-glow hover:bg-emerald/25 hover:shadow-glow-emerald transition active:scale-95 flex items-center justify-center gap-2"
             >
               <span>{game.matchEmoji}</span>
               <span>{game.matchLabel}</span>
@@ -345,9 +367,9 @@ export default function SortGameClient({
         ) : (
           <button
             onClick={next}
-            className="w-full max-w-xs rounded-2xl bg-gradient-to-r from-cyan to-cyan-deep py-3.5 font-mono text-xs font-bold text-void-darker shadow-glow-cyan hover:opacity-95 hover:scale-105 transition flex items-center justify-center gap-2"
+            className="w-full max-w-sm rounded-2xl bg-gradient-to-r from-cyan to-cyan-deep py-3.5 font-mono text-xs font-bold text-void-darker shadow-glow-cyan hover:opacity-95 hover:scale-[1.02] transition flex items-center justify-center gap-2"
           >
-            <span>Tiếp tục</span>
+            <span>Tiếp tục câu tiếp theo</span>
             <span>→</span>
           </button>
         )}
