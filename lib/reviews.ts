@@ -246,6 +246,151 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
     ]
   },
 
+  "bai-03": {
+    summary: "Nắm vững định nghĩa bất phương trình bậc nhất hai ẩn, thành thạo kỹ thuật vẽ đường thẳng bờ $d$ (phân biệt nét đứt vs nét liền), kỹ thuật thử toạ độ điểm $O(0;0)$ và ứng dụng mô hình hoá bài toán kinh tế thực tế.",
+    keyPoints: [
+      "Dạng tổng quát: $ax + by \\le c$ (hoặc $\\ge c, < c, > c$) với $a^2 + b^2 \\ne 0$ (hệ số $a, b$ không đồng thời bằng 0).",
+      "Nghiệm của BPT là cặp số thực $(x_0; y_0)$ thoả mãn đẳng thức số học: $ax_0 + by_0 \\le c$. BPT luôn có VÔ SỐ nghiệm.",
+      "Đường thẳng biên $d: ax + by = c$ chia mặt phẳng toạ độ $Oxy$ thành hai nửa mặt phẳng đối nhau.",
+      "Quy tắc nét vẽ bờ $d$: BPT mang dấu ngặt ($<, >$) vẽ NÉT ĐỨT (không kể bờ); BPT mang dấu có bằng ($\\le, \\ge$) vẽ NÉT LIỀN (kể cả bờ).",
+      "Phương pháp thử điểm: Nếu $c \\ne 0$, thay toạ độ gốc $O(0;0)$ vào để kiểm tra. Nếu mệnh đề đúng $\\to$ lấy nửa mặt phẳng chứa $O$; nếu sai $\\to$ lấy nửa mặt phẳng không chứa $O$.",
+      "Mô hình thực tế: Luôn bổ sung các điều kiện tự nhiên của biến như $x \\ge 0, y \\ge 0$ hoặc $x, y \\in \\mathbb{N}$ khi bài toán liên quan đến số lượng sản phẩm, diện tích, con người."
+    ],
+    commonMistakes: [
+      {
+        mistake: "Vẽ nét liền cho bất phương trình dấu ngặt ($<$ hoặc $>$).",
+        fix: "Quy tắc vàng: Bất phương trình ngặt ($<, >$) không lấy các điểm trên đường biên $d$, bắt buộc phải vẽ bằng NÉT ĐỨT. Chỉ vẽ nét liền khi có dấu bằng ($\\le, \\ge$)."
+      },
+      {
+        mistake: "Cố tình dùng gốc toạ độ $O(0;0)$ làm điểm thử khi đường thẳng biên đi qua gốc $O$ ($c = 0$).",
+        fix: "Khi $c = 0$, đường thẳng $ax + by = 0$ đi qua chính gốc $O(0;0)$. Bắt buộc phải chọn một điểm thử khác nằm ngoài bờ, thuận tiện nhất là điểm $(1; 0)$ trên trục $Ox$ hoặc $(0; 1)$ trên trục $Oy$."
+      },
+      {
+        mistake: "Quên đổi chiều bất đẳng thức khi chia cho hệ số âm để rút $y$.",
+        fix: "Khi biến đổi dạng $by \\le -ax + c$, nếu chia cả hai vế cho số âm $b < 0$ thì BẮT BUỘC phải đổi chiều bất đẳng thức: $\\le$ thành $\\ge$."
+      }
+    ],
+    tips: [
+      "Mẹo nhớ nét vẽ bờ: 'Có dấu bằng $\\to$ Nét liền vững chãi · Không dấu bằng $\to$ Nét đứt cách ngăn'.",
+      "Kiểm tra nhanh điểm $O(0; 0)$: Khi BPT có dạng $ax + by \\le c$, thay $O(0;0)$ vế trái luôn bằng 0. Chỉ cần so sánh $0$ với $c$ là biết ngay $O$ thuộc hay không thuộc miền nghiệm trong 1 giây.",
+      "Vẽ đường thẳng bờ $ax + by = c$: Tìm 2 giao điểm với các trục toạ độ $A(c/a; 0)$ trên $Ox$ (cho $y = 0$) và $B(0; c/b)$ trên $Oy$ (cho $x = 0$) rồi nối lại là xong."
+    ],
+    flashcards: [
+      {
+        front: "Bất phương trình bậc nhất hai ẩn có dạng tổng quát như thế nào?",
+        back: "$ax + by \\le c$ (hoặc $\\ge c, < c, > c$) với $a, b, c \\in \\mathbb{R}$ và $a^2 + b^2 \\ne 0$."
+      },
+      {
+        front: "Một bất phương trình bậc nhất hai ẩn có bao nhiêu nghiệm?",
+        back: "Luôn có VÔ SỐ nghiệm. Tập nghiệm được biểu diễn bởi một nửa mặt phẳng trên toạ độ $Oxy$."
+      },
+      {
+        front: "Khi nào đường thẳng bờ $d$ được vẽ bằng NÉT ĐỨT?",
+        back: "Khi bất phương trình mang dấu ngặt ($<$ hoặc $>$), tức là không lấy các điểm nằm trên bờ."
+      },
+      {
+        front: "Khi nào đường thẳng bờ $d$ được vẽ bằng NÉT LIỀN?",
+        back: "Khi bất phương trình mang dấu có bằng ($\\le$ hoặc $\\ge$), tức là miền nghiệm bao gồm cả các điểm trên bờ."
+      },
+      {
+        front: "Nếu đường thẳng bờ $d$ đi qua gốc toạ độ $O(0;0)$, ta chọn điểm thử như thế nào?",
+        back: "Chọn một điểm bất kì không nằm trên bờ $d$, thuận tiện nhất là điểm $(1; 0)$ hoặc $(0; 1)$."
+      },
+      {
+        front: "Điểm $M(x_0; y_0)$ là nghiệm của $ax + by \\le c$ khi nào?",
+        back: "Khi thay toạ độ $x_0, y_0$ vào cho ta một bất đẳng thức đúng: $ax_0 + by_0 \\le c$."
+      },
+      {
+        front: "Đường thẳng biên $y = 3$ có vị trí hình học như thế nào?",
+        back: "Là đường thẳng nằm ngang, vuông góc với $Oy$ tại $(0; 3)$ và song song với trục hoành $Ox$."
+      },
+      {
+        front: "Để vẽ nhanh đường thẳng bờ $2x - 3y = 6$, ta tìm 2 điểm đặc biệt nào?",
+        back: "Giao trục $Ox$: cho $y = 0 \\Rightarrow x = 3 \\to (3; 0)$. Giao trục $Oy$: cho $x = 0 \\Rightarrow y = -2 \\to (0; -2)$."
+      }
+    ],
+    checklist: [
+      "Tôi nhận biết chính xác đâu là bất phương trình bậc nhất hai ẩn và đâu không phải.",
+      "Tôi kiểm tra nhanh một cặp toạ độ $(x_0; y_0)$ có phải là nghiệm hay không.",
+      "Tôi vẽ chuẩn xác đường thẳng bờ $d$ (phân biệt đúng nét liền và nét đứt).",
+      "Tôi thành thạo kĩ thuật thử điểm $O(0; 0)$ để xác định nửa mặt phẳng nghiệm.",
+      "Tôi biết thiết lập bất phương trình từ bài toán thực tế (kinh tế, sản xuất, dinh dưỡng)."
+    ],
+    mindmap: [
+      {
+        id: "mm-b3-1",
+        title: "1. Khái niệm & Dạng tổng quát",
+        emoji: "📐",
+        description: "Nền tảng đại số bất phương trình 2 biến",
+        formula: "$ax + by \\le c \\ (a^2 + b^2 \\ne 0)$",
+        children: [
+          {
+            title: "Hệ số & Ẩn",
+            detail: "$x, y$ là hai ẩn số; $a, b, c \\in \\mathbb{R}$. Bậc cao nhất của cả $x$ và $y$ đều là bậc 1.",
+          },
+          {
+            title: "Cặp nghiệm $(x_0; y_0)$",
+            detail: "Thay vào cho bất đẳng thức đúng. Luôn có vô số nghiệm tạo thành một nửa mặt phẳng.",
+          }
+        ]
+      },
+      {
+        id: "mm-b3-2",
+        title: "2. Đường thẳng bờ d & Quy tắc nét vẽ",
+        emoji: "➖",
+        description: "Ranh giới phân chia mặt phẳng toạ độ Oxy",
+        children: [
+          {
+            title: "Nét đứt (Không kể bờ)",
+            detail: "Áp dụng cho BPT dấu ngặt ($<, >$). Các điểm nằm trên bờ không phải là nghiệm.",
+            formula: "$ax + by < c \\text{ hoặc } > c$"
+          },
+          {
+            title: "Nét liền (Kể cả bờ)",
+            detail: "Áp dụng cho BPT có dấu bằng ($\\le, \\ge$). Các điểm nằm trên bờ vẫn là nghiệm hợp lệ.",
+            formula: "$ax + by \\le c \\text{ hoặc } \\ge c$"
+          }
+        ]
+      },
+      {
+        id: "mm-b3-3",
+        title: "3. Quy trình 3 bước biểu diễn miền nghiệm",
+        emoji: "🗺️",
+        description: "Trực quan hoá miền nghiệm trên hệ trục toạ độ Oxy",
+        children: [
+          {
+            title: "Bước 1: Vẽ đường bờ d",
+            detail: "Vẽ đường thẳng $ax + by = c$ đi qua 2 giao điểm với 2 trục toạ độ.",
+          },
+          {
+            title: "Bước 2: Chọn điểm kiểm tra",
+            detail: "Nếu $c \\ne 0$, chọn $O(0;0)$. Nếu $c = 0$, chọn $M(1;0)$ hoặc $M(0;1)$.",
+          },
+          {
+            title: "Bước 3: Kết luận & Gạch bỏ",
+            detail: "Gạch bỏ nửa mặt phẳng không chứa nghiệm, giữ lại nửa mặt phẳng chứa nghiệm.",
+          }
+        ]
+      },
+      {
+        id: "mm-b3-4",
+        title: "4. Ứng dụng thực tế",
+        emoji: "🏭",
+        description: "Mô hình hoá bài toán tối ưu kinh tế",
+        children: [
+          {
+            title: "Đặt biến & Điều kiện",
+            detail: "Gọi $x, y$ là số sản phẩm/diện tích. Luôn có điều kiện $x \\ge 0, y \\ge 0$.",
+          },
+          {
+            title: "Bất phương trình ràng buộc",
+            detail: "Giới hạn thời gian máy móc, giới hạn nguyên vật liệu, hoặc ngân sách chi tiêu.",
+          }
+        ]
+      }
+    ]
+  },
+
   "bai-06": {
     summary: "Định lí côsin, định lí sin, các công thức tính diện tích tam giác và giải tam giác.",
     keyPoints: [

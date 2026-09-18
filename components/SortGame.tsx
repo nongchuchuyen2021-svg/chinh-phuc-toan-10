@@ -36,6 +36,8 @@ export default function SortGameClient({
   const [wrongItems, setWrongItems] = useState<SortGameItem[]>([]);
   const [finished, setFinished] = useState(false);
   const [best, setBest] = useState<number | null>(null);
+  const [viewMode, setViewMode] = useState<"card" | "list">("card");
+  const [listAnswers, setListAnswers] = useState<Record<string, { picked: boolean; correct: boolean }>>({});
 
   // Kéo vuốt thẻ
   const [dragX, setDragX] = useState(0);
@@ -45,6 +47,7 @@ export default function SortGameClient({
 
   useEffect(() => {
     setDeck(shuffle(game.items));
+    setListAnswers({});
     setBest(getLessonProgress(progressKey)?.best ?? null);
   }, [game, progressKey]);
 
@@ -73,6 +76,17 @@ export default function SortGameClient({
     setDragX(0);
   }
 
+  function handleListCommit(it: SortGameItem, pickedMatch: boolean) {
+    if (listAnswers[it.id]) return;
+    const correct = pickedMatch === it.isMatch;
+    setListAnswers((prev) => ({ ...prev, [it.id]: { picked: pickedMatch, correct } }));
+    if (correct) {
+      playCorrect();
+    } else {
+      playWrong();
+    }
+  }
+
   function next() {
     playClick();
     if (current + 1 >= deck.length) {
@@ -92,6 +106,7 @@ export default function SortGameClient({
     setDeck(shuffle(game.items));
     setCurrent(0);
     setAnswered(null);
+    setListAnswers({});
     setCorrectCount(0);
     setStreak(0);
     setWrongItems([]);

@@ -7,6 +7,7 @@ import { playClick } from "@/lib/sound";
 import SortGameClient from "@/components/SortGame";
 import MatchGameClient from "@/components/MatchGame";
 import VennGameClient from "@/components/VennGame";
+import CoordinateGameClient from "@/components/CoordinateGame";
 
 export default function GameHub({
   lessonId,
@@ -36,6 +37,9 @@ export default function GameHub({
     }
     if (active.kind === "match") {
       return <MatchGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
+    }
+    if (active.kind === "coordinate") {
+      return <CoordinateGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
     }
     return <VennGameClient lessonId={lessonId} game={active} onBack={handleBack} />;
   }
@@ -67,8 +71,10 @@ export default function GameHub({
             g.kind === "sort"
               ? `${g.items.length} thẻ câu · Vuốt kéo phân loại nhanh`
               : g.kind === "match"
-              ? `${g.pairs.length} cặp đôi · Ghép đôi mệnh đề & phủ định`
-              : `${g.questions.length} câu · Tô đúng vùng trên biểu đồ Venn`;
+              ? `${g.pairs.length} cặp đôi · Ghép đôi logic tương ứng`
+              : g.kind === "venn"
+              ? `${g.questions.length} câu · Tô đúng vùng trên biểu đồ Venn`
+              : `${g.questions.length} câu · Bắn toạ độ điểm thuộc miền nghiệm Oxy`;
           const best = bestByGame[g.id] ?? null;
 
           return (
@@ -90,7 +96,13 @@ export default function GameHub({
                     {g.title}
                   </span>
                   <span className="rounded-full bg-void-subtle border border-void-border px-2 py-0.5 font-mono text-[10px] text-star-mute uppercase">
-                    {g.kind === "sort" ? "Swipe Card" : g.kind === "match" ? "Match Pair" : "Venn Click"}
+                    {g.kind === "sort"
+                      ? "Swipe Card"
+                      : g.kind === "match"
+                      ? "Match Pair"
+                      : g.kind === "venn"
+                      ? "Venn Click"
+                      : "Radar Oxy"}
                   </span>
                 </div>
                 <p className="mt-1 text-xs text-star-soft">{desc}</p>

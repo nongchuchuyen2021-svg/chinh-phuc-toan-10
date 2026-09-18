@@ -248,4 +248,41 @@ export type VennGame = {
   questions: VennQuestion[];
 };
 
-export type LessonGame = SortGame | MatchGame | VennGame;
+// ─── 11. Xạ thủ Miền nghiệm Oxy — Bắn toạ độ kiểm tra nghiệm BPT ─────────────
+export type CoordinatePoint = {
+  id: string;
+  name: string; // "A", "B", "C", "D"
+  x: number;
+  y: number;
+  isSolution: boolean;
+  calcSteps: string; // e.g. "Thay (1; 2): 2(1) - 2 + 1 = 1 > 0"
+};
+
+export type CoordinateBoundary = {
+  a: number; // ax + by + c = 0
+  b: number;
+  c: number;
+  label: string; // e.g. "d: 2x - y + 1 = 0"
+  isStrict: boolean; // true nếu dấu ngặt <, > (nét đứt); false nếu <=, >= (nét liền)
+  solutionSide?: 1 | -1; // 1 nếu ax + by + c >= 0 là nghiệm, -1 nếu ax + by + c <= 0 là nghiệm
+};
+
+export type CoordinateQuestion = {
+  id: string;
+  inequality: string; // Bất phương trình cần xét (có KaTeX, vd: "2x - y + 1 > 0")
+  boundary: CoordinateBoundary;
+  points: CoordinatePoint[];
+  prompt?: string;
+  explain: string;
+};
+
+export type CoordinateGame = {
+  kind: "coordinate";
+  id: string;
+  title: string;
+  emoji: string;
+  instructions: string;
+  questions: CoordinateQuestion[];
+};
+
+export type LessonGame = SortGame | MatchGame | VennGame | CoordinateGame;
