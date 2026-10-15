@@ -535,6 +535,147 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
     ]
   },
 
+  "bai-05": {
+    summary: "Nắm vững bản chất toạ độ điểm $M(x_0; y_0)$ trên nửa đường tròn đơn vị, thuộc làu quy tắc 'Sin bù — Phụ chéo', bộ 4 hệ thức lượng giác cơ bản và bảng góc đặc biệt để giải nhanh bài toán tam giác.",
+    keyPoints: [
+      "Nửa đường tròn đơn vị: tâm $O(0;0)$, bán kính $R = 1$ nằm trên nửa mặt phẳng $y \\ge 0$. Điểm $M(x_0; y_0)$ ứng với góc $\\alpha$ có $\\cos\\alpha = x_0$ (trục hoành) và $\\sin\\alpha = y_0$ (trục tung).",
+      "Dấu lượng giác: $\\sin\\alpha \\ge 0$ với mọi $\\alpha \\in [0^\\circ; 180^\\circ]$. Góc nhọn $\\implies \\cos, \\tan, \\cot > 0$; Góc tù $\\implies \\cos, \\tan, \\cot < 0$.",
+      "Góc bù ('Sin bù'): $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, còn côsin, tang, côtang đổi dấu âm: $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$, $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$.",
+      "Góc phụ ('Phụ chéo'): $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$, $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$.",
+      "Bộ 4 hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$; $1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$ ($\\alpha \\ne 90^\\circ$); $1 + \\cot^2\\alpha = \\frac{1}{\\sin^2\\alpha}$; $\\tan\\alpha \\cdot \\cot\\alpha = 1$.",
+      "Kĩ thuật đồng bậc: Khi biết $\\tan\\alpha = k$, tính phân thức đồng bậc bằng cách chia cả tử và mẫu cho $\\cos\\alpha$."
+    ],
+    commonMistakes: [
+      {
+        mistake: "Quên dấu trừ khi tính côsin, tang của góc tù (ví dụ: viết nhầm $\\cos 120^\\circ = \\frac{1}{2}$).",
+        fix: "Góc tù có điểm $M$ nằm bên trái trục $Oy$ ($x_0 < 0$) nên $\\cos, \\tan, \\cot$ LUÔN MANG DẤU ÂM: $\\cos 120^\\circ = -\\cos 60^\\circ = -\\frac{1}{2}$."
+      },
+      {
+        mistake: "Khai căn $\\cos\\alpha = \\sqrt{1 - \\sin^2\\alpha}$ mà quên xét trường hợp dấu âm của góc tù.",
+        fix: "$\\cos^2\\alpha = 1 - \\sin^2\\alpha \\implies \\cos\\alpha = \\pm\\sqrt{1 - \\sin^2\\alpha}$. Phải kiểm tra đề bài: nếu $\\alpha$ là góc nhọn thì lấy dấu $+$, nếu $\\alpha$ là góc tù thì BẮT BUỘC lấy dấu $-$."
+      },
+      {
+        mistake: "Để máy tính cầm tay ở chế độ Radian (chữ R) khi tính toán các góc đo bằng độ.",
+        fix: "Luôn kiểm tra màn hình máy tính có chữ D (Degree). Thao tác cài đặt: `SHIFT` $\\to$ `MENU` $\\to$ `2 (Angle Unit)` $\\to$ `1 (Degree)`."
+      }
+    ],
+    tips: [
+      "Câu thần chú 4 từ: 'SIN BÙ — PHỤ CHÉO' (Góc bù nhau chỉ có sin bằng nhau; Góc phụ nhau sin thành cos, tan thành cot).",
+      "Mẹo nhẩm góc đặc biệt: Quy luật tử số căn thức của sin: $0, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ \\to \\frac{\\sqrt{0}}{2}, \\frac{\\sqrt{1}}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}, \\frac{\\sqrt{4}}{2}$.",
+      "Triệt tiêu tổng góc bù: $\\cos\\alpha + \\cos(180^\\circ - \\alpha) = 0$. Khi gặp dãy tổng côsin có các góc bù nhau, ghép cặp triệt tiêu ngay về 0."
+    ],
+    flashcards: [
+      {
+        front: "Trên nửa đường tròn đơn vị, toạ độ điểm $M(x_0; y_0)$ biểu thị giá trị lượng giác nào?",
+        back: "Hoành độ $x_0 = \\cos\\alpha$, Tung độ $y_0 = \\sin\\alpha$."
+      },
+      {
+        front: "Trong khoảng $0^\\circ \\le \\alpha \\le 180^\\circ$, giá trị $\\sin\\alpha$ có bao giờ nhận giá trị âm không?",
+        back: "Không bao giờ! $\\sin\\alpha \\ge 0$ với mọi $\\alpha \\in [0^\\circ; 180^\\circ]$ (do nửa đường tròn nằm trên trục hoành $y \\ge 0$)."
+      },
+      {
+        front: "Khi $\\alpha$ là góc tù ($90^\\circ < \\alpha < 180^\\circ$), dấu của $\\cos\\alpha, \\tan\\alpha, \\cot\\alpha$ là gì?",
+        back: "Cả ba giá trị này đều mang dấu ÂM ($< 0$)."
+      },
+      {
+        front: "Phát biểu công thức 'Sin bù' đối với $\\sin(180^\\circ - \\alpha)$ và $\\cos(180^\\circ - \\alpha)$?",
+        back: "$\\sin(180^\\circ - \\alpha) = \\sin\\alpha$ và $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$."
+      },
+      {
+        front: "Hệ thức lượng giác nào liên hệ giữa $\\sin\\alpha$ và $\\cos\\alpha$?",
+        back: "$\\sin^2\\alpha + \\cos^2\\alpha = 1$."
+      },
+      {
+        front: "Hệ thức lượng giác nào liên hệ giữa $\\tan\\alpha$ và $\\cos\\alpha$?",
+        back: "$1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$ (với $\\alpha \\ne 90^\\circ$)."
+      },
+      {
+        front: "Giá trị của $\\tan 90^\\circ$ bằng bao nhiêu?",
+        back: "Không xác định (vì $\\cos 90^\\circ = 0$, phép chia cho 0 không có nghĩa)."
+      },
+      {
+        front: "Hai góc bù nhau có tổng côsin bằng bao nhiêu?",
+        back: "$\\cos\\alpha + \\cos(180^\\circ - \\alpha) = \\cos\\alpha - \\cos\\alpha = 0$."
+      }
+    ],
+    checklist: [
+      "Tôi hiểu rõ bản chất hình học của sin và cos qua toạ độ trên nửa đường tròn đơn vị.",
+      "Tôi xác định chính xác dấu của 4 hàm lượng giác đối với góc nhọn và góc tù.",
+      "Tôi thuộc làu các công thức góc bù 'Sin bù' và góc phụ 'Phụ chéo'.",
+      "Tôi thành thạo bộ 4 hệ thức lượng giác cơ bản để tính toán các giá trị còn lại.",
+      "Tôi biết bấm máy tính Casio chính xác ở chế độ Độ (Degree) và tránh bẫy dấu âm."
+    ],
+    mindmap: [
+      {
+        id: "mm-b5-1",
+        title: "1. Nửa đường tròn đơn vị",
+        emoji: "🎯",
+        description: "Định nghĩa giải tích của góc lượng giác",
+        formula: "$M(x_0; y_0) \\implies x_0 = \\cos\\alpha, y_0 = \\sin\\alpha$",
+        children: [
+          {
+            title: "Trục toạ độ",
+            detail: "Trục hoành $Ox$ là trục côsin; Trục tung $Oy$ là trục sin."
+          },
+          {
+            title: "Quy tắc dấu",
+            detail: "Nhọn: tất cả $> 0$. Tù: chỉ $\\sin > 0$, còn $\\cos, \\tan, \\cot < 0$."
+          }
+        ]
+      },
+      {
+        id: "mm-b5-2",
+        title: "2. Góc bù & Góc phụ",
+        emoji: "🔄",
+        description: "Quan hệ đối xứng trên đường tròn",
+        formula: "$\\sin(180^\\circ - \\alpha) = \\sin\\alpha; \\cos(180^\\circ - \\alpha) = -\\cos\\alpha$",
+        children: [
+          {
+            title: "Sin bù",
+            detail: "Hai góc bù nhau có sin bằng nhau, ba giá trị còn lại đối dấu."
+          },
+          {
+            title: "Phụ chéo",
+            detail: "$\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$."
+          }
+        ]
+      },
+      {
+        id: "mm-b5-3",
+        title: "3. Bộ 4 Hệ thức cơ bản",
+        emoji: "⚡",
+        description: "Công cụ chuyển đổi giá trị lượng giác",
+        formula: "$\\sin^2\\alpha + \\cos^2\\alpha = 1; 1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$",
+        children: [
+          {
+            title: "Định lí Pythagore",
+            detail: "$\\sin^2\\alpha + \\cos^2\\alpha = 1$, chú ý dấu khi khai căn tìm cos."
+          },
+          {
+            title: "Nghịch đảo",
+            detail: "$\\tan\\alpha \\cdot \\cot\\alpha = 1$ khi các biểu thức xác định."
+          }
+        ]
+      },
+      {
+        id: "mm-b5-4",
+        title: "4. Kĩ thuật tính toán & Casio",
+        emoji: "💻",
+        description: "Giải nhanh đề thi trắc nghiệm",
+        children: [
+          {
+            title: "Đồng bậc",
+            detail: "Biết $\\tan\\alpha$, chia cả tử và mẫu cho $\\cos\\alpha$ để tính nhanh."
+          },
+          {
+            title: "Cài đặt Casio",
+            detail: "Cài chế độ D (Degree), bấm `SHIFT sin/cos/tan` để tìm góc."
+          }
+        ]
+      }
+    ]
+  },
+
   "bai-06": {
     summary: "Định lí côsin, định lí sin, các công thức tính diện tích tam giác và giải tam giác.",
     keyPoints: [

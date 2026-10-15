@@ -55,7 +55,7 @@ export type TheoryBlock =
       right: { title: string; emoji: string; items: string[] };
     }
   | { kind: "steps"; items: { label: string; title: string; text: string }[] }
-  | { kind: "figure"; diagram: string; caption: string }
+  | { kind: "figure"; diagram?: string; svg?: string; caption?: string; title?: string }
   | { kind: "code"; code: string; caption?: string; preview?: boolean; tall?: boolean }
   | { kind: "example"; title: string; text: string; solution?: string }
   | { kind: "note"; text: string }

@@ -1149,6 +1149,360 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
     ]
   },
 
+  "bai-05": {
+    intro: "Giá trị lượng giác của một góc từ $0^\\circ$ đến $180^\\circ$ là bước ngoặt mở rộng tư duy hình học: từ tỉ số độ dài tam giác vuông lớp 9 sang hệ toạ độ giải tích trên nửa đường tròn đơn vị. Nắm vững bản chất toạ độ điểm $M(x_0; y_0)$ giúp em thành thạo dấu các hàm số lượng giác, nhớ chuẩn các công thức góc bù 'Sin bù', góc phụ 'Phụ chéo' và bộ 4 hệ thức lượng giác cơ bản làm tiền đề giải tam giác và vectơ.",
+    minutes: 12,
+    sections: [
+      {
+        id: "sec-1",
+        emoji: "🎯",
+        heading: "1. Nửa đường tròn đơn vị & Định nghĩa 4 giá trị lượng giác",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong mặt phẳng toạ độ $Oxy$, nửa đường tròn tâm $O$, bán kính $R = 1$ nằm phía trên trục hoành ($y \\ge 0$) được gọi là **nửa đường tròn đơn vị**. Với mỗi góc $\\alpha$ ($0^\\circ \\le \\alpha \\le 180^\\circ$), ta xác định duy nhất điểm $M(x_0; y_0)$ trên nửa đường tròn sao cho $\\widehat{xOM} = \\alpha$."
+          },
+          {
+            kind: "figure",
+            title: "Định nghĩa Giá trị lượng giác trên Nửa đường tròn đơn vị",
+            svg: `<svg viewBox="0 0 480 260" width="100%" height="250" class="max-w-[460px] mx-auto select-none"><defs><linearGradient id="scG" x1="0" y1="0" x2="1" y2="0"><stop offset="0%" stop-color="#38bdf8"/><stop offset="50%" stop-color="#818cf8"/><stop offset="100%" stop-color="#f43f5e"/></linearGradient><linearGradient id="scF" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="rgba(56, 189, 248, 0.15)"/><stop offset="100%" stop-color="rgba(56, 189, 248, 0)"/></linearGradient></defs><line x1="30" y1="210" x2="450" y2="210" stroke="#64748b" stroke-width="2"/><polygon points="450,206 458,210 450,214" fill="#94a3b8"/><text x="445" y="198" fill="#94a3b8" font-size="12" font-family="monospace" font-weight="bold">x (cosin)</text><line x1="240" y1="240" x2="240" y2="25" stroke="#64748b" stroke-width="2"/><polygon points="236,25 240,17 244,25" fill="#f43f5e"/><text x="246" y="24" fill="#f43f5e" font-size="12" font-family="monospace" font-weight="bold">y (sin)</text><text x="226" y="226" fill="#cbd5e1" font-size="13" font-family="monospace" font-weight="bold">O</text><path d="M 80 210 A 160 160 0 0 1 400 210 Z" fill="url(#scF)"/><path d="M 80 210 A 160 160 0 0 1 400 210" fill="none" stroke="url(#scG)" stroke-width="3"/><circle cx="80" cy="210" r="3.5" fill="#f1f5f9"/><text x="68" y="228" fill="#94a3b8" font-size="12" font-family="monospace">-1</text><circle cx="400" cy="210" r="3.5" fill="#f1f5f9"/><text x="396" y="228" fill="#94a3b8" font-size="12" font-family="monospace">1</text><circle cx="240" cy="50" r="3.5" fill="#f1f5f9"/><text x="248" y="55" fill="#94a3b8" font-size="12" font-family="monospace">1</text><line x1="240" y1="210" x2="336" y2="82" stroke="#38bdf8" stroke-width="2.5"/><path d="M 285 210 A 45 45 0 0 0 268 174" fill="none" stroke="#fbbf24" stroke-width="2"/><text x="282" y="195" fill="#fbbf24" font-size="14" font-family="monospace" font-weight="bold">α</text><line x1="336" y1="82" x2="336" y2="210" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="336" y1="82" x2="240" y2="82" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="240" y1="210" x2="336" y2="210" stroke="#38bdf8" stroke-width="4"/><text x="288" y="228" fill="#38bdf8" font-size="12" font-family="monospace" font-weight="bold">x₀ = cos α</text><line x1="240" y1="210" x2="240" y2="82" stroke="#10b981" stroke-width="4"/><text x="160" y="150" fill="#10b981" font-size="12" font-family="monospace" font-weight="bold">y₀ = sin α</text><circle cx="336" cy="82" r="6" fill="#fbbf24" stroke="#ffffff" stroke-width="2"/><text x="344" y="78" fill="#fbbf24" font-size="13" font-family="monospace" font-weight="bold">M(x₀; y₀)</text></svg>`,
+            caption: "Hình 5.1: Điểm M(x₀; y₀) trên nửa đường tròn đơn vị: Tung độ là sin α, Hoành độ là cos α."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "📈",
+                title: "sin α = y₀ (Tung độ)",
+                text: "Là tung độ của điểm $M$. Trên nửa đường tròn đơn vị ($y \\ge 0$), $\\sin\\alpha$ LUÔN KHÔNG ÂM ($0 \\le \\sin\\alpha \\le 1$)."
+              },
+              {
+                emoji: "📉",
+                title: "cos α = x₀ (Hoành độ)",
+                text: "Là hoành độ của điểm $M$. Dương khi nhọn ($x_0 > 0$), bằng 0 khi vuông ($x_0 = 0$), âm khi tù ($x_0 < 0$)."
+              },
+              {
+                emoji: "📐",
+                title: "tan α = y₀ / x₀",
+                text: "$\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$. Chỉ xác định khi $\\alpha \\ne 90^\\circ$ (vì tại $90^\\circ$ hoành độ $x_0 = 0$, chia cho 0)."
+              },
+              {
+                emoji: "📊",
+                title: "cot α = x₀ / y₀",
+                text: "$\\cot\\alpha = \\frac{\\cos\\alpha}{\\sin\\alpha}$. Chỉ xác định khi $\\alpha \\ne 0^\\circ, 180^\\circ$ (vì tại $0^\\circ, 180^\\circ$ tung độ $y_0 = 0$)."
+              }
+            ]
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Góc nhọn (0° < α < 90°)",
+              emoji: "🔷",
+              items: [
+                "Điểm $M$ thuộc góc phần tư thứ I ($x_0 > 0, y_0 > 0$).",
+                "TẤT CẢ các giá trị lượng giác ĐỀU DƯƠNG ($> 0$).",
+                "$\\sin\\alpha > 0, \\cos\\alpha > 0, \\tan\\alpha > 0, \\cot\\alpha > 0$."
+              ]
+            },
+            right: {
+              title: "Góc tù (90° < α < 180°)",
+              emoji: "🔶",
+              items: [
+                "Điểm $M$ thuộc góc phần tư thứ II ($x_0 < 0, y_0 > 0$).",
+                "CHỈ CÓ $\\sin\\alpha > 0$ (tung độ dương).",
+                "Ba giá trị còn lại MANG DẤU ÂM: $\\cos\\alpha < 0, \\tan\\alpha < 0, \\cot\\alpha < 0$."
+              ]
+            }
+          },
+          {
+            kind: "note",
+            text: "📌 **QUY TẮC CẦN KHẮC SÂU**:\n• Trục hoành $Ox$ là **trục côsin**, trục tung $Oy$ là **trục sin**.\n• Trong khoảng từ $0^\\circ$ đến $180^\\circ$, $\\sin\\alpha$ KHÔNG BAO GIỜ ÂM ($0 \\le \\sin\\alpha \\le 1$).\n• Nếu $\\cos\\alpha < 0$ thì chắc chắn $\\alpha$ là góc tù ($90^\\circ < \\alpha < 180^\\circ$)."
+          },
+          {
+            kind: "check",
+            q: "Cho góc tù $\\alpha$ thoả mãn $90^\\circ < \\alpha < 180^\\circ$. Khẳng định nào sau đây là SAI?",
+            options: [
+              "$\\sin \\alpha > 0$",
+              "$\\cos \\alpha < 0$",
+              "$\\tan \\alpha > 0$",
+              "$\\cot \\alpha < 0$"
+            ],
+            answer: 2,
+            explain: "Vì $\\alpha$ là góc tù nên $x_0 < 0$ và $y_0 > 0$. Do đó $\\sin\\alpha = y_0 > 0$ và $\\cos\\alpha = x_0 < 0$. Suy ra $\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha} < 0$. Do đó khẳng định $\\tan\\alpha > 0$ là sai."
+          }
+        ]
+      },
+
+      {
+        id: "sec-2",
+        emoji: "🔄",
+        heading: "2. Bí kíp ghi nhớ 'Sin bù — Phụ chéo' & Góc đối xứng",
+        blocks: [
+          {
+            kind: "text",
+            text: "Khi lấy điểm $M'$ đối xứng với $M(x_0; y_0)$ qua trục tung $Oy$, ta thu được góc bù $\\widehat{xOM'} = 180^\\circ - \\alpha$. Do đối xứng qua trục tung nên tung độ bằng nhau ($y_{M'} = y_M$) và hoành độ đối nhau ($x_{M'} = -x_M$)."
+          },
+          {
+            kind: "figure",
+            title: "Mối liên hệ giữa hai góc bù nhau α và 180° - α",
+            svg: `<svg viewBox="0 0 480 250" width="100%" height="240" class="max-w-[460px] mx-auto select-none"><line x1="30" y1="205" x2="450" y2="205" stroke="#64748b" stroke-width="2"/><polygon points="450,201 458,205 450,209" fill="#94a3b8"/><line x1="240" y1="235" x2="240" y2="25" stroke="#64748b" stroke-width="2"/><polygon points="236,25 240,17 244,25" fill="#f43f5e"/><text x="224" y="222" fill="#cbd5e1" font-size="13" font-family="monospace">O</text><text x="445" y="194" fill="#94a3b8" font-size="12" font-family="monospace">x</text><text x="246" y="24" fill="#f43f5e" font-size="12" font-family="monospace">y</text><path d="M 90 205 A 150 150 0 0 1 390 205" fill="none" stroke="#38bdf8" stroke-width="2.5"/><line x1="240" y1="205" x2="355" y2="108" stroke="#38bdf8" stroke-width="2"/><circle cx="355" cy="108" r="5.5" fill="#38bdf8"/><text x="362" y="105" fill="#38bdf8" font-size="12" font-family="monospace" font-weight="bold">M(x₀; y₀)</text><line x1="240" y1="205" x2="125" y2="108" stroke="#f43f5e" stroke-width="2"/><circle cx="125" cy="108" r="5.5" fill="#f43f5e"/><text x="45" y="105" fill="#f43f5e" font-size="12" font-family="monospace" font-weight="bold">M'(-x₀; y₀)</text><line x1="125" y1="108" x2="355" y2="108" stroke="#fbbf24" stroke-width="1.8" stroke-dasharray="4 3"/><text x="244" y="100" fill="#fbbf24" font-size="11" font-family="monospace" font-weight="bold" text-anchor="middle">Cùng tung độ y₀ (sin bù bằng nhau)</text><path d="M 280 205 A 40 40 0 0 0 269 175" fill="none" stroke="#38bdf8" stroke-width="2"/><text x="285" y="195" fill="#38bdf8" font-size="12">α</text><path d="M 295 205 A 55 55 0 0 0 205 168" fill="none" stroke="#f43f5e" stroke-width="2"/><text x="175" y="155" fill="#f43f5e" font-size="12">180° - α</text></svg>`,
+            caption: "Hình 5.2: Hai góc bù nhau α và 180° - α đối xứng qua trục Oy: Sin bằng nhau, Cosin đối nhau."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "🌟",
+                title: "Thần chú 'SIN BÙ'",
+                text: "• $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$\n• $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$\n• $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$\n• $\\cot(180^\\circ - \\alpha) = -\\cot\\alpha$"
+              },
+              {
+                emoji: "⚡",
+                title: "Thần chú 'PHỤ CHÉO'",
+                text: "• $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$\n• $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$\n• $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$\n• $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$"
+              },
+              {
+                emoji: "🎯",
+                title: "Tuyệt chiêu triệt tiêu tổng",
+                text: "Nếu hai góc bù nhau ($A + B = 180^\\circ$) thì:\n$\\cos A + \\cos B = 0$\n$\\tan A + \\tan B = 0$\n$\\sin A - \\sin B = 0$"
+              },
+              {
+                emoji: "🔄",
+                title: "Chuyển góc tù về góc nhọn",
+                text: "• $\\sin 150^\\circ = \\sin 30^\\circ = \\frac{1}{2}$\n• $\\cos 135^\\circ = -\\cos 45^\\circ = -\\frac{\\sqrt{2}}{2}$\n• $\\tan 120^\\circ = -\\tan 60^\\circ = -\\sqrt{3}$"
+              }
+            ]
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Phát hiện cặp góc bù nhau (tổng bằng 180°)",
+                text: "Quan sát các số đo góc trong biểu thức để nhóm thành các cặp có tổng bằng $180^\\circ$, ví dụ: $(10^\\circ; 170^\\circ)$, $(20^\\circ; 160^\\circ)$, $(40^\\circ; 140^\\circ)$."
+              },
+              {
+                label: "Bước 2",
+                title: "Áp dụng công thức đổi dấu",
+                text: "Thay $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$, $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$ để xuất hiện các số hạng đối nhau."
+              },
+              {
+                label: "Bước 3",
+                title: "Cộng triệt tiêu kết quả",
+                text: "Các cặp số hạng đối nhau triệt tiêu về 0, giúp biểu thức phức tạp rút gọn ngay trong vài giây."
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Giá trị của biểu thức $S = \\cos 10^\\circ + \\cos 20^\\circ + \\cos 160^\\circ + \\cos 170^\\circ$ bằng:",
+            options: [
+              "$0$",
+              "$1$",
+              "$-1$",
+              "$2$"
+            ],
+            answer: 0,
+            explain: "Nhóm các cặp góc bù nhau: $\\cos 170^\\circ = \\cos(180^\\circ - 10^\\circ) = -\\cos 10^\\circ$ và $\\cos 160^\\circ = \\cos(180^\\circ - 20^\\circ) = -\\cos 20^\\circ$. Biểu thức $S = (\\cos 10^\\circ - \\cos 10^\\circ) + (\\cos 20^\\circ - \\cos 20^\\circ) = 0$."
+          }
+        ]
+      },
+
+      {
+        id: "sec-3",
+        emoji: "⚡",
+        heading: "3. Bộ 4 Hệ thức lượng giác cơ bản & Kĩ thuật giải toán",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trong tam giác vuông hình chiếu $OHM$, áp dụng định lí Pythagore ta có $OH^2 + HM^2 = OM^2 \\iff x_0^2 + y_0^2 = 1^2$, từ đó sinh ra hệ thức lượng giác kinh điển: $\\sin^2\\alpha + \\cos^2\\alpha = 1$."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "1️⃣",
+                title: "sin² α + cos² α = 1",
+                text: "Hệ thức vàng liên hệ sin và cos. Suy ra $\\sin\\alpha = \\sqrt{1 - \\cos^2\\alpha}$ (vì $\\sin \\ge 0$) và $\\cos\\alpha = \\pm\\sqrt{1 - \\sin^2\\alpha}$."
+              },
+              {
+                emoji: "2️⃣",
+                title: "1 + tan² α = 1 / cos² α",
+                text: "Liên hệ giữa tan và cos (xác định khi $\\alpha \\ne 90^\\circ$). Dùng để tính $\\cos\\alpha$ khi đề bài cho trước $\\tan\\alpha$."
+              },
+              {
+                emoji: "3️⃣",
+                title: "1 + cot² α = 1 / sin² α",
+                text: "Liên hệ giữa cot và sin (xác định khi $0^\\circ < \\alpha < 180^\\circ$). Dùng để tính $\\sin\\alpha$ khi biết $\\cot\\alpha$."
+              },
+              {
+                emoji: "4️⃣",
+                title: "tan α · cot α = 1",
+                text: "Tang và côtang là hai đại lượng nghịch đảo của nhau. Biết $\\tan\\alpha = m \\implies \\cot\\alpha = \\frac{1}{m}$."
+              }
+            ]
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Tính cos² α từ sin α (hoặc ngược lại)",
+                text: "Áp dụng $\\cos^2\\alpha = 1 - \\sin^2\\alpha$ để tìm giá trị bình phương."
+              },
+              {
+                label: "Bước 2",
+                title: "Xác định dấu khi khai căn",
+                text: "Kiểm tra giả thiết góc $\\alpha$ là nhọn hay tù:\\n• Nếu $\\alpha$ nhọn: lấy $\\cos\\alpha = +\\sqrt{1 - \\sin^2\\alpha}$.\\n• Nếu $\\alpha$ tù: BẮT BUỘC lấy $\\cos\\alpha = -\\sqrt{1 - \\sin^2\\alpha}$."
+              },
+              {
+                label: "Bước 3",
+                title: "Tính tan α và cot α",
+                text: "Tính $\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$ và $\\cot\\alpha = \\frac{1}{\\tan\\alpha}$."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "💡 **KĨ THUẬT ĐỒNG BẬC GIẢI NHANH 15 GIÂY**:\nKhi đề bài cho $\\tan\\alpha = k$ và yêu cầu tính biểu thức phân thức bậc nhất cùng bậc như $P = \\frac{a\\sin\\alpha + b\\cos\\alpha}{c\\sin\\alpha + d\\cos\\alpha}$, hãy **chia cả tử và mẫu cho $\\cos\\alpha$** để được:\n$$P = \\frac{a\\tan\\alpha + b}{c\\tan\\alpha + d}$$\nThay ngay $k$ vào bấm máy tính mà không cần phải đi tìm riêng $\\sin\\alpha$ hay $\\cos\\alpha$!"
+          },
+          {
+            kind: "check",
+            q: "Cho góc $\\alpha$ thoả mãn $\\tan\\alpha = 3$. Giá trị của biểu thức $P = \\frac{2\\sin\\alpha + \\cos\\alpha}{\\sin\\alpha - \\cos\\alpha}$ bằng:",
+            options: [
+              "$\\frac{7}{2}$",
+              "$2$",
+              "$5$",
+              "$\\frac{5}{2}$"
+            ],
+            answer: 0,
+            explain: "Chia cả tử và mẫu cho $\\cos\\alpha$: $P = \\frac{2\\tan\\alpha + 1}{\\tan\\alpha - 1} = \\frac{2(3) + 1}{3 - 1} = \\frac{7}{2}$."
+          }
+        ]
+      },
+
+      {
+        id: "sec-4",
+        emoji: "🧭",
+        heading: "4. Bản đồ hoa tiêu góc đặc biệt & Mẹo nhẩm nhanh thần tốc",
+        blocks: [
+          {
+            kind: "text",
+            text: "Các góc đặc biệt $0^\\circ, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ, 120^\\circ, 135^\\circ, 150^\\circ, 180^\\circ$ xuất hiện liên tục trong các bài toán tam giác và đề thi trắc nghiệm. Nắm vững bản đồ toạ độ giúp em nhẩm nhanh kết quả mà không cần phụ thuộc hoàn toàn vào máy tính."
+          },
+          {
+            kind: "figure",
+            title: "Bản đồ Hoa tiêu 9 Góc lượng giác đặc biệt (0° đến 180°)",
+            svg: `<svg viewBox="0 0 500 270" width="100%" height="260" class="max-w-[480px] mx-auto select-none"><line x1="30" y1="215" x2="470" y2="215" stroke="#64748b" stroke-width="2"/><line x1="250" y1="245" x2="250" y2="25" stroke="#64748b" stroke-width="2"/><text x="465" y="210" fill="#94a3b8" font-size="12" font-family="monospace">x</text><text x="256" y="25" fill="#f43f5e" font-size="12" font-family="monospace">y</text><text x="234" y="232" fill="#cbd5e1" font-size="13" font-family="monospace">O</text><path d="M 80 215 A 170 170 0 0 1 420 215" fill="none" stroke="#38bdf8" stroke-width="2.5"/><circle cx="420" cy="215" r="4" fill="#38bdf8"/><text x="424" y="232" fill="#38bdf8" font-size="11" font-family="monospace">0° (1; 0)</text><circle cx="397" cy="130" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="397" y2="130" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="404" y="132" fill="#38bdf8" font-size="11" font-family="monospace">30° (√3/2; 1/2)</text><circle cx="370" cy="95" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="370" y2="95" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="376" y="93" fill="#38bdf8" font-size="11" font-family="monospace">45° (√2/2; √2/2)</text><circle cx="335" cy="68" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="335" y2="68" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="338" y="62" fill="#38bdf8" font-size="11" font-family="monospace">60° (1/2; √3/2)</text><circle cx="250" cy="45" r="4.5" fill="#fbbf24"/><text x="256" y="48" fill="#fbbf24" font-size="11" font-family="monospace">90° (0; 1)</text><circle cx="165" cy="68" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="165" y2="68" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="50" y="62" fill="#f43f5e" font-size="11" font-family="monospace">120° (-1/2; √3/2)</text><circle cx="130" cy="95" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="130" y2="95" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="10" y="93" fill="#f43f5e" font-size="11" font-family="monospace">135° (-√2/2; √2/2)</text><circle cx="103" cy="130" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="103" y2="130" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="2" y="132" fill="#f43f5e" font-size="11" font-family="monospace">150° (-√3/2; 1/2)</text><circle cx="80" cy="215" r="4" fill="#f43f5e"/><text x="8" y="232" fill="#f43f5e" font-size="11" font-family="monospace">180° (-1; 0)</text></svg>`,
+            caption: "Hình 5.3: Bản đồ toạ độ M(x₀; y₀) của 9 góc đặc biệt. Chú ý tính đối xứng hoàn hảo qua trục tung!"
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "🖐️",
+                title: "Mẹo quy luật căn thức sin",
+                text: "Xét các góc $0^\\circ, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ$:\n$\\sin = \\frac{\\sqrt{0}}{2}, \\frac{\\sqrt{1}}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}, \\frac{\\sqrt{4}}{2}$\n(tức $0, \\frac{1}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}, 1$)."
+              },
+              {
+                emoji: "🔄",
+                title: "Mẹo đọc ngược cosin",
+                text: "Cosin đọc ngược lại thứ tự của sin:\n$\\cos = \\frac{\\sqrt{4}}{2}, \\frac{\\sqrt{3}}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{1}}{2}, \\frac{\\sqrt{0}}{2}$\n(tức $1, \\frac{\\sqrt{3}}{2}, \\frac{\\sqrt{2}}{2}, \\frac{1}{2}, 0$)."
+              },
+              {
+                emoji: "🎯",
+                title: "Góc tù lấy đối xứng đổi dấu cos",
+                text: "• $120^\\circ$ bù $60^\\circ \\implies \\cos 120^\\circ = -\\frac{1}{2}$\n• $135^\\circ$ bù $45^\\circ \\implies \\cos 135^\\circ = -\\frac{\\sqrt{2}}{2}$\n• $150^\\circ$ bù $30^\\circ \\implies \\cos 150^\\circ = -\\frac{\\sqrt{3}}{2}$"
+              },
+              {
+                emoji: "🚫",
+                title: "Hai vị trí không xác định",
+                text: "• $\\tan 90^\\circ$: không xác định (mẫu $\\cos 90^\\circ = 0$).\n• $\\cot 0^\\circ, \\cot 180^\\circ$: không xác định (mẫu $\\sin = 0$)."
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Giá trị của biểu thức $A = 2\\sin 30^\\circ - 4\\cos 60^\\circ + 3\\tan 45^\\circ$ bằng:",
+            options: [
+              "$2$",
+              "$1$",
+              "$0$",
+              "$3$"
+            ],
+            answer: 0,
+            explain: "Thay các giá trị đặc biệt: $\\sin 30^\\circ = \\frac{1}{2}$, $\\cos 60^\\circ = \\frac{1}{2}$, $\\tan 45^\\circ = 1$. Ta có: $A = 2\\left(\\frac{1}{2}\\right) - 4\\left(\\frac{1}{2}\\right) + 3(1) = 1 - 2 + 3 = 2$."
+          }
+        ]
+      },
+
+      {
+        id: "sec-5",
+        emoji: "💻",
+        heading: "5. Tuyệt kĩ bấm máy tính Casio & 4 Cạm bẫy thi trắc nghiệm",
+        blocks: [
+          {
+            kind: "text",
+            text: "Máy tính cầm tay là trợ thủ đắc lực trong phòng thi, tuy nhiên học sinh rất dễ mất điểm oan nếu không nắm vững quy tắc đổi đơn vị đo và dấu của nghiệm góc tù."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "⚙️",
+                title: "1. Đặt chế độ Degree (Độ)",
+                text: "Màn hình phải có chữ **D**. Bấm `SHIFT` $\\to$ `MENU` $\\to$ `2` (Angle Unit) $\\to$ `1` (Degree). Tuyệt đối không để chữ **R** (Radian)!"
+              },
+              {
+                emoji: "⌨️",
+                title: "2. Cách bấm tính cotang",
+                text: "Máy tính Casio 580 / 880 không có phím $\\cot$. Muốn tính $\\cot 150^\\circ$, ta bấm `1 ÷ tan(150)` $\\to$ ra kết quả $-\\sqrt{3}$."
+              },
+              {
+                emoji: "🔍",
+                title: "3. Tìm góc khi biết giá trị",
+                text: "• $\\cos\\alpha = -0,5$: bấm `SHIFT cos (-0.5)` $\\to$ ra ngay $120^\\circ$.\\n• $\\sin\\alpha = 0,5$: bấm `SHIFT sin (0.5)` $\\to$ ra $30^\\circ$, nhớ góc tù bù là $180^\\circ - 30^\\circ = 150^\\circ$!"
+              },
+              {
+                emoji: "💾",
+                title: "4. Lưu biến chống sai số",
+                text: "Khi kết quả là số lẻ, bấm `STO` $\\to$ `A` để lưu vào bộ nhớ, sau đó thực hiện các phép toán tiếp theo với biến `A`."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "🚨 **4 CẠM BẪY THI TRẮC NGHIỆM THƯỜNG GẶP NHẤT**:\n1. **Quên đổi sang chữ D (Degree)**: Máy ở chế độ Radian sẽ ra kết quả sai lệch hoàn toàn.\n2. **Khai căn quên dấu âm của góc tù**: Khi $\\alpha$ là góc tù ($90^\\circ < \\alpha < 180^\\circ$), $\\cos\\alpha = -\\sqrt{1 - \\sin^2\\alpha}$ mang dấu âm! Nếu lấy dấu dương là sai ngay.\n3. **Phương trình $\\sin\\alpha = c$ luôn có 2 nghiệm**: Trong $[0^\\circ; 180^\\circ]$, với mỗi số $0 < c < 1$, luôn có HAI góc bù nhau thoả mãn (một góc nhọn $\\alpha$ và một góc tù $180^\\circ - \\alpha$)!\n4. **Nhầm lẫn giữa bù và phụ**: 'Sin bù' (sin bằng nhau, cos đối); 'Phụ chéo' (sin góc này bằng cos góc kia)."
+          },
+          {
+            kind: "check",
+            q: "Biết $\\cos \\alpha = -\\frac{1}{2}$ với $0^\\circ \\le \\alpha \\le 180^\\circ$. Số đo của góc $\\alpha$ là:",
+            options: [
+              "$60^\\circ$",
+              "$120^\\circ$",
+              "$150^\\circ$",
+              "$30^\\circ$"
+            ],
+            answer: 1,
+            explain: "Vì $\\cos\\alpha = -\\frac{1}{2} < 0$ nên $\\alpha$ là góc tù. Ta có $\\cos 60^\\circ = \\frac{1}{2} \\implies \\cos(180^\\circ - 60^\\circ) = -\\cos 60^\\circ = -\\frac{1}{2}$. Vậy $\\alpha = 120^\\circ$. Thao tác máy tính: bấm `SHIFT cos (-0.5) =` hiển thị ngay $120^\\circ$."
+          }
+        ]
+      }
+    ],
+    summary: [
+      "1. Nửa đường tròn đơn vị: Với mỗi góc $0^\\circ \\le \\alpha \\le 180^\\circ$, điểm $M(x_0; y_0)$ có hoành độ là $\\cos\\alpha = x_0$ và tung độ là $\\sin\\alpha = y_0$.",
+      "2. Quy tắc dấu: $\\sin\\alpha \\ge 0$ với mọi $\\alpha \\in [0^\\circ; 180^\\circ]$. Với góc nhọn thì $\\cos, \\tan, \\cot > 0$; Với góc tù thì $\\cos, \\tan, \\cot < 0$.",
+      "3. Công thức 'Sin bù': $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, còn côsin, tang và côtang đều đổi dấu âm.",
+      "4. Công thức 'Phụ chéo': $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$, $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$.",
+      "5. Bộ 4 hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$; $1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$; $1 + \\cot^2\\alpha = \\frac{1}{\\sin^2\\alpha}$; $\\tan\\alpha \\cdot \\cot\\alpha = 1$."
+    ]
+  },
+
   "bai-06": {
     intro: "Hệ thức lượng trong tam giác mở rộng định lí Pythagore sang tam giác bất kì, cung cấp bộ công thức định lí côsin, định lí sin và 5 công thức tính diện tích kinh điển.",
     minutes: 12,

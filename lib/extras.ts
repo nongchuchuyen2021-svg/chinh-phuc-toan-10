@@ -309,6 +309,83 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     ]
   },
 
+  "bai-05": {
+    tf: [
+      {
+        id: "b5-tf1",
+        context: "Cho góc $\\alpha$ thỏa mãn $90^\\circ < \\alpha < 180^\\circ$ và $\\sin\\alpha = \\frac{3}{5}$.",
+        statements: [
+          {
+            text: "Góc $\\alpha$ là góc tù nên điểm biểu diễn $M$ của góc $\\alpha$ trên nửa đường tròn đơn vị có hoành độ âm ($x_0 < 0$).",
+            answer: true,
+            explain: "Vì $90^\\circ < \\alpha < 180^\\circ$, điểm $M$ nằm ở góc phần tư thứ II của hệ toạ độ Oxy nên hoành độ $x_0 = \\cos\\alpha < 0$."
+          },
+          {
+            text: "Giá trị của $\\cos\\alpha$ bằng $\\frac{4}{5}$.",
+            answer: false,
+            explain: "Ta có $\\cos^2\\alpha = 1 - \\sin^2\\alpha = 1 - \\frac{9}{25} = \\frac{16}{25}$. Vì $\\alpha$ là góc tù nên $\\cos\\alpha = -\\sqrt{\\frac{16}{25}} = -\\frac{4}{5}$ chứ không thể bằng dương $\\frac{4}{5}$."
+          },
+          {
+            text: "Giá trị của $\\tan\\alpha$ bằng $-\\frac{3}{4}$.",
+            answer: true,
+            explain: "$\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha} = \\frac{3/5}{-4/5} = -\\frac{3}{4}$."
+          },
+          {
+            text: "Giá trị của biểu thức $E = 2\\sin(180^\\circ - \\alpha) + 5\\cos(180^\\circ - \\alpha)$ bằng $\\frac{26}{5}$.",
+            answer: false,
+            explain: "Theo công thức hai góc bù nhau: $\\sin(180^\\circ - \\alpha) = \\sin\\alpha = \\frac{3}{5}$ và $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha = -\\left(-\\frac{4}{5}\\right) = \\frac{4}{5}$. Do đó $E = 2\\left(\\frac{3}{5}\\right) + 5\\left(\\frac{4}{5}\\right) = \\frac{6}{5} + 4 = \\frac{26}{5}$ là mệnh đề ĐÚNG."
+          }
+        ]
+      },
+      {
+        id: "b5-tf2",
+        context: "Cho hai biểu thức lượng giác: $A = \\sin^2 10^\\circ + \\sin^2 20^\\circ + ... + \\sin^2 80^\\circ + \\sin^2 90^\\circ$ và $B = \\frac{\\tan 25^\\circ \\cdot \\tan 65^\\circ}{\\cos 120^\\circ}$.",
+        statements: [
+          {
+            text: "Hai góc $25^\\circ$ và $65^\\circ$ là hai góc phụ nhau nên $\\tan 25^\\circ \\cdot \\tan 65^\\circ = 1$.",
+            answer: true,
+            explain: "Vì $25^\\circ + 65^\\circ = 90^\\circ$ nên $\\tan 65^\\circ = \\cot 25^\\circ \\implies \\tan 25^\\circ \\cdot \\cot 25^\\circ = 1$."
+          },
+          {
+            text: "Giá trị của biểu thức $B$ bằng $2$.",
+            answer: false,
+            explain: "Ta có $\\cos 120^\\circ = -\\cos 60^\\circ = -\\frac{1}{2}$. Do đó $B = \\frac{1}{-\\frac{1}{2}} = -2$."
+          },
+          {
+            text: "Trong biểu thức $A$, ta có $\\sin^2 80^\\circ = \\cos^2 10^\\circ$ và $\\sin^2 10^\\circ + \\sin^2 80^\\circ = 1$.",
+            answer: true,
+            explain: "Do $80^\\circ$ và $10^\\circ$ phụ nhau nên $\\sin 80^\\circ = \\cos 10^\\circ \\implies \\sin^2 10^\\circ + \\sin^2 80^\\circ = \\sin^2 10^\\circ + \\cos^2 10^\\circ = 1$."
+          },
+          {
+            text: "Giá trị của biểu thức $A$ bằng $5$.",
+            answer: true,
+            explain: "Ghép 4 cặp góc phụ nhau: $(\\sin^2 10^\\circ + \\sin^2 80^\\circ) + (\\sin^2 20^\\circ + \\sin^2 70^\\circ) + (\\sin^2 30^\\circ + \\sin^2 60^\\circ) + (\\sin^2 40^\\circ + \\sin^2 50^\\circ) + \\sin^2 90^\\circ = 1 + 1 + 1 + 1 + 1^2 = 5$."
+          }
+        ]
+      }
+    ],
+    essay: [
+      {
+        id: "b5-es1",
+        q: "Cho góc $\\alpha$ thoả mãn $\\tan\\alpha = -2$. Tính giá trị của biểu thức $P = \\frac{4\\sin\\alpha + 5\\cos\\alpha}{2\\sin\\alpha - 3\\cos\\alpha}$. (Kết quả viết dưới dạng phân số tối giản a/b)",
+        answer: "3/7",
+        explain: "Vì $\\tan\\alpha = -2$ xác định nên $\\cos\\alpha \\ne 0$. Chia cả tử và mẫu của $P$ cho $\\cos\\alpha$ ta được: $P = \\frac{4\\tan\\alpha + 5}{2\\tan\\alpha - 3} = \\frac{4(-2) + 5}{2(-2) - 3} = \\frac{-8 + 5}{-4 - 3} = \\frac{-3}{-7} = \\frac{3}{7}$."
+      },
+      {
+        id: "b5-es2",
+        q: "Tính giá trị số của biểu thức: $S = \\cos^2 15^\\circ + \\cos^2 35^\\circ + \\cos^2 55^\\circ + \\cos^2 75^\\circ$.",
+        answer: "2",
+        explain: "Áp dụng quan hệ góc phụ nhau: $\\cos 75^\\circ = \\sin 15^\\circ$ và $\\cos 55^\\circ = \\sin 35^\\circ$. Khi đó: $S = (\\cos^2 15^\\circ + \\sin^2 15^\\circ) + (\\cos^2 35^\\circ + \\sin^2 35^\\circ) = 1 + 1 = 2$."
+      },
+      {
+        id: "b5-es3",
+        q: "Một tàu thuỷ di chuyển từ cảng A theo hướng lệch một góc $\\alpha = 135^\\circ$ so với hướng đông. Sau khi đi được $20\\sqrt{2}\\text{ km}$, khoảng cách từ tàu đến đường kinh tuyến chạy qua cảng A (khoảng cách lùi về phía tây) bằng bao nhiêu km?",
+        answer: "20",
+        explain: "Khoảng cách từ tàu đến đường kinh tuyến chạy qua cảng A theo phương ngang là độ dài hình chiếu trên trục hoành: $d = 20\\sqrt{2} \\cdot |\\cos 135^\\circ| = 20\\sqrt{2} \\cdot \\frac{\\sqrt{2}}{2} = 20\\text{ km}$."
+      }
+    ]
+  },
+
   "bai-06": {
     tf: [
       {

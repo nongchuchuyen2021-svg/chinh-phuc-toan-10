@@ -5,6 +5,7 @@ import type { LessonTheory, TheoryBlock } from "@/lib/types";
 import { markTheoryRead } from "@/lib/progress";
 import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound";
 import MathText from "@/components/MathText";
+import TrigUnitCircleLab from "@/components/TrigUnitCircleLab";
 
 export default function TheoryViewer({
   lessonId,
@@ -62,6 +63,9 @@ export default function TheoryViewer({
           <MathText content={theory.intro} />
         </div>
       </div>
+
+      {/* Interactive Laboratory for Lesson 5 */}
+      {lessonId === "bai-05" && <TrigUnitCircleLab />}
 
       {/* Sections */}
       {theory.sections.map((sec, secIdx) => (
@@ -254,6 +258,53 @@ export default function TheoryViewer({
                         <MathText content={li} />
                       </div>
                     ))}
+                  </div>
+                )}
+
+                {/* 8. Figure / Visual Diagram */}
+                {block.kind === "figure" && (
+                  <div className="rounded-3xl border border-void-border/90 bg-void-card/90 p-5 sm:p-6 shadow-card backdrop-blur-xl space-y-3">
+                    {block.title && (
+                      <h4 className="font-display font-bold text-sm sm:text-base text-cyan-glow flex items-center gap-2">
+                        <span>📐</span>
+                        <MathText content={block.title} />
+                      </h4>
+                    )}
+                    {block.svg && (
+                      <div
+                        className="flex justify-center overflow-x-auto py-2"
+                        dangerouslySetInnerHTML={{ __html: block.svg }}
+                      />
+                    )}
+                    {block.diagram && (
+                      <div className="rounded-2xl bg-void-subtle p-4 font-mono text-xs text-star-soft overflow-x-auto whitespace-pre leading-relaxed">
+                        {block.diagram}
+                      </div>
+                    )}
+                    {block.caption && (
+                      <p className="text-xs sm:text-sm text-center text-star-mute italic">
+                        <MathText content={block.caption} />
+                      </p>
+                    )}
+                  </div>
+                )}
+
+                {/* 9. Example */}
+                {block.kind === "example" && (
+                  <div className="rounded-2xl border border-void-border bg-void-card/90 p-5 space-y-3 shadow-card">
+                    <h5 className="font-display font-bold text-sm text-amber-glow flex items-center gap-2">
+                      <span>💡</span>
+                      <MathText content={block.title} />
+                    </h5>
+                    <div className="text-xs sm:text-sm text-star-soft leading-relaxed">
+                      <MathText content={block.text} />
+                    </div>
+                    {block.solution && (
+                      <div className="mt-2 pt-2 border-t border-void-border/70 text-xs sm:text-sm text-emerald-glow/90 bg-emerald/5 p-3 rounded-xl border border-emerald/20">
+                        <strong>Lời giải: </strong>
+                        <MathText content={block.solution} />
+                      </div>
+                    )}
                   </div>
                 )}
               </div>

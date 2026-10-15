@@ -3,6 +3,7 @@ import bai01 from "@/data/questions/bai-01";
 import bai02 from "@/data/questions/bai-02";
 import bai03 from "@/data/questions/bai-03";
 import bai04 from "@/data/questions/bai-04";
+import bai05 from "@/data/questions/bai-05";
 
 // Ngân hàng câu hỏi trắc nghiệm 4 lựa chọn cho toàn bộ 27 bài học Toán 10 (Bộ sách Kết nối tri thức).
 export const QUESTION_BANK: Record<string, Question[]> = {
@@ -10,45 +11,7 @@ export const QUESTION_BANK: Record<string, Question[]> = {
   "bai-02": bai02,
   "bai-03": bai03,
   "bai-04": bai04,
-
-  "bai-05": [
-    {
-      id: "b5-q1",
-      q: "Giá trị của $\\cos 60^\\circ$ bằng:",
-      options: [
-        "$\\frac{1}{2}$",
-        "$\\frac{\\sqrt{3}}{2}$",
-        "$\\frac{\\sqrt{2}}{2}$",
-        "$1$"
-      ],
-      answer: 0,
-      explain: "Theo bảng giá trị lượng giác của các góc đặc biệt: $\\cos 60^\\circ = \\frac{1}{2}$."
-    },
-    {
-      id: "b5-q2",
-      q: "Với mọi góc $\\alpha$ thoả mãn $0^\\circ \\le \\alpha \\le 180^\\circ$, khẳng định nào sau đây là đúng?",
-      options: [
-        "$\\sin(180^\\circ - \\alpha) = -\\sin \\alpha$",
-        "$\\cos(180^\\circ - \\alpha) = -\\cos \\alpha$",
-        "$\\tan(180^\\circ - \\alpha) = \\tan \\alpha$",
-        "$\\cot(180^\\circ - \\alpha) = \\cot \\alpha$"
-      ],
-      answer: 1,
-      explain: "Hai góc bù nhau có sin bằng nhau, côsin, tang và côtang đối nhau: $\\cos(180^\\circ - \\alpha) = -\\cos \\alpha$."
-    },
-    {
-      id: "b5-q3",
-      q: "Cho góc tù $\\alpha$ thoả mãn $\\sin \\alpha = \\frac{3}{5}$. Giá trị của $\\cos \\alpha$ bằng:",
-      options: [
-        "$\\frac{4}{5}$",
-        "$-\\frac{4}{5}$",
-        "$\\frac{2}{5}$",
-        "$-\\frac{2}{5}$"
-      ],
-      answer: 1,
-      explain: "Vì $\\alpha$ là góc tù nên $90^\\circ < \\alpha < 180^\\circ \\Rightarrow \\cos \\alpha < 0$. Ta có $\\cos^2 \\alpha = 1 - \\sin^2 \\alpha = 1 - \\frac{9}{25} = \\frac{16}{25} \\Rightarrow \\cos \\alpha = -\\frac{4}{5}$."
-    }
-  ],
+  "bai-05": bai05,
 
   "bai-06": [
     {
