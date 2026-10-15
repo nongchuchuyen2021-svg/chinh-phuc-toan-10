@@ -1,0 +1,1670 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 3: Bất phương trình bậc nhất hai ẩn — Bài giảng điện tử Toán 10 · THPT Na Rì</title>
+  <!-- KaTeX for beautiful math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="if(window.renderMathInElement) renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+  <style>
+    :root {
+      --bg: #060A14;
+      --bg-card: rgba(11, 18, 38, 0.94);
+      --border-card: rgba(0, 242, 254, 0.2);
+      --ink: #FFFFFF;
+      --ink-soft: #94A3B8;
+      --cyan: #00F2FE;
+      --cyan-light: #4FACFE;
+      --cyan-glow: rgba(0, 242, 254, 0.38);
+      --purple: #8B5CF6;
+      --purple-light: #A78BFA;
+      --purple-glow: rgba(139, 92, 246, 0.38);
+      --gold: #F59E0B;
+      --gold-light: #FBBF24;
+      --gold-glow: rgba(245, 158, 11, 0.38);
+      --emerald: #10B981;
+      --emerald-light: #34D399;
+      --emerald-glow: rgba(16, 185, 129, 0.38);
+      --coral: #F43F5E;
+      --coral-light: #FB7185;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'Consolas', 'Fira Code', 'Courier New', monospace;
+      --transition-slide: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .ambient-glow {
+      position: fixed; width: 700px; height: 700px; border-radius: 50%;
+      pointer-events: none; z-index: 0; filter: blur(140px); opacity: 0.16;
+    }
+    .glow-1 { top: -200px; left: -150px; background: radial-gradient(circle, var(--cyan), transparent 70%); }
+    .glow-2 { bottom: -200px; right: -150px; background: radial-gradient(circle, var(--purple), transparent 70%); }
+
+    .cyber-grid {
+      position: fixed; inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
+      background-size: 38px 38px; pointer-events: none; z-index: 1;
+    }
+
+    .floating-symbols {
+      position: fixed; inset: 0; pointer-events: none; z-index: 1; overflow: hidden;
+    }
+    .float-tag {
+      position: absolute; font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+      color: rgba(79, 172, 254, 0.28); border: 1px solid rgba(0, 242, 254, 0.2);
+      padding: 4px 12px; border-radius: 999px; background: rgba(11, 18, 38, 0.45);
+      animation: floatUp 24s linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.55; }
+      90%  { opacity: 0.55; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    .deck-container {
+      position: relative; width: 100vw; height: 100vh;
+      display: flex; justify-content: center; align-items: center; z-index: 2;
+    }
+
+    .slide {
+      position: absolute; width: 95vw; max-width: 1360px; height: 88vh; max-height: 860px;
+      background: var(--bg-card); border: 1px solid var(--border-card); border-radius: var(--radius-lg);
+      backdrop-filter: blur(28px); -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      padding: 22px 36px 26px 36px; display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none; transform: translateX(70px) scale(0.96);
+      transition: var(--transition-slide);
+    }
+    .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); }
+    .slide.past { opacity: 0; pointer-events: none; transform: translateX(-70px) scale(0.96); }
+
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 16px; padding-bottom: 12px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08); flex-shrink: 0;
+    }
+    .slide-tag {
+      font-family: var(--font-mono); font-size: 11px; font-weight: 800; letter-spacing: 1.5px;
+      text-transform: uppercase; padding: 4px 12px; border-radius: 999px;
+      background: rgba(0, 242, 254, 0.12); border: 1px solid var(--cyan-glow); color: var(--cyan);
+      display: inline-flex; align-items: center; gap: 6px;
+    }
+    .slide-title-box { display: flex; align-items: baseline; gap: 14px; }
+    .slide-title {
+      font-size: 26px; font-weight: 800; letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #FFFFFF 30%, var(--cyan-light) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .slide-subtitle { font-size: 13.5px; color: var(--ink-soft); font-weight: 500; }
+
+    .slide-body {
+      flex: 1; overflow-y: auto; overflow-x: hidden; display: flex; flex-direction: column; gap: 16px;
+      padding-right: 6px;
+    }
+    .slide-body::-webkit-scrollbar { width: 5px; }
+    .slide-body::-webkit-scrollbar-track { background: rgba(255, 255, 255, 0.03); border-radius: 4px; }
+    .slide-body::-webkit-scrollbar-thumb { background: rgba(0, 242, 254, 0.25); border-radius: 4px; }
+
+    .slide-footer {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-top: 14px; padding-top: 12px; border-top: 1px solid rgba(255, 255, 255, 0.08);
+      font-size: 12px; color: var(--ink-soft); flex-shrink: 0; font-family: var(--font-mono);
+    }
+
+    .glass-card {
+      background: rgba(15, 25, 55, 0.7); border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: var(--radius-md); padding: 16px 20px; box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+      position: relative; overflow: hidden; transition: all 0.25s ease;
+    }
+    .glass-card.highlight { border-color: var(--cyan); box-shadow: 0 0 25px var(--cyan-glow); }
+    .glass-card.purple-tone { border-color: rgba(139, 92, 246, 0.4); background: rgba(30, 20, 60, 0.65); }
+    .glass-card.gold-tone { border-color: rgba(245, 158, 11, 0.4); background: rgba(45, 30, 15, 0.65); }
+    .glass-card.emerald-tone { border-color: rgba(16, 185, 129, 0.4); background: rgba(15, 45, 30, 0.65); }
+    .glass-card.coral-tone { border-color: rgba(244, 63, 94, 0.4); background: rgba(50, 15, 25, 0.65); }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+    .reveal-item { opacity: 0; transform: translateY(14px); transition: opacity 0.4s ease, transform 0.4s ease; }
+    .reveal-item.revealed { opacity: 1; transform: translateY(0); }
+
+    .reveal-btn {
+      padding: 7px 16px; border-radius: var(--radius-sm); font-size: 12px; font-weight: 700;
+      font-family: var(--font-mono); cursor: pointer; border: none; display: inline-flex;
+      align-items: center; gap: 8px; transition: all 0.2s ease;
+    }
+    .reveal-btn.primary {
+      background: linear-gradient(135deg, var(--cyan-light), var(--cyan)); color: #060A14;
+      box-shadow: 0 4px 15px var(--cyan-glow);
+    }
+    .reveal-btn.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0, 242, 254, 0.6); }
+    .reveal-btn.secondary {
+      background: rgba(255, 255, 255, 0.08); color: var(--ink); border: 1px solid rgba(255, 255, 255, 0.15);
+    }
+    .reveal-btn.secondary:hover { background: rgba(255, 255, 255, 0.14); border-color: var(--cyan); }
+
+    .nav-bar {
+      position: fixed; bottom: 18px; left: 50%; transform: translateX(-50%);
+      background: rgba(11, 18, 38, 0.92); border: 1px solid rgba(0, 242, 254, 0.28);
+      border-radius: 999px; backdrop-filter: blur(20px); padding: 6px 18px;
+      display: flex; align-items: center; gap: 14px; z-index: 100; box-shadow: 0 10px 35px rgba(0, 0, 0, 0.7);
+    }
+    .nav-btn {
+      background: transparent; border: none; color: var(--ink); font-size: 16px; cursor: pointer;
+      padding: 6px 10px; border-radius: 999px; transition: all 0.2s ease; display: flex; align-items: center; justify-content: center;
+    }
+    .nav-btn:hover { background: rgba(0, 242, 254, 0.18); color: var(--cyan); }
+    .nav-counter { font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--cyan); min-width: 60px; text-align: center; }
+
+    .progress-bar-container {
+      position: fixed; top: 0; left: 0; width: 100%; height: 3.5px;
+      background: rgba(255, 255, 255, 0.05); z-index: 101;
+    }
+    .progress-bar-fill {
+      height: 100%; width: 0%; background: linear-gradient(90deg, var(--cyan), var(--purple), var(--gold));
+      transition: width 0.3s ease; box-shadow: 0 0 12px var(--cyan);
+    }
+
+    .toc-drawer {
+      position: fixed; top: 0; right: -360px; width: 340px; height: 100vh;
+      background: rgba(6, 10, 20, 0.96); border-left: 1px solid var(--border-card);
+      backdrop-filter: blur(28px); z-index: 102; padding: 24px; display: flex; flex-direction: column; gap: 12px;
+      transition: right 0.35s cubic-bezier(0.16, 1, 0.3, 1); box-shadow: -15px 0 45px rgba(0, 0, 0, 0.85);
+    }
+    .toc-drawer.open { right: 0; }
+    .toc-title { font-size: 18px; font-weight: 800; color: var(--cyan); display: flex; justify-content: space-between; align-items: center; }
+    .toc-list { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; margin-top: 10px; }
+    .toc-item {
+      padding: 9px 12px; border-radius: var(--radius-sm); font-size: 12.5px; font-weight: 600;
+      color: var(--ink-soft); cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 10px;
+    }
+    .toc-item:hover { background: rgba(0, 242, 254, 0.12); color: var(--cyan); }
+    .toc-item.active { background: rgba(0, 242, 254, 0.2); color: #FFFFFF; font-weight: 700; border-left: 3px solid var(--cyan); }
+
+    #confettiCanvas { position: fixed; inset: 0; pointer-events: none; z-index: 999; }
+
+    /* Interactive Lab 1: Máy test điểm thử */
+    .lab-box {
+      background: rgba(8, 14, 30, 0.85); border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: var(--radius-md); padding: 16px; display: flex; flex-direction: column; gap: 12px;
+    }
+
+    /* Đấu trường Quiz */
+    .quiz-box {
+      background: rgba(11, 18, 38, 0.85); border: 1px solid var(--border-card);
+      border-radius: var(--radius-md); padding: 18px 22px; display: flex; flex-direction: column; gap: 14px;
+    }
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.04); border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-sm); padding: 12px 16px; cursor: pointer; transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .quiz-card:hover { background: rgba(0, 242, 254, 0.08); border-color: var(--cyan); transform: translateX(4px); }
+    .quiz-card.correct { background: rgba(16, 185, 129, 0.2) !important; border-color: var(--emerald) !important; color: #FFFFFF !important; }
+    .quiz-card.wrong { background: rgba(244, 63, 94, 0.2) !important; border-color: var(--coral) !important; color: #FFFFFF !important; }
+    .quiz-opt-letter {
+      width: 28px; height: 28px; border-radius: 50%; background: rgba(255, 255, 255, 0.1);
+      display: flex; align-items: center; justify-content: center; font-family: var(--font-mono);
+      font-weight: 800; font-size: 13px; color: var(--cyan); flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="cyber-grid"></div>
+
+  <div class="floating-symbols">
+    <div class="float-tag" style="left: 8%; animation-delay: 0s;">ax + by ≤ c</div>
+    <div class="float-tag" style="left: 22%; animation-delay: 5s;">2x - y + 1 > 0</div>
+    <div class="float-tag" style="left: 40%; animation-delay: 10s;">(x₀; y₀) ∈ Miền nghiệm</div>
+    <div class="float-tag" style="left: 60%; animation-delay: 2s;">Nét đứt vs Nét liền</div>
+    <div class="float-tag" style="left: 78%; animation-delay: 8s;">Điểm thử O(0; 0)</div>
+    <div class="float-tag" style="left: 90%; animation-delay: 14s;">S = c² / (2ab)</div>
+  </div>
+
+  <div class="progress-bar-container">
+    <div class="progress-bar-fill" id="progressBar"></div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="deck-container">
+
+    <!-- ==========================================
+         SLIDE 1: BÌA BÀI GIẢNG ĐIỆN TỬ
+         ========================================== -->
+    <div class="slide active" id="slide-1">
+      <div class="slide-header">
+        <span class="slide-tag">🏫 THPT NA RÌ · TOÁN 10 KNTT</span>
+        <span style="font-family: var(--font-mono); font-size: 12px; color: var(--gold-light);">CHƯƠNG II: BẤT PHƯƠNG TRÌNH &amp; HỆ BPT</span>
+      </div>
+      <div class="slide-body" style="justify-content: center; align-items: center; text-align: center;">
+        <div style="display: inline-flex; align-items: center; gap: 8px; padding: 6px 18px; border-radius: 999px; background: rgba(0, 242, 254, 0.1); border: 1px solid var(--cyan-glow); margin-bottom: 12px;">
+          <span style="font-size: 14px;">📊</span>
+          <span style="font-family: var(--font-mono); font-size: 12px; font-weight: 700; color: var(--cyan);">BÀI HỌC TRỌNG TÂM GDPT 2018</span>
+        </div>
+        <h1 style="font-size: 44px; font-weight: 900; letter-spacing: -1px; line-height: 1.2; margin-bottom: 14px; max-width: 920px; background: linear-gradient(135deg, #FFFFFF 20%, var(--cyan-light) 65%, var(--purple-light) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          BÀI 3: BẤT PHƯƠNG TRÌNH BẬC NHẤT HAI ẨN
+        </h1>
+        <p style="font-size: 16px; color: var(--ink-soft); max-width: 780px; line-height: 1.6; margin-bottom: 24px;">
+          Làm chủ mô hình toán học giải quyết bài toán kinh tế &amp; quy hoạch: Nhận biết nghiệm, thành thạo <strong style="color: var(--cyan);">Quy trình 3 bước biểu diễn miền nghiệm</strong> trên mặt phẳng toạ độ $Oxy$, phân biệt nét liền/nét đứt và thực hành 2 Virtual Labs sinh động!
+        </p>
+
+        <div class="grid-4" style="width: 100%; max-width: 980px; margin-top: 8px;">
+          <div class="glass-card" style="text-align: center; padding: 14px;">
+            <div style="font-size: 26px; margin-bottom: 6px;">📐</div>
+            <div style="font-size: 13px; font-weight: 700; color: #FFFFFF;">Khái Niệm BPT</div>
+            <div style="font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;">$ax + by \le c$, vô số nghiệm cặp $(x; y)$</div>
+          </div>
+          <div class="glass-card" style="text-align: center; padding: 14px;">
+            <div style="font-size: 26px; margin-bottom: 6px;">🎨</div>
+            <div style="font-size: 13px; font-weight: 700; color: #FFFFFF;">Quy Trình 3 Bước</div>
+            <div style="font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;">Đường biên $d$, điểm thử $O(0; 0)$, gạch bỏ</div>
+          </div>
+          <div class="glass-card" style="text-align: center; padding: 14px;">
+            <div style="font-size: 26px; margin-bottom: 6px;">🧪</div>
+            <div style="font-size: 13px; font-weight: 700; color: #FFFFFF;">2 Virtual Labs</div>
+            <div style="font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;">Máy test điểm thử &amp; Vẽ nửa mặt phẳng động</div>
+          </div>
+          <div class="glass-card" style="text-align: center; padding: 14px;">
+            <div style="font-size: 26px; margin-bottom: 6px;">💼</div>
+            <div style="font-size: 13px; font-weight: 700; color: #FFFFFF;">Mô Hình Kinh Tế</div>
+            <div style="font-size: 11.5px; color: var(--ink-soft); margin-top: 3px;">Ngân sách, sản xuất &amp; Diện tích $S = \frac{c^2}{2ab}$</div>
+          </div>
+        </div>
+
+        <div style="margin-top: 26px; display: flex; gap: 12px;">
+          <button class="reveal-btn primary" onclick="nextSlide()">Bắt đầu bài giảng →</button>
+          <button class="reveal-btn secondary" onclick="toggleToc()">📑 Danh mục 15 slide</button>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Tổ Toán - Tin · Trường THPT Na Rì, tỉnh Thái Nguyên</span>
+        <span>Phím tắt: [→] Tiến | [←] Lùi | [Space] Mở ý | [F] Toàn màn hình</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 2: KHỞI ĐỘNG THỰC TẾ (HOOK)
+         ========================================== -->
+    <div class="slide" id="slide-2">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">01 · KHỞI ĐỘNG</span>
+          <h2 class="slide-title">Bài Toán Ngân Sách Quảng Cáo &amp; Kinh Tế</h2>
+        </div>
+        <span class="slide-subtitle">Bất đẳng thức tuyến tính xuất hiện khắp nơi trong đời sống</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 10px;">
+              🏭 Bài toán thực tế Xưởng sản xuất Na Rì
+            </h3>
+            <p style="font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 12px;">
+              Một cơ sở sản xuất tại Na Rì dự kiến chi <strong>không quá 30 triệu đồng</strong> để quảng cáo sản phẩm miến dong truyền thống trên 2 kênh:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px;">
+              <div style="padding: 8px 12px; background: rgba(0, 242, 254, 0.1); border-radius: 8px; border-left: 3px solid var(--cyan); font-size: 13px;">
+                📻 <strong>Đài phát thanh:</strong> Giá <strong>3 triệu đồng / phút</strong> (gọi $x$ là số phút).
+              </div>
+              <div style="padding: 8px 12px; background: rgba(139, 92, 246, 0.1); border-radius: 8px; border-left: 3px solid var(--purple); font-size: 13px;">
+                📺 <strong>Truyền hình:</strong> Giá <strong>6 triệu đồng / phút</strong> (gọi $y$ là số phút).
+              </div>
+            </div>
+            <div class="reveal-item" id="rev-s2-1" style="margin-top: 14px; padding: 10px 14px; background: rgba(245, 158, 11, 0.1); border: 1px solid var(--gold); border-radius: 8px; font-size: 13px; color: var(--gold-light);">
+              🤔 <strong>Mô hình hoá toán học:</strong><br>
+              Tổng chi phí quảng cáo là $3x + 6y$ (triệu đồng).<br>
+              Vì ngân sách tối đa là 30 triệu nên ta có bất phương trình:
+              <div style="font-size: 17px; font-weight: 800; color: #FFFFFF; text-align: center; margin: 6px 0;">
+                $$3x + 6y \le 30 \iff x + 2y \le 10 \quad (x \ge 0, y \ge 0)$$
+              </div>
+              Đây chính là một <strong>bất phương trình bậc nhất hai ẩn</strong>!
+            </div>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--purple-light); margin-bottom: 10px;">
+              ❓ Những Câu Hỏi Người Quản Lí Cần Lời Giải
+            </h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px; display: flex; flex-direction: column; gap: 8px;">
+              <li>Nếu phát thanh 4 phút ($x = 4$) và truyền hình 2 phút ($y = 2$), có vượt ngân sách không? $\Rightarrow$ <em>Kiểm tra cặp nghiệm $(4; 2)$</em>.</li>
+              <li>Có tất cả bao nhiêu phương án phân bổ thời lượng phát sóng khả thi? $\Rightarrow$ <em>Tập nghiệm là một miền vô hạn trên mặt phẳng toạ độ!</em></li>
+              <li>Làm sao để vẽ toàn bộ các phương án lên giấy hoặc máy tính trong 10 giây? $\Rightarrow$ <em>Phương pháp biểu diễn miền nghiệm nửa mặt phẳng bờ $d$.</em></li>
+            </ul>
+            <div style="margin-top: 16px; text-align: right;">
+              <button class="reveal-btn primary" onclick="revealNext(2)">Mô hình hoá BPT [Space]</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 2 / 15 · Khởi động thực tế</span>
+        <span>Nhấn [Space] để hiện công thức mô hình hoá</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 3: MỤC TIÊU BÀI HỌC (GDPT 2018)
+         ========================================== -->
+    <div class="slide" id="slide-3">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">02 · MỤC TIÊU</span>
+          <h2 class="slide-title">Mục Tiêu &amp; Năng Lực Cần Đạt (GDPT 2018)</h2>
+        </div>
+        <span class="slide-subtitle">Yêu cầu chuẩn chương trình mới môn Toán 10</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight">
+            <div style="font-size: 32px; margin-bottom: 8px;">📐</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">1. Kiến Thức Trọng Tâm</h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px;">
+              <li>Nhận biết dạng chuẩn BPT bậc nhất hai ẩn $ax + by \le c$.</li>
+              <li>Hiểu khái niệm cặp nghiệm $(x_0; y_0)$ và tính vô số nghiệm.</li>
+              <li>Hiểu định lí đường thẳng bờ $ax + by = c$ chia đôi mặt phẳng.</li>
+              <li>Phân biệt rạch ròi quy ước nét liền vs nét đứt.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <div style="font-size: 32px; margin-bottom: 8px;">⚡</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">2. Kĩ Năng Thực Chiến</h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px;">
+              <li>Vẽ nhanh đường thẳng biên $ax + by = c$ qua 2 điểm giao trục toạ độ.</li>
+              <li>Thành thạo phương pháp thử điểm gốc $O(0; 0)$ để xác định nửa mặt phẳng nghiệm.</li>
+              <li>Xử lí điêu luyện các trường hợp $c = 0$ hoặc khuyết ẩn $x, y$.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card emerald-tone">
+            <div style="font-size: 32px; margin-bottom: 8px;">🎯</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--emerald-light); margin-bottom: 8px;">3. Ứng Dụng Đời Sống</h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px;">
+              <li>Thiết lập BPT mô tả bài toán chi phí, nhân lực, năng suất.</li>
+              <li>Tính nhanh diện tích miền nghiệm khả thi $S = \frac{c^2}{2ab}$.</li>
+              <li>Đặt nền móng vững chắc cho Bài 4: Hệ BPT &amp; Quy hoạch tuyến tính.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card gold-tone" style="padding: 12px 18px; margin-top: 6px;">
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <span style="font-size: 22px;">💡</span>
+            <div style="font-size: 13px; line-height: 1.5; color: var(--gold-light);">
+              <strong>Bí quyết học nhanh:</strong> BPT bậc nhất hai ẩn không thể viết tập nghiệm dạng khoảng/đoạn như lớp 9, mà BẮT BUỘC phải biểu diễn bằng HÌNH HỌC (nửa mặt phẳng tô màu hoặc gạch sọc).
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 3 / 15 · Mục tiêu</span>
+        <span>Nhấn [→] để sang Khái niệm BPT</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 4: KHÁI NIỆM & DẤU HIỆU NHẬN BIẾT
+         ========================================== -->
+    <div class="slide" id="slide-4">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">03 · ĐỊNH NGHĨA</span>
+          <h2 class="slide-title">1. Khái Niệm BPT Bậc Nhất Hai Ẩn</h2>
+        </div>
+        <span class="slide-subtitle">Dạng tổng quát và tiêu chí nhận dạng loại trừ bẫy</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              📐 Dạng Tổng Quát Chuẩn
+            </h3>
+            <p style="font-size: 13.5px; line-height: 1.6; color: var(--ink-soft); margin-bottom: 10px;">
+              Bất phương trình bậc nhất hai ẩn $x, y$ là bất phương trình có một trong các dạng:
+            </p>
+            <div style="padding: 12px; background: rgba(0, 0, 0, 0.45); border-radius: 8px; text-align: center; font-size: 16px; color: var(--cyan); font-weight: 800; border: 1px solid var(--cyan-glow);">
+              $$ax + by \le c \quad (\text{hoặc } \ge c, < c, > c)$$
+            </div>
+            <p style="font-size: 13px; color: var(--ink-soft); margin-top: 10px;">
+              Trong đó: $a, b, c$ là những số thực đã cho và $a, b$ không đồng thời bằng 0 ($a^2 + b^2 \ne 0$).
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              🔍 Bảng Đối Chiếu Nhận Diện
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+              <div style="padding: 8px 12px; background: rgba(16, 185, 129, 0.15); border-left: 3px solid var(--emerald); border-radius: 6px; color: var(--emerald-light);">
+                ✅ <strong>ĐÚNG:</strong> $2x - 3y < 5$; &nbsp; $\sqrt{3}x + y \ge 0$; &nbsp; $x \le 4$ (khuyết $y$).
+              </div>
+              <div style="padding: 8px 12px; background: rgba(244, 63, 94, 0.15); border-left: 3px solid var(--coral); border-radius: 6px; color: var(--coral-light);">
+                ❌ <strong>SAI:</strong> $x^2 + 2y \le 1$ (Chứa bậc 2 $x^2$).
+              </div>
+              <div style="padding: 8px 12px; background: rgba(244, 63, 94, 0.15); border-left: 3px solid var(--coral); border-radius: 6px; color: var(--coral-light);">
+                ❌ <strong>SAI:</strong> $xy + y > 3$ (Chứa tích hai biến $xy$).
+              </div>
+              <div style="padding: 8px 12px; background: rgba(244, 63, 94, 0.15); border-left: 3px solid var(--coral); border-radius: 6px; color: var(--coral-light);">
+                ❌ <strong>SAI:</strong> $\frac{2}{x} + 3y \le 4$ (Ẩn $x$ nằm ở mẫu thức).
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card gold-tone">
+          <strong style="color: var(--gold-light); font-size: 13.5px;">⚠️ Cảnh báo bẫy lũy thừa hệ số:</strong>
+          <p style="font-size: 13px; color: var(--ink-soft); margin-top: 3px;">
+            $2^3 x + y \le 0 \iff 8x + y \le 0$ vẫn là bậc nhất hai ẩn vì số mũ nằm ở hệ số thực, còn bản thân biến $x, y$ vẫn là bậc 1!
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 4 / 15 · Khái niệm BPT</span>
+        <span>Nhấn [→] để sang Nghiệm của BPT</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 5: NGHIỆM CỦA BPT BẬC NHẤT HAI ẨN
+         ========================================== -->
+    <div class="slide" id="slide-5">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">04 · TẬP NGHIỆM</span>
+          <h2 class="slide-title">2. Nghiệm Của BPT Bậc Nhất Hai Ẩn</h2>
+        </div>
+        <span class="slide-subtitle">Cặp số $(x_0; y_0)$ và bản chất vô số nghiệm hình học</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              🔑 Khái Niệm Nghiệm $(x_0; y_0)$
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px;">
+              Mỗi cặp số $(x_0; y_0)$ thoả mãn bất đẳng thức $ax_0 + by_0 \le c$ được gọi là một <strong>nghiệm</strong> của bất phương trình.
+            </p>
+            <div style="padding: 10px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; font-size: 13px; color: var(--ink); line-height: 1.5;">
+              <em>Ví dụ:</em> Cho BPT $2x + y \le 4$.<br>
+              • Thử $(1; 1)$: $2(1) + 1 = 3 \le 4$ (Đúng) $\Rightarrow (1; 1)$ là một nghiệm.<br>
+              • Thử $(2; 3)$: $2(2) + 3 = 7 \le 4$ (Sai) $\Rightarrow (2; 3)$ không phải là nghiệm.
+            </div>
+          </div>
+
+          <div class="glass-card emerald-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--emerald-light); margin-bottom: 8px;">
+              ♾️ Tính Chất Vô Số Nghiệm &amp; Miền Nghiệm
+            </h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px;">
+              <li>Một BPT bậc nhất hai ẩn luôn có <strong>VÔ SỐ NGHIỆM</strong>.</li>
+              <li>Trong mặt phẳng toạ độ $Oxy$, tập hợp tất cả các điểm $M(x_0; y_0)$ có toạ độ là nghiệm được gọi là <strong>miền nghiệm</strong> của BPT.</li>
+              <li>Miền nghiệm không phải là một tập điểm rời rạc, mà là một vùng liên tục lấp đầy <strong>nửa mặt phẳng</strong>!</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="glass-card" style="border-left: 4px solid var(--purple); padding: 12px 18px;">
+          <strong style="color: var(--purple-light); font-size: 13.5px;">💡 Điểm khác biệt mấu chốt so với BPT bậc nhất một ẩn (lớp 9):</strong>
+          <p style="font-size: 13px; color: var(--ink-soft); margin-top: 3px;">
+            Lớp 9 giải $2x - 4 \le 0 \iff x \le 2$ (tập nghiệm là nửa đường thẳng $(-\infty; 2]$ trên trục 1 chiều). Lớp 10 giải $2x + y \le 4$ cho ra tập nghiệm là một <strong>nửa mặt phẳng 2 chiều</strong> trên hệ trục $Oxy$!
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 5 / 15 · Tập nghiệm</span>
+        <span>Nhấn [→] để sang Đường thẳng biên</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 6: ĐƯỜNG THẲNG BIÊN & QUY ƯỚC NÉT VẼ
+         ========================================== -->
+    <div class="slide" id="slide-6">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">05 · ĐƯỜNG BIÊN BỜ</span>
+          <h2 class="slide-title">3. Đường Thẳng Biên &amp; Quy Ước Nét Vẽ</h2>
+        </div>
+        <span class="slide-subtitle">Ranh giới phân chia mặt phẳng toạ độ thành 2 nửa</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              ➖ Đường Thẳng Bờ $d: ax + by = c$
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; margin-bottom: 8px;">
+              Đường thẳng $d: ax + by = c$ chia mặt phẳng toạ độ $Oxy$ thành hai nửa mặt phẳng đối xứng nhau:
+            </p>
+            <ul style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; padding-left: 16px;">
+              <li>Một nửa gồm các điểm thoả mãn $ax + by > c$.</li>
+              <li>Một nửa gồm các điểm thoả mãn $ax + by < c$.</li>
+              <li>Đường thẳng bờ $d$ gồm các điểm thoả mãn $ax + by = c$.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card coral-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--coral-light); margin-bottom: 8px;">
+              ⚠️ Quy Ước Nét Vẽ (Cực Kì Quan Trọng)
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              <div style="padding: 10px 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border-left: 3px solid var(--emerald);">
+                <strong style="color: var(--emerald-light);">Dấu có dấu bằng ($\le, \ge$): NÉT LIỀN</strong><br>
+                <span style="font-size: 12px; color: var(--ink-soft);">Miền nghiệm LẤY CẢ ĐƯỜNG BIÊN BỜ $d$ (các điểm trên $d$ cũng là nghiệm).</span>
+              </div>
+              <div style="padding: 10px 14px; background: rgba(0, 0, 0, 0.4); border-radius: 8px; border-left: 3px solid var(--coral);">
+                <strong style="color: var(--coral-light);">Dấu ngặt ($<, >$): NÉT ĐỨT</strong><br>
+                <span style="font-size: 12px; color: var(--ink-soft);">Miền nghiệm KHÔNG LẤY ĐƯỜNG BIÊN BỜ $d$ (các điểm trên $d$ bị loại ra).</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card gold-tone">
+          <strong style="color: var(--gold-light); font-size: 13.5px;">📌 Cảnh báo chấm thi tự luận &amp; trắc nghiệm:</strong>
+          <p style="font-size: 13px; color: var(--ink-soft); margin-top: 3px;">
+            Nếu đề bài cho $2x - y < 3$ mà học sinh vẽ đường thẳng biên bằng <strong>nét liền</strong> thì bài vẽ bị trừ điểm nặng hoặc chọn sai hình ảnh đồ thị trong đề thi trắc nghiệm!
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 6 / 15 · Đường thẳng biên</span>
+        <span>Nhấn [→] để vào Virtual Lab 1: Máy test điểm thử</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 7: VIRTUAL LAB 1 - MÁY TEST ĐIỂM THỬ
+         ========================================== -->
+    <div class="slide" id="slide-7">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">🧪 VIRTUAL LAB 1</span>
+          <h2 class="slide-title">Máy Kiểm Tra Điểm Thử Miền Nghiệm Oxy</h2>
+        </div>
+        <span class="slide-subtitle">Bất phương trình: $2x + y \le 4$ — Bấm chọn các điểm để test</span>
+      </div>
+      <div class="slide-body">
+        <div class="lab-box">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <div style="font-size: 14px; font-weight: 700; color: var(--cyan); font-family: var(--font-mono);">
+              BPT: 2x + y ≤ 4 &nbsp;|&nbsp; Bờ d: 2x + y = 4
+            </div>
+            <div style="display: flex; gap: 8px;">
+              <button class="reveal-btn secondary" onclick="testPoint(0, 0)">Thử O(0; 0)</button>
+              <button class="reveal-btn secondary" onclick="testPoint(1, 1)">Thử A(1; 1)</button>
+              <button class="reveal-btn secondary" onclick="testPoint(3, 1)">Thử B(3; 1)</button>
+              <button class="reveal-btn secondary" onclick="testPoint(1, 2)">Thử C(1; 2)</button>
+              <button class="reveal-btn secondary" onclick="testPoint(-1, 2)">Thử D(-1; 2)</button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 14px; align-items: center;">
+            <!-- Canvas/SVG Graph -->
+            <div style="background: rgba(0,0,0,0.5); border-radius: 12px; padding: 10px; height: 260px; display: flex; justify-content: center; align-items: center;">
+              <svg id="lab1Svg" viewBox="-50 -50 300 240" style="width: 100%; height: 100%;">
+                <!-- Shaded half-plane for 2x + y <= 4 -->
+                <polygon points="-50,240 250,-100 -50,-100" fill="rgba(0, 242, 254, 0.18)" />
+
+                <!-- Trục toạ độ Oxy -->
+                <line x1="-40" y1="140" x2="230" y2="140" stroke="#FFFFFF" stroke-width="1.5" />
+                <polygon points="230,136 240,140 230,144" fill="#FFFFFF" />
+                <text x="232" y="155" fill="#FFFFFF" font-family="monospace" font-size="12">x</text>
+
+                <line x1="50" y1="180" x2="50" y2="-40" stroke="#FFFFFF" stroke-width="1.5" />
+                <polygon points="46,-40 50,-48 54,-40" fill="#FFFFFF" />
+                <text x="60" y="-35" fill="#FFFFFF" font-family="monospace" font-size="12">y</text>
+
+                <!-- Đường thẳng bờ d: 2x + y = 4 (cắt x=2 -> svg_x=50+2*30=110, cắt y=4 -> svg_y=140-4*30=20) -->
+                <line x1="0" y1="-80" x2="150" y2="220" stroke="var(--cyan)" stroke-width="2.5" />
+                <text x="140" y="210" fill="var(--cyan)" font-family="monospace" font-size="11" font-weight="700">d: 2x+y=4</text>
+
+                <!-- Các điểm mút trục: (2; 0) và (0; 4) -->
+                <circle cx="110" cy="140" r="3.5" fill="var(--cyan)" />
+                <text x="110" y="156" fill="var(--cyan)" font-family="monospace" font-size="11" text-anchor="middle">2</text>
+
+                <circle cx="50" cy="20" r="3.5" fill="var(--cyan)" />
+                <text x="38" y="24" fill="var(--cyan)" font-family="monospace" font-size="11" text-anchor="middle">4</text>
+
+                <!-- Test point marker -->
+                <circle id="testPointMarker" cx="50" cy="140" r="6" fill="var(--gold)" stroke="#FFFFFF" stroke-width="2" />
+                <text id="testPointText" x="50" y="132" fill="var(--gold)" font-family="monospace" font-weight="700" font-size="12" text-anchor="middle">O(0;0)</text>
+              </svg>
+            </div>
+
+            <!-- Result panel -->
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div id="testStatusCard" style="padding: 12px 16px; border-radius: 8px; background: rgba(16, 185, 129, 0.2); border: 1px solid var(--emerald);">
+                <div id="testCalc" style="font-size: 15px; font-weight: 800; color: #FFFFFF; font-family: var(--font-mono);">
+                  2(0) + (0) = 0 ≤ 4
+                </div>
+                <div id="testVerdict" style="font-size: 13.5px; color: var(--emerald-light); font-weight: 700; margin-top: 4px;">
+                  ✅ THOẢ MÃN: O(0; 0) thuộc miền nghiệm!
+                </div>
+              </div>
+              <div style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5; background: rgba(255,255,255,0.04); padding: 10px; border-radius: 8px;">
+                💡 <strong>Kết luận:</strong> Miền nghiệm của BPT $2x + y \le 4$ là nửa mặt phẳng bờ $d$ có chứa gốc toạ độ $O(0; 0)$ (vùng sáng xanh).
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 7 / 15 · Virtual Lab 1</span>
+        <span>Bấm các nút phía trên để thử các điểm khác nhau</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 8: QUY TRÌNH 3 BƯỚC BIỂU DIỄN MIỀN NGHIỆM
+         ========================================== -->
+    <div class="slide" id="slide-8">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">06 · PHƯƠNG PHÁP CHUẨN</span>
+          <h2 class="slide-title">4. Quy Trình 3 Bước Biểu Diễn Miền Nghiệm</h2>
+        </div>
+        <span class="slide-subtitle">Phương pháp giải chuẩn tắc không bao giờ sai sót</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight">
+            <div style="font-size: 28px; color: var(--cyan); margin-bottom: 6px; font-weight: 800; font-family: var(--font-mono);">BƯỚC 1</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Vẽ Đường Thẳng Bờ d</h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+              Vẽ đường thẳng $d: ax + by = c$. Xác định 2 điểm cắt trục:<br>
+              • Cho $y = 0 \Rightarrow x = \frac{c}{a} \implies A(\frac{c}{a}; 0)$.<br>
+              • Cho $x = 0 \Rightarrow y = \frac{c}{b} \implies B(0; \frac{c}{b})$.<br>
+              <strong style="color: var(--cyan);">Nối A và B. Nhớ kiểm tra nét liền hay nét đứt!</strong>
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <div style="font-size: 28px; color: var(--purple-light); margin-bottom: 6px; font-weight: 800; font-family: var(--font-mono);">BƯỚC 2</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Chọn Điểm Thử $M_0$</h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+              Chọn một điểm $M_0(x_0; y_0)$ không nằm trên $d$.<br>
+              • Nếu $c \ne 0$: <strong style="color: var(--gold-light);">Luôn chọn gốc toạ độ $O(0; 0)$</strong> để tính nhẩm cực nhanh!<br>
+              • Nếu $c = 0$ ($d$ qua $O$): Chọn $(1; 0)$ hoặc $(0; 1)$.
+            </p>
+          </div>
+
+          <div class="glass-card emerald-tone">
+            <div style="font-size: 28px; color: var(--emerald-light); margin-bottom: 6px; font-weight: 800; font-family: var(--font-mono);">BƯỚC 3</div>
+            <h3 style="font-size: 15px; font-weight: 800; color: #FFFFFF; margin-bottom: 6px;">Kết Luận &amp; Gạch Bỏ</h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+              Tính giá trị $ax_0 + by_0$ so sánh với $c$:<br>
+              • Nếu <strong style="color: var(--emerald-light);">THỎA MÃN</strong>: Miền nghiệm là nửa mặt phẳng chứa $M_0$.<br>
+              • Nếu <strong style="color: var(--coral-light);">KHÔNG THỎA MÃN</strong>: Miền nghiệm là nửa mặt phẳng không chứa $M_0$. Gạch bỏ phần sai!
+            </p>
+          </div>
+        </div>
+
+        <div class="glass-card gold-tone">
+          <strong style="color: var(--gold-light); font-size: 13.5px;">💡 Mẹo tính nhẩm 3 giây:</strong>
+          <span style="font-size: 13px; color: var(--ink-soft); margin-left: 8px;">
+            Với BPT $3x - 2y < 6$: Thay $O(0; 0) \to 3(0) - 2(0) = 0 < 6$ (Đúng!). Vậy miền nghiệm lập tức là nửa mặt phẳng có chứa gốc $O$, bờ nét đứt!
+          </span>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 8 / 15 · Quy trình 3 bước</span>
+        <span>Nhấn [→] để sang Trường hợp đặc biệt</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 9: TRƯỜNG HỢP c = 0 & KHUYẾT ẨN
+         ========================================== -->
+    <div class="slide" id="slide-9">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">07 · TRƯỜNG HỢP ĐẶC BIỆT</span>
+          <h2 class="slide-title">5. BPT Đi Qua Gốc Tọa Độ ($c = 0$) &amp; Khuyết Ẩn</h2>
+        </div>
+        <span class="slide-subtitle">Cách xử lý tình huống không được thử gốc $O(0; 0)$</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card coral-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--coral-light); margin-bottom: 8px;">
+              ⚠️ Khi $c = 0$ ($ax + by \le 0$)
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+              Đường thẳng $d: ax + by = 0$ <strong>đi qua chính gốc toạ độ $O(0; 0)$</strong>.
+            </p>
+            <div style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 6px; font-size: 12.5px; color: #FFFFFF;">
+              🔥 <strong>CẢNH BÁO:</strong> Tuyệt đối <em>KHÔNG ĐƯỢC CHỌN $O(0; 0)$</em> làm điểm thử (vì $a(0) + b(0) = 0$, điểm nằm ngay trên bờ nên không phân biệt được hai bên!).
+            </div>
+            <p style="font-size: 12.5px; color: var(--gold-light); margin-top: 8px;">
+              👉 <strong>Giải pháp chuẩn:</strong> Chọn điểm thử $M(0; 1)$ hoặc $M(1; 0)$.
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 16px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              ↕️ BPT Khuyết Một Ẩn
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              <div style="padding: 8px 12px; background: rgba(0,0,0,0.3); border-radius: 6px;">
+                <strong style="color: var(--cyan);">Khuyết $y$ ($x \le a$ hoặc $x \ge a$):</strong><br>
+                Đường biên $x = a$ là đường thẳng thẳng đứng song song $Oy$. Miền $x \le a$ nằm bên <strong>TRÁI</strong>; miền $x \ge a$ nằm bên <strong>PHẢI</strong>.
+              </div>
+              <div style="padding: 8px 12px; background: rgba(0,0,0,0.3); border-radius: 6px;">
+                <strong style="color: var(--purple-light);">Khuyết $x$ ($y \le b$ hoặc $y \ge b$):</strong><br>
+                Đường biên $y = b$ là đường thẳng nằm ngang song song $Ox$. Miền $y \ge b$ nằm phía <strong>TRÊN</strong>; miền $y \le b$ nằm phía <strong>DƯỚI</strong>.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="glass-card emerald-tone">
+          <strong style="color: var(--emerald-light); font-size: 13.5px;">🛡️ Điều kiện thực tế không âm: $x \ge 0$ và $y \ge 0$</strong>
+          <p style="font-size: 13px; color: var(--ink-soft); margin-top: 3px;">
+            $x \ge 0$ (bên phải trục tung) kết hợp $y \ge 0$ (phía trên trục hoành) chính là <strong>Góc phần tư thứ nhất</strong> trên mặt phẳng toạ độ — nơi diễn ra hầu hết các bài toán kinh tế!
+          </p>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 9 / 15 · Trường hợp c = 0</span>
+        <span>Nhấn [→] để vào Virtual Lab 2</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 10: VIRTUAL LAB 2 - MÁY VẼ MIỀN NGHIỆM ĐỘNG
+         ========================================== -->
+    <div class="slide" id="slide-10">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">🧪 VIRTUAL LAB 2</span>
+          <h2 class="slide-title">Máy Vẽ Miền Nghiệm BPT Động (Interactive Visualizer)</h2>
+        </div>
+        <span class="slide-subtitle">Quan sát sự thay đổi của nửa mặt phẳng và nét vẽ biên</span>
+      </div>
+      <div class="slide-body">
+        <div class="lab-box">
+          <div style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 10px;">
+            <div style="font-family: var(--font-mono); font-size: 13.5px;">
+              Chọn BPT cần trực quan hoá:
+            </div>
+            <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+              <button class="reveal-btn primary" onclick="setLab2Preset('x+y<=3')">x + y ≤ 3 (Nét liền)</button>
+              <button class="reveal-btn secondary" onclick="setLab2Preset('x-y>1')">x - y > 1 (Nét đứt)</button>
+              <button class="reveal-btn secondary" onclick="setLab2Preset('2x-y>=0')">2x - y ≥ 0 (Qua gốc O)</button>
+              <button class="reveal-btn secondary" onclick="setLab2Preset('x<=2')">x ≤ 2 (Khuyết y)</button>
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: 3fr 2fr; gap: 14px; align-items: center;">
+            <div style="background: rgba(0,0,0,0.5); border-radius: 12px; padding: 10px; height: 260px; display: flex; justify-content: center; align-items: center;">
+              <svg id="lab2Svg" viewBox="-60 -60 320 250" style="width: 100%; height: 100%;">
+                <!-- Shaded region polygon -->
+                <polygon id="lab2Shade" points="-60,250 260,-70 -60,-70" fill="rgba(0, 242, 254, 0.22)" />
+
+                <!-- Trục toạ độ Oxy -->
+                <line x1="-50" y1="130" x2="240" y2="130" stroke="#FFFFFF" stroke-width="1.5" />
+                <polygon points="240,126 250,130 240,134" fill="#FFFFFF" />
+                <text x="242" y="145" fill="#FFFFFF" font-family="monospace" font-size="12">x</text>
+
+                <line x1="60" y1="180" x2="60" y2="-50" stroke="#FFFFFF" stroke-width="1.5" />
+                <polygon points="56,-50 60,-58 64,-50" fill="#FFFFFF" />
+                <text x="70" y="-45" fill="#FFFFFF" font-family="monospace" font-size="12">y</text>
+
+                <text x="46" y="146" fill="rgba(255,255,255,0.6)" font-family="monospace" font-size="12">O</text>
+
+                <!-- Đường biên động -->
+                <line id="lab2Boundary" x1="-30" y1="220" x2="210" y2="-20" stroke="var(--cyan)" stroke-width="3" stroke-dasharray="none" />
+                <text id="lab2LineLabel" x="170" y="20" fill="var(--cyan)" font-family="monospace" font-size="11" font-weight="700">x + y = 3</text>
+              </svg>
+            </div>
+
+            <div style="display: flex; flex-direction: column; gap: 10px;">
+              <div id="lab2InfoCard" style="padding: 12px 16px; border-radius: 8px; background: rgba(0, 242, 254, 0.1); border: 1px solid var(--cyan);">
+                <div id="lab2BptTitle" style="font-size: 16px; font-weight: 800; color: #FFFFFF; font-family: var(--font-mono);">
+                  BPT: x + y ≤ 3
+                </div>
+                <div id="lab2StrokeType" style="font-size: 13px; color: var(--emerald-light); font-weight: 700; margin-top: 4px;">
+                  ✔️ Bờ nét LIỀN (chứa dấu bằng ≤)
+                </div>
+                <div id="lab2TestDesc" style="font-size: 12.5px; color: var(--ink-soft); margin-top: 6px; line-height: 1.5;">
+                  Thay $O(0; 0) \to 0 + 0 = 0 \le 3$ (Đúng). Miền nghiệm là nửa mặt phẳng chứa gốc $O(0; 0)$ bao gồm cả bờ.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 10 / 15 · Virtual Lab 2</span>
+        <span>Bấm các nút BPT để xem đường biên đổi kiểu dáng</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 11: MÔ HÌNH TOÁN HỌC & DIỆN TÍCH TAM GIÁC
+         ========================================== -->
+    <div class="slide" id="slide-11">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">08 · MÔ HÌNH TOÁN HỌC</span>
+          <h2 class="slide-title">6. Mô Hình Kinh Tế &amp; Diện Tích Miền Tam Giác $S = \frac{c^2}{2ab}$</h2>
+        </div>
+        <span class="slide-subtitle">Công thức giải nhanh trắc nghiệm diện tích khả thi</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              📐 Công Thức Diện Tích Tam Giác Nghiệm
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-bottom: 8px;">
+              Khi BPT $ax + by \le c$ ($a, b, c > 0$) kết hợp với điều kiện thực tế $x \ge 0, y \ge 0$:
+            </p>
+            <div style="padding: 12px; background: rgba(0, 0, 0, 0.45); border-radius: 8px; text-align: center; font-size: 17px; color: var(--gold); font-weight: 800; border: 1px solid var(--gold-glow);">
+              $$S_{\Delta OAB} = \frac{1}{2} OA \cdot OB = \frac{c^2}{2ab}$$
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 8px;">
+              Với hai cạnh góc vuông nằm trên hai trục toạ độ: $OA = \frac{c}{a}$ (trên $Ox$) và $OB = \frac{c}{b}$ (trên $Oy$).
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              ⚡ Ví Dụ Tính Nhanh Trong 5 Giây
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5;">
+              <strong>Đề bài:</strong> Tính diện tích miền nghiệm của hệ $\begin{cases} 2x + 3y \le 12 \\ x \ge 0, y \ge 0 \end{cases}$.
+            </p>
+            <div class="reveal-item" id="rev-s11-1" style="margin-top: 10px; padding: 10px; background: rgba(0,0,0,0.4); border-radius: 6px; font-family: var(--font-mono); font-size: 13px; color: var(--emerald-light);">
+              Áp dụng công thức với $a = 2, b = 3, c = 12$:<br>
+              $$S = \frac{12^2}{2 \cdot 2 \cdot 3} = \frac{144}{12} = 12$$
+              (Chọn ngay đáp án 12 mà không cần mất công vẽ hình!)
+            </div>
+            <div style="margin-top: 12px; text-align: right;">
+              <button class="reveal-btn primary" onclick="revealNext(11)">Hiện Lời Giải Siêu Tốc [Space]</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 11 / 15 · Công thức diện tích</span>
+        <span>Nhấn [Space] để hiện công thức giải nhanh</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 12: ĐẤU TRƯỜNG QUIZ 5 CÂU TƯƠNG TÁC
+         ========================================== -->
+    <div class="slide" id="slide-12">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">🎯 ĐẤU TRƯỜNG QUIZ</span>
+          <h2 class="slide-title">Thử Thách Chinh Phục: 5 Câu Trắc Nghiệm Tương Tác</h2>
+        </div>
+        <div style="display: flex; align-items: center; gap: 12px; font-family: var(--font-mono); font-size: 13px;">
+          <span>Điểm: <strong id="quizScore" style="color: var(--cyan);">0</strong></span>
+          <span>Chuỗi: <strong id="quizStreak" style="color: var(--gold);">0</strong> 🔥</span>
+        </div>
+      </div>
+      <div class="slide-body">
+        <div class="quiz-box">
+          <div style="display: flex; justify-content: space-between; align-items: center;">
+            <span id="quizProgressText" style="font-family: var(--font-mono); font-size: 12px; color: var(--cyan); font-weight: 700;">Câu hỏi 1 / 5</span>
+            <span style="font-size: 12px; color: var(--ink-soft);">Bấm chọn phương án chính xác</span>
+          </div>
+          <div id="quizQuestion" style="font-size: 16px; font-weight: 700; color: #FFFFFF; line-height: 1.5;">
+            Đang tải câu hỏi...
+          </div>
+          <div class="grid-2" id="quizOptions"></div>
+          <div id="quizFeedback" style="display: none; padding: 12px 16px; border-radius: var(--radius-sm); font-size: 13.5px; line-height: 1.5;"></div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 12 / 15 · Đấu trường Quiz</span>
+        <span>Trả lời đúng liên tục để kích hoạt chuỗi Streak</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 13: BÀI TOÁN MỞ RỘNG THỰC TẾ
+         ========================================== -->
+    <div class="slide" id="slide-13">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">09 · VẬN DỤNG CAO</span>
+          <h2 class="slide-title">7. Bài Toán Sản Xuất Thực Tiễn Na Rì</h2>
+        </div>
+        <span class="slide-subtitle">Vận dụng BPT lập kế hoạch sản xuất hàng thủ công mỹ nghệ</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              🧺 Đề bài bài toán làng nghề
+            </h3>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Một cơ sở đan lát mây tre đan tại Na Rì sản xuất 2 loại sản phẩm: Giỏ hoa (loại I) và Lẵng quả (loại II).
+            </p>
+            <ul style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px; margin-top: 6px;">
+              <li>Mỗi giỏ hoa loại I cần <strong>2 giờ công</strong>.</li>
+              <li>Mỗi lẵng quả loại II cần <strong>3 giờ công</strong>.</li>
+              <li>Tổng quỹ thời gian lao động trong ngày của xưởng tối đa là <strong>24 giờ</strong>.</li>
+            </ul>
+            <p style="font-size: 13px; color: var(--gold-light); margin-top: 10px;">
+              Gọi $x, y \ge 0$ lần lượt là số giỏ hoa và lẵng quả sản xuất trong ngày. Hãy lập BPT mô tả giới hạn giờ công.
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              📝 Phân Tích &amp; Biểu Diễn
+            </h3>
+            <div class="reveal-item" id="rev-s13-1" style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              • Bất phương trình giờ công: <strong style="color: var(--cyan);">$2x + 3y \le 24$</strong> ($x, y \in \mathbb{N}$).<br>
+              • Đường thẳng biên bờ cắt $Ox$ tại $(12; 0)$ và cắt $Oy$ tại $(0; 8)$.<br>
+              • Miền nghiệm trên $Oxy$ là miền tam giác vuông kể cả bờ $OAB$ với $O(0; 0), A(12; 0), B(0; 8)$.<br>
+              • Diện tích miền khả thi: $S = \frac{12 \times 8}{2} = 48$.
+            </div>
+            <div style="margin-top: 14px; text-align: right;">
+              <button class="reveal-btn primary" onclick="revealNext(13)">Mở Lời Giải [Space]</button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 13 / 15 · Bài toán làng nghề</span>
+        <span>Nhấn [Space] để hiện phân tích</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 14: TOP 5 CẠM BẪY THI TRẮC NGHIỆM
+         ========================================== -->
+    <div class="slide" id="slide-14">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">⚠️ CẢNH BÁO PHÒNG THI</span>
+          <h2 class="slide-title">Top 5 Cạm Bẫy Trắc Nghiệm Học Sinh Hay Mắc Phải</h2>
+        </div>
+        <span class="slide-subtitle">Các lỗi sai phổ biến khiến học sinh mất điểm đáng tiếc</span>
+      </div>
+      <div class="slide-body">
+        <div style="display: flex; flex-direction: column; gap: 10px;">
+          <div class="glass-card coral-tone" style="padding: 10px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: var(--coral-light); font-size: 13.5px;">Bẫy 1: Quên đổi dấu chiều BPT khi nhân hoặc chia cho số âm</strong>
+              <span style="font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(244, 63, 94, 0.3);">Lỗi sơ đẳng</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;">
+              • Sai: $-2x + y \le 4 \iff 2x - y \le -4$ (Sai vì không đổi dấu).<br>
+              • Đúng: $-2x + y \le 4 \iff 2x - y \ge -4$.
+            </p>
+          </div>
+
+          <div class="glass-card gold-tone" style="padding: 10px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: var(--gold-light); font-size: 13.5px;">Bẫy 2: Thử điểm O(0; 0) khi c = 0</strong>
+              <span style="font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(245, 158, 11, 0.3);">Bẫy điểm thử</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;">
+              • BPT $2x - 3y > 0$ đi qua gốc $O$. Nếu thay $O(0; 0) \to 0 > 0$ thì bối rối. Hãy nhớ chọn $(0; 1)$ hoặc $(1; 0)$!
+            </p>
+          </div>
+
+          <div class="glass-card purple-tone" style="padding: 10px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: var(--purple-light); font-size: 13.5px;">Bẫy 3: Nhầm lẫn giữa nét đứt và nét liền</strong>
+              <span style="font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(139, 92, 246, 0.3);">Bẫy hình vẽ</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;">
+              • BPT ngặt ($<, >$) bắt buộc vẽ nét đứt; BPT không ngặt ($\le, \ge$) bắt buộc vẽ nét liền.
+            </p>
+          </div>
+
+          <div class="glass-card" style="padding: 10px 16px; border-left: 4px solid var(--cyan);">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: var(--cyan); font-size: 13.5px;">Bẫy 4: Nhầm lẫn biến x và y khi biểu diễn đường thẳng</strong>
+              <span style="font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(0, 242, 254, 0.2);">Nhầm toạ độ</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;">
+              • Giao trục $Ox$ là cho $y = 0$; Giao trục $Oy$ là cho $x = 0$. Rất nhiều học sinh đảo ngược toạ độ 2 điểm này.
+            </p>
+          </div>
+
+          <div class="glass-card emerald-tone" style="padding: 10px 16px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+              <strong style="color: var(--emerald-light); font-size: 13.5px;">Bẫy 5: Quên điều kiện nguyên hoặc không âm của bài toán thực tế</strong>
+              <span style="font-size: 11px; padding: 2px 8px; border-radius: 4px; background: rgba(16, 185, 129, 0.3);">Thực tiễn</span>
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); margin-top: 4px;">
+              • Số sản phẩm, số xe, số người luôn phải là số tự nhiên ($x, y \in \mathbb{N}$), không thể là số âm hoặc số thập phân!
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 14 / 15 · Cạm bẫy trắc nghiệm</span>
+        <span>Nhấn [→] để sang Tổng kết bài học</span>
+      </div>
+    </div>
+
+    <!-- ==========================================
+         SLIDE 15: TỔNG KẾT & NHIỆM VỤ VỀ NHÀ
+         ========================================== -->
+    <div class="slide" id="slide-15">
+      <div class="slide-header">
+        <div class="slide-title-box">
+          <span class="slide-tag">10 · TỔNG KẾT</span>
+          <h2 class="slide-title">Tổng Kết Khắc Sâu &amp; Nhiệm Vụ Về Nhà</h2>
+        </div>
+        <span class="slide-subtitle">Khép lại bài học số 3 và chuẩn bị cho Bài 4 (Hệ BPT)</span>
+      </div>
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--cyan); margin-bottom: 8px;">
+              🏆 4 Chìa Khóa Vàng Bài 3
+            </h3>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.6; padding-left: 16px;">
+              <li><strong>Dạng tổng quát:</strong> $ax + by \le c$ ($a^2 + b^2 \ne 0$). Luôn có vô số nghiệm.</li>
+              <li><strong>Quy ước nét vẽ:</strong> Nét liền khi có dấu bằng ($\le, \ge$); Nét đứt khi không có ($<, >$).</li>
+              <li><strong>Quy trình 3 bước:</strong> 1) Vẽ đường biên $d$; 2) Thử điểm $O(0; 0)$ nếu $c \ne 0$; 3) Kết luận miền nghiệm.</li>
+              <li><strong>Công thức diện tích tam giác:</strong> $S = \frac{c^2}{2ab}$ khi kết hợp $x \ge 0, y \ge 0$.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card purple-tone">
+            <h3 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              📋 Nhiệm Vụ Về Nhà
+            </h3>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--ink-soft);">
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span style="color: var(--cyan);">1.</span>
+                <span>Làm trọn bộ câu hỏi trắc nghiệm 4 lựa chọn và Đúng/Sai của Bài 3 trên web Chinh phục Toán 10.</span>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span style="color: var(--cyan);">2.</span>
+                <span>Rèn luyện vẽ tay các nửa mặt phẳng trên giấy kẻ ô li để thuần thục kỹ năng.</span>
+              </div>
+              <div style="display: flex; gap: 8px; align-items: center;">
+                <span style="color: var(--cyan);">3.</span>
+                <span>Đọc trước <strong>Bài 4: Hệ bất phương trình bậc nhất hai ẩn</strong>.</span>
+              </div>
+            </div>
+
+            <div style="margin-top: 16px; text-align: center;">
+              <button class="reveal-btn primary" onclick="triggerCelebration()">🎉 Bắn pháo hoa hoàn thành bài học!</button>
+            </div>
+          </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 8px; font-size: 13px; color: var(--ink-soft);">
+          ✨ <em>"Thành công là kết quả của sự chuẩn bị, học hỏi không ngừng và rèn luyện mỗi ngày."</em> — THPT Na Rì!
+        </div>
+      </div>
+      <div class="slide-footer">
+        <span>Slide 15 / 15 · Hoàn thành bài học</span>
+        <span>Chúc mừng em đã làm chủ Bài 3!</span>
+      </div>
+    </div>
+
+  </div> <!-- End Deck Container -->
+
+  <!-- Navigation Bar -->
+  <div class="nav-bar">
+    <button class="nav-btn" onclick="prevSlide()" title="Slide trước (Phím ←)">←</button>
+    <div class="nav-counter" id="navCounter">1 / 15</div>
+    <button class="nav-btn" onclick="nextSlide()" title="Slide tiếp (Phím →)">→</button>
+    <button class="nav-btn" onclick="revealNext(currentSlide)" title="Hiện nội dung tiếp theo (Phím Space / Down)">⚡</button>
+    <button class="nav-btn" onclick="toggleFullscreen()" title="Toàn màn hình (Phím F)">⛶</button>
+    <button class="nav-btn" onclick="toggleMute()" id="muteBtn" title="Bật/Tắt âm thanh (Phím M)">🔊</button>
+    <button class="nav-btn" onclick="toggleToc()" title="Mục lục (Phím T)">📑</button>
+  </div>
+
+  <!-- TOC Drawer -->
+  <div class="toc-drawer" id="tocDrawer">
+    <div class="toc-title">
+      <span>MỤC LỤC BÀI GIẢNG</span>
+      <button onclick="toggleToc()" style="background: none; border: none; color: var(--ink); font-size: 20px; cursor: pointer;">✕</button>
+    </div>
+    <div class="toc-list" id="tocList"></div>
+  </div>
+
+  <script>
+    /* ─── 1. STATE MANAGEMENT ─── */
+    const totalSlides = 15;
+    let currentSlide = 1;
+    let isMuted = false;
+    let audioCtx = null;
+
+    const slideTitles = [
+      "1. Bìa bài giảng điện tử",
+      "2. Khởi động bài toán kinh tế",
+      "3. Mục tiêu bài học (GDPT 2018)",
+      "4. Khái niệm BPT bậc nhất hai ẩn",
+      "5. Nghiệm & Tập nghiệm vô số",
+      "6. Đường biên & Quy ước nét vẽ",
+      "7. Virtual Lab 1: Máy test điểm thử",
+      "8. Quy trình 3 bước biểu diễn miền",
+      "9. BPT qua gốc O & Khuyết ẩn",
+      "10. Virtual Lab 2: Vẽ miền nghiệm động",
+      "11. Mô hình kinh tế & Diện tích c²/(2ab)",
+      "12. Đấu trường Quiz 5 câu",
+      "13. Bài toán thực tiễn làng nghề",
+      "14. Top 5 Cạm bẫy trắc nghiệm",
+      "15. Tổng kết & Nhiệm vụ về nhà"
+    ];
+
+    /* ─── 2. WEB AUDIO API SYNTHESIZER ─── */
+    function initAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+    }
+
+    function playClick() {
+      if (isMuted) return;
+      initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, audioCtx.currentTime);
+      osc.frequency.exponentialRampToValueAtTime(300, audioCtx.currentTime + 0.05);
+      gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.05);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.05);
+    }
+
+    function playChime() {
+      if (isMuted) return;
+      initAudio();
+      [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + i * 0.08);
+        gain.gain.setValueAtTime(0.18, audioCtx.currentTime + i * 0.08);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + i * 0.08 + 0.35);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(audioCtx.currentTime + i * 0.08);
+        osc.stop(audioCtx.currentTime + i * 0.08 + 0.35);
+      });
+    }
+
+    function playBuzzer() {
+      if (isMuted) return;
+      initAudio();
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+      osc.frequency.linearRampToValueAtTime(100, audioCtx.currentTime + 0.22);
+      gain.gain.setValueAtTime(0.2, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.22);
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.22);
+    }
+
+    function playFanfare() {
+      if (isMuted) return;
+      initAudio();
+      const notes = [523.25, 523.25, 523.25, 659.25, 783.99, 1046.50];
+      const times = [0, 0.12, 0.24, 0.36, 0.52, 0.72];
+      notes.forEach((freq, idx) => {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime + times[idx]);
+        gain.gain.setValueAtTime(0.2, audioCtx.currentTime + times[idx]);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + times[idx] + 0.38);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start(audioCtx.currentTime + times[idx]);
+        osc.stop(audioCtx.currentTime + times[idx] + 0.38);
+      });
+    }
+
+    /* ─── 3. NAVIGATION & PROGRESS ─── */
+    function updateSlideView() {
+      for (let i = 1; i <= totalSlides; i++) {
+        const slide = document.getElementById(`slide-${i}`);
+        if (!slide) continue;
+        slide.classList.remove('active', 'past');
+        if (i === currentSlide) {
+          slide.classList.add('active');
+        } else if (i < currentSlide) {
+          slide.classList.add('past');
+        }
+      }
+      document.getElementById('navCounter').textContent = `${currentSlide} / ${totalSlides}`;
+      document.getElementById('progressBar').style.width = `${((currentSlide - 1) / (totalSlides - 1)) * 100}%`;
+      updateTocActive();
+    }
+
+    function goToSlide(n) {
+      if (n < 1 || n > totalSlides || n === currentSlide) return;
+      currentSlide = n;
+      playClick();
+      updateSlideView();
+    }
+
+    function nextSlide() {
+      if (currentSlide < totalSlides) {
+        currentSlide++;
+        playClick();
+        updateSlideView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        playClick();
+        updateSlideView();
+      }
+    }
+
+    function toggleFullscreen() {
+      playClick();
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      document.getElementById('muteBtn').textContent = isMuted ? '🔇' : '🔊';
+      playClick();
+    }
+
+    /* ─── 4. PROGRESSIVE REVEAL ─── */
+    function revealNext(slideNum) {
+      const slide = document.getElementById(`slide-${slideNum}`);
+      if (!slide) return;
+      const unrevealed = slide.querySelectorAll('.reveal-item:not(.revealed)');
+      if (unrevealed.length > 0) {
+        unrevealed[0].classList.add('revealed');
+        playChime();
+      } else {
+        nextSlide();
+      }
+    }
+
+    /* ─── 5. TOC DRAWER ─── */
+    function initToc() {
+      const list = document.getElementById('tocList');
+      list.innerHTML = '';
+      slideTitles.forEach((t, i) => {
+        const item = document.createElement('div');
+        item.className = 'toc-item';
+        item.textContent = t;
+        item.onclick = () => {
+          goToSlide(i + 1);
+          toggleToc();
+        };
+        list.appendChild(item);
+      });
+      updateTocActive();
+    }
+
+    function updateTocActive() {
+      const items = document.querySelectorAll('.toc-item');
+      items.forEach((it, i) => {
+        it.classList.toggle('active', i + 1 === currentSlide);
+      });
+    }
+
+    function toggleToc() {
+      playClick();
+      document.getElementById('tocDrawer').classList.toggle('open');
+    }
+
+    /* ─── 6. VIRTUAL LAB 1: TEST ĐIỂM THỬ ─── */
+    function testPoint(x, y) {
+      playClick();
+      // SVG scale: Origin O is at (50, 140). Scale: 1 unit = 30px
+      const svgX = 50 + x * 30;
+      const svgY = 140 - y * 30;
+
+      const marker = document.getElementById('testPointMarker');
+      const text = document.getElementById('testPointText');
+      marker.setAttribute('cx', svgX);
+      marker.setAttribute('cy', svgY);
+      text.setAttribute('x', svgX);
+      text.setAttribute('y', svgY - 8);
+      text.textContent = `(${x}; ${y})`;
+
+      const val = 2 * x + y;
+      const isSol = val <= 4;
+      const card = document.getElementById('testStatusCard');
+      const calc = document.getElementById('testCalc');
+      const verd = document.getElementById('testVerdict');
+
+      calc.textContent = `2(${x}) + (${y}) = ${val} ${isSol ? '≤' : '>'} 4`;
+
+      if (isSol) {
+        card.style.background = 'rgba(16, 185, 129, 0.2)';
+        card.style.borderColor = 'var(--emerald)';
+        verd.style.color = 'var(--emerald-light)';
+        verd.textContent = `✅ THỎA MÃN: (${x}; ${y}) thuộc miền nghiệm!`;
+        marker.setAttribute('fill', 'var(--emerald)');
+        text.setAttribute('fill', 'var(--emerald-light)');
+        playChime();
+      } else {
+        card.style.background = 'rgba(244, 63, 94, 0.2)';
+        card.style.borderColor = 'var(--coral)';
+        verd.style.color = 'var(--coral-light)';
+        verd.textContent = `❌ KHÔNG THỎA MÃN: (${x}; ${y}) bị gạch bỏ!`;
+        marker.setAttribute('fill', 'var(--coral)');
+        text.setAttribute('fill', 'var(--coral-light)');
+        playBuzzer();
+      }
+    }
+
+    /* ─── 7. VIRTUAL LAB 2: VẼ MIỀN NGHIỆM ĐỘNG ─── */
+    function setLab2Preset(type) {
+      playClick();
+      const shade = document.getElementById('lab2Shade');
+      const boundary = document.getElementById('lab2Boundary');
+      const label = document.getElementById('lab2LineLabel');
+      const title = document.getElementById('lab2BptTitle');
+      const strokeType = document.getElementById('lab2StrokeType');
+      const desc = document.getElementById('lab2TestDesc');
+
+      if (type === 'x+y<=3') {
+        // x + y <= 3 (cuts x=3 -> svg_x=60+3*25=135, y=3 -> svg_y=130-3*25=55)
+        shade.setAttribute('points', '-60,250 250,-60 -60,-60');
+        boundary.setAttribute('x1', '-20'); boundary.setAttribute('y1', '210');
+        boundary.setAttribute('x2', '210'); boundary.setAttribute('y2', '-20');
+        boundary.setAttribute('stroke-dasharray', 'none');
+        boundary.setAttribute('stroke', 'var(--cyan)');
+        label.setAttribute('x', '180'); label.setAttribute('y', '15');
+        label.textContent = 'x + y = 3';
+        title.textContent = 'BPT: x + y ≤ 3';
+        strokeType.textContent = '✔️ Bờ nét LIỀN (chứa dấu bằng ≤)';
+        strokeType.style.color = 'var(--emerald-light)';
+        desc.innerHTML = 'Thay $O(0; 0) \\to 0 + 0 = 0 \\le 3$ (Đúng). Miền nghiệm là nửa mặt phẳng chứa gốc $O(0; 0)$ bao gồm cả bờ.';
+      } else if (type === 'x-y>1') {
+        // x - y > 1 <=> y < x - 1. Cuts x=1, y=-1. Nét đứt!
+        shade.setAttribute('points', '-60,250 250,250 250,60');
+        boundary.setAttribute('x1', '-40'); boundary.setAttribute('y1', '30');
+        boundary.setAttribute('x2', '180'); boundary.setAttribute('y2', '250');
+        boundary.setAttribute('stroke-dasharray', '6 4');
+        boundary.setAttribute('stroke', 'var(--coral)');
+        label.setAttribute('x', '150'); label.setAttribute('y', '230');
+        label.textContent = 'x - y = 1 (nét đứt)';
+        title.textContent = 'BPT: x - y > 1';
+        strokeType.textContent = '⚠️ Bờ nét ĐỨT (dấu ngặt >, không lấy bờ)';
+        strokeType.style.color = 'var(--coral-light)';
+        desc.innerHTML = 'Thay $O(0; 0) \\to 0 - 0 = 0 > 1$ (Sai!). Miền nghiệm là nửa mặt phẳng KHÔNG chứa gốc $O(0; 0)$ và KHÔNG tính bờ.';
+      } else if (type === '2x-y>=0') {
+        // 2x - y >= 0. Boundary y = 2x goes through O(0;0).
+        shade.setAttribute('points', '60,130 250,130 250,250 -60,250');
+        boundary.setAttribute('x1', '-10'); boundary.setAttribute('y1', '270');
+        boundary.setAttribute('x2', '130'); boundary.setAttribute('y2', '-10');
+        boundary.setAttribute('stroke-dasharray', 'none');
+        boundary.setAttribute('stroke', 'var(--purple-light)');
+        label.setAttribute('x', '110'); label.setAttribute('y', '25');
+        label.textContent = '2x - y = 0';
+        title.textContent = 'BPT: 2x - y ≥ 0 (Bờ qua gốc O)';
+        strokeType.textContent = '✔️ Bờ nét LIỀN (chứa dấu bằng ≥)';
+        strokeType.style.color = 'var(--purple-light)';
+        desc.innerHTML = 'Đường thẳng qua gốc $O(0; 0)$. Thử điểm $M(0; 1) \\to 2(0) - 1 = -1 \\ge 0$ (Sai!). Miền nghiệm là nửa mặt phẳng không chứa $(0; 1)$.';
+      } else if (type === 'x<=2') {
+        // x <= 2. Vertical line x = 2.
+        shade.setAttribute('points', '-60,-60 110,-60 110,250 -60,250');
+        boundary.setAttribute('x1', '110'); boundary.setAttribute('y1', '-50');
+        boundary.setAttribute('x2', '110'); boundary.setAttribute('y2', '230');
+        boundary.setAttribute('stroke-dasharray', 'none');
+        boundary.setAttribute('stroke', 'var(--gold)');
+        label.setAttribute('x', '115'); label.setAttribute('y', '0');
+        label.textContent = 'x = 2';
+        title.textContent = 'BPT: x ≤ 2 (Khuyết ẩn y)';
+        strokeType.textContent = '✔️ Bờ nét LIỀN (Đường thẳng song song Oy)';
+        strokeType.style.color = 'var(--gold-light)';
+        desc.innerHTML = 'Đường thẳng đứng $x = 2$. Miền nghiệm $x \\le 2$ là toàn bộ nửa mặt phẳng nằm bên TRÁI đường thẳng $x = 2$, có chứa gốc $O(0; 0)$.';
+      }
+    }
+
+    /* ─── 8. CONFETTI CELEBRATION ─── */
+    function triggerCelebration() {
+      playFanfare();
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const particles = [];
+      const colors = ['#00F2FE', '#4FACFE', '#8B5CF6', '#F59E0B', '#10B981', '#F43F5E', '#FFFFFF'];
+
+      for (let i = 0; i < 150; i++) {
+        particles.push({
+          x: canvas.width / 2, y: canvas.height / 2,
+          vx: (Math.random() - 0.5) * 16, vy: (Math.random() - 0.7) * 18,
+          size: Math.random() * 8 + 4, color: colors[Math.floor(Math.random() * colors.length)],
+          rot: Math.random() * 360, vRot: (Math.random() - 0.5) * 10, alpha: 1
+        });
+      }
+
+      function renderConfetti() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let alive = false;
+        particles.forEach(p => {
+          p.x += p.vx; p.y += p.vy; p.vy += 0.35; p.rot += p.vRot; p.alpha -= 0.008;
+          if (p.alpha > 0) {
+            alive = true; ctx.save(); ctx.globalAlpha = p.alpha; ctx.translate(p.x, p.y);
+            ctx.rotate((p.rot * Math.PI) / 180); ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size); ctx.restore();
+          }
+        });
+        if (alive) requestAnimationFrame(renderConfetti);
+        else ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+      renderConfetti();
+    }
+
+    /* ─── 9. QUIZ ENGINE ─── */
+    const quizData = [
+      {
+        q: "Bất phương trình nào sau đây LÀ bất phương trình bậc nhất hai ẩn?",
+        opts: [
+          "2x² - 3y ≤ 5",
+          "2x - 3y + 7 ≥ 0",
+          "xy + x > 4",
+          "3/x + 2y < 1"
+        ],
+        ans: 1,
+        exp: "Chính xác! 2x - 3y + 7 ≥ 0 có bậc của cả hai ẩn x và y đều là 1, hệ số a = 2, b = -3 khác 0. Các phương án khác chứa x², xy hoặc ẩn ở mẫu."
+      },
+      {
+        q: "Cặp số (x; y) nào sau đây là MỘT NGHIỆM của bất phương trình 2x - y < 3?",
+        opts: [
+          "(2; 0)",
+          "(3; 1)",
+          "(1; 1)",
+          "(4; 2)"
+        ],
+        ans: 2,
+        exp: "Xuất sắc! Thay (1; 1) vào: 2(1) - 1 = 1 < 3 (Thoả mãn). Thử các cặp khác: (2; 0) cho 4 < 3 (Sai), (3; 1) cho 5 < 3 (Sai)."
+      },
+      {
+        q: "Khi biểu diễn miền nghiệm của BPT 3x + 2y < 6 trên Oxy, đường thẳng 3x + 2y = 6 được vẽ bằng:",
+        opts: [
+          "Nét liền và thuộc miền nghiệm",
+          "Nét đứt và không thuộc miền nghiệm",
+          "Nét liền và không thuộc miền nghiệm",
+          "Nét đứt và thuộc miền nghiệm"
+        ],
+        ans: 1,
+        exp: "Tuyệt vời! Dấu ngặt '<' quy định đường thẳng biên không thuộc miền nghiệm và bắt buộc phải vẽ bằng NÉT ĐỨT!"
+      },
+      {
+        q: "Để kiểm tra miền nghiệm của BPT 4x - 5y ≤ 0, ta KHÔNG ĐƯỢC chọn điểm thử nào?",
+        opts: [
+          "(0; 1)",
+          "(1; 0)",
+          "(0; 0)",
+          "(1; 2)"
+        ],
+        ans: 2,
+        exp: "Rất chuẩn! Đường thẳng 4x - 5y = 0 đi qua gốc O(0; 0). Do điểm O nằm ngay trên bờ nên tuyệt đối không được lấy làm điểm thử phân biệt hai nửa mặt phẳng!"
+      },
+      {
+        q: "Diện tích miền nghiệm của hệ { 2x + y ≤ 6; x ≥ 0; y ≥ 0 } trên mặt phẳng Oxy là:",
+        opts: [
+          "9",
+          "18",
+          "6",
+          "12"
+        ],
+        ans: 0,
+        exp: "Đỉnh cao! Áp dụng công thức tính nhanh diện tích tam giác vuông S = c² / (2ab) = 6² / (2 · 2 · 1) = 36 / 4 = 9!"
+      }
+    ];
+
+    let currentQuizIdx = 0;
+    let quizScore = 0;
+    let quizStreak = 0;
+
+    function renderQuiz() {
+      const q = quizData[currentQuizIdx];
+      document.getElementById('quizProgressText').textContent = `Câu hỏi ${currentQuizIdx + 1} / ${quizData.length}`;
+      document.getElementById('quizQuestion').textContent = q.q;
+
+      const optsBox = document.getElementById('quizOptions');
+      optsBox.innerHTML = '';
+      const fb = document.getElementById('quizFeedback');
+      fb.style.display = 'none';
+
+      q.opts.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-opt-letter">${String.fromCharCode(65 + idx)}</div>
+          <div style="font-size: 13.5px; font-weight: 600; line-height: 1.4;">${opt}</div>
+        `;
+        card.onclick = () => checkQuiz(idx, card);
+        optsBox.appendChild(card);
+      });
+    }
+
+    function checkQuiz(chosenIdx, cardEl) {
+      const q = quizData[currentQuizIdx];
+      const allCards = document.querySelectorAll('.quiz-card');
+      allCards.forEach(c => c.style.pointerEvents = 'none');
+
+      const fb = document.getElementById('quizFeedback');
+      fb.style.display = 'block';
+
+      if (chosenIdx === q.ans) {
+        cardEl.classList.add('correct');
+        quizScore++;
+        quizStreak++;
+        fb.style.background = 'rgba(16, 185, 129, 0.2)';
+        fb.style.border = '1px solid var(--emerald)';
+        fb.style.color = 'var(--emerald-light)';
+        fb.innerHTML = '🎉 ' + q.exp;
+        playChime();
+      } else {
+        cardEl.classList.add('wrong');
+        quizStreak = 0;
+        allCards[q.ans].classList.add('correct');
+        fb.style.background = 'rgba(244, 63, 94, 0.2)';
+        fb.style.border = '1px solid var(--coral)';
+        fb.style.color = 'var(--coral-light)';
+        fb.innerHTML = '⚠️ ' + q.exp;
+        playBuzzer();
+      }
+
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizStreak').textContent = quizStreak;
+
+      setTimeout(() => {
+        if (currentQuizIdx < quizData.length - 1) {
+          currentQuizIdx++;
+          renderQuiz();
+        } else {
+          showQuizFinished();
+        }
+      }, 2500);
+    }
+
+    function showQuizFinished() {
+      const optsBox = document.getElementById('quizOptions');
+      document.getElementById('quizQuestion').textContent = `KẾT QUẢ ĐẤU TRƯỜNG: ${quizScore} / ${quizData.length} ĐIỂM!`;
+      optsBox.innerHTML = `
+        <div class="glass-card" style="text-align: center; padding: 20px; grid-column: span 2;">
+          <div style="font-size: 38px; margin-bottom: 8px;">${quizScore >= 4 ? '🏆' : '📚'}</div>
+          <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">
+            ${quizScore >= 4 ? 'Xuất sắc! Em đã làm chủ toàn diện Bất phương trình bậc nhất hai ẩn!' : 'Cố gắng lên! Hãy xem lại các slide lý thuyết để đạt trọn điểm 10 nhé!'}
+          </div>
+          <button class="reveal-btn primary" onclick="resetQuiz()" style="margin-top: 14px;">Làm lại Đấu trường</button>
+        </div>
+      `;
+      if (quizScore >= 4) triggerCelebration();
+    }
+
+    function resetQuiz() {
+      currentQuizIdx = 0;
+      quizScore = 0;
+      quizStreak = 0;
+      document.getElementById('quizScore').textContent = '0';
+      document.getElementById('quizStreak').textContent = '0';
+      renderQuiz();
+      playClick();
+    }
+
+    /* ─── 10. KEYBOARD SHORTCUTS ─── */
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') nextSlide();
+      else if (e.key === 'ArrowLeft' || e.key === 'PageUp') prevSlide();
+      else if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        revealNext(currentSlide);
+      } else if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+      else if (e.key === 'm' || e.key === 'M') toggleMute();
+      else if (e.key === 't' || e.key === 'T') toggleToc();
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      initToc();
+      renderQuiz();
+      updateSlideView();
+    });
+  </script>
+</body>
+</html>
