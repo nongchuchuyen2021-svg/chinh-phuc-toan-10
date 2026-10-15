@@ -92,7 +92,7 @@ export default function TriangleSolverLab() {
     }
 
     if (!isValid) {
-      return { isValid: false, errorMsg };
+      return { isValid: false as const, errorMsg };
     }
 
     // Secondary metrics
@@ -121,7 +121,7 @@ export default function TriangleSolverLab() {
     }
 
     return {
-      isValid: true,
+      isValid: true as const,
       a,
       b,
       c,

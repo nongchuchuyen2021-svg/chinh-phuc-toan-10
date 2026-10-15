@@ -540,9 +540,9 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
     keyPoints: [
       "Nửa đường tròn đơn vị: tâm $O(0;0)$, bán kính $R = 1$ nằm trên nửa mặt phẳng $y \\ge 0$. Điểm $M(x_0; y_0)$ ứng với góc $\\alpha$ có $\\cos\\alpha = x_0$ (trục hoành) và $\\sin\\alpha = y_0$ (trục tung).",
       "Dấu lượng giác: $\\sin\\alpha \\ge 0$ với mọi $\\alpha \\in [0^\\circ; 180^\\circ]$. Góc nhọn $\\implies \\cos, \\tan, \\cot > 0$; Góc tù $\\implies \\cos, \\tan, \\cot < 0$.",
-      "Góc bù ('Sin bù'): $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, còn côsin, tang, côtang đổi dấu âm: $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$, $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$.",
-      "Góc phụ ('Phụ chéo'): $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$, $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$.",
-      "Bộ 4 hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$; $1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$ ($\\alpha \\ne 90^\\circ$); $1 + \\cot^2\\alpha = \\frac{1}{\\sin^2\\alpha}$; $\\tan\\alpha \\cdot \\cot\\alpha = 1$.",
+      "Góc bù: $\\sin(180^\\circ-\\alpha)=\\sin\\alpha$, $\\cos(180^\\circ-\\alpha)=-\\cos\\alpha$. Tang và côtang của hai góc bù đối nhau khi xác định: tang cần $\\alpha\\ne90^\\circ$; côtang cần $0^\\circ<\\alpha<180^\\circ$.",
+      "Góc phụ: với $0^\\circ\\le\\alpha\\le90^\\circ$, $\\sin(90^\\circ-\\alpha)=\\cos\\alpha$ và $\\cos(90^\\circ-\\alpha)=\\sin\\alpha$. Với $0^\\circ<\\alpha<90^\\circ$, $\\tan(90^\\circ-\\alpha)=\\cot\\alpha$ và $\\cot(90^\\circ-\\alpha)=\\tan\\alpha$.",
+      "Hệ thức cơ bản: $\\sin^2\\alpha+\\cos^2\\alpha=1$ trên $[0^\\circ;180^\\circ]$; $1+\\tan^2\\alpha=1/\\cos^2\\alpha$ khi $\\alpha\\ne90^\\circ$; $1+\\cot^2\\alpha=1/\\sin^2\\alpha$ khi $0^\\circ<\\alpha<180^\\circ$; $\\tan\\alpha\\cot\\alpha=1$ khi $\\alpha\\ne0^\\circ,90^\\circ,180^\\circ$.",
       "Kĩ thuật đồng bậc: Khi biết $\\tan\\alpha = k$, tính phân thức đồng bậc bằng cách chia cả tử và mẫu cho $\\cos\\alpha$."
     ],
     commonMistakes: [
@@ -556,11 +556,11 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
       },
       {
         mistake: "Để máy tính cầm tay ở chế độ Radian (chữ R) khi tính toán các góc đo bằng độ.",
-        fix: "Luôn kiểm tra màn hình máy tính có chữ D (Degree). Thao tác cài đặt: `SHIFT` $\\to$ `MENU` $\\to$ `2 (Angle Unit)` $\\to$ `1 (Degree)`."
+        fix: "Chọn đơn vị Degree (Độ). Trên fx-580VN X: SHIFT → MENU (SETUP) → 2 (Angle Unit) → 1 (Degree). Các dòng máy khác có cách vào phần cài đặt khác; chọn Angle Unit → Degree theo hướng dẫn máy."
       }
     ],
     tips: [
-      "Câu thần chú 4 từ: 'SIN BÙ — PHỤ CHÉO' (Góc bù nhau chỉ có sin bằng nhau; Góc phụ nhau sin thành cos, tan thành cot).",
+      "Ghi nhớ 'SIN BÙ — PHỤ CHÉO': góc bù có sin bằng nhau, cos đối nhau; góc phụ đổi vai sin–cos, tan–cot. Luôn kiểm tra điều kiện xác định của tan, cot.",
       "Mẹo nhẩm góc đặc biệt: Quy luật tử số căn thức của sin: $0, 30^\\circ, 45^\\circ, 60^\\circ, 90^\\circ \\to \\frac{\\sqrt{0}}{2}, \\frac{\\sqrt{1}}{2}, \\frac{\\sqrt{2}}{2}, \\frac{\\sqrt{3}}{2}, \\frac{\\sqrt{4}}{2}$.",
       "Triệt tiêu tổng góc bù: $\\cos\\alpha + \\cos(180^\\circ - \\alpha) = 0$. Khi gặp dãy tổng côsin có các góc bù nhau, ghép cặp triệt tiêu ngay về 0."
     ],
@@ -632,11 +632,11 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
         children: [
           {
             title: "Sin bù",
-            detail: "Hai góc bù nhau có sin bằng nhau, ba giá trị còn lại đối dấu."
+            detail: "Hai góc bù nhau có sin bằng nhau, cos đối nhau; tan và cot đối nhau khi các biểu thức tương ứng xác định."
           },
           {
             title: "Phụ chéo",
-            detail: "$\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$."
+            detail: "$\\sin(90^\\circ-\\alpha)=\\cos\\alpha$ với $0^\\circ\\le\\alpha\\le90^\\circ$; $\\tan(90^\\circ-\\alpha)=\\cot\\alpha$ với $0^\\circ<\\alpha<90^\\circ$."
           }
         ]
       },

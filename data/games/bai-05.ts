@@ -18,7 +18,7 @@ const sortGame: SortGame = {
       emoji: "📈",
       label: "$\\sin 150^\\circ$",
       isMatch: true,
-      explain: "Góc $150^\\circ$ là góc tù nhưng $\\sin$ luôn dương trên $[0^\\circ; 180^\\circ]$: $\\sin 150^\\circ = \\frac{1}{2} > 0$.",
+      explain: "Góc $150^\\circ$ là góc tù nhưng sin vẫn dương: $\\sin 150^\\circ = \\frac{1}{2} > 0$. Trên $[0^\\circ; 180^\\circ]$, sin không âm; tại hai đầu mút $\\sin 0^\\circ = \\sin 180^\\circ = 0$.",
     },
     {
       id: "trig-2",

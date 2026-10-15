@@ -5,6 +5,7 @@ import type { TFQuestion } from "@/lib/types";
 import MathText from "@/components/MathText";
 import Confetti from "@/components/Confetti";
 import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound";
+import { updateLessonTFScore } from "@/lib/progress";
 
 export default function TrueFalseQuiz({
   lessonId,
@@ -21,6 +22,7 @@ export default function TrueFalseQuiz({
   const [userAnswers, setUserAnswers] = useState<Record<number, boolean | null>>({});
   const [submitted, setSubmitted] = useState(false);
   const [totalScore, setTotalScore] = useState(0);
+  const [totalCorrect, setTotalCorrect] = useState(0);
   const [finished, setFinished] = useState(false);
   const [showConfetti, setShowConfetti] = useState(false);
 
@@ -44,7 +46,7 @@ export default function TrueFalseQuiz({
   }
 
   function handleSubmit() {
-    if (!q) return;
+    if (!q || submitted || q.statements.some((_, idx) => userAnswers[idx] === undefined || userAnswers[idx] === null)) return;
     let correct = 0;
     q.statements.forEach((st, idx) => {
       if (userAnswers[idx] === st.answer) {
@@ -53,6 +55,7 @@ export default function TrueFalseQuiz({
     });
     const score = calculateStatementScore(correct);
     setTotalScore((s) => s + score);
+    setTotalCorrect((count) => count + correct);
     setSubmitted(true);
 
     if (correct >= 3) {
@@ -69,6 +72,7 @@ export default function TrueFalseQuiz({
       setUserAnswers({});
       setSubmitted(false);
     } else {
+      updateLessonTFScore(lessonId, totalCorrect, questions.reduce((sum, item) => sum + item.statements.length, 0), totalScore);
       setFinished(true);
       const maxPossible = questions.length;
       if (totalScore / maxPossible >= 0.7) {
@@ -84,6 +88,7 @@ export default function TrueFalseQuiz({
     setUserAnswers({});
     setSubmitted(false);
     setTotalScore(0);
+    setTotalCorrect(0);
     setFinished(false);
     setShowConfetti(false);
   }

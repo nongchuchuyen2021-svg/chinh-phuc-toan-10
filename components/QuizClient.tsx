@@ -131,7 +131,7 @@ export default function QuizClient({
   }
 
   function finishQuiz() {
-    saveAttempt(lessonId, scorePercent);
+    saveAttempt(lessonId, scorePercent, correctCount, quiz.length);
     if (scorePercent >= 80) {
       playCelebration();
       setShowConfetti(true);

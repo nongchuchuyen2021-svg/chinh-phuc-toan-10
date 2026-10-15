@@ -1217,7 +1217,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           },
           {
             kind: "note",
-            text: "📌 **QUY TẮC CẦN KHẮC SÂU**:\n• Trục hoành $Ox$ là **trục côsin**, trục tung $Oy$ là **trục sin**.\n• Trong khoảng từ $0^\\circ$ đến $180^\\circ$, $\\sin\\alpha$ KHÔNG BAO GIỜ ÂM ($0 \\le \\sin\\alpha \\le 1$).\n• Nếu $\\cos\\alpha < 0$ thì chắc chắn $\\alpha$ là góc tù ($90^\\circ < \\alpha < 180^\\circ$)."
+            text: "📌 **QUY TẮC CẦN KHẮC SÂU**:\n• Trục hoành $Ox$ là **trục côsin**, trục tung $Oy$ là **trục sin**.\n• Trên $[0^\\circ;180^\\circ]$, sin không âm; bằng 0 tại $0^\\circ$ và $180^\\circ$.\n• Trong miền đang xét, $\\cos\\alpha < 0$ tương đương $90^\\circ < \\alpha \\le 180^\\circ$. Trường hợp $\\alpha=180^\\circ$ là góc bẹt, không phải góc tù."
           },
           {
             kind: "check",
@@ -1256,17 +1256,17 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "🌟",
                 title: "Thần chú 'SIN BÙ'",
-                text: "• $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$\n• $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$\n• $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$\n• $\\cot(180^\\circ - \\alpha) = -\\cot\\alpha$"
+                text: "• $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$\n• $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$\n• $\\tan(180^\\circ - \\alpha) = -\\tan\\alpha$, với $\\alpha\\ne90^\\circ$.\n• $\\cot(180^\\circ - \\alpha) = -\\cot\\alpha$, với $0^\\circ<\\alpha<180^\\circ$."
               },
               {
                 emoji: "⚡",
                 title: "Thần chú 'PHỤ CHÉO'",
-                text: "• $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$\n• $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$\n• $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$\n• $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$"
+                text: "Với $0^\\circ\\le\\alpha\\le90^\\circ$:\n• $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$.\n• $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$.\nVới $0^\\circ<\\alpha<90^\\circ$:\n• $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$.\n• $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$."
               },
               {
                 emoji: "🎯",
                 title: "Tuyệt chiêu triệt tiêu tổng",
-                text: "Nếu hai góc bù nhau ($A + B = 180^\\circ$) thì:\n$\\cos A + \\cos B = 0$\n$\\tan A + \\tan B = 0$\n$\\sin A - \\sin B = 0$"
+                text: "Nếu hai góc bù nhau ($A + B = 180^\\circ$) thì:\n$\\cos A + \\cos B = 0$.\n$\\tan A + \\tan B = 0$ khi $A,B\\ne90^\\circ$.\n$\\sin A - \\sin B = 0$."
               },
               {
                 emoji: "🔄",
@@ -1341,7 +1341,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "4️⃣",
                 title: "tan α · cot α = 1",
-                text: "Tang và côtang là hai đại lượng nghịch đảo của nhau. Biết $\\tan\\alpha = m \\implies \\cot\\alpha = \\frac{1}{m}$."
+                text: "Tang và côtang nghịch đảo nhau khi cả hai xác định: $\\alpha\\ne0^\\circ,90^\\circ,180^\\circ$. Nếu $\\tan\\alpha=m\\ne0$ thì $\\cot\\alpha=\\frac1m$. Không dùng công thức này khi $\\tan\\alpha=0$."
               }
             ]
           },
@@ -1356,18 +1356,18 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 label: "Bước 2",
                 title: "Xác định dấu khi khai căn",
-                text: "Kiểm tra giả thiết góc $\\alpha$ là nhọn hay tù:\\n• Nếu $\\alpha$ nhọn: lấy $\\cos\\alpha = +\\sqrt{1 - \\sin^2\\alpha}$.\\n• Nếu $\\alpha$ tù: BẮT BUỘC lấy $\\cos\\alpha = -\\sqrt{1 - \\sin^2\\alpha}$."
+                text: "Kiểm tra giả thiết góc $\\alpha$ là nhọn hay tù:\n• Nếu $\\alpha$ nhọn: lấy $\\cos\\alpha = +\\sqrt{1 - \\sin^2\\alpha}$.\n• Nếu $\\alpha$ tù: BẮT BUỘC lấy $\\cos\\alpha = -\\sqrt{1 - \\sin^2\\alpha}$."
               },
               {
                 label: "Bước 3",
                 title: "Tính tan α và cot α",
-                text: "Tính $\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$ và $\\cot\\alpha = \\frac{1}{\\tan\\alpha}$."
+                text: "Tính $\\tan\\alpha = \\frac{\\sin\\alpha}{\\cos\\alpha}$ khi $\\cos\\alpha\\ne0$; tính $\\cot\\alpha=\\frac{\\cos\\alpha}{\\sin\\alpha}$ khi $\\sin\\alpha\\ne0$. Chỉ dùng $\\cot\\alpha=1/\\tan\\alpha$ khi tang xác định và khác 0."
               }
             ]
           },
           {
             kind: "note",
-            text: "💡 **KĨ THUẬT ĐỒNG BẬC GIẢI NHANH 15 GIÂY**:\nKhi đề bài cho $\\tan\\alpha = k$ và yêu cầu tính biểu thức phân thức bậc nhất cùng bậc như $P = \\frac{a\\sin\\alpha + b\\cos\\alpha}{c\\sin\\alpha + d\\cos\\alpha}$, hãy **chia cả tử và mẫu cho $\\cos\\alpha$** để được:\n$$P = \\frac{a\\tan\\alpha + b}{c\\tan\\alpha + d}$$\nThay ngay $k$ vào bấm máy tính mà không cần phải đi tìm riêng $\\sin\\alpha$ hay $\\cos\\alpha$!"
+            text: "💡 **KĨ THUẬT ĐỒNG BẬC**:\nKhi $\\tan\\alpha=k$ xác định, ta có $\\cos\\alpha\\ne0$. Với $P=\\frac{a\\sin\\alpha+b\\cos\\alpha}{c\\sin\\alpha+d\\cos\\alpha}$, chia cả tử và mẫu cho $\\cos\\alpha$:\n$$P=\\frac{ak+b}{ck+d}.$$\nPhải kiểm tra **mẫu số khác 0**: $ck+d\\ne0$."
           },
           {
             kind: "check",
@@ -1396,7 +1396,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           {
             kind: "figure",
             title: "Bản đồ Hoa tiêu 9 Góc lượng giác đặc biệt (0° đến 180°)",
-            svg: `<svg viewBox="0 0 500 270" width="100%" height="260" class="max-w-[480px] mx-auto select-none"><line x1="30" y1="215" x2="470" y2="215" stroke="#64748b" stroke-width="2"/><line x1="250" y1="245" x2="250" y2="25" stroke="#64748b" stroke-width="2"/><text x="465" y="210" fill="#94a3b8" font-size="12" font-family="monospace">x</text><text x="256" y="25" fill="#f43f5e" font-size="12" font-family="monospace">y</text><text x="234" y="232" fill="#cbd5e1" font-size="13" font-family="monospace">O</text><path d="M 80 215 A 170 170 0 0 1 420 215" fill="none" stroke="#38bdf8" stroke-width="2.5"/><circle cx="420" cy="215" r="4" fill="#38bdf8"/><text x="424" y="232" fill="#38bdf8" font-size="11" font-family="monospace">0° (1; 0)</text><circle cx="397" cy="130" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="397" y2="130" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="404" y="132" fill="#38bdf8" font-size="11" font-family="monospace">30° (√3/2; 1/2)</text><circle cx="370" cy="95" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="370" y2="95" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="376" y="93" fill="#38bdf8" font-size="11" font-family="monospace">45° (√2/2; √2/2)</text><circle cx="335" cy="68" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="335" y2="68" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="338" y="62" fill="#38bdf8" font-size="11" font-family="monospace">60° (1/2; √3/2)</text><circle cx="250" cy="45" r="4.5" fill="#fbbf24"/><text x="256" y="48" fill="#fbbf24" font-size="11" font-family="monospace">90° (0; 1)</text><circle cx="165" cy="68" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="165" y2="68" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="50" y="62" fill="#f43f5e" font-size="11" font-family="monospace">120° (-1/2; √3/2)</text><circle cx="130" cy="95" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="130" y2="95" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="10" y="93" fill="#f43f5e" font-size="11" font-family="monospace">135° (-√2/2; √2/2)</text><circle cx="103" cy="130" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="103" y2="130" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="2" y="132" fill="#f43f5e" font-size="11" font-family="monospace">150° (-√3/2; 1/2)</text><circle cx="80" cy="215" r="4" fill="#f43f5e"/><text x="8" y="232" fill="#f43f5e" font-size="11" font-family="monospace">180° (-1; 0)</text></svg>`,
+            svg: `<svg viewBox="-30 0 650 270" width="100%" height="260" class="max-w-[640px] mx-auto select-none"><line x1="30" y1="215" x2="470" y2="215" stroke="#64748b" stroke-width="2"/><line x1="250" y1="245" x2="250" y2="25" stroke="#64748b" stroke-width="2"/><text x="465" y="210" fill="#94a3b8" font-size="12" font-family="monospace">x</text><text x="256" y="25" fill="#f43f5e" font-size="12" font-family="monospace">y</text><text x="234" y="232" fill="#cbd5e1" font-size="13" font-family="monospace">O</text><path d="M 80 215 A 170 170 0 0 1 420 215" fill="none" stroke="#38bdf8" stroke-width="2.5"/><circle cx="420" cy="215" r="4" fill="#38bdf8"/><text x="424" y="232" fill="#38bdf8" font-size="11" font-family="monospace">0° (1; 0)</text><circle cx="397" cy="130" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="397" y2="130" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="404" y="132" fill="#38bdf8" font-size="11" font-family="monospace">30° (√3/2; 1/2)</text><circle cx="370" cy="95" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="370" y2="95" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="376" y="93" fill="#38bdf8" font-size="11" font-family="monospace">45° (√2/2; √2/2)</text><circle cx="335" cy="68" r="4" fill="#38bdf8"/><line x1="250" y1="215" x2="335" y2="68" stroke="#38bdf8" stroke-width="1" stroke-dasharray="2 2"/><text x="338" y="62" fill="#38bdf8" font-size="11" font-family="monospace">60° (1/2; √3/2)</text><circle cx="250" cy="45" r="4.5" fill="#fbbf24"/><text x="256" y="48" fill="#fbbf24" font-size="11" font-family="monospace">90° (0; 1)</text><circle cx="165" cy="68" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="165" y2="68" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="50" y="62" fill="#f43f5e" font-size="11" font-family="monospace">120° (-1/2; √3/2)</text><circle cx="130" cy="95" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="130" y2="95" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="10" y="93" fill="#f43f5e" font-size="11" font-family="monospace">135° (-√2/2; √2/2)</text><circle cx="103" cy="130" r="4" fill="#f43f5e"/><line x1="250" y1="215" x2="103" y2="130" stroke="#f43f5e" stroke-width="1" stroke-dasharray="2 2"/><text x="2" y="132" fill="#f43f5e" font-size="11" font-family="monospace">150° (-√3/2; 1/2)</text><circle cx="80" cy="215" r="4" fill="#f43f5e"/><text x="8" y="232" fill="#f43f5e" font-size="11" font-family="monospace">180° (-1; 0)</text></svg>`,
             caption: "Hình 5.3: Bản đồ toạ độ M(x₀; y₀) của 9 góc đặc biệt. Chú ý tính đối xứng hoàn hảo qua trục tung!"
           },
           {
@@ -1420,7 +1420,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               },
               {
                 emoji: "🚫",
-                title: "Hai vị trí không xác định",
+                title: "Các trường hợp không xác định",
                 text: "• $\\tan 90^\\circ$: không xác định (mẫu $\\cos 90^\\circ = 0$).\n• $\\cot 0^\\circ, \\cot 180^\\circ$: không xác định (mẫu $\\sin = 0$)."
               }
             ]
@@ -1456,17 +1456,17 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "⚙️",
                 title: "1. Đặt chế độ Degree (Độ)",
-                text: "Màn hình phải có chữ **D**. Bấm `SHIFT` $\\to$ `MENU` $\\to$ `2` (Angle Unit) $\\to$ `1` (Degree). Tuyệt đối không để chữ **R** (Radian)!"
+                text: "Chọn đơn vị **Degree (Độ)**. Trên fx-580VN X: `SHIFT` → `MENU (SETUP)` → `2 (Angle Unit)` → `1 (Degree)`. Trên dòng máy khác, vào phần cài đặt và chọn **Angle Unit → Degree** theo hướng dẫn của máy; không áp dụng cùng một chuỗi phím cho mọi dòng máy."
               },
               {
                 emoji: "⌨️",
                 title: "2. Cách bấm tính cotang",
-                text: "Máy tính Casio 580 / 880 không có phím $\\cot$. Muốn tính $\\cot 150^\\circ$, ta bấm `1 ÷ tan(150)` $\\to$ ra kết quả $-\\sqrt{3}$."
+                text: "Có thể tính côtang qua $\\cot\\alpha=\\cos\\alpha/\\sin\\alpha$ nếu $\\sin\\alpha\\ne0$. Với $\\tan\\alpha\\ne0$, cũng dùng được $1/\\tan\\alpha$. Ví dụ: `1 ÷ tan(150)` cho $-\\sqrt3$. Riêng $\\cot90^\\circ=0$, không tính bằng $1/\\tan90^\\circ$."
               },
               {
                 emoji: "🔍",
                 title: "3. Tìm góc khi biết giá trị",
-                text: "• $\\cos\\alpha = -0,5$: bấm `SHIFT cos (-0.5)` $\\to$ ra ngay $120^\\circ$.\\n• $\\sin\\alpha = 0,5$: bấm `SHIFT sin (0.5)` $\\to$ ra $30^\\circ$, nhớ góc tù bù là $180^\\circ - 30^\\circ = 150^\\circ$!"
+                text: "• $\\cos\\alpha = -0,5$: bấm `SHIFT cos (-0.5)` $\\to$ ra ngay $120^\\circ$.\n• $\\sin\\alpha = 0,5$: bấm `SHIFT sin (0.5)` $\\to$ ra $30^\\circ$, nhớ góc tù bù là $180^\\circ - 30^\\circ = 150^\\circ$!"
               },
               {
                 emoji: "💾",
@@ -1477,7 +1477,7 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           },
           {
             kind: "note",
-            text: "🚨 **4 CẠM BẪY THI TRẮC NGHIỆM THƯỜNG GẶP NHẤT**:\n1. **Quên đổi sang chữ D (Degree)**: Máy ở chế độ Radian sẽ ra kết quả sai lệch hoàn toàn.\n2. **Khai căn quên dấu âm của góc tù**: Khi $\\alpha$ là góc tù ($90^\\circ < \\alpha < 180^\\circ$), $\\cos\\alpha = -\\sqrt{1 - \\sin^2\\alpha}$ mang dấu âm! Nếu lấy dấu dương là sai ngay.\n3. **Phương trình $\\sin\\alpha = c$ luôn có 2 nghiệm**: Trong $[0^\\circ; 180^\\circ]$, với mỗi số $0 < c < 1$, luôn có HAI góc bù nhau thoả mãn (một góc nhọn $\\alpha$ và một góc tù $180^\\circ - \\alpha$)!\n4. **Nhầm lẫn giữa bù và phụ**: 'Sin bù' (sin bằng nhau, cos đối); 'Phụ chéo' (sin góc này bằng cos góc kia)."
+            text: "🚨 **4 CẠM BẪY CẦN TRÁNH**:\n1. **Sai đơn vị góc**: Với góc đo bằng độ, chọn Degree trước khi tính.\n2. **Khai căn quên xét dấu**: Góc tù có $\\cos\\alpha=-\\sqrt{1-\\sin^2\\alpha}<0$.\n3. **Kết luận số nghiệm chỉ từ phím arcsin**: Trên $[0^\\circ;180^\\circ]$, nếu $0<c<1$ thì $\\sin\\alpha=c$ có hai nghiệm bù nhau; $c=0$ có hai nghiệm $0^\\circ,180^\\circ$; $c=1$ chỉ có nghiệm $90^\\circ$; ngoài $[0;1]$ thì vô nghiệm.\n4. **Nhầm bù và phụ**: Góc bù có tổng $180^\\circ$; góc phụ có tổng $90^\\circ$. Chỉ dùng tan và cot khi chúng xác định."
           },
           {
             kind: "check",
@@ -1497,9 +1497,9 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
     summary: [
       "1. Nửa đường tròn đơn vị: Với mỗi góc $0^\\circ \\le \\alpha \\le 180^\\circ$, điểm $M(x_0; y_0)$ có hoành độ là $\\cos\\alpha = x_0$ và tung độ là $\\sin\\alpha = y_0$.",
       "2. Quy tắc dấu: $\\sin\\alpha \\ge 0$ với mọi $\\alpha \\in [0^\\circ; 180^\\circ]$. Với góc nhọn thì $\\cos, \\tan, \\cot > 0$; Với góc tù thì $\\cos, \\tan, \\cot < 0$.",
-      "3. Công thức 'Sin bù': $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, còn côsin, tang và côtang đều đổi dấu âm.",
-      "4. Công thức 'Phụ chéo': $\\sin(90^\\circ - \\alpha) = \\cos\\alpha$, $\\cos(90^\\circ - \\alpha) = \\sin\\alpha$, $\\tan(90^\\circ - \\alpha) = \\cot\\alpha$, $\\cot(90^\\circ - \\alpha) = \\tan\\alpha$.",
-      "5. Bộ 4 hệ thức cơ bản: $\\sin^2\\alpha + \\cos^2\\alpha = 1$; $1 + \\tan^2\\alpha = \\frac{1}{\\cos^2\\alpha}$; $1 + \\cot^2\\alpha = \\frac{1}{\\sin^2\\alpha}$; $\\tan\\alpha \\cdot \\cot\\alpha = 1$."
+      "3. Góc bù có sin bằng nhau, cos đối nhau. Tang đối nhau khi $\\alpha\\ne90^\\circ$; côtang đối nhau khi $0^\\circ<\\alpha<180^\\circ$.",
+      "4. Góc phụ: sin góc này bằng cos góc kia trên $[0^\\circ;90^\\circ]$. Tang góc này bằng côtang góc kia khi $0^\\circ<\\alpha<90^\\circ$.",
+      "5. $\\sin^2\\alpha+\\cos^2\\alpha=1$; $1+\\tan^2\\alpha=1/\\cos^2\\alpha$ khi $\\alpha\\ne90^\\circ$; $1+\\cot^2\\alpha=1/\\sin^2\\alpha$ khi $0^\\circ<\\alpha<180^\\circ$; $\\tan\\alpha\\cot\\alpha=1$ khi $\\alpha\\ne0^\\circ,90^\\circ,180^\\circ$."
     ]
   },
 
@@ -1694,19 +1694,19 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           },
           {
             kind: "steps",
-            steps: [
+            items: [
               {
-                num: "TH 1",
+                label: "TH 1",
                 title: "Biết 2 cạnh và góc xen giữa (C-G-C: biết b, c và góc A)",
                 text: "• Bước 1: Dùng **Định lí Côsin** tính cạnh còn lại: $a = \\sqrt{b^2 + c^2 - 2bc\\cos A}$.\n• Bước 2: Dùng hệ quả Côsin tính góc thứ hai: $\\cos B = \\frac{a^2 + c^2 - b^2}{2ac} \\implies \\widehat{B}$.\n• Bước 3: Tính góc thứ ba: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$."
               },
               {
-                num: "TH 2",
+                label: "TH 2",
                 title: "Biết 3 cạnh (C-C-C: biết a, b, c)",
                 text: "• Bước 1: Dùng hệ quả Định lí Côsin tính góc lớn nhất hoặc bất kì: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} \\implies \\widehat{A}$.\n• Bước 2: Tương tự tính $\\cos B \\implies \\widehat{B}$.\n• Bước 3: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$.\n• Bước 4: Dùng Heron tính $S \\to R, r, h_a$."
               },
               {
-                num: "TH 3",
+                label: "TH 3",
                 title: "Biết 1 cạnh và 2 góc kề (G-C-G: biết a và góc B, góc C)",
                 text: "• Bước 1: Tính góc còn lại: $\\widehat{A} = 180^\\circ - (\\widehat{B} + \\widehat{C})$.\n• Bước 2: Dùng **Định lí Sin** tính 2 cạnh còn lại:\n$b = \\frac{a \\cdot \\sin B}{\\sin A}, \\quad c = \\frac{a \\cdot \\sin C}{\\sin A}$.\n• Bước 3: Tính $R = \\frac{a}{2\\sin A}$."
               }

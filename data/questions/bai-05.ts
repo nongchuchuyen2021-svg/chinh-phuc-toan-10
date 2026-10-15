@@ -83,7 +83,7 @@ const bai05: Question[] = [
       "$2$"
     ],
     answer: 0,
-    explain: "Ta nhóm các cặp góc bù nhau:\\n• $\\cos 160^\\circ = \\cos(180^\\circ - 20^\\circ) = -\\cos 20^\\circ$\\n• $\\cos 140^\\circ = \\cos(180^\\circ - 40^\\circ) = -\\cos 40^\\circ$\\nDo đó: $P = (\\cos 20^\\circ - \\cos 20^\\circ) + (\\cos 40^\\circ - \\cos 40^\\circ) = 0$."
+    explain: "Ta nhóm các cặp góc bù nhau:\n• $\\cos 160^\\circ = \\cos(180^\\circ - 20^\\circ) = -\\cos 20^\\circ$\n• $\\cos 140^\\circ = \\cos(180^\\circ - 40^\\circ) = -\\cos 40^\\circ$\nDo đó: $P = (\\cos 20^\\circ - \\cos 20^\\circ) + (\\cos 40^\\circ - \\cos 40^\\circ) = 0$."
   },
   {
     id: "b5-q8",
@@ -107,7 +107,7 @@ const bai05: Question[] = [
       "$1$"
     ],
     answer: 0,
-    explain: "Vì $\\tan \\alpha = -3$ xác định nên $\\cos \\alpha \\ne 0$. Chia cả tử và mẫu cho $\\cos \\alpha$:\\n$P = \\frac{2\\tan \\alpha - 3}{3\\tan \\alpha + 2} = \\frac{2(-3) - 3}{3(-3) + 2} = \\frac{-6 - 3}{-9 + 2} = \\frac{-9}{-7} = \\frac{9}{7}$."
+    explain: "Vì $\\tan \\alpha = -3$ xác định nên $\\cos \\alpha \\ne 0$. Chia cả tử và mẫu cho $\\cos \\alpha$:\n$P = \\frac{2\\tan \\alpha - 3}{3\\tan \\alpha + 2} = \\frac{2(-3) - 3}{3(-3) + 2} = \\frac{-6 - 3}{-9 + 2} = \\frac{-9}{-7} = \\frac{9}{7}$."
   },
   {
     id: "b5-q10",
@@ -119,19 +119,19 @@ const bai05: Question[] = [
       "$\\frac{3}{8}$"
     ],
     answer: 0,
-    explain: "Bình phương hai vế:\\n$(\\sin \\alpha + \\cos \\alpha)^2 = \\left(\\frac{\\sqrt{5}}{2}\\right)^2 \\iff \\sin^2 \\alpha + \\cos^2 \\alpha + 2\\sin \\alpha \\cos \\alpha = \\frac{5}{4}$\\n$\\iff 1 + 2P = \\frac{5}{4} \\iff 2P = \\frac{1}{4} \\iff P = \\frac{1}{8}$."
+    explain: "Bình phương hai vế:\n$(\\sin \\alpha + \\cos \\alpha)^2 = \\left(\\frac{\\sqrt{5}}{2}\\right)^2 \\iff \\sin^2 \\alpha + \\cos^2 \\alpha + 2\\sin \\alpha \\cos \\alpha = \\frac{5}{4}$\n$\\iff 1 + 2P = \\frac{5}{4} \\iff 2P = \\frac{1}{4} \\iff P = \\frac{1}{8}$."
   },
   {
     id: "b5-q11",
-    q: "Rút gọn biểu thức $M = \\sin(90^\\circ - \\alpha) \\cos(180^\\circ - \\alpha) + \\cos(90^\\circ - \\alpha) \\sin(180^\\circ - \\alpha)$ ta được:",
+    q: "Cho $0^\\circ < \\alpha < 90^\\circ$. Rút gọn biểu thức $M = \\sin(90^\\circ - \\alpha) \\cos(180^\\circ - \\alpha) + \\cos(90^\\circ - \\alpha) \\sin(180^\\circ - \\alpha)$ ta được:",
     options: [
-      "$-\\cos 2\\alpha$",
+      "$\\cos^2 \\alpha - \\sin^2 \\alpha$",
       "$\\sin^2 \\alpha - \\cos^2 \\alpha$",
       "$-1$",
       "$1$"
     ],
     answer: 1,
-    explain: "Theo công thức phụ và bù:\\n• $\\sin(90^\\circ - \\alpha) = \\cos \\alpha$\\n• $\\cos(180^\\circ - \\alpha) = -\\cos \\alpha$\\n• $\\cos(90^\\circ - \\alpha) = \\sin \\alpha$\\n• $\\sin(180^\\circ - \\alpha) = \\sin \\alpha$\\nThay vào: $M = (\\cos \\alpha)(-\\cos \\alpha) + (\\sin \\alpha)(\\sin \\alpha) = -\\cos^2 \\alpha + \\sin^2 \\alpha = \\sin^2 \\alpha - \\cos^2 \\alpha$."
+    explain: "Theo công thức phụ và bù:\n• $\\sin(90^\\circ - \\alpha) = \\cos \\alpha$\n• $\\cos(180^\\circ - \\alpha) = -\\cos \\alpha$\n• $\\cos(90^\\circ - \\alpha) = \\sin \\alpha$\n• $\\sin(180^\\circ - \\alpha) = \\sin \\alpha$\nThay vào: $M = (\\cos \\alpha)(-\\cos \\alpha) + (\\sin \\alpha)(\\sin \\alpha) = -\\cos^2 \\alpha + \\sin^2 \\alpha = \\sin^2 \\alpha - \\cos^2 \\alpha$."
   },
   {
     id: "b5-q12",

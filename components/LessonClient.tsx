@@ -294,7 +294,9 @@ export default function LessonClient({
             key: "slides" as Mode,
             icon: "📽️",
             name: "Slide Trình chiếu tương tác",
-            desc: "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
+            desc: lessonId === "bai-05"
+              ? "20 slide tương tác · Nửa đường tròn đơn vị, góc bù, góc phụ, vòng quay và 10 câu hỏi tự chấm"
+              : "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
             done: false,
             badge: "Mới ✨",
             badgeColor: "bg-cyan/20 text-cyan-glow border-cyan/40 shadow-glow-cyan",
@@ -308,7 +310,9 @@ export default function LessonClient({
             key: "sgk" as Mode,
             icon: "📖",
             name: "Sách giáo khoa (HTML)",
-            desc: "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
+            desc: lessonId === "bai-05"
+              ? "Bài học theo SGK trang 33–37 · Đúng đề bài gốc, có lời giải gợi ý và ảnh trang gốc để đối chiếu"
+              : "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
             done: false,
             badge: null,
             badgeColor: "",

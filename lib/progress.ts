@@ -119,7 +119,7 @@ export function updateLessonTFScore(lessonId: string, correct: number, total: nu
     tfScore: {
       correct,
       total,
-      score: Math.round(score * 10) / 10,
+      score: Math.round(score * 100) / 100,
       date: new Date().toLocaleDateString("vi-VN"),
     },
   };

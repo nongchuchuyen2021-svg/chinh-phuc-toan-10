@@ -259,7 +259,7 @@ export default function HomeClient() {
                               )}
                               {tfScore !== undefined && tfScore !== null && (
                                 <span className="rounded-full bg-emerald/15 px-2 py-0.5 font-mono text-[10px] font-semibold text-emerald-glow border border-emerald/30">
-                                  Đúng/Sai: {tfScore.toFixed(1)}đ
+                                  Đúng/Sai: {tfScore.toFixed(2)}đ
                                 </span>
                               )}
                             </div>

@@ -117,20 +117,20 @@ export const CASIO_TIPS: CasioTip[] = [
     title: "Tính Giá trị Lượng giác góc 0° đến 180° & Đổi Đơn vị Độ",
     model: "fx-580VNX & fx-880BTG",
     icon: "🔺",
-    shortcut: "[SHIFT] [MENU] [2] [1] (Đổi sang Degree °)",
+    shortcut: "580VN X: SHIFT → MENU → 2 → 1; 880BTG: SETTINGS → Calc Settings → Angle Unit → Degree",
     description:
       "Tính nhanh các giá trị $\\sin, \\cos, \\tan, \\cot$ của các góc tù và góc nhọn, tự động xử lý góc bù nhau: $\\sin(180^\\circ - \\alpha) = \\sin\\alpha$, $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha$.",
     steps: [
-      { key: "[SHIFT] [MENU] [2] [1]", note: "Cài đặt đơn vị góc về Độ (Degree D)" },
+      { key: "Chọn đơn vị Degree", note: "fx-580VN X: SHIFT → MENU (SETUP) → 2 → 1. fx-880BTG: SETTINGS → Calc Settings → Angle Unit → Degree." },
       { key: "Bấm sin, cos, tan trực tiếp", note: "Ví dụ: [cos] [1] [5] [0] [=]" },
-      { key: "Tính cotang", note: "Bấm $1 / \\tan(\\alpha)$ hoặc $\\cos(\\alpha) / \\sin(\\alpha)$" },
+      { key: "Tính cotang", note: "Dùng $\\cos\\alpha/\\sin\\alpha$ khi $\\sin\\alpha\\ne0$. Chỉ dùng $1/\\tan\\alpha$ khi tang xác định và khác 0. Riêng $\\cot90^\\circ=0$, không dùng $1/\\tan90^\\circ$." },
     ],
     example: {
       problem: "Tính giá trị của $A = \\sin 120^\\circ + \\cos 150^\\circ + \\tan 135^\\circ$.",
       action: "Đảm bảo góc ở chữ D. Nhập $\\sin(120) + \\cos(150) + \\tan(135)$ rồi bấm [=].",
       result: "Màn hình xuất $-1$ (do $\\sin 120^\\circ = \\dfrac{\\sqrt{3}}{2}, \\cos 150^\\circ = -\\dfrac{\\sqrt{3}}{2}, \\tan 135^\\circ = -1$).",
     },
-    pitfall: "Luôn kiểm tra ký hiệu góc trên đỉnh màn hình (phải là chữ D). Nếu là chữ R (Radian) máy sẽ tính sai hoàn toàn!",
+    pitfall: "Kiểm tra đơn vị đang chọn là Degree (Độ), không phải Radian. Không dùng cùng một chuỗi phím thiết lập cho fx-580VN X và fx-880BTG; hai dòng máy có menu khác nhau.",
     lessonIds: ["bai-05", "bai-06"],
   },
   {

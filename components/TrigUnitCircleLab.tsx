@@ -112,7 +112,7 @@ export default function TrigUnitCircleLab() {
               Phòng Thí Nghiệm Nửa Đường Tròn Đơn Vị
             </h4>
             <p className="text-xs text-star-soft">
-              Kéo thanh trượt hoặc chọn góc để quan sát trực quan toạ độ $M(x_0; y_0)$ và 4 giá trị lượng giác
+              <MathText content={"Kéo thanh trượt hoặc chọn góc để quan sát tọa độ $M(x_0; y_0)$ và 4 giá trị lượng giác."} />
             </p>
           </div>
         </div>
@@ -152,6 +152,7 @@ export default function TrigUnitCircleLab() {
           <span>180° (-Ox)</span>
         </div>
         <input
+          aria-label="Góc alpha trên nửa đường tròn đơn vị"
           type="range"
           min="0"
           max="180"
@@ -167,6 +168,8 @@ export default function TrigUnitCircleLab() {
         <svg
           viewBox="0 0 460 250"
           className="w-full max-w-[480px] h-auto select-none"
+          role="img"
+          aria-label={`Nửa đường tròn đơn vị: góc ${angle} độ, M(${data.cosNum}; ${data.sinNum})`}
         >
           <defs>
             <linearGradient id="scArcGrad" x1="0" y1="0" x2="1" y2="0">
@@ -341,11 +344,11 @@ export default function TrigUnitCircleLab() {
         <div className="flex flex-wrap items-center justify-center gap-4 text-[11px] font-mono text-star-soft pt-1">
           <span className="flex items-center gap-1.5">
             <span className="w-3 h-1 bg-[#10b981] rounded-full inline-block" />
-            <span>Tung độ y (sin α): luôn dương $\ge 0$</span>
+            <span>Tung độ y (sin α): luôn không âm (≥ 0)</span>
           </span>
           <span className="flex items-center gap-1.5">
             <span className="w-3 h-1 bg-[#38bdf8] rounded-full inline-block" />
-            <span>Hoành độ x (cos α): $&gt; 0$ khi nhọn, $&lt; 0$ khi tù</span>
+            <span>Hoành độ x (cos α): &gt; 0 khi nhọn, &lt; 0 khi tù</span>
           </span>
         </div>
       </div>
@@ -357,7 +360,7 @@ export default function TrigUnitCircleLab() {
           <div className="flex items-center justify-between">
             <span className="font-display font-bold text-xs text-emerald-glow">sin α (tung độ)</span>
             <span className="text-[10px] font-mono font-bold px-1.5 py-0.5 rounded bg-emerald/20 text-emerald-glow">
-              {data.sinNum >= 0 ? "+" : "-"}
+              {data.sinNum === 0 ? "0" : data.sinNum > 0 ? "+" : "−"}
             </span>
           </div>
           <div className="text-base font-mono font-bold text-star">
@@ -377,7 +380,7 @@ export default function TrigUnitCircleLab() {
             <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
               data.cosNum >= 0 ? "bg-cyan/20 text-cyan-glow" : "bg-rose/20 text-rose-glow"
             }`}>
-              {data.cosNum >= 0 ? "+" : "ÂM (-)"}
+              {data.cosNum === 0 ? "0" : data.cosNum > 0 ? "+" : "ÂM (−)"}
             </span>
           </div>
           <div className="text-base font-mono font-bold text-star">
@@ -394,11 +397,11 @@ export default function TrigUnitCircleLab() {
               <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
                 data.tanNum >= 0 ? "bg-cyan/20 text-cyan-glow" : "bg-rose/20 text-rose-glow"
               }`}>
-                {data.tanNum >= 0 ? "+" : "-"}
+                {data.tanNum === 0 ? "0" : data.tanNum > 0 ? "+" : "−"}
               </span>
             )}
           </div>
-          <div className="text-base font-mono font-bold text-star truncate">
+          <div className="text-base font-mono font-bold text-star break-words">
             <MathText content={data.tanStr} />
           </div>
           <div className="text-[11px] font-mono text-star-mute">
@@ -414,11 +417,11 @@ export default function TrigUnitCircleLab() {
               <span className={`text-[10px] font-mono font-bold px-1.5 py-0.5 rounded ${
                 data.cotNum >= 0 ? "bg-cyan/20 text-cyan-glow" : "bg-rose/20 text-rose-glow"
               }`}>
-                {data.cotNum >= 0 ? "+" : "-"}
+                {data.cotNum === 0 ? "0" : data.cotNum > 0 ? "+" : "−"}
               </span>
             )}
           </div>
-          <div className="text-base font-mono font-bold text-star truncate">
+          <div className="text-base font-mono font-bold text-star break-words">
             <MathText content={data.cotStr} />
           </div>
           <div className="text-[11px] font-mono text-star-mute">
@@ -432,11 +435,12 @@ export default function TrigUnitCircleLab() {
         <span className="text-xl shrink-0">💡</span>
         <div className="space-y-1">
           <div className="font-display font-bold text-violet-glow">
-            Góc bù đối xứng với {angle}° là {suppAngle}° ($180° - {angle}°$):
+            Góc bù đối xứng với {angle}° là {suppAngle}° (180° − {angle}°):
           </div>
           <div className="leading-relaxed">
-            • <strong>$\sin {angle}^\circ = \sin {suppAngle}^\circ$</strong> (cùng bằng tung độ $y_0 = {data.sinNum}$)<br />
-            • <strong>$\cos {angle}^\circ = -\cos {suppAngle}^\circ$</strong> (đối xứng qua trục $Oy$, hoành độ đổi dấu)
+            <MathText content={`• $\\sin ${angle}^\\circ = \\sin ${suppAngle}^\\circ$ (cùng bằng tung độ $y_0 = ${data.sinNum}$).`} />
+            <br />
+            <MathText content={`• $\\cos ${angle}^\\circ = -\\cos ${suppAngle}^\\circ$ (đối xứng qua trục $Oy$, hoành độ đổi dấu).`} />
           </div>
         </div>
       </div>

@@ -332,7 +332,7 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
           },
           {
             text: "Giá trị của biểu thức $E = 2\\sin(180^\\circ - \\alpha) + 5\\cos(180^\\circ - \\alpha)$ bằng $\\frac{26}{5}$.",
-            answer: false,
+            answer: true,
             explain: "Theo công thức hai góc bù nhau: $\\sin(180^\\circ - \\alpha) = \\sin\\alpha = \\frac{3}{5}$ và $\\cos(180^\\circ - \\alpha) = -\\cos\\alpha = -\\left(-\\frac{4}{5}\\right) = \\frac{4}{5}$. Do đó $E = 2\\left(\\frac{3}{5}\\right) + 5\\left(\\frac{4}{5}\\right) = \\frac{6}{5} + 4 = \\frac{26}{5}$ là mệnh đề ĐÚNG."
           }
         ]
