@@ -315,4 +315,27 @@ export const CASIO_TIPS: CasioTip[] = [
     pitfall: "Tuyệt đối không để màn hình ở chữ R (Radian) khi tính các bài toán tam giác đo bằng độ. Luôn ưu tiên dùng định lí Côsin để tính góc nhằm tránh bẫy 2 nghiệm góc tù của hàm Sin.",
     lessonIds: ["bai-06"],
   },
+  {
+    id: "casio-14",
+    category: "Các khái niệm mở đầu về vectơ",
+    title: "Tính Độ Dài Vectơ, Đếm Số Vectơ Bằng Chỉnh Hợp nPr & Chế Độ Vectơ",
+    model: "fx-580VNX & fx-880BTG",
+    icon: "↗️",
+    shortcut: "[SHIFT] [×] (nPr) | [MENU] [5] (Vector) | [SHIFT] [)] (Abs)",
+    description:
+      "Kĩ thuật bấm máy tính đếm thần tốc số lượng vectơ khác vectơ-không tạo từ n điểm phân biệt bằng chỉnh hợp nPr, tính độ dài vectơ và sử dụng chức năng VECTOR.",
+    steps: [
+      { key: "[n] [SHIFT] [×] [2] [=]", note: "Bấm tính số vectơ khác $\\vec{0}$ từ $n$ điểm phân biệt ($A_n^2 = n(n-1)$). Ví dụ với 6 điểm: bấm 6 [SHIFT] [×] 2 [=] ra ngay 30" },
+      { key: "[MENU] [5] (fx-580)", note: "Vào chức năng VECTOR (Vectơ). Bấm 1 để chọn VctA, chọn kích thước 2 (mặt phẳng Oxy) hoặc 3 (không gian Oxyz)" },
+      { key: "[HOME] > [Vectơ] (fx-880)", note: "Trên fx-880BTG: Vào ứng dụng Vectơ, bấm [TOOLS] để chọn kích thước 2D và nhập toạ độ" },
+      { key: "[SHIFT] [)] hoặc [Abs]", note: "Tính nhanh độ lớn hợp lực hoặc độ dài vectơ: bấm $\\sqrt{x^2 + y^2}$ hoặc dùng hàm Abs" },
+    ],
+    example: {
+      problem: "Từ 8 điểm phân biệt không có 3 điểm nào thẳng hàng, có bao nhiêu vectơ khác $\\vec{0}$? Tính độ dài vectơ có toạ độ $(12; -5)$.",
+      action: "Bấm 8 [SHIFT] [×] 2 [=] ra 56. Bấm [√] 12 [x²] [+] [(-)] 5 [x²] [=] ra 13.",
+      result: "Lập được đúng 56 vectơ khác $\\vec{0}$. Độ dài vectơ bằng $\\sqrt{12^2 + (-5)^2} = 13$.",
+    },
+    pitfall: "Học sinh rất hay nhầm lẫn giữa số đoạn thẳng ($C_n^2$, bấm phím [SHIFT] [÷]) và số vectơ ($A_n^2$, bấm phím [SHIFT] [×]). Vì mỗi đoạn thẳng AB cho đúng 2 vectơ ngược hướng là AB và BA nên số vectơ luôn gấp 2 lần số đoạn thẳng!",
+    lessonIds: ["bai-07"],
+  },
 ];

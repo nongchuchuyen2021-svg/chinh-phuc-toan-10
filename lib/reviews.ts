@@ -853,6 +853,202 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
         ]
       }
     ]
+  },
+
+  "bai-07": {
+    summary: "Tổng ôn toàn diện Bài 7: Khái niệm vectơ, độ dài, giá của vectơ, điều kiện cùng phương, cùng hướng, hai vectơ bằng nhau, vectơ-không và ứng dụng trong hình học đa giác.",
+    keyPoints: [
+      "Vectơ là đoạn thẳng có hướng. Kí hiệu $\\overrightarrow{AB}$ (gốc $A$, ngọn $B$) hoặc $\\vec{a}, \\vec{b}$.",
+      "Độ dài của vectơ là khoảng cách giữa điểm đầu và điểm cuối: $|\\overrightarrow{AB}| = AB$. Luôn có $|\\vec{a}| \\ge 0$.",
+      "Giá của vectơ là đường thẳng đi qua điểm đầu và điểm cuối của vectơ đó.",
+      "Hai vectơ cùng phương khi và chỉ khi giá của chúng song song hoặc trùng nhau.",
+      "Khái niệm cùng hướng hoặc ngược hướng CHỈ ĐƯỢC XÉT khi hai vectơ đã cùng phương.",
+      "Hai vectơ bằng nhau khi và chỉ khi chúng cùng hướng VÀ cùng độ dài ($\\vec{a} = \\vec{b}$).",
+      "Vectơ-không $\\vec{0}$ có điểm đầu trùng điểm cuối, độ dài bằng 0, cùng phương và cùng hướng với mọi vectơ."
+    ],
+    commonMistakes: [
+      {
+        mistake: "Đồng nhất vectơ $\\overrightarrow{AB}$ với đoạn thẳng $AB$ hoặc nhầm $\\overrightarrow{AB} = \\overrightarrow{BA}$.",
+        fix: "Đoạn thẳng $AB = BA$ là đại lượng vô hướng. Vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{BA}$ là hai vectơ hoàn toàn khác nhau (ngược hướng nhau!)."
+      },
+      {
+        mistake: "Cho rằng chỉ cần hai vectơ có độ dài bằng nhau ($|\\vec{a}| = |\\vec{b}|$) là hai vectơ bằng nhau.",
+        fix: "Hai vectơ bằng nhau bắt buộc phải thoả mãn ĐỒNG THỜI 2 yếu tố: Cùng độ dài VÀ Cùng hướng. Nếu hai vectơ vuông góc hoặc khác phương dù cùng độ dài vẫn không bằng nhau."
+      },
+      {
+        mistake: "Trong hình bình hành $ABCD$, vội vàng viết $\\overrightarrow{AB} = \\overrightarrow{CD}$.",
+        fix: "Vì chiều từ $A \\to B$ ngược chiều từ $C \\to D$, nên $\\overrightarrow{AB} = -\\overrightarrow{CD}$. Đẳng thức bằng nhau đúng phải là $\\overrightarrow{AB} = \\overrightarrow{DC}$."
+      },
+      {
+        mistake: "Viết biểu thức $\\overrightarrow{AA} = 0$ (quên mũi tên vectơ-không).",
+        fix: "Số $0$ là đại lượng vô hướng, còn $\\vec{0}$ là vectơ. Phải viết là $\\overrightarrow{AA} = \\vec{0}$ hoặc $|\\overrightarrow{AA}| = 0$."
+      },
+      {
+        mistake: "Xét tính cùng hướng hay ngược hướng của hai vectơ có giá cắt nhau.",
+        fix: "Hai vectơ có giá cắt nhau thì kết luận ngay là KHÔNG CÙNG PHƯƠNG, tuyệt đối không bàn đến việc cùng hướng hay ngược hướng."
+      }
+    ],
+    tips: [
+      "Công thức đếm số vectơ khác $\\vec{0}$ từ $n$ điểm phân biệt: $A_n^2 = n(n-1)$ (nhớ nhân đôi số đoạn thẳng $C_n^2$).",
+      "Dấu hiệu chứng minh 3 điểm thẳng hàng: Ba điểm phân biệt $A, B, C$ thẳng hàng $\\iff \\overrightarrow{AB}$ và $\\overrightarrow{AC}$ cùng phương.",
+      "Trong hình bình hành $ABCD$: Nhớ quy tắc cùng chiều $A \\to B$ và $D \\to C \\implies \\overrightarrow{AB} = \\overrightarrow{DC}$; $A \\to D$ và $B \\to C \\implies \\overrightarrow{AD} = \\overrightarrow{BC}$.",
+      "Mẹo nhớ vectơ-không: Xem $\\vec{0}$ như số 0 'thân thiện', nó cùng phương và cùng hướng với mọi vectơ trên đời.",
+      "Khi làm bài trắc nghiệm hình học, luôn phác nhanh hình vẽ và chấm mũi tên để nhìn trực quan, tránh nhầm lẫn chiều vectơ."
+    ],
+    flashcards: [
+      {
+        front: "Định nghĩa vectơ là gì?",
+        back: "Vectơ là một đoạn thẳng có hướng (đã chỉ rõ điểm đầu và điểm cuối)."
+      },
+      {
+        front: "Độ dài của vectơ $\\overrightarrow{AB}$ được tính như thế nào?",
+        back: "Là khoảng cách giữa điểm đầu $A$ và điểm cuối $B$, kí hiệu $|\\overrightarrow{AB}| = AB$."
+      },
+      {
+        front: "Thế nào là giá của một vectơ?",
+        back: "Là đường thẳng đi qua điểm đầu và điểm cuối của vectơ đó."
+      },
+      {
+        front: "Điều kiện để hai vectơ cùng phương?",
+        back: "Giá của hai vectơ song song hoặc trùng nhau."
+      },
+      {
+        front: "Điều kiện để hai vectơ bằng nhau?",
+        back: "Chúng có cùng hướng VÀ cùng độ dài."
+      },
+      {
+        front: "Điều kiện để hai vectơ đối nhau?",
+        back: "Chúng cùng phương, ngược hướng VÀ cùng độ dài (kí hiệu $\\vec{a} = -\\vec{b}$)."
+      },
+      {
+        front: "Vectơ-không là gì và có độ dài bằng bao nhiêu?",
+        back: "Là vectơ có điểm đầu trùng điểm cuối (ví dụ $\\overrightarrow{AA}$), độ dài bằng $0$."
+      },
+      {
+        front: "Quy ước vàng về phương và hướng của vectơ-không?",
+        back: "Vectơ-không $\\vec{0}$ cùng phương và cùng hướng với mọi vectơ."
+      },
+      {
+        front: "Điều kiện để ba điểm phân biệt $A, B, C$ thẳng hàng bằng ngôn ngữ vectơ?",
+        back: "Vectơ $\\overrightarrow{AB}$ và vectơ $\\overrightarrow{AC}$ cùng phương."
+      },
+      {
+        front: "Từ $n$ điểm phân biệt ($n \\ge 2$), có bao nhiêu vectơ khác $\\vec{0}$ được tạo thành?",
+        back: "$A_n^2 = n(n - 1)$ vectơ."
+      }
+    ],
+    checklist: [
+      "Tôi phân biệt rành rọt giữa đoạn thẳng $AB$ và vectơ $\\overrightarrow{AB}$.",
+      "Tôi xác định được giá của vectơ và kiểm tra điều kiện hai vectơ cùng phương.",
+      "Tôi nhận biết chính xác khi nào hai vectơ cùng hướng, ngược hướng hoặc không cùng phương.",
+      "Tôi nhận diện và chứng minh được hai vectơ bằng nhau trong hình bình hành, hình chữ nhật, lục giác đều.",
+      "Tôi hiểu rõ định nghĩa và quy ước vàng của vectơ-không $\\vec{0}$.",
+      "Tôi áp dụng thành thạo điều kiện 3 điểm thẳng hàng và công thức đếm số lượng vectơ."
+    ],
+    mindmap: [
+      {
+        id: "mm-1",
+        title: "1. Khái niệm & Kí hiệu Vectơ",
+        emoji: "🎯",
+        description: "Đoạn thẳng có hướng",
+        children: [
+          {
+            title: "Định nghĩa",
+            detail: "Đoạn thẳng có hướng từ điểm đầu đến điểm cuối."
+          },
+          {
+            title: "Kí hiệu",
+            detail: "$\\overrightarrow{AB}$ (gốc $A$, ngọn $B$) hoặc kí hiệu tắt $\\vec{a}, \\vec{b}, \\vec{u}$."
+          },
+          {
+            title: "Độ dài",
+            detail: "$|\\overrightarrow{AB}| = AB$ (luôn là số thực không âm)."
+          }
+        ]
+      },
+      {
+        id: "mm-2",
+        title: "2. Phương & Hướng của Vectơ",
+        emoji: "🧭",
+        description: "Giá của vectơ và quan hệ cùng phương",
+        children: [
+          {
+            title: "Giá của vectơ",
+            detail: "Đường thẳng đi qua điểm đầu và điểm cuối."
+          },
+          {
+            title: "Cùng phương",
+            detail: "Giá song song hoặc trùng nhau."
+          },
+          {
+            title: "Cùng hướng / Ngược hướng",
+            detail: "Chỉ xét khi đã cùng phương. Mũi tên cùng chỉ về một phía hoặc hai phía ngược nhau."
+          },
+          {
+            title: "3 điểm thẳng hàng",
+            detail: "$A, B, C$ thẳng hàng $\\iff \\overrightarrow{AB}$ cùng phương $\\overrightarrow{AC}$."
+          }
+        ]
+      },
+      {
+        id: "mm-3",
+        title: "3. Hai Vectơ Bằng Nhau & Đối Nhau",
+        emoji: "⚖️",
+        description: "Quan hệ cơ bản trong hình học vectơ",
+        children: [
+          {
+            title: "Bằng nhau (a = b)",
+            detail: "Cùng hướng VÀ cùng độ dài ($|\\vec{a}| = |\\vec{b}|$).",
+            formula: "$\\vec{a} = \\vec{b} \\iff \\text{cùng hướng} \\land |\\vec{a}| = |\\vec{b}|$"
+          },
+          {
+            title: "Đối nhau (a = -b)",
+            detail: "Cùng phương, ngược hướng VÀ cùng độ dài.",
+            formula: "$\\overrightarrow{BA} = -\\overrightarrow{AB}$"
+          },
+          {
+            title: "Trong hình bình hành",
+            detail: "$\\overrightarrow{AB} = \\overrightarrow{DC}$ và $\\overrightarrow{AD} = \\overrightarrow{BC}$."
+          }
+        ]
+      },
+      {
+        id: "mm-4",
+        title: "4. Kỳ quan Vectơ-không (0)",
+        emoji: "⭕",
+        description: "Phần tử gốc của không gian vectơ",
+        children: [
+          {
+            title: "Đặc điểm",
+            detail: "Điểm đầu trùng điểm cuối: $\\overrightarrow{AA} = \\overrightarrow{BB} = \\vec{0}$."
+          },
+          {
+            title: "Độ dài",
+            detail: "$|\\vec{0}| = 0$."
+          },
+          {
+            title: "Quy ước vàng",
+            detail: "Cùng phương và cùng hướng với mọi vectơ."
+          }
+        ]
+      },
+      {
+        id: "mm-5",
+        title: "5. Ứng dụng Thực tiễn & Vật Lý",
+        emoji: "🚀",
+        description: "Mô hình hoá đại lượng có hướng",
+        children: [
+          {
+            title: "Đại lượng vectơ",
+            detail: "Vận tốc $\\vec{v}$, Lực $\\vec{F}$, Gia tốc $\\vec{a}$, Độ dịch chuyển $\\vec{d}$."
+          },
+          {
+            title: "Công thức đếm",
+            detail: "Từ $n$ điểm phân biệt lập được $A_n^2 = n(n-1)$ vectơ khác $\\vec{0}$."
+          }
+        ]
+      }
+    ]
   }
 };
 

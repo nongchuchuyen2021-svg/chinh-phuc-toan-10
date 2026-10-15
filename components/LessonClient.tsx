@@ -298,6 +298,8 @@ export default function LessonClient({
               ? "20 slide tương tác · Nửa đường tròn đơn vị, góc bù, góc phụ, vòng quay và 10 câu hỏi tự chấm"
               : lessonId === "bai-06"
               ? "26 slide tương tác · Khám phá côsin, sin, giải tam giác, đo khoảng cách, diện tích và 12 câu hỏi tự chấm"
+              : lessonId === "bai-07"
+              ? "15 slide tương tác · Khái niệm vectơ, độ dài, giá của vectơ, cùng phương, bằng nhau, vectơ-không và 3 phòng Lab mô phỏng"
               : "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
             done: false,
             badge: "Mới ✨",
@@ -316,6 +318,8 @@ export default function LessonClient({
               ? "Bài học theo SGK trang 33–37 · Đúng đề bài gốc, có lời giải gợi ý và ảnh trang gốc để đối chiếu"
               : lessonId === "bai-06"
               ? "Bài học theo SGK trang 38–43 · Tình huống thực địa hai con tàu, hoạt động khám phá, ví dụ mẫu và bài tập luyện tập giải chi tiết"
+              : lessonId === "bai-07"
+              ? "Bài học theo SGK trang 46–51 · Khái niệm vectơ, cùng phương, vectơ bằng nhau, vectơ-không và bài tập 4.1–4.5 giải chi tiết"
               : "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
             done: false,
             badge: null,
@@ -334,6 +338,8 @@ export default function LessonClient({
               ? "2 trò chơi · Phân loại dấu lượng giác và ghép công thức góc bù"
               : lessonId === "bai-06"
               ? "3 trò chơi hấp dẫn · Đấu trường Côsin vs Sin, Ghép đôi công thức vàng & Máy quét tam giác nhọn/tù"
+              : lessonId === "bai-07"
+              ? "3 trò chơi hấp dẫn · Đấu trường Hướng vectơ, Ghép đôi khái niệm vàng & Máy quét chân lý vectơ"
               : `${games.length} trò chơi sinh động · Kéo co tri thức 2 đội, Chinh phục đỉnh cao & Ghép thẻ`,
             done: false,
             badge: `${games.length} game`,

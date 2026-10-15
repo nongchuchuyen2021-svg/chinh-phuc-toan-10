@@ -5,6 +5,7 @@ import bai03 from "@/data/questions/bai-03";
 import bai04 from "@/data/questions/bai-04";
 import bai05 from "@/data/questions/bai-05";
 import bai06 from "@/data/questions/bai-06";
+import bai07 from "@/data/questions/bai-07";
 
 // Ngân hàng câu hỏi trắc nghiệm 4 lựa chọn cho toàn bộ 27 bài học Toán 10 (Bộ sách Kết nối tri thức).
 export const QUESTION_BANK: Record<string, Question[]> = {
@@ -16,32 +17,7 @@ export const QUESTION_BANK: Record<string, Question[]> = {
 
   "bai-06": bai06,
 
-  "bai-07": [
-    {
-      id: "b7-q1",
-      q: "Khẳng định nào sau đây là đúng về hai vectơ cùng phương?",
-      options: [
-        "Hai vectơ cùng phương là hai vectơ có giá song song hoặc trùng nhau.",
-        "Hai vectơ cùng phương luôn có cùng độ dài.",
-        "Hai vectơ cùng phương luôn có cùng hướng.",
-        "Hai vectơ cùng phương có giá vuông góc với nhau."
-      ],
-      answer: 0,
-      explain: "Theo định nghĩa, hai vectơ được gọi là cùng phương nếu giá của chúng song song hoặc trùng nhau."
-    },
-    {
-      id: "b7-q2",
-      q: "Cho hình bình hành $ABCD$. Vectơ nào sau đây bằng vectơ $\\overrightarrow{AB}$?",
-      options: [
-        "$\\overrightarrow{CD}$",
-        "$\\overrightarrow{DC}$",
-        "$\\overrightarrow{BC}$",
-        "$\\overrightarrow{AD}$"
-      ],
-      answer: 1,
-      explain: "Trong hình bình hành $ABCD$, đoạn thẳng $AB$ song song và bằng $CD$, hướng từ $A$ sang $B$ cùng hướng từ $D$ sang $C$. Vậy $\\overrightarrow{AB} = \\overrightarrow{DC}$."
-    }
-  ],
+  "bai-07": bai07,
 
   "bai-08": [
     {

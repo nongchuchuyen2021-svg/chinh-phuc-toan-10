@@ -36,7 +36,7 @@ export const CURRICULUM: Topic[] = [
     name: "Chương IV. Vectơ",
     emoji: "↗️",
     lessons: [
-      { id: "bai-07", title: "Bài 7. Các khái niệm mở đầu về vectơ", desc: "Vectơ, độ dài vectơ, hai vectơ cùng phương, cùng hướng, vectơ bằng nhau, vectơ-không.", available: true },
+      { id: "bai-07", title: "Bài 7. Các khái niệm mở đầu về vectơ", desc: "Khái niệm vectơ, độ dài, giá của vectơ, quan hệ cùng phương - cùng hướng, vectơ bằng nhau, vectơ-không và mô hình hoá vật lí.", available: true },
       { id: "bai-08", title: "Bài 8. Tổng và hiệu của hai vectơ", desc: "Quy tắc ba điểm, quy tắc hình bình hành, quy tắc hiệu và tính chất của phép cộng vectơ.", available: true },
       { id: "bai-09", title: "Bài 9. Tích của một vectơ với một số", desc: "Định nghĩa, tính chất, điều kiện để hai vectơ cùng phương, toạ độ trung điểm và trọng tâm.", available: true },
       { id: "bai-10", title: "Bài 10. Vectơ trong mặt phẳng toạ độ", desc: "Toạ độ của vectơ, toạ độ của điểm, các phép toán toạ độ trên hệ trục Oxy.", available: true },

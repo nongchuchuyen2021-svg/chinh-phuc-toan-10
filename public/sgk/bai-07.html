@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bài 7 · SGK Toán 10 · Các khái niệm mở đầu về vectơ · Trang 46–51</title>
+  <!-- KaTeX stylesheet & scripts -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+  <style>
+    :root {
+      color-scheme: dark;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      background: #091522;
+      color: #e9f4ff;
+      line-height: 1.75;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-size: 18px; }
+    main { max-width: 940px; margin: auto; padding: 30px 24px 60px; }
+    a { color: #82ddd4; text-decoration: none; }
+    a:hover { text-decoration: underline; }
+    header {
+      padding: 28px;
+      border: 1px solid #7dded430;
+      border-radius: 22px;
+      background: linear-gradient(140deg, #153f48, #152438);
+    }
+    h1 { font-size: 34px; line-height: 1.3; margin: 8px 0 18px; color: #ffffff; }
+    h2 { font-size: 26px; color: #ffcf77; line-height: 1.4; margin-top: 36px; border-bottom: 1px solid #ffffff15; padding-bottom: 8px; }
+    h3 { font-size: 21px; margin: 0 0 12px; }
+    p { margin: 10px 0; }
+    section { margin-top: 28px; scroll-margin-top: 20px; }
+    .intro, .notice { color: #c0d5e4; }
+    .eyebrow { font-size: 13px; letter-spacing: .08em; color: #82ddd4; font-family: monospace; font-weight: bold; }
+    nav {
+      display: flex;
+      gap: 10px 18px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      font-size: 15px;
+      font-family: monospace;
+    }
+    nav a {
+      background: #09152280;
+      padding: 6px 14px;
+      border-radius: 10px;
+      border: 1px solid #7dded440;
+    }
+    nav a:hover {
+      background: #82ddd425;
+    }
+    .box, .exercise {
+      border: 1px solid #ffffff25;
+      border-radius: 18px;
+      padding: 20px;
+      margin: 20px 0;
+      background: #112838;
+    }
+    .box { border-left: 4px solid #82ddd4; }
+    .box h3 { color: #82ddd4; }
+    .exercise { background: #101f32; border-left: 4px solid #4facfe; }
+    .exercise h3 { color: #a9caff; }
+    .answer {
+      border-top: 1px solid #ffffff20;
+      padding-top: 14px;
+      margin-top: 18px;
+    }
+    .answer summary {
+      cursor: pointer;
+      color: #82ddd4;
+      font-weight: 650;
+      min-height: 38px;
+      user-select: none;
+    }
+    .answer summary:hover {
+      color: #ffcf77;
+    }
+    .answer > div { margin-top: 14px; }
+    .answer p { overflow-x: auto; padding-bottom: 5px; }
+    .small { font-size: 14px; color: #b2c8da; }
+    .tag-sgk {
+      display: inline-block;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: bold;
+      color: #ffcf77;
+      background: #ffcf7720;
+      border: 1px solid #ffcf7740;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    .tag-guide {
+      display: inline-block;
+      font-size: 11px;
+      font-family: monospace;
+      font-weight: bold;
+      color: #34d399;
+      background: #34d39920;
+      border: 1px solid #34d39940;
+      padding: 2px 8px;
+      border-radius: 6px;
+      margin-bottom: 8px;
+    }
+    figure { margin: 22px auto; text-align: center; }
+    figure svg { max-width: 100%; height: auto; border-radius: 14px; background: #070f1e; border: 1px solid #1e293b; }
+    figcaption { font-size: 14px; color: #b2c8da; margin-top: 8px; font-family: monospace; }
+    .katex { font-size: 1.1em; }
+    li { margin: 8px 0; }
+    footer {
+      margin-top: 45px;
+      border-top: 1px solid #ffffff20;
+      padding-top: 25px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+    }
+    footer > div > a { display: inline-block; margin-right: 20px; font-weight: bold; }
+    @media(max-width: 600px) {
+      body { font-size: 17px; }
+      main { padding: 18px 14px 40px; }
+      header { padding: 18px; }
+      h1 { font-size: 26px; }
+      h2 { font-size: 22px; }
+      h3 { font-size: 19px; }
+      .box, .exercise { padding: 15px; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <p class="eyebrow">TOÁN 10 · KẾT NỐI TRI THỨC VỚI CUỘC SỐNG · TẬP 1 · TRANG 46–51</p>
+    <h1>Bài 7. Các Khái Niệm Mở Đầu Về Vectơ</h1>
+    <p class="intro">
+      Nội dung biên soạn bám sát sách giáo khoa Toán 10 (Chương IV); đề bài các bài tập từ 4.1 đến 4.5 giữ chuẩn xác bản gốc. Các phần phân tích, minh họa hình học SVG và lời giải gợi ý được bổ sung nhằm hỗ trợ học sinh tự học hiệu quả.
+    </p>
+    <nav>
+      <a href="#mo-dau">Khởi động</a>
+      <a href="#khai-niem">1. Khái niệm vectơ</a>
+      <a href="#cung-phuong">2. Cùng phương & Hướng</a>
+      <a href="#bang-nhau">3. Hai vectơ bằng nhau</a>
+      <a href="#vecto-khong">4. Vectơ-không</a>
+      <a href="#van-dung">5. Ứng dụng thực tế</a>
+      <a href="#bai-tap">Bài tập 4.1–4.5</a>
+    </nav>
+  </header>
+
+  <section class="box">
+    <h3>🎯 Mục tiêu cần đạt sau bài học</h3>
+    <ul>
+      <li>Nhận biết được khái niệm vectơ, điểm đầu (gốc), điểm cuối (ngọn) và độ dài của vectơ.</li>
+      <li>Nhận biết được hai vectơ cùng phương, cùng hướng và ngược hướng nhau.</li>
+      <li>Nhận biết được hai vectơ bằng nhau, hai vectơ đối nhau.</li>
+      <li>Hiểu rõ khái niệm và quy ước vàng của vectơ-không $\vec{0}$.</li>
+      <li>Mô tả và giải quyết được các bài toán thực tiễn liên quan đến đại lượng vectơ (vận tốc, lực, độ dịch chuyển).</li>
+    </ul>
+  </section>
+
+  <!-- MỞ ĐẦU -->
+  <section id="mo-dau">
+    <span class="tag-sgk">TÌNH HUỐNG MỞ ĐẦU (SGK TRANG 46)</span>
+    <h2>Khởi động: Đại lượng vừa có độ lớn vừa có hướng</h2>
+    <p>
+      Trong bản tin dự báo thời tiết, thông tin về gió thường được mô tả: <em>"Gió Đông Bắc cấp 4, tốc độ khoảng 20 đến 28 km/h"</em>.
+      Thông tin này không chỉ cho biết gió thổi mạnh hay nhẹ (độ lớn vận tốc) mà còn chỉ rõ gió thổi từ hướng nào tới hướng nào (hướng chuyển động).
+    </p>
+    <p>
+      Trong toán học và vật lí, để biểu diễn những đại lượng vừa có độ lớn vừa có hướng như vậy, người ta dùng một công cụ đặc biệt: <strong>vectơ</strong>.
+    </p>
+  </section>
+
+  <!-- MỤC 1 -->
+  <section id="khai-niem">
+    <span class="tag-sgk">MỤC 1 (SGK TRANG 46–47)</span>
+    <h2>1. Khái niệm Vectơ</h2>
+
+    <article class="exercise" id="hd1">
+      <span class="tag-sgk">HOẠT ĐỘNG 1</span>
+      <h3>Quan sát biển báo giao thông</h3>
+      <p>Quan sát các biển báo giao thông có hình mũi tên chỉ đường (ví dụ: biển chỉ hướng đi phải theo, biển đường một chiều). Mũi tên cho ta biết những thông tin gì?</p>
+      <details class="answer">
+        <summary>Xem gợi ý trả lời</summary>
+        <div>
+          <p>Mũi tên cho ta biết hai thông tin chính:</p>
+          <ul>
+            <li><strong>Phương chuyển động:</strong> Đường đi nằm ngang, thẳng đứng hay nghiêng.</li>
+            <li><strong>Chiều chuyển động:</strong> Hướng đi từ trái sang phải, từ dưới lên trên hoặc ngược lại.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="exercise" id="hd2">
+      <span class="tag-sgk">HOẠT ĐỘNG 2</span>
+      <h3>So sánh đoạn thẳng và đoạn thẳng có hướng</h3>
+      <p>Cho đoạn thẳng $AB$. Nếu ta chọn điểm $A$ làm điểm xuất phát và điểm $B$ làm điểm kết thúc thì ta nhận được hình ảnh gì?</p>
+      <details class="answer">
+        <summary>Xem gợi ý trả lời</summary>
+        <div>
+          <p>Ta nhận được một đoạn thẳng có hướng đi từ $A$ đến $B$. Trên hình vẽ, ta dùng mũi tên đặt tại điểm $B$ để phân biệt chiều đi.</p>
+        </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <h3>📌 Định nghĩa Vectơ</h3>
+      <ul>
+        <li><strong>Vectơ</strong> là một đoạn thẳng có hướng.</li>
+        <li>Vectơ có điểm đầu là $A$, điểm cuối là $B$ được kí hiệu là $\overrightarrow{AB}$, đọc là <em>"vectơ AB"</em>.</li>
+        <li>Khi không cần chỉ rõ điểm đầu và điểm cuối, vectơ còn được kí hiệu là $\vec{a}, \vec{b}, \vec{x}, \vec{u}, \vec{v}, \dots$</li>
+        <li><strong>Độ dài của vectơ:</strong> Khoảng cách giữa điểm đầu và điểm cuối của vectơ $\overrightarrow{AB}$ được gọi là độ dài của vectơ $\overrightarrow{AB}$, kí hiệu là $|\overrightarrow{AB}|$. Ta luôn có: $|\overrightarrow{AB}| = AB$.</li>
+      </ul>
+    </div>
+
+    <figure>
+      <svg viewBox="0 0 520 140" width="100%" height="140">
+        <defs>
+          <marker id="arr1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#00f2fe"/>
+          </marker>
+        </defs>
+        <line x1="60" y1="70" x2="260" y2="70" stroke="#00f2fe" stroke-width="3" marker-end="url(#arr1)"/>
+        <circle cx="60" cy="70" r="4.5" fill="#00f2fe" stroke="#fff" stroke-width="1.5"/>
+        <circle cx="260" cy="70" r="4.5" fill="#00f2fe" stroke="#fff" stroke-width="1.5"/>
+        <text x="50" y="50" fill="#67e8f9" font-size="13" font-family="sans-serif" font-weight="bold">A (Điểm đầu)</text>
+        <text x="245" y="50" fill="#67e8f9" font-size="13" font-family="sans-serif" font-weight="bold">B (Điểm cuối)</text>
+        <text x="120" y="105" fill="#00f2fe" font-size="12" font-family="monospace">Vectơ AB có độ dài |AB| = AB</text>
+
+        <line x1="330" y1="70" x2="470" y2="70" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr1)"/>
+        <text x="390" y="50" fill="#fde68a" font-size="13" font-family="sans-serif" font-weight="bold">Vectơ a</text>
+      </svg>
+      <figcaption>Hình 7.1: Biểu diễn hình học của vectơ có gốc - ngọn và vectơ kí hiệu bằng chữ cái in thường</figcaption>
+    </figure>
+
+    <article class="exercise" id="lt1">
+      <span class="tag-sgk">LUYỆN TẬP 1 (SGK TRANG 47)</span>
+      <h3>Tìm các vectơ từ đỉnh hình bình hành</h3>
+      <p>Cho hình bình hành $ABCD$. Hãy chỉ ra các vectơ có điểm đầu là $A$ và điểm cuối là các đỉnh còn lại của hình bình hành. Các vectơ đó có độ dài bằng độ dài các đoạn thẳng nào?</p>
+      <details class="answer">
+        <summary>Xem lời giải gợi ý</summary>
+        <div>
+          <p>Các vectơ có điểm đầu là $A$ và điểm cuối là một trong các đỉnh $B, C, D$ là:</p>
+          <ul>
+            <li>Vectơ $\overrightarrow{AB}$, có độ dài $|\overrightarrow{AB}| = AB$.</li>
+            <li>Vectơ $\overrightarrow{AC}$, có độ dài $|\overrightarrow{AC}| = AC$.</li>
+            <li>Vectơ $\overrightarrow{AD}$, có độ dài $|\overrightarrow{AD}| = AD$.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <!-- MỤC 2 -->
+  <section id="cung-phuong">
+    <span class="tag-sgk">MỤC 2 (SGK TRANG 47–48)</span>
+    <h2>2. Hai Vectơ Cùng Phương, Cùng Hướng</h2>
+
+    <article class="exercise" id="hd3">
+      <span class="tag-sgk">HOẠT ĐỘNG 3</span>
+      <h3>Vị trí tương đối của các đường thẳng chứa vectơ</h3>
+      <p>Quan sát các làn đường cao tốc có các mũi tên sơn trên mặt đường. Các đường thẳng chứa các mũi tên đó có vị trí tương đối như thế nào với nhau?</p>
+      <details class="answer">
+        <summary>Xem gợi ý trả lời</summary>
+        <div>
+          <p>Các đường thẳng chứa các mũi tên chỉ làn xe hoặc song song với nhau, hoặc cùng nằm trên một đường thẳng (trùng nhau).</p>
+        </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <h3>📌 Giá của Vectơ & Hai Vectơ Cùng Phương</h3>
+      <ul>
+        <li>Đường thẳng đi qua điểm đầu và điểm cuối của một vectơ gọi là <strong>giá</strong> của vectơ đó.</li>
+        <li>Hai vectơ được gọi là <strong>cùng phương</strong> nếu giá của chúng <strong>song song hoặc trùng nhau</strong>.</li>
+        <li>Nếu hai vectơ cùng phương thì chúng chỉ có thể <strong>cùng hướng</strong> hoặc <strong>ngược hướng</strong>.</li>
+      </ul>
+      <p class="notice">⚠️ <strong>Lưu ý:</strong> Khái niệm cùng hướng hoặc ngược hướng chỉ được xét khi hai vectơ đã cùng phương. Hai vectơ có giá cắt nhau thì không cùng phương, và không xét hướng.</p>
+    </div>
+
+    <article class="exercise" id="vd1">
+      <span class="tag-sgk">VÍ DỤ 1 (SGK TRANG 48)</span>
+      <h3>Xét tính cùng phương, cùng hướng trong hình thang</h3>
+      <p>Cho hình thang $ABCD$ ($AB \parallel CD$, $AB < CD$). Xét mối quan hệ về phương và hướng của các cặp vectơ: $\overrightarrow{AB}$ và $\overrightarrow{DC}$; $\overrightarrow{AB}$ và $\overrightarrow{CD}$.</p>
+      <details class="answer">
+        <summary>Xem lời giải</summary>
+        <div>
+          <p>Vì $AB \parallel CD$ nên giá của hai vectơ $\overrightarrow{AB}$ và $\overrightarrow{DC}$ song song nhau $\implies$ Chúng cùng phương.</p>
+          <ul>
+            <li>Cặp $\overrightarrow{AB}$ và $\overrightarrow{DC}$: Hướng từ trái sang phải $\implies$ <strong>Cùng hướng</strong>.</li>
+            <li>Cặp $\overrightarrow{AB}$ và $\overrightarrow{CD}$: Một vectơ hướng sang phải, một vectơ hướng sang trái $\implies$ <strong>Ngược hướng</strong>.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="exercise" id="lt2">
+      <span class="tag-sgk">LUYỆN TẬP 2 (SGK TRANG 48)</span>
+      <h3>Vectơ đường trung bình tam giác</h3>
+      <p>Cho tam giác $ABC$. Gọi $M, N$ lần lượt là trung điểm của $AB$ và $AC$.</p>
+      <p>a) Chứng minh hai vectơ $\overrightarrow{MN}$ và $\overrightarrow{BC}$ cùng phương, cùng hướng.<br>
+         b) Hai vectơ $\overrightarrow{MN}$ và $\overrightarrow{CB}$ có cùng phương không? Có cùng hướng không?</p>
+      <details class="answer">
+        <summary>Xem lời giải gợi ý</summary>
+        <div>
+          <p>a) Vì $MN$ là đường trung bình của tam giác $ABC$ nên $MN \parallel BC$. Do đó giá của $\overrightarrow{MN}$ song song với giá của $\overrightarrow{BC}$, suy ra hai vectơ cùng phương. Hướng từ $M$ sang $N$ cùng với hướng từ $B$ sang $C$ nên chúng <strong>cùng hướng</strong>.</p>
+          <p>b) Hai vectơ $\overrightarrow{MN}$ và $\overrightarrow{CB}$ vẫn <strong>cùng phương</strong> (do $MN \parallel BC$) nhưng <strong>ngược hướng</strong> nhau.</p>
+        </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <h3>🌟 Nhận xét quan trọng về Ba điểm thẳng hàng</h3>
+      <p>Ba điểm phân biệt $A, B, C$ thẳng hàng khi và chỉ khi hai vectơ $\overrightarrow{AB}$ và $\overrightarrow{AC}$ cùng phương.</p>
+    </div>
+  </section>
+
+  <!-- MỤC 3 -->
+  <section id="bang-nhau">
+    <span class="tag-sgk">MỤC 3 (SGK TRANG 48–49)</span>
+    <h2>3. Hai Vectơ Bằng Nhau & Hai Vectơ Đối Nhau</h2>
+
+    <article class="exercise" id="hd4">
+      <span class="tag-sgk">HOẠT ĐỘNG 4</span>
+      <h3>So sánh hai vectơ</h3>
+      <p>Quan sát hai chiếc ô tô đang chuyển động thẳng đều với cùng vận tốc $60\text{ km/h}$ trên hai làn đường song song cùng chiều. Biểu diễn vectơ vận tốc của hai xe và nhận xét về độ lớn và hướng của chúng.</p>
+      <details class="answer">
+        <summary>Xem gợi ý trả lời</summary>
+        <div>
+          <p>Hai vectơ vận tốc có cùng độ dài (đều bằng $60\text{ km/h}$) và cùng hướng (chạy song song cùng chiều). Trong toán học, hai vectơ như vậy được gọi là <strong>bằng nhau</strong>.</p>
+        </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <h3>📌 Định nghĩa Hai Vectơ Bằng Nhau</h3>
+      <p>Hai vectơ $\vec{a}$ và $\vec{b}$ được gọi là <strong>bằng nhau</strong> nếu chúng có <strong>cùng hướng</strong> và <strong>cùng độ dài</strong>, kí hiệu là $\vec{a} = \vec{b}$.</p>
+      $$\vec{a} = \vec{b} \iff \begin{cases} \vec{a} \text{ cùng hướng với } \vec{b} \\ |\vec{a}| = |\vec{b}| \end{cases}$$
+      <p>Hai vectơ được gọi là <strong>đối nhau</strong> nếu chúng <strong>ngược hướng</strong> và <strong>cùng độ dài</strong>, kí hiệu là $\vec{a} = -\vec{b}$. Đặc biệt: $\overrightarrow{BA} = -\overrightarrow{AB}$.</p>
+    </div>
+
+    <article class="exercise" id="vd2">
+      <span class="tag-sgk">VÍ DỤ 2 (SGK TRANG 49)</span>
+      <h3>Vectơ bằng nhau trong hình thoi</h3>
+      <p>Cho hình thoi $ABCD$. Chỉ ra các cặp vectơ bằng nhau có điểm đầu và điểm cuối là các đỉnh của hình thoi.</p>
+      <details class="answer">
+        <summary>Xem lời giải</summary>
+        <div>
+          <p>Vì hình thoi $ABCD$ có các cặp cạnh đối song song và bằng nhau nên:</p>
+          <ul>
+            <li>$\overrightarrow{AB} = \overrightarrow{DC}$ và $\overrightarrow{BA} = \overrightarrow{CD}$.</li>
+            <li>$\overrightarrow{AD} = \overrightarrow{BC}$ và $\overrightarrow{DA} = \overrightarrow{CB}$.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <article class="exercise" id="lt3">
+      <span class="tag-sgk">LUYỆN TẬP 3 (SGK TRANG 49)</span>
+      <h3>Vectơ bằng nhau qua tâm hình bình hành</h3>
+      <p>Cho hình bình hành $ABCD$ có tâm $O$. Chứng minh rằng $\overrightarrow{AO} = \overrightarrow{OC}$ và $\overrightarrow{DO} = \overrightarrow{OB}$.</p>
+      <details class="answer">
+        <summary>Xem lời giải gợi ý</summary>
+        <div>
+          <p>Vì $O$ là giao điểm hai đường chéo của hình bình hành nên $O$ là trung điểm của $AC$ và $BD$:</p>
+          <ul>
+            <li>$O$ là trung điểm $AC \implies AO = OC$ và hướng từ $A \to O$ trùng hướng $O \to C$. Vậy $\overrightarrow{AO} = \overrightarrow{OC}$.</li>
+            <li>$O$ là trung điểm $BD \implies DO = OB$ và hướng từ $D \to O$ trùng hướng $O \to B$. Vậy $\overrightarrow{DO} = \overrightarrow{OB}$.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <div class="box">
+      <h3>💬 Góc Tranh Luận</h3>
+      <p><strong>Bạn Tròn:</strong> <em>"Hai vectơ có độ dài bằng nhau thì chắc chắn bằng nhau!"</em></p>
+      <p><strong>Bạn Vuông:</strong> <em>"Chưa chắc! Phải cùng hướng nữa mới bằng nhau được chứ!"</em></p>
+      <p>Theo em, bạn nào nói đúng?</p>
+      <p class="notice">💡 <strong>Đáp án:</strong> Bạn Vuông nói đúng! Hai vectơ cùng độ dài nhưng khác phương (hoặc ngược hướng) thì không bằng nhau. Ví dụ trong hình vuông $ABCD$, $|\overrightarrow{AB}| = |\overrightarrow{AD}|$ nhưng $\overrightarrow{AB} \ne \overrightarrow{AD}$ vì hai cạnh vuông góc nhau.</p>
+    </div>
+  </section>
+
+  <!-- MỤC 4 -->
+  <section id="vecto-khong">
+    <span class="tag-sgk">MỤC 4 (SGK TRANG 49–50)</span>
+    <h2>4. Kỳ quan Vectơ-không ($\vec{0}$)</h2>
+    <div class="box">
+      <h3>📌 Định nghĩa & Quy ước Vàng</h3>
+      <ul>
+        <li><strong>Vectơ-không</strong> là vectơ có điểm đầu và điểm cuối trùng nhau, kí hiệu là $\vec{0}$.</li>
+        <li>Ví dụ: $\overrightarrow{AA}, \overrightarrow{BB}, \overrightarrow{MM}$ đều là các biểu diễn của vectơ-không.</li>
+        <li>Độ dài của vectơ-không bằng 0: $|\vec{0}| = 0$.</li>
+        <li><strong>Quy ước vàng:</strong> Vectơ-không $\vec{0}$ được coi là <strong>cùng phương và cùng hướng với mọi vectơ</strong>.</li>
+        <li>Mọi vectơ-không đều bằng nhau: $\overrightarrow{AA} = \overrightarrow{BB} = \vec{0}$.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- MỤC 5 -->
+  <section id="van-dung">
+    <span class="tag-sgk">MỤC 5 (SGK TRANG 50)</span>
+    <h2>5. Vận dụng Thực tế</h2>
+    <article class="exercise" id="vd-thucte">
+      <span class="tag-sgk">VẬN DỤNG THỰC TẾ (SGK TRANG 50)</span>
+      <h3>Biểu diễn lực và độ dịch chuyển</h3>
+      <p>Hai chú kéo một khúc gỗ bằng hai sợi dây tạo thành góc $90^\circ$, lực kéo lần lượt có độ lớn $300\text{ N}$ và $400\text{ N}$. Hãy biểu diễn các lực tác dụng lên khúc gỗ bằng các vectơ và tính độ lớn của hợp lực tác dụng lên khúc gỗ.</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p>Biểu diễn hai lực bằng hai vectơ vuông góc $\vec{F}_1$ và $\vec{F}_2$ có gốc tại điểm đặt của dây trên khúc gỗ.</p>
+          <p>Theo quy tắc hình bình hành, hợp lực $\vec{F} = \vec{F}_1 + \vec{F}_2$ là đường chéo của hình chữ nhật có hai cạnh là $F_1 = 300\text{ N}$ và $F_2 = 400\text{ N}$.</p>
+          <p>Độ lớn hợp lực:</p>
+          $$F = |\vec{F}| = \sqrt{F_1^2 + F_2^2} = \sqrt{300^2 + 400^2} = \sqrt{90000 + 160000} = \sqrt{250000} = 500\text{ N}$$
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <!-- BÀI TẬP SGK TRANG 50 - 51 -->
+  <section id="bai-tap">
+    <span class="tag-sgk">BÀI TẬP CUỐI BÀI · SGK TOÁN 10 TRANG 50–51</span>
+    <h2>Bài Tập SGK 4.1 đến 4.5 Có Lời Giải Chi Tiết</h2>
+    <p class="notice">Các đề bài dưới đây được giữ nguyên 100% bản gốc từ SGK Kết nối tri thức. Nhấn vào từng mục để xem gợi ý giải chi tiết.</p>
+
+    <!-- Bài 4.1 -->
+    <article class="exercise" id="bt-41">
+      <span class="tag-sgk">BÀI 4.1 (TRANG 50)</span>
+      <h3>Bài 4.1</h3>
+      <p>Cho ba điểm $A, B, C$ thẳng hàng, trong đó $B$ nằm giữa $A$ và $C$. Trong các cặp vectơ sau đây, cặp nào cùng hướng, cặp nào ngược hướng?</p>
+      <p>a) $\overrightarrow{AB}$ và $\overrightarrow{AC}$;<br>
+         b) $\overrightarrow{BA}$ và $\overrightarrow{BC}$;<br>
+         c) $\overrightarrow{CA}$ và $\overrightarrow{CB}$.</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p>Vì ba điểm $A, B, C$ thẳng hàng và $B$ nằm giữa $A$ và $C$, ta có hình vẽ biểu diễn thứ tự: $A \longrightarrow B \longrightarrow C$.</p>
+          <ul>
+            <li><strong>a) $\overrightarrow{AB}$ và $\overrightarrow{AC}$:</strong> Điểm đầu $A$, điểm $B$ và $C$ cùng nằm về phía bên phải điểm $A$. Do đó hướng từ $A \to B$ và $A \to C$ cùng hướng sang phải $\implies$ <strong>Cùng hướng</strong>.</li>
+            <li><strong>b) $\overrightarrow{BA}$ và $\overrightarrow{BC}$:</strong> Xuất phát từ gốc $B$, điểm $A$ nằm bên trái còn điểm $C$ nằm bên phải (tia $BA$ và tia $BC$ là hai tia đối nhau) $\implies$ <strong>Ngược hướng</strong>.</li>
+            <li><strong>c) $\overrightarrow{CA}$ và $\overrightarrow{CB}$:</strong> Điểm đầu $C$, điểm $A$ và $B$ cùng nằm về phía bên trái điểm $C$. Hướng từ $C \to A$ và $C \to B$ cùng hướng sang trái $\implies$ <strong>Cùng hướng</strong>.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- Bài 4.2 -->
+    <article class="exercise" id="bt-42">
+      <span class="tag-sgk">BÀI 4.2 (TRANG 50)</span>
+      <h3>Bài 4.2</h3>
+      <p>Cho hình chữ nhật $ABCD$ có $AB = 3\text{ cm}, BC = 4\text{ cm}$. Tính độ dài của các vectơ $\overrightarrow{AB}, \overrightarrow{BC}, \overrightarrow{CD}, \overrightarrow{AD}, \overrightarrow{AC}, \overrightarrow{BD}$.</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p>Độ dài của mỗi vectơ chính bằng độ dài của đoạn thẳng tương ứng:</p>
+          <ul>
+            <li>$|\overrightarrow{AB}| = AB = 3\text{ cm}$.</li>
+            <li>$|\overrightarrow{BC}| = BC = 4\text{ cm}$.</li>
+            <li>$|\overrightarrow{CD}| = CD = AB = 3\text{ cm}$.</li>
+            <li>$|\overrightarrow{AD}| = AD = BC = 4\text{ cm}$.</li>
+          </ul>
+          <p>Xét tam giác vuông $ABC$ vuông tại $B$, theo định lí Pytago:</p>
+          $$AC = \sqrt{AB^2 + BC^2} = \sqrt{3^2 + 4^2} = \sqrt{25} = 5\text{ cm}$$
+          <p>Trong hình chữ nhật, hai đường chéo bằng nhau nên $BD = AC = 5\text{ cm}$. Do đó:</p>
+          <ul>
+            <li>$|\overrightarrow{AC}| = AC = 5\text{ cm}$.</li>
+            <li>$|\overrightarrow{BD}| = BD = 5\text{ cm}$.</li>
+          </ul>
+        </div>
+      </details>
+    </article>
+
+    <!-- Bài 4.3 -->
+    <article class="exercise" id="bt-43">
+      <span class="tag-sgk">BÀI 4.3 (TRANG 51)</span>
+      <h3>Bài 4.3</h3>
+      <p>Cho tam giác $ABC$ cân tại $A$. Gọi $M$ là trung điểm của $BC$. Khẳng định $\overrightarrow{AM} = \overrightarrow{MB}$ đúng hay sai? Vì sao?</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p><strong>Khẳng định trên là SAI.</strong></p>
+          <p><strong>Giải thích chi tiết:</strong></p>
+          <p>Vì tam giác $ABC$ cân tại $A$ có $M$ là trung điểm cạnh đáy $BC$, nên $AM$ là đường cao ($AM \perp BC$).</p>
+          <ul>
+            <li>Giá của vectơ $\overrightarrow{AM}$ là đường thẳng $AM$.</li>
+            <li>Giá của vectơ $\overrightarrow{MB}$ là đường thẳng $BC$.</li>
+            <li>Vì $AM \perp BC$, hai đường thẳng giá này cắt nhau tại $M$ và vuông góc với nhau, chúng không song song và không trùng nhau.</li>
+          </ul>
+          <p>Do đó hai vectơ $\overrightarrow{AM}$ và $\overrightarrow{MB}$ thậm chí <strong>không cùng phương</strong>, nên chúng tuyệt đối không thể bằng nhau!</p>
+        </div>
+      </details>
+    </article>
+
+    <!-- Bài 4.4 -->
+    <article class="exercise" id="bt-44">
+      <span class="tag-sgk">BÀI 4.4 (TRANG 51)</span>
+      <h3>Bài 4.4</h3>
+      <p>Cho hình vuông $ABCD$ cạnh $a$. Gọi $O$ là giao điểm của hai đường chéo.</p>
+      <p>a) Liệt kê các vectơ khác $\vec{0}$ có điểm đầu và điểm cuối là các đỉnh của hình vuông hoặc tâm $O$ bằng với vectơ $\overrightarrow{OA}$.<br>
+         b) Tính độ dài của vectơ $\overrightarrow{OA}$ theo $a$.</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p><strong>a) Liệt kê các vectơ bằng vectơ $\overrightarrow{OA}$:</strong></p>
+          <p>Vì $O$ là trung điểm của đường chéo $AC$ nên:</p>
+          <ul>
+            <li>Khoảng cách $OA = OC$.</li>
+            <li>Hướng từ $O \to C$ cùng hướng từ $A \to O$ (hướng từ $A$ xuống $C$).</li>
+            <li>Nhưng đề bài hỏi các vectơ bằng $\overrightarrow{OA}$ (hướng từ $O$ ngược về $A$).</li>
+            <li>Quan sát đường chéo $CA$: hướng $C \to O$ cùng hướng $O \to A$ và $CO = OA$.</li>
+            <li>Do đó, có duy nhất một vectơ bằng vectơ $\overrightarrow{OA}$ là: $\overrightarrow{CO}$.</li>
+          </ul>
+
+          <p><strong>b) Tính độ dài $|\overrightarrow{OA}|$ theo $a$:</strong></p>
+          <p>Trong hình vuông cạnh $a$, đường chéo $AC = a\sqrt{2}$.</p>
+          <p>Vì $O$ là trung điểm của $AC$ nên:</p>
+          $$|\overrightarrow{OA}| = OA = \frac{AC}{2} = \frac{a\sqrt{2}}{2}$$
+        </div>
+      </details>
+    </article>
+
+    <!-- Bài 4.5 -->
+    <article class="exercise" id="bt-45">
+      <span class="tag-sgk">BÀI 4.5 (TRANG 51)</span>
+      <h3>Bài 4.5</h3>
+      <p>Một người đi xe máy từ địa điểm $A$ đến địa điểm $B$ cách $A$ $12\text{ km}$ về hướng Đông, rồi từ $B$ đi đến $C$ cách $B$ $5\text{ km}$ về hướng Bắc.</p>
+      <p>a) Biểu diễn các độ dịch chuyển từ $A$ đến $B$, từ $B$ đến $C$ và từ $A$ đến $C$ bằng các vectơ.<br>
+         b) Tính độ lớn của độ dịch chuyển từ $A$ đến $C$ (tức độ dài của vectơ $\overrightarrow{AC}$).</p>
+      <details class="answer">
+        <summary>Xem lời giải chi tiết</summary>
+        <div>
+          <p><strong>a) Biểu diễn bằng các vectơ:</strong></p>
+          <ul>
+            <li>Độ dịch chuyển từ $A$ đến $B$ được biểu diễn bởi vectơ $\overrightarrow{AB}$ có hướng chính Đông và độ dài $|\overrightarrow{AB}| = 12\text{ km}$.</li>
+            <li>Độ dịch chuyển từ $B$ đến $C$ được biểu diễn bởi vectơ $\overrightarrow{BC}$ có hướng chính Bắc và độ dài $|\overrightarrow{BC}| = 5\text{ km}$.</li>
+            <li>Độ dịch chuyển tổng hợp từ điểm xuất phát $A$ đến điểm kết thúc $C$ được biểu diễn bởi vectơ $\overrightarrow{AC}$.</li>
+          </ul>
+
+          <p><strong>b) Tính độ lớn độ dịch chuyển tổng hợp:</strong></p>
+          <p>Vì hướng chính Đông và hướng chính Bắc vuông góc với nhau nên tam giác $ABC$ vuông tại $B$.</p>
+          <p>Áp dụng định lí Pytago trong tam giác vuông $ABC$:</p>
+          $$AC = \sqrt{AB^2 + BC^2} = \sqrt{12^2 + 5^2} = \sqrt{144 + 25} = \sqrt{169} = 13\text{ km}$$
+          <p>Vậy độ lớn của độ dịch chuyển từ $A$ đến $C$ là $|\overrightarrow{AC}| = 13\text{ km}$.</p>
+        </div>
+      </details>
+    </article>
+  </section>
+
+  <footer>
+    <div>
+      <a href="/luyen/bai-07">← Về trang luyện tập Bài 7</a>
+      <a href="/bai-07-trinh-chieu.html">Mở Slide trình chiếu tương tác →</a>
+    </div>
+    <p class="small">Bộ sách: Kết nối tri thức với cuộc sống · Chinh Phục Toán 10</p>
+  </footer>
+</main>
+</body>
+</html>

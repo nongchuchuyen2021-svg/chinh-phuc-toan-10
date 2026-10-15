@@ -7,6 +7,7 @@ import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound"
 import MathText from "@/components/MathText";
 import TrigUnitCircleLab from "@/components/TrigUnitCircleLab";
 import TriangleSolverLab from "@/components/TriangleSolverLab";
+import VectorExplorerLab from "@/components/VectorExplorerLab";
 
 export default function TheoryViewer({
   lessonId,
@@ -70,6 +71,9 @@ export default function TheoryViewer({
 
       {/* Interactive Laboratory for Lesson 6 */}
       {lessonId === "bai-06" && <TriangleSolverLab />}
+
+      {/* Interactive Laboratory for Lesson 7 */}
+      {lessonId === "bai-07" && <VectorExplorerLab />}
 
       {/* Sections */}
       {theory.sections.map((sec, secIdx) => (
