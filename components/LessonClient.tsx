@@ -296,6 +296,8 @@ export default function LessonClient({
             name: "Slide Trình chiếu tương tác",
             desc: lessonId === "bai-05"
               ? "20 slide tương tác · Nửa đường tròn đơn vị, góc bù, góc phụ, vòng quay và 10 câu hỏi tự chấm"
+              : lessonId === "bai-06"
+              ? "26 slide tương tác · Khám phá côsin, sin, giải tam giác, đo khoảng cách, diện tích và 12 câu hỏi tự chấm"
               : "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
             done: false,
             badge: "Mới ✨",
