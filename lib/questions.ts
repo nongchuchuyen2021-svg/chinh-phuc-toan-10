@@ -4,6 +4,7 @@ import bai02 from "@/data/questions/bai-02";
 import bai03 from "@/data/questions/bai-03";
 import bai04 from "@/data/questions/bai-04";
 import bai05 from "@/data/questions/bai-05";
+import bai06 from "@/data/questions/bai-06";
 
 // Ngân hàng câu hỏi trắc nghiệm 4 lựa chọn cho toàn bộ 27 bài học Toán 10 (Bộ sách Kết nối tri thức).
 export const QUESTION_BANK: Record<string, Question[]> = {
@@ -13,44 +14,7 @@ export const QUESTION_BANK: Record<string, Question[]> = {
   "bai-04": bai04,
   "bai-05": bai05,
 
-  "bai-06": [
-    {
-      id: "b6-q1",
-      q: "Trong tam giác $ABC$, định lí côsin được biểu diễn bởi công thức nào sau đây?",
-      options: [
-        "$a^2 = b^2 + c^2 - 2bc \\cos A$",
-        "$a^2 = b^2 + c^2 + 2bc \\cos A$",
-        "$a^2 = b^2 + c^2 - 2bc \\sin A$",
-        "$a^2 = b^2 + c^2 - bc \\cos A$"
-      ],
-      answer: 0,
-      explain: "Theo định lí côsin trong tam giác: $a^2 = b^2 + c^2 - 2bc \\cos A$."
-    },
-    {
-      id: "b6-q2",
-      q: "Tam giác $ABC$ có cạnh $b = 6, c = 8$ và góc $A = 60^\\circ$. Độ dài cạnh $a$ bằng:",
-      options: [
-        "$2\\sqrt{13}$",
-        "$2\\sqrt{37}$",
-        "$10$",
-        "$\\sqrt{52}$"
-      ],
-      answer: 0,
-      explain: "Áp dụng định lí côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2 \\cdot 6 \\cdot 8 \\cdot \\cos 60^\\circ = 36 + 64 - 48 = 52 \\Rightarrow a = \\sqrt{52} = 2\\sqrt{13}$."
-    },
-    {
-      id: "b6-q3",
-      q: "Tam giác $ABC$ có $b = 4, c = 5$ và góc $A = 30^\\circ$. Diện tích của tam giác $ABC$ bằng:",
-      options: [
-        "$10$",
-        "$5$",
-        "$5\\sqrt{3}$",
-        "$20$"
-      ],
-      answer: 1,
-      explain: "Diện tích tam giác $S = \\frac{1}{2}bc \\sin A = \\frac{1}{2} \\cdot 4 \\cdot 5 \\cdot \\sin 30^\\circ = 10 \\cdot \\frac{1}{2} = 5$."
-    }
-  ],
+  "bai-06": bai06,
 
   "bai-07": [
     {

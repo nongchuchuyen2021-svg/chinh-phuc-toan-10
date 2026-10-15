@@ -677,44 +677,144 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
   },
 
   "bai-06": {
-    summary: "Định lí côsin, định lí sin, các công thức tính diện tích tam giác và giải tam giác.",
+    summary: "Làm chủ bộ đôi Định lí Côsin và Định lí Sin, 5 công thức tính diện tích kinh điển, kĩ thuật giải tam giác và đo đạc trắc địa thực tế.",
     keyPoints: [
-      "Định lí côsin: a² = b² + c² - 2bc cos A.",
-      "Định lí sin: a / sin A = b / sin B = c / sin C = 2R.",
-      "Diện tích: S = 1/2 bc sin A = abc/(4R) = pr = √(p(p-a)(p-b)(p-c))."
+      "Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A$, mở rộng định lí Pythagore sang tam giác bất kì.",
+      "Hệ quả tính góc: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Dấu của $\\cos A$ quyết định tính chất góc: nhọn ($> 0$), vuông ($= 0$) hay tù ($< 0$).",
+      "Định lí Sin: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$. Tỉ số giữa cạnh và sin góc đối bằng đường kính đường tròn ngoại tiếp $2R$.",
+      "Bán kính đường tròn ngoại tiếp $R$: $R = \\frac{a}{2\\sin A} = \\frac{abc}{4S}$.",
+      "Bán kính đường tròn nội tiếp $r$: $r = \\frac{S}{p}$ với nửa chu vi $p = \\frac{a+b+c}{2}$.",
+      "Bộ 5 công thức diện tích: $S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$ (Heron)."
     ],
     commonMistakes: [
       {
-        mistake: "Quên dấu trừ trong công thức định lí côsin hoặc nhầm sang hàm sin.",
-        fix: "Ghi nhớ: a² = b² + c² TRỪ 2bc COS A."
+        mistake: "Quên dấu trừ trong định lí Côsin hoặc bỏ quên dấu âm của côsin khi tính góc tù (ví dụ: $\\cos 120^\\circ = -0.5$).",
+        fix: "Ghi nhớ: $a^2 = b^2 + c^2 - 2bc\\cos A$. Khi góc $A$ tù, $\\cos A < 0$ thì $-2bc\\cos A > 0$, làm cho cạnh đối diện $a^2 > b^2 + c^2$."
       },
       {
-        mistake: "Nhầm bán kính ngoại tiếp R với 2R khi áp dụng định lí sin.",
-        fix: "Ghi nhớ: Tỉ số a / sin A bằng 2R (đường kính), muốn tìm R phải chia cho 2."
+        mistake: "Nhầm lẫn giữa bán kính ngoại tiếp $R$ và đường kính $2R$ khi áp dụng định lí Sin.",
+        fix: "Định lí Sin cho tỉ số $\\frac{a}{\\sin A} = 2R$. Do đó muốn tính bán kính $R$ ta BẮT BUỘC phải chia cho 2: $R = \\frac{a}{2\\sin A}$."
+      },
+      {
+        mistake: "Dùng định lí Sin để tìm góc và chọn nhầm góc nhọn khi góc thực tế có thể là góc tù.",
+        fix: "Khi tìm góc trong tam giác, nên ưu tiên dùng hệ quả Định lí Côsin vì mỗi giá trị $\\cos$ chỉ ứng với đúng 1 góc duy nhất trong khoảng $(0^\\circ, 180^\\circ)$."
       }
     ],
     tips: [
-      "Biết 3 cạnh hoặc 2 cạnh và góc xen giữa -> Dùng định lí côsin.",
-      "Biết 1 cạnh và góc đối diện -> Dùng định lí sin."
+      "Chiến thuật chọn định lí: Biết 2 cạnh + góc xen giữa (C-G-C) hoặc 3 cạnh (C-C-C) $\\to$ Định lí Côsin; Biết cặp cạnh - góc đối diện hoặc hỏi về bán kính $R \\to$ Định lí Sin.",
+      "Tuyệt chiêu bẻ khoá tam giác 3 cạnh: Luôn tính nửa chu vi $p \\to$ tính $S$ bằng Heron $\\to$ tính nhanh $R = \\frac{abc}{4S}, r = \\frac{S}{p}, h_a = \\frac{2S}{a}$.",
+      "Kĩ thuật giải toán đo đạc thực tế: Trong bài toán đo chiều cao tháp, dùng góc ngoài $\\widehat{ACB} = \\beta - \\alpha$ và định lí Sin tính $BC$ trước, rồi tính chiều cao $h = BC\\sin\\beta$."
     ],
     flashcards: [
       {
-        front: "Công thức định lí côsin tính cạnh a?",
-        back: "a² = b² + c² - 2bc cos A."
+        front: "Định lí Côsin tính cạnh $a$ khi biết hai cạnh $b, c$ và góc $\\widehat{A}$?",
+        back: "$a^2 = b^2 + c^2 - 2bc\\cos A$."
       },
       {
-        front: "Tỉ số a / sin A trong định lí sin bằng gì?",
-        back: "Bằng 2R (với R là bán kính đường tròn ngoại tiếp tam giác)."
+        front: "Hệ quả định lí Côsin dùng để tính côsin góc $A$ khi biết 3 cạnh?",
+        back: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$."
       },
       {
-        front: "Công thức Heron tính diện tích tam giác?",
-        back: "S = √(p(p-a)(p-b)(p-c)) với p = (a+b+c)/2 là nửa chu vi."
+        front: "Phát biểu hệ thức định lí Sin trong tam giác $ABC$?",
+        back: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$ (với $R$ là bán kính đường tròn ngoại tiếp)."
+      },
+      {
+        front: "Công thức liên hệ giữa diện tích $S$, 3 cạnh $a, b, c$ và bán kính ngoại tiếp $R$?",
+        back: "$S = \\frac{abc}{4R} \\iff R = \\frac{abc}{4S}$."
+      },
+      {
+        front: "Công thức tính bán kính đường tròn nội tiếp $r$?",
+        back: "$r = \\frac{S}{p}$ với $p = \\frac{a+b+c}{2}$ là nửa chu vi."
+      },
+      {
+        front: "Công thức Heron tính diện tích tam giác theo 3 cạnh?",
+        back: "$S = \\sqrt{p(p-a)(p-b)(p-c)}$ với $p = \\frac{a+b+c}{2}$."
+      },
+      {
+        front: "Dấu hiệu nhận biết góc $A$ là góc tù qua độ dài 3 cạnh?",
+        back: "$b^2 + c^2 < a^2 \\iff \\cos A < 0 \\iff \\widehat{A} > 90^\\circ$."
+      },
+      {
+        front: "Công thức tính nhanh diện tích và chiều cao của tam giác đều cạnh $a$?",
+        back: "$S = \\frac{a^2\\sqrt{3}}{4}$ và chiều cao $h = \\frac{a\\sqrt{3}}{2}$."
       }
     ],
     checklist: [
-      "Tôi thuộc làu định lí côsin và định lí sin.",
-      "Tôi nắm vững cả 5 công thức tính diện tích tam giác.",
-      "Tôi biết vận dụng giải các bài toán thực tế (đo khoảng cách, chiều cao không thể tới được)."
+      "Tôi thuộc làu định lí Côsin và hệ quả tính góc.",
+      "Tôi áp dụng thành thạo định lí Sin và tính chính xác bán kính ngoại tiếp $R$.",
+      "Tôi nắm vững cả 5 công thức tính diện tích tam giác, đặc biệt là công thức Heron.",
+      "Tôi biết giải trọn vẹn tam giác trong cả 3 trường hợp C-G-C, C-C-C và G-C-G.",
+      "Tôi giải quyết thành thạo bài toán trắc địa đo chiều cao và khoảng cách thực tế."
+    ],
+    mindmap: [
+      {
+        id: "mm-b6-1",
+        title: "1. Định lí Côsin",
+        emoji: "📐",
+        description: "Mở rộng định lí Pythagore cho tam giác bất kì",
+        formula: "$a^2 = b^2 + c^2 - 2bc\\cos A$",
+        children: [
+          {
+            title: "Hệ quả tính góc",
+            detail: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Dương là nhọn, 0 là vuông, âm là tù."
+          },
+          {
+            title: "Đường trung tuyến",
+            detail: "$m_a^2 = \\frac{2(b^2+c^2)-a^2}{4}$."
+          }
+        ]
+      },
+      {
+        id: "mm-b6-2",
+        title: "2. Định lí Sin & Bán kính R",
+        emoji: "🔵",
+        description: "Tỉ số vàng giữa cạnh và sin góc đối",
+        formula: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$",
+        children: [
+          {
+            title: "Bán kính ngoại tiếp R",
+            detail: "$R = \\frac{a}{2\\sin A} = \\frac{abc}{4S}$."
+          },
+          {
+            title: "Khi nào dùng Sin?",
+            detail: "Biết 1 cạnh và 2 góc, hoặc bài toán hỏi bán kính $R$."
+          }
+        ]
+      },
+      {
+        id: "mm-b6-3",
+        title: "3. Năm công thức Diện tích",
+        emoji: "🌟",
+        description: "Bộ công cụ vạn năng tính diện tích tam giác",
+        formula: "$S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$",
+        children: [
+          {
+            title: "Tuyệt kĩ Heron",
+            detail: "Áp dụng khi biết cả 3 cạnh $a, b, c$: tính $p \\to S \\to R, r, h_a$."
+          },
+          {
+            title: "Tam giác đều cạnh a",
+            detail: "$S = \\frac{a^2\\sqrt{3}}{4}, h = \\frac{a\\sqrt{3}}{2}, R = \\frac{a\\sqrt{3}}{3}, r = \\frac{a\\sqrt{3}}{6}$."
+          }
+        ]
+      },
+      {
+        id: "mm-b6-4",
+        title: "4. Giải tam giác & Ứng dụng thực tế",
+        emoji: "🧭",
+        description: "Quy trình giải tam giác và đo đạc trắc địa",
+        formula: "3 trường hợp: C-G-C, C-C-C, G-C-G",
+        children: [
+          {
+            title: "Thuật toán giải",
+            detail: "Biết C-G-C $\\to$ Côsin; Biết C-C-C $\\to$ Côsin/Heron; Biết G-C-G $\\to$ Sin."
+          },
+          {
+            title: "Ứng dụng trắc địa",
+            detail: "Đo chiều cao tháp, khoảng cách vượt chướng ngại vật bằng giác kế."
+          }
+        ]
+      }
     ]
   }
 };

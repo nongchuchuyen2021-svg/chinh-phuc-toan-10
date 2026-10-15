@@ -6,6 +6,7 @@ import { markTheoryRead } from "@/lib/progress";
 import { playClick, playCorrect, playWrong, playCelebration } from "@/lib/sound";
 import MathText from "@/components/MathText";
 import TrigUnitCircleLab from "@/components/TrigUnitCircleLab";
+import TriangleSolverLab from "@/components/TriangleSolverLab";
 
 export default function TheoryViewer({
   lessonId,
@@ -66,6 +67,9 @@ export default function TheoryViewer({
 
       {/* Interactive Laboratory for Lesson 5 */}
       {lessonId === "bai-05" && <TrigUnitCircleLab />}
+
+      {/* Interactive Laboratory for Lesson 6 */}
+      {lessonId === "bai-06" && <TriangleSolverLab />}
 
       {/* Sections */}
       {theory.sections.map((sec, secIdx) => (

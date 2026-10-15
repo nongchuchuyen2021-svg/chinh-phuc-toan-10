@@ -154,7 +154,7 @@
 | **Bài 3** | Bất phương trình bậc nhất hai ẩn | ✅ (9 ảnh) | ✅ 12 câu | ✅ 2 câu | ✅ 3 câu | ✅ 5 phần + 5 check | **HOÀN THÀNH 100%** |
 | **Bài 4** | Hệ bất phương trình bậc nhất hai ẩn | ⏳ Chờ làm | ⏳ 5 câu | ⏳ 1 câu | ⏳ 1 câu | ⏳ Chưa có | *Kế tiếp* |
 | **Bài 5** | Giá trị lượng giác của một góc từ $0^\circ$ đến $180^\circ$ | ✅ (SVG vector) | ✅ 12 câu | ✅ 2 câu | ✅ 3 câu | ✅ 5 phần + Lab tương tác + 5 check | **HOÀN THÀNH 100%** |
-| **Bài 6** | Hệ thức lượng trong tam giác | ⏳ Chờ làm | ⏳ 6 câu | ⏳ 1 câu | ⏳ 1 câu | ⏳ Cơ bản | *Chờ số hóa* |
+| **Bài 6** | Hệ thức lượng trong tam giác | ✅ (SVG vector) | ✅ 12 câu | ✅ 2 câu | ✅ 3 câu | ✅ 5 phần + Lab tương tác + 5 check | **HOÀN THÀNH 100%** |
 | **Bài 7** | Các khái niệm mở đầu (Vectơ) | ⏳ Chờ làm | ⏳ 6 câu | ⏳ 1 câu | ⏳ 1 câu | ⏳ Chưa có | *Chờ số hóa* |
 | **Bài 8** | Tổng và hiệu của hai vectơ | ⏳ Chờ làm | ⏳ 6 câu | ⏳ 1 câu | ⏳ 1 câu | ⏳ Chưa có | *Chờ số hóa* |
 | **Bài 9** | Tích của một vectơ với một số | ⏳ Chờ làm | ⏳ 6 câu | ⏳ 1 câu | ⏳ 1 câu | ⏳ Chưa có | *Chờ số hóa* |

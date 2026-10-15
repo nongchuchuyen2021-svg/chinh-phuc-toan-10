@@ -390,17 +390,17 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     tf: [
       {
         id: "b6-tf1",
-        context: "Cho tam giác $ABC$ có ba cạnh $a = 7, b = 8, c = 5$.",
+        context: "Cho tam giác $ABC$ có ba cạnh lần lượt là $a = 7, b = 8, c = 5$.",
         statements: [
           {
             text: "Nửa chu vi của tam giác $ABC$ bằng $p = 10$.",
             answer: true,
-            explain: "$p = \\frac{7 + 8 + 5}{2} = \\frac{20}{2} = 10$."
+            explain: "$p = \\frac{a + b + c}{2} = \\frac{7 + 8 + 5}{2} = \\frac{20}{2} = 10$."
           },
           {
-            text: "Góc $A$ của tam giác có $\\cos A = \\frac{1}{2}$ và $\\widehat{A} = 60^\\circ$.",
+            text: "Góc $A$ của tam giác thoả mãn $\\cos A = \\frac{1}{2}$ và $\\widehat{A} = 60^\\circ$.",
             answer: true,
-            explain: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} = \\frac{64 + 25 - 49}{2 \\cdot 8 \\cdot 5} = \\frac{40}{80} = \\frac{1}{2} \\Rightarrow \\widehat{A} = 60^\\circ$."
+            explain: "Theo hệ quả định lí Côsin: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} = \\frac{64 + 25 - 49}{2 \\cdot 8 \\cdot 5} = \\frac{40}{80} = \\frac{1}{2} \\implies \\widehat{A} = 60^\\circ$."
           },
           {
             text: "Diện tích của tam giác $ABC$ bằng $10\\sqrt{3}$.",
@@ -408,9 +408,35 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
             explain: "$S = \\frac{1}{2}bc \\sin A = \\frac{1}{2} \\cdot 8 \\cdot 5 \\cdot \\sin 60^\\circ = 20 \\cdot \\frac{\\sqrt{3}}{2} = 10\\sqrt{3}$."
           },
           {
-            text: "Bán kính đường tròn nội tiếp $r$ bằng $2\\sqrt{3}$.",
+            text: "Bán kính đường tròn ngoại tiếp $R$ bằng $2\\sqrt{3}$.",
             answer: false,
-            explain: "$r = \\frac{S}{p} = \\frac{10\\sqrt{3}}{10} = \\sqrt{3}$."
+            explain: "Theo định lí Sin: $R = \\frac{a}{2\\sin A} = \\frac{7}{2 \\cdot \\sin 60^\\circ} = \\frac{7}{\\sqrt{3}} = \\frac{7\\sqrt{3}}{3} \\approx 4.04 \\ne 2\\sqrt{3} \\approx 3.46$."
+          }
+        ]
+      },
+      {
+        id: "b6-tf2",
+        context: "Cho tam giác $ABC$ có cạnh $b = 6, c = 8$ và góc tù $\\widehat{A} = 120^\\circ$.",
+        statements: [
+          {
+            text: "Độ dài cạnh $a$ bằng $2\\sqrt{37}$.",
+            answer: true,
+            explain: "Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2(6)(8)\\cos 120^\\circ = 36 + 64 - 96(-0.5) = 100 + 48 = 148 \\implies a = \\sqrt{148} = 2\\sqrt{37}$."
+          },
+          {
+            text: "Diện tích tam giác $ABC$ bằng $12\\sqrt{3}$.",
+            answer: true,
+            explain: "$S = \\frac{1}{2}bc\\sin A = \\frac{1}{2} \\cdot 6 \\cdot 8 \\cdot \\sin 120^\\circ = 24 \\cdot \\frac{\\sqrt{3}}{2} = 12\\sqrt{3}$."
+          },
+          {
+            text: "Bán kính đường tròn ngoại tiếp $R$ bằng $\\frac{2\\sqrt{111}}{3}$.",
+            answer: true,
+            explain: "$R = \\frac{a}{2\\sin A} = \\frac{2\\sqrt{37}}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\frac{2\\sqrt{37}}{\\sqrt{3}} = \\frac{2\\sqrt{111}}{3}$."
+          },
+          {
+            text: "Độ dài đường cao $h_a$ kẻ từ đỉnh $A$ lớn hơn $6$.",
+            answer: false,
+            explain: "$h_a = \\frac{2S}{a} = \\frac{24\\sqrt{3}}{2\\sqrt{37}} = \\frac{12\\sqrt{3}}{\\sqrt{37}} \\approx 3.42 < 6$."
           }
         ]
       }
@@ -420,7 +446,19 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
         id: "b6-es1",
         q: "Cho tam giác $ABC$ có $a = 6, \\widehat{A} = 30^\\circ$. Tính bán kính đường tròn ngoại tiếp $R$ của tam giác.",
         answer: "6",
-        explain: "Theo định lí sin: $\\frac{a}{\\sin A} = 2R \\Rightarrow 2R = \\frac{6}{\\sin 30^\\circ} = \\frac{6}{1/2} = 12 \\Rightarrow R = 6$."
+        explain: "Theo định lí Sin: $\\frac{a}{\\sin A} = 2R \\implies 2R = \\frac{6}{\\sin 30^\\circ} = \\frac{6}{0.5} = 12 \\implies R = 6$."
+      },
+      {
+        id: "b6-es2",
+        q: "Một tam giác có độ dài ba cạnh lần lượt là $13, 14, 15$. Tính diện tích $S$ của tam giác này.",
+        answer: "84",
+        explain: "1. Nửa chu vi: $p = \\frac{13+14+15}{2} = 21$.\n2. Công thức Heron: $S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$."
+      },
+      {
+        id: "b6-es3",
+        q: "Từ đài quan sát cao $30\\text{ m}$, người ta nhìn thấy hai chiếc thuyền $A$ và $B$ thẳng hàng với chân tháp quan sát. Góc hạ nhìn thuyền $A$ là $30^\\circ$, góc hạ nhìn thuyền $B$ là $45^\\circ$ ($B$ ở giữa tháp và $A$). Khoảng cách giữa hai chiếc thuyền (làm tròn đến hàng đơn vị mét) bằng bao nhiêu mét?",
+        answer: "22",
+        explain: "Gọi $H$ là chân đài quan sát ($h = 30\\text{ m}$). Tam giác vuông cho ta:\n• Khoảng cách từ tháp đến thuyền $A$: $HA = \\frac{h}{\\tan 30^\\circ} = 30\\sqrt{3} \\approx 51.96\\text{ m}$.\n• Khoảng cách từ tháp đến thuyền $B$: $HB = \\frac{h}{\\tan 45^\\circ} = 30\\text{ m}$.\n• Khoảng cách giữa hai thuyền là: $AB = HA - HB = 30(\\sqrt{3}-1) \\approx 30(1.732 - 1) = 21.96\\text{ m} \\approx 22\\text{ m}$."
       }
     ]
   },

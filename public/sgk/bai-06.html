@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes"
+    />
+    <title>Toán 10 - Bài 6: Hệ thức lượng trong tam giác (SGK Kết nối tri thức)</title>
+
+    <!-- KaTeX CDN for Math Typesetting -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css"
+    />
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"
+    ></script>
+    <script
+      defer
+      src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/contrib/auto-render.min.js"
+      onload="
+        renderMathInElement(document.body, {
+          delimiters: [
+            { left: '$$', right: '$$', display: true },
+            { left: '$', right: '$', display: false },
+          ],
+          throwOnError: false,
+        })
+      "
+    ></script>
+
+    <style>
+      :root {
+        --bg-dark: #090d16;
+        --bg-card: #131b2e;
+        --bg-card-alt: #1a243b;
+        --text-primary: #f1f5f9;
+        --text-secondary: #cbd5e1;
+        --color-title: #38bdf8;
+        --color-h1: #fbbf24;
+        --color-h2: #f43f5e;
+        --color-h3: #10b981;
+        --color-badge: #818cf8;
+        --border-color: #24324f;
+        --font-main: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      }
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-primary);
+        font-family: var(--font-main);
+        line-height: 1.75;
+        font-size: 16px;
+        padding-bottom: 60px;
+      }
+      #progress-bar {
+        position: fixed; top: 0; left: 0; height: 4px;
+        background: linear-gradient(90deg, #38bdf8, #f43f5e, #fbbf24, #10b981);
+        width: 0%; z-index: 1000;
+        transition: width 0.1s ease-out;
+      }
+      .container { max-width: 900px; margin: 0 auto; padding: 20px 16px; }
+
+      .hero-banner {
+        background: linear-gradient(135deg, #162038 0%, #0c1222 100%);
+        border: 1px solid var(--border-color);
+        border-top: 4px solid var(--color-title);
+        border-radius: 16px; padding: 28px 24px; margin-bottom: 24px; text-align: center;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4);
+      }
+      .chapter-tag {
+        display: inline-block; background: rgba(56, 189, 248, 0.15);
+        color: var(--color-title); font-size: 0.88rem; font-weight: 700;
+        padding: 5px 14px; border-radius: 20px; text-transform: uppercase;
+        margin-bottom: 12px; border: 1px solid rgba(56, 189, 248, 0.3);
+      }
+      .hero-title { color: #ffffff; font-size: 1.85rem; font-weight: 800; margin-bottom: 8px; }
+      .hero-title span { color: var(--color-title); }
+      .hero-desc { color: var(--text-secondary); font-size: 0.95rem; max-width: 680px; margin: 0 auto; }
+
+      .objectives-grid {
+        display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 16px; margin-bottom: 24px;
+      }
+      .objectives-card {
+        background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.3);
+        border-left: 4px solid var(--color-badge); border-radius: 12px; padding: 16px 20px;
+      }
+      .objectives-title { color: #818cf8; font-size: 1rem; font-weight: 700; margin-bottom: 8px; text-transform: uppercase; }
+      .objectives-list { list-style: none; }
+      .objectives-list li { position: relative; padding-left: 20px; margin-bottom: 6px; font-size: 0.92rem; color: var(--text-secondary); }
+      .objectives-list li::before { content: "•"; position: absolute; left: 6px; color: #818cf8; font-weight: bold; }
+
+      .opening-card {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 22px 20px; margin-bottom: 30px;
+      }
+      .opening-header { display: flex; align-items: center; gap: 10px; margin-bottom: 14px; }
+      .opening-badge { background: #f43f5e; color: #fff; font-size: 0.78rem; font-weight: 800; padding: 3px 10px; border-radius: 6px; }
+      .opening-title { font-size: 1.15rem; font-weight: 700; color: #fda4af; }
+
+      .content-block {
+        background: var(--bg-card); border: 1px solid var(--border-color);
+        border-radius: 16px; padding: 24px 20px; margin-bottom: 28px;
+      }
+      .sec-header {
+        display: flex; align-items: baseline; gap: 12px;
+        border-bottom: 2px solid var(--border-color); padding-bottom: 12px; margin-bottom: 20px;
+      }
+      .sec-num { font-size: 1.5rem; font-weight: 900; color: var(--color-title); }
+      .sec-title { font-size: 1.35rem; font-weight: 800; color: #ffffff; }
+
+      .activity-box {
+        background: rgba(251, 191, 36, 0.05); border: 1px dashed rgba(251, 191, 36, 0.4);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .activity-header { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--color-h1); margin-bottom: 10px; }
+      .activity-badge { background: var(--color-h1); color: #1e1b4b; padding: 2px 8px; border-radius: 6px; font-size: 0.8rem; font-weight: 800; }
+
+      .knowledge-box {
+        background: rgba(56, 189, 248, 0.08); border-left: 5px solid var(--color-title);
+        border-radius: 0 12px 12px 0; padding: 18px 20px; margin: 20px 0;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      }
+      .knowledge-title { color: var(--color-title); font-weight: 800; font-size: 1.05rem; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .example-box {
+        background: var(--bg-card-alt); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .example-header { font-weight: 700; color: #a5b4fc; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+      .solution-block {
+        margin-top: 12px; padding-top: 12px; border-top: 1px solid rgba(255,255,255,0.08);
+        color: var(--text-secondary); font-size: 0.95rem;
+      }
+      .solution-tag { font-weight: 700; color: #38bdf8; margin-bottom: 4px; }
+
+      .practice-box {
+        background: rgba(16, 185, 129, 0.06); border: 1px solid rgba(16, 185, 129, 0.3);
+        border-radius: 12px; padding: 16px 18px; margin: 18px 0;
+      }
+      .practice-header { font-weight: 700; color: var(--color-h3); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .apply-box {
+        background: rgba(244, 63, 94, 0.06); border: 1px solid rgba(244, 63, 94, 0.3);
+        border-radius: 12px; padding: 18px 20px; margin: 22px 0;
+      }
+      .apply-header { font-weight: 700; color: var(--color-h2); margin-bottom: 10px; display: flex; align-items: center; gap: 8px; }
+
+      .svg-diagram-card {
+        text-align: center; margin: 22px 0; padding: 16px;
+        background: #0b1120; border-radius: 14px; border: 1px solid var(--border-color);
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      }
+      .svg-diagram-card svg {
+        max-width: 100%; height: auto; display: inline-block;
+      }
+      .svg-caption { font-size: 0.9rem; color: #94a3b8; margin-top: 10px; font-style: italic; }
+
+      .notice-card {
+        background: rgba(251, 191, 36, 0.08); border-left: 4px solid var(--color-h1);
+        border-radius: 0 10px 10px 0; padding: 12px 16px; margin: 14px 0; font-size: 0.94rem;
+      }
+
+      /* Exercise Section */
+      .exercise-item {
+        background: var(--bg-card-alt); border: 1px solid var(--border-color);
+        border-radius: 12px; padding: 18px 20px; margin-bottom: 16px;
+      }
+      .exercise-title { font-weight: 700; color: #facc15; margin-bottom: 10px; font-size: 1.05rem; }
+      details { margin-top: 12px; }
+      details summary {
+        cursor: pointer; color: #38bdf8; font-weight: 600; font-size: 0.92rem;
+        user-select: none; transition: color 0.2s;
+      }
+      details summary:hover { color: #7dd3fc; }
+      details[open] summary { margin-bottom: 10px; color: #93c5fd; }
+      .exercise-solution {
+        background: rgba(15, 23, 42, 0.7); border-radius: 8px;
+        padding: 14px 16px; font-size: 0.93rem; color: #e2e8f0; border-left: 3px solid #38bdf8;
+      }
+
+      .btn-nav-wrap {
+        display: flex; justify-content: space-between; gap: 14px; margin-top: 36px;
+      }
+      .btn-nav {
+        flex: 1; padding: 14px 18px; text-align: center; border-radius: 12px; text-decoration: none;
+        font-weight: 700; font-size: 0.95rem; transition: all 0.2s ease;
+      }
+      .btn-prev { background: #1e293b; color: #f1f5f9; border: 1px solid var(--border-color); }
+      .btn-prev:hover { background: #334155; }
+      .btn-next { background: linear-gradient(135deg, #0284c7, #2563eb); color: #fff; }
+      .btn-next:hover { opacity: 0.95; transform: translateY(-1px); }
+
+      /* KaTeX font readability */
+      .katex { font-size: 1.08em !important; }
+    </style>
+  </head>
+  <body>
+    <div id="progress-bar"></div>
+
+    <div class="container">
+      <!-- Header Banner -->
+      <div class="hero-banner">
+        <div class="chapter-tag">Chương III: Hệ thức lượng trong tam giác</div>
+        <h1 class="hero-title">BÀI 6: <span>HỆ THỨC LƯỢNG TRONG TAM GIÁC</span></h1>
+        <p class="hero-desc">
+          Mở rộng định lí Pythagore sang tam giác bất kì với Định lí Côsin, Định lí Sin và 5 công thức tính diện tích kinh điển, làm chủ công cụ giải tam giác trong đo đạc thực địa và đời sống.
+        </p>
+      </div>
+
+      <!-- Objectives -->
+      <div class="objectives-grid">
+        <div class="objectives-card">
+          <div class="objectives-title">Thuật ngữ cốt lõi</div>
+          <ul class="objectives-list">
+            <li>Định lí Côsin và hệ quả tính góc</li>
+            <li>Định lí Sin và bán kính ngoại tiếp $R$</li>
+            <li>Thuật toán "Giải tam giác" (C-C-C, C-G-C, G-C-G)</li>
+            <li>5 Công thức tính diện tích & Công thức Heron</li>
+          </ul>
+        </div>
+        <div class="objectives-card">
+          <div class="objectives-title">Kiến thức & Kĩ năng</div>
+          <ul class="objectives-list">
+            <li>Vận dụng định lí côsin để tính cạnh thứ ba hoặc tính số đo các góc</li>
+            <li>Vận dụng định lí sin để tính cạnh, góc và bán kính ngoại tiếp $R$</li>
+            <li>Lựa chọn công thức diện tích phù hợp nhất với dữ kiện đề bài</li>
+            <li>Giải quyết các bài toán đo khoảng cách hai điểm không thể tới trực tiếp</li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Opening Situation -->
+      <div class="opening-card">
+        <div class="opening-header">
+          <span class="opening-badge">TÌNH HUỐNG MỞ ĐẦU</span>
+          <span class="opening-title">Đo khoảng cách giữa hai con tàu ngoài khơi</span>
+        </div>
+        <p>
+          Một trạm quan sát bờ biển tại vị trí $C$ theo dõi hai con tàu tại vị trí $A$ và vị trí $B$ trên biển. Bằng kính ngắm điện tử và thiết bị định vị laser, người quan sát đo được khoảng cách từ trạm tới tàu $A$ là $CA = 4\text{ km}$, khoảng cách từ trạm tới tàu $B$ là $CB = 6\text{ km}$, và góc ngắm giữa hai con tàu là $\widehat{ACB} = 60^\circ$.
+        </p>
+        <p style="margin-top: 8px;">
+          Do mặt biển rộng lớn và hai tàu đang di chuyển, người ta không thể giăng dây hay lái cano để đo trực tiếp khoảng cách $AB$ giữa hai con tàu.
+        </p>
+        <p style="margin-top: 8px; color: #fbbf24; font-weight: 600;">
+          ❓ Làm thế nào để tính chính xác khoảng cách $AB$ chỉ với các dữ liệu $CA = 4$, $CB = 6$ và góc xen giữa $\widehat{C} = 60^\circ$?
+        </p>
+      </div>
+
+      <!-- SECTION 1 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">1</span>
+          <span class="sec-title">ĐỊNH LÍ CÔSIN</span>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-header">
+            <span class="activity-badge">HĐ1</span>
+            <span>Khảo sát mối quan hệ giữa cạnh và góc trong tam giác</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ có $BC = a, CA = b, AB = c$. Kẻ đường cao $AH$ vuông góc với $BC$ ($H \in BC$).
+          </p>
+          <p style="margin-top: 6px;">
+            <strong>a)</strong> Viết đoạn $CH$ và $AH$ theo cạnh $b$ và góc $C$ (khi $\widehat{C}$ nhọn).<br />
+            <strong>b)</strong> Tính đoạn $BH = |a - CH|$, rồi áp dụng định lí Pythagore trong tam giác vuông $ABH$ để tính $c^2 = AB^2$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Kết quả suy luận:</div>
+            • Trong tam giác vuông $AHC$: $CH = b \cos C$ và $AH = b \sin C$.<br />
+            • Trong tam giác vuông $AHB$:
+            $$c^2 = AH^2 + BH^2 = (b \sin C)^2 + (a - b \cos C)^2 = b^2 \sin^2 C + a^2 - 2ab \cos C + b^2 \cos^2 C$$
+            $$= a^2 + b^2 (\sin^2 C + \cos^2 C) - 2ab \cos C = a^2 + b^2 - 2ab \cos C.$$
+          </div>
+        </div>
+
+        <!-- SVG DIAGRAM 1: COSINE THEOREM -->
+        <div class="svg-diagram-card">
+          <svg viewBox="0 0 480 250" width="100%" height="240">
+            <defs>
+              <linearGradient id="triGrad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="rgba(56, 189, 248, 0.2)" />
+                <stop offset="100%" stop-color="rgba(129, 140, 248, 0.05)" />
+              </linearGradient>
+            </defs>
+            <!-- Tam giác ABC -->
+            <polygon points="120,50 50,200 420,200" fill="url(#triGrad)" stroke="#38bdf8" stroke-width="2.5" />
+            <!-- Đường cao AH -->
+            <line x1="120" y1="50" x2="120" y2="200" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3" />
+            <rect x="120" y="188" width="12" height="12" fill="none" stroke="#f43f5e" stroke-width="1.5" />
+            <text x="125" y="184" fill="#f43f5e" font-size="11">H</text>
+
+            <!-- Tên các đỉnh -->
+            <circle cx="120" cy="50" r="4.5" fill="#fbbf24" />
+            <text x="115" y="38" fill="#fbbf24" font-size="14" font-weight="bold">A</text>
+
+            <circle cx="50" cy="200" r="4.5" fill="#38bdf8" />
+            <text x="32" y="215" fill="#38bdf8" font-size="14" font-weight="bold">B</text>
+
+            <circle cx="420" cy="200" r="4.5" fill="#38bdf8" />
+            <text x="430" y="215" fill="#38bdf8" font-size="14" font-weight="bold">C</text>
+
+            <!-- Tên các cạnh -->
+            <text x="240" y="222" fill="#38bdf8" font-size="13" font-weight="bold">a (BC)</text>
+            <text x="280" y="115" fill="#818cf8" font-size="13" font-weight="bold">b (AC)</text>
+            <text x="65" y="115" fill="#fb7185" font-size="13" font-weight="bold">c (AB)</text>
+
+            <!-- Góc A arc -->
+            <path d="M 105 78 A 35 35 0 0 0 148 76" fill="none" stroke="#fbbf24" stroke-width="2" />
+            <text x="116" y="92" fill="#fbbf24" font-size="12" font-weight="bold">A</text>
+          </svg>
+          <div class="svg-caption">Hình 6.1: Tam giác ABC với các cạnh a, b, c đối diện các góc A, B, C</div>
+        </div>
+
+        <!-- KNOWLEDGE BOX 1 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">📌 ĐỊNH LÍ CÔSIN TRONG TAM GIÁC</div>
+          <p>
+            Trong tam giác $ABC$ có $BC = a, CA = b, AB = c$, ta có:
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 8px; margin: 10px 0; font-size: 1.15rem; font-weight: 700; color: #facc15; text-align: center;">
+            <div>$$a^2 = b^2 + c^2 - 2bc \cos A$$</div>
+            <div>$$b^2 = a^2 + c^2 - 2ac \cos B$$</div>
+            <div>$$c^2 = a^2 + b^2 - 2ab \cos C$$</div>
+          </div>
+          <p style="margin-top: 10px; font-weight: 600; color: #38bdf8;">
+            🔑 HỆ QUẢ (Tính côsin của một góc khi biết 3 cạnh):
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 8px; margin: 8px 0; font-size: 1.05rem; font-weight: 700; color: #818cf8; text-align: center;">
+            <div>$$\cos A = \frac{b^2 + c^2 - a^2}{2bc}$$</div>
+            <div>$$\cos B = \frac{a^2 + c^2 - b^2}{2ac}$$</div>
+            <div>$$\cos C = \frac{a^2 + b^2 - c^2}{2ab}$$</div>
+          </div>
+        </div>
+
+        <div class="notice-card">
+          <strong>💡 Ý NGHĨA HÌNH HỌC & ĐỊNH LÍ PYTHAGORE:</strong><br />
+          • Khi $\widehat{A} = 90^\circ$ thì $\cos 90^\circ = 0$, công thức trở thành $a^2 = b^2 + c^2$ (chính là định lí Pythagore trong tam giác vuông). Định lí côsin là sự mở rộng hoàn hảo của Pythagore sang tam giác bất kì!<br />
+          • Nếu $b^2 + c^2 - a^2 > 0 \implies \cos A > 0 \implies \widehat{A}$ là góc nhọn.<br />
+          • Nếu $b^2 + c^2 - a^2 < 0 \implies \cos A < 0 \implies \widehat{A}$ là góc tù.
+        </div>
+
+        <!-- EXAMPLE 1 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 1 (Giải bài toán mở đầu)</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ có $b = 4\text{ km}, a = 6\text{ km}$ và góc xen giữa $\widehat{C} = 60^\circ$. Tính khoảng cách $c = AB$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            Áp dụng định lí côsin tính cạnh $c$:
+            $$c^2 = a^2 + b^2 - 2ab \cos C = 6^2 + 4^2 - 2 \cdot 6 \cdot 4 \cdot \cos 60^\circ$$
+            $$= 36 + 16 - 48 \cdot \frac{1}{2} = 52 - 24 = 28.$$
+            Suy ra: $c = \sqrt{28} = 2\sqrt{7} \approx 5,29\text{ km}$.<br />
+            Vậy khoảng cách giữa hai con tàu xấp xỉ $5,29\text{ km}$.
+          </div>
+        </div>
+
+        <!-- PRACTICE 1 -->
+        <div class="practice-box">
+          <div class="practice-header">
+            <span>Luyện tập 1</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ có ba cạnh $a = 7, b = 8, c = 5$. Tính số đo của góc $A$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            Áp dụng hệ quả định lí côsin:
+            $$\cos A = \frac{b^2 + c^2 - a^2}{2bc} = \frac{8^2 + 5^2 - 7^2}{2 \cdot 8 \cdot 5} = \frac{64 + 25 - 49}{80} = \frac{40}{80} = \frac{1}{2}.$$
+            Vì $\cos A = \frac{1}{2}$ và $0^\circ < A < 180^\circ$ nên $\widehat{A} = 60^\circ$.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">2</span>
+          <span class="sec-title">ĐỊNH LÍ SIN</span>
+        </div>
+
+        <div class="activity-box">
+          <div class="activity-header">
+            <span class="activity-badge">HĐ2</span>
+            <span>Khám phá mối liên hệ giữa cạnh và góc đối diện với đường tròn ngoại tiếp</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ nội tiếp đường tròn $(O; R)$. Vẽ đường kính $BA'$ của đường tròn.
+          </p>
+          <p style="margin-top: 6px;">
+            Tam giác $A'BC$ vuông tại $C$ (góc nội tiếp chắn nửa đường tròn). So sánh góc $\widehat{BA'C}$ và góc $\widehat{BAC}$ (cùng chắn cung $BC$), từ đó biểu diễn $\sin A$ qua $a$ và $2R$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Kết quả:</div>
+            Trong tam giác vuông $A'BC$: $\sin A' = \frac{BC}{BA'} = \frac{a}{2R}$.<br />
+            Do $\widehat{A'} = \widehat{A}$ nên $\sin A = \frac{a}{2R} \implies \frac{a}{\sin A} = 2R$.
+          </div>
+        </div>
+
+        <!-- SVG DIAGRAM 2: SINE THEOREM -->
+        <div class="svg-diagram-card">
+          <svg viewBox="0 0 480 260" width="100%" height="250">
+            <!-- Đường tròn ngoại tiếp (O; R) -->
+            <circle cx="240" cy="130" r="110" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4 3" />
+            <circle cx="240" cy="130" r="3.5" fill="#f43f5e" />
+            <text x="246" y="132" fill="#f43f5e" font-size="12" font-weight="bold">O</text>
+
+            <!-- Bán kính R -->
+            <line x1="240" y1="130" x2="335" y2="75" stroke="#f43f5e" stroke-width="1.5" />
+            <text x="285" y="95" fill="#f43f5e" font-size="12" font-weight="bold">R</text>
+
+            <!-- Tam giác ABC -->
+            <!-- A(240, 20), B(135, 155), C(345, 155) -->
+            <polygon points="240,20 135,155 345,155" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="2.5" />
+
+            <circle cx="240" cy="20" r="4.5" fill="#fbbf24" />
+            <text x="235" y="12" fill="#fbbf24" font-size="13" font-weight="bold">A</text>
+
+            <circle cx="135" cy="155" r="4.5" fill="#38bdf8" />
+            <text x="116" y="165" fill="#38bdf8" font-size="13" font-weight="bold">B</text>
+
+            <circle cx="345" cy="155" r="4.5" fill="#38bdf8" />
+            <text x="355" y="165" fill="#38bdf8" font-size="13" font-weight="bold">C</text>
+
+            <text x="240" y="175" fill="#38bdf8" font-size="13" font-weight="bold" text-anchor="middle">a</text>
+            <text x="175" y="80" fill="#818cf8" font-size="13" font-weight="bold">c</text>
+            <text x="300" y="80" fill="#818cf8" font-size="13" font-weight="bold">b</text>
+          </svg>
+          <div class="svg-caption">Hình 6.2: Định lí sin: Tỉ số giữa cạnh và sin của góc đối diện bằng 2R (đường kính đường tròn ngoại tiếp)</div>
+        </div>
+
+        <!-- KNOWLEDGE BOX 2 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">📌 ĐỊNH LÍ SIN TRONG TAM GIÁC</div>
+          <p>
+            Trong tam giác $ABC$ có $BC = a, CA = b, AB = c$ và $R$ là bán kính đường tròn ngoại tiếp, ta có:
+          </p>
+          <div style="margin: 12px 0; font-size: 1.25rem; font-weight: 700; color: #38bdf8; text-align: center;">
+            $$\frac{a}{\sin A} = \frac{b}{\sin B} = \frac{c}{\sin C} = 2R$$
+          </div>
+          <p style="margin-top: 8px;">
+            <strong>Hệ quả hữu dụng:</strong>
+          </p>
+          <ul style="margin: 6px 0 0 24px; line-height: 2;">
+            <li>Tính cạnh: $a = 2R \sin A, \quad b = 2R \sin B, \quad c = 2R \sin C$.</li>
+            <li>Tính bán kính ngoại tiếp: $R = \frac{a}{2\sin A} = \frac{b}{2\sin B} = \frac{c}{2\sin C}$.</li>
+          </ul>
+        </div>
+
+        <!-- EXAMPLE 2 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 2</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ có $b = 10$, góc $\widehat{B} = 45^\circ$, góc $\widehat{C} = 60^\circ$. Tính độ dài cạnh $c$ và bán kính đường tròn ngoại tiếp $R$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            Áp dụng định lí sin:
+            $$\frac{b}{\sin B} = \frac{c}{\sin C} \implies c = \frac{b \cdot \sin C}{\sin B} = \frac{10 \cdot \sin 60^\circ}{\sin 45^\circ} = \frac{10 \cdot \frac{\sqrt{3}}{2}}{\frac{\sqrt{2}}{2}} = \frac{10\sqrt{3}}{\sqrt{2}} = 5\sqrt{6}.$$
+            Tính bán kính ngoại tiếp $R$:
+            $$2R = \frac{b}{\sin B} = \frac{10}{\sin 45^\circ} = \frac{10}{\frac{\sqrt{2}}{2}} = 10\sqrt{2} \implies R = 5\sqrt{2}.$$
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 3 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">3</span>
+          <span class="sec-title">GIẢI TAM GIÁC VÀ ỨNG DỤNG THỰC TẾ</span>
+        </div>
+
+        <p>
+          <strong>Giải tam giác</strong> là việc tính độ dài các cạnh và số đo các góc còn lại của một tam giác khi đã biết một số yếu tố ban đầu (đủ để xác định duy nhất tam giác).
+        </p>
+
+        <div class="objectives-grid" style="margin-top: 16px;">
+          <div class="objectives-card" style="border-left-color: #38bdf8;">
+            <div class="objectives-title" style="color: #38bdf8;">Trường hợp 1: Biết 3 cạnh (C-C-C)</div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary);">
+              Dùng hệ quả định lí côsin tính $\cos A, \cos B$. Dùng máy tính suy ra góc $\widehat{A}, \widehat{B}$, rồi tính $\widehat{C} = 180^\circ - \widehat{A} - \widehat{B}$.
+            </p>
+          </div>
+          <div class="objectives-card" style="border-left-color: #fbbf24;">
+            <div class="objectives-title" style="color: #fbbf24;">Trường hợp 2: Biết 2 cạnh & góc kẹp giữa (C-G-C)</div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary);">
+              Dùng định lí côsin tính cạnh thứ ba. Sau đó dùng định lí sin (hoặc hệ quả côsin) tính góc tiếp theo.
+            </p>
+          </div>
+          <div class="objectives-card" style="border-left-color: #10b981;">
+            <div class="objectives-title" style="color: #10b981;">Trường hợp 3: Biết 1 cạnh & 2 góc (G-C-G)</div>
+            <p style="font-size: 0.92rem; color: var(--text-secondary);">
+              Tính góc thứ ba $\widehat{C} = 180^\circ - \widehat{A} - \widehat{B}$. Sau đó áp dụng định lí sin tính hai cạnh còn lại.
+            </p>
+          </div>
+        </div>
+
+        <!-- APPLY 2: TOWER HEIGHT MEASUREMENT -->
+        <div class="apply-box">
+          <div class="apply-header">
+            <span>Ứng dụng thực tế: Đo chiều cao tháp không thể tới chân tháp</span>
+          </div>
+          <p>
+            Để đo chiều cao $CD = h$ của một ngọn tháp chọc trời mà không thể tới chân tháp $D$, người ta chọn hai điểm ngắm $A$ và $B$ trên mặt đất thẳng hàng với chân tháp, cách nhau $AB = 30\text{ m}$. Bằng giác kế, người ta đo được góc nâng $\widehat{CAD} = 35^\circ$ và $\widehat{CBD} = 40^\circ$. Tính chiều cao $h$ của ngọn tháp.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            Trong tam giác $ABC$, ta có $\widehat{CAB} = 35^\circ$, góc ngoài tại $B$ là $\widehat{CBD} = 40^\circ$.<br />
+            Suy ra góc $\widehat{ACB} = 40^\circ - 35^\circ = 5^\circ$.<br />
+            Áp dụng định lí sin trong tam giác $ABC$:
+            $$\frac{BC}{\sin \widehat{CAB}} = \frac{AB}{\sin \widehat{ACB}} \implies BC = \frac{30 \cdot \sin 35^\circ}{\sin 5^\circ} \approx \frac{30 \cdot 0,5736}{0,0872} \approx 197,34\text{ m}.$$
+            Trong tam giác vuông $BDC$ tại $D$:
+            $$h = CD = BC \cdot \sin \widehat{CBD} = 197,34 \cdot \sin 40^\circ \approx 197,34 \cdot 0,6428 \approx 126,85\text{ m}.$$
+            Vậy ngọn tháp cao khoảng $126,85\text{ m}$.
+          </div>
+        </div>
+      </div>
+
+      <!-- SECTION 4 -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">4</span>
+          <span class="sec-title">CÁC CÔNG THỨC TÍNH DIỆN TÍCH TAM GIÁC</span>
+        </div>
+
+        <p>Tuỳ thuộc vào các dữ kiện đề bài cho trước (cạnh, góc, đường cao, bán kính ngoại tiếp hay nội tiếp), ta có 5 công thức tính diện tích linh hoạt:</p>
+
+        <!-- KNOWLEDGE BOX 4 -->
+        <div class="knowledge-box">
+          <div class="knowledge-title">⚡ 5 CÔNG THỨC TÍNH DIỆN TÍCH TAM GIÁC KINH ĐIỂN</div>
+          <div style="display: grid; grid-template-columns: 1fr; gap: 10px; margin: 12px 0; font-size: 1.15rem; color: #facc15;">
+            <div><strong>1. Công thức đường cao:</strong> $S = \frac{1}{2} a h_a = \frac{1}{2} b h_b = \frac{1}{2} c h_c$</div>
+            <div><strong>2. Công thức hai cạnh và góc xen giữa:</strong> $S = \frac{1}{2} ab \sin C = \frac{1}{2} bc \sin A = \frac{1}{2} ca \sin B$</div>
+            <div><strong>3. Công thức bán kính ngoại tiếp $R$:</strong> $S = \frac{abc}{4R} \iff R = \frac{abc}{4S}$</div>
+            <div><strong>4. Công thức bán kính nội tiếp $r$:</strong> $S = pr \iff r = \frac{S}{p} \quad \left(p = \frac{a+b+c}{2}\right)$</div>
+            <div><strong>5. Công thức Heron:</strong> $S = \sqrt{p(p-a)(p-b)(p-c)}$</div>
+          </div>
+        </div>
+
+        <!-- EXAMPLE 4 -->
+        <div class="example-box">
+          <div class="example-header">
+            <span>Ví dụ 4</span>
+          </div>
+          <p>
+            Cho tam giác $ABC$ có ba cạnh $a = 13, b = 14, c = 15$.
+          </p>
+          <p style="margin-top: 6px;">
+            <strong>a)</strong> Tính diện tích tam giác $ABC$.<br />
+            <strong>b)</strong> Tính bán kính đường tròn ngoại tiếp $R$ và bán kính đường tròn nội tiếp $r$.
+          </p>
+          <div class="solution-block">
+            <div class="solution-tag">Giải:</div>
+            <strong>a)</strong> Tính nửa chu vi: $p = \frac{13 + 14 + 15}{2} = 21$.<br />
+            Áp dụng công thức Heron:
+            $$S = \sqrt{21(21 - 13)(21 - 14)(21 - 15)} = \sqrt{21 \cdot 8 \cdot 7 \cdot 6} = \sqrt{7056} = 84.$$<br />
+            <strong>b)</strong> Bán kính đường tròn ngoại tiếp $R$:
+            $$R = \frac{abc}{4S} = \frac{13 \cdot 14 \cdot 15}{4 \cdot 84} = \frac{2730}{336} = \frac{65}{8} = 8,125.$$<br />
+            Bán kính đường tròn nội tiếp $r$:
+            $$r = \frac{S}{p} = \frac{84}{21} = 4.$$
+          </div>
+        </div>
+      </div>
+
+      <!-- EXERCISES -->
+      <div class="content-block">
+        <div class="sec-header">
+          <span class="sec-num">📝</span>
+          <span class="sec-title">BÀI TẬP CUỐI BÀI (SGK KẾT NỐI TRI THỨC)</span>
+        </div>
+
+        <!-- Bài 3.5 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 3.5 (Trang 43 SGK Toán 10 Tập 1)</div>
+          <p>
+            Cho tam giác $ABC$ có $a = 6, b = 5, c = 8$. Tính số đo các góc của tam giác $ABC$ (làm tròn đến độ).
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              Áp dụng hệ quả định lí côsin:<br />
+              • $\cos A = \frac{b^2 + c^2 - a^2}{2bc} = \frac{5^2 + 8^2 - 6^2}{2 \cdot 5 \cdot 8} = \frac{25 + 64 - 36}{80} = \frac{53}{80} \approx 0,6625 \implies \widehat{A} \approx 48^\circ 31' \approx 49^\circ$.<br />
+              • $\cos B = \frac{a^2 + c^2 - b^2}{2ac} = \frac{6^2 + 8^2 - 5^2}{2 \cdot 6 \cdot 8} = \frac{36 + 64 - 25}{96} = \frac{75}{96} \approx 0,7813 \implies \widehat{B} \approx 38^\circ 37' \approx 39^\circ$.<br />
+              • $\widehat{C} = 180^\circ - \widehat{A} - \widehat{B} \approx 180^\circ - 48^\circ 31' - 38^\circ 37' = 92^\circ 52' \approx 93^\circ$.
+            </div>
+          </details>
+        </div>
+
+        <!-- Bài 3.6 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 3.6 (Trang 43 SGK Toán 10 Tập 1)</div>
+          <p>
+            Cho tam giác $ABC$ có $a = 10, \widehat{A} = 45^\circ, \widehat{B} = 70^\circ$. Tính độ dài các cạnh $b, c$ và bán kính $R$.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              Góc thứ ba: $\widehat{C} = 180^\circ - 45^\circ - 70^\circ = 65^\circ$.<br />
+              Áp dụng định lí sin:<br />
+              • $2R = \frac{a}{\sin A} = \frac{10}{\sin 45^\circ} = 10\sqrt{2} \implies R = 5\sqrt{2} \approx 7,07$.<br />
+              • $b = 2R \sin B = 10\sqrt{2} \cdot \sin 70^\circ \approx 14,14 \cdot 0,9397 \approx 13,29$.<br />
+              • $c = 2R \sin C = 10\sqrt{2} \cdot \sin 65^\circ \approx 14,14 \cdot 0,9063 \approx 12,82$.
+            </div>
+          </details>
+        </div>
+
+        <!-- Bài 3.7 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 3.7 (Trang 43 SGK Toán 10 Tập 1)</div>
+          <p>
+            Giải tam giác $ABC$ biết $b = 4, c = 5$ và $\widehat{A} = 60^\circ$.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              Áp dụng định lí côsin tính $a$:<br />
+              $a^2 = b^2 + c^2 - 2bc \cos A = 4^2 + 5^2 - 2 \cdot 4 \cdot 5 \cdot \cos 60^\circ = 16 + 25 - 40 \cdot \frac{1}{2} = 41 - 20 = 21 \implies a = \sqrt{21} \approx 4,58$.<br /><br />
+              Áp dụng hệ quả côsin tính góc $B$:<br />
+              $\cos B = \frac{a^2 + c^2 - b^2}{2ac} = \frac{21 + 25 - 16}{2 \cdot \sqrt{21} \cdot 5} = \frac{30}{10\sqrt{21}} = \frac{3}{\sqrt{21}} \approx 0,6547 \implies \widehat{B} \approx 49^\circ 6'$.<br /><br />
+              Suy ra: $\widehat{C} = 180^\circ - 60^\circ - 49^\circ 6' = 70^\circ 54'$.
+            </div>
+          </details>
+        </div>
+
+        <!-- Bài 3.8 -->
+        <div class="exercise-item">
+          <div class="exercise-title">Bài 3.8 (Trang 43 SGK Toán 10 Tập 1)</div>
+          <p>
+            Tính diện tích tam giác $ABC$ có ba cạnh $a = 6, b = 7, c = 9$.
+          </p>
+          <details>
+            <summary>Xem lời giải chi tiết</summary>
+            <div class="exercise-solution">
+              Nửa chu vi tam giác: $p = \frac{a + b + c}{2} = \frac{6 + 7 + 9}{2} = 11$.<br />
+              Áp dụng công thức Heron:
+              $$S = \sqrt{p(p-a)(p-b)(p-c)} = \sqrt{11(11 - 6)(11 - 7)(11 - 9)} = \sqrt{11 \cdot 5 \cdot 4 \cdot 2} = \sqrt{440} = 2\sqrt{110} \approx 20,98.$$
+            </div>
+          </details>
+        </div>
+      </div>
+
+      <!-- EM CÓ BIẾT -->
+      <div class="opening-card" style="border-left: 4px solid #10b981;">
+        <div class="opening-header">
+          <span class="opening-badge" style="background: #10b981;">EM CÓ BIẾT?</span>
+          <span class="opening-title" style="color: #6ee7b7;">Heron xứ Alexandria và cỗ máy hơi nước đầu tiên</span>
+        </div>
+        <p>
+          <strong>Heron</strong> (khoảng năm 10 – 70 SCN) là nhà toán học, kĩ sư thiên tài người Hy Lạp sống tại Alexandria (Ai Cập cổ đại). Ông là người đầu tiên chế tạo cỗ máy quay bằng hơi nước <em>Aeolipile</em> (tiền thân của động cơ hơi nước hiện đại).
+        </p>
+        <p style="margin-top: 8px;">
+          Trong tác phẩm <em>Metrica</em>, ông đã chứng minh công thức tính diện tích tam giác chỉ thông qua độ dài ba cạnh mang tên ông: $S = \sqrt{p(p-a)(p-b)(p-c)}$. Công thức này là kiệt tác hình học giúp các nhà đo đạc cổ đại chia đất đai sau mùa lũ sông Nin mà không cần phải dựng đường cao vuông góc.
+        </p>
+      </div>
+
+      <!-- Navigation buttons -->
+      <div class="btn-nav-wrap">
+        <a href="/sgk/bai-05.html" class="btn-nav btn-prev">← Bài 5: Giá trị lượng giác</a>
+        <a href="/luyen/bai-06" class="btn-nav btn-next">Luyện tập Trắc nghiệm Bài 6 →</a>
+      </div>
+    </div>
+
+    <!-- Reading Progress Bar Script -->
+    <script>
+      window.addEventListener("scroll", () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (window.scrollY / docHeight) * 100;
+        document.getElementById("progress-bar").style.width = scrolled + "%";
+      });
+    </script>
+  </body>
+</html>
