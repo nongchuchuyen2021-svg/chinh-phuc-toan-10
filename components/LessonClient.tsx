@@ -19,7 +19,7 @@ import TheoryViewer from "@/components/TheoryViewer";
 import ReviewViewer from "@/components/ReviewViewer";
 import GameHub from "@/components/GameHub";
 
-type TabKey = "sgk" | "theory" | "games" | "mcq" | "tf" | "essay" | "review";
+type TabKey = "sgk" | "slide" | "theory" | "games" | "mcq" | "tf" | "essay" | "review";
 
 export default function LessonClient({
   lessonId,
@@ -32,6 +32,7 @@ export default function LessonClient({
   review,
   games = [],
   hasSgk = false,
+  slideUrl = null,
 }: {
   lessonId: string;
   lessonTitle: string;
@@ -43,11 +44,13 @@ export default function LessonClient({
   review: LessonReview;
   games?: LessonGame[];
   hasSgk?: boolean;
+  slideUrl?: string | null;
 }) {
   const [activeTab, setActiveTab] = useState<TabKey>(hasSgk ? "sgk" : "theory");
 
   const tabs: { key: TabKey; label: string; icon: string; count?: number }[] = [
     ...(hasSgk ? [{ key: "sgk" as TabKey, label: "SGK Chuẩn", icon: "📖" }] : []),
+    ...(slideUrl ? [{ key: "slide" as TabKey, label: "Slide Bài giảng", icon: "🖥️" }] : []),
     { key: "theory", label: "Tóm tắt & Khắc sâu", icon: "⚡" },
     ...(games && games.length > 0
       ? [
@@ -99,6 +102,17 @@ export default function LessonClient({
             </div>
 
             <div className="flex flex-wrap items-center gap-2">
+              {slideUrl && (
+                <a
+                  href={slideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => playClick()}
+                  className="flex shrink-0 items-center gap-2 rounded-2xl bg-gradient-to-r from-violet to-cyan-deep px-4 py-2.5 font-mono text-xs font-bold text-white shadow-glow-violet transition hover:opacity-90 hover:scale-105"
+                >
+                  🖥️ Trình chiếu Slide
+                </a>
+              )}
               {hasSgk && (
                 <a
                   href={`/sgk/${lessonId}.html`}
@@ -127,6 +141,7 @@ export default function LessonClient({
               let activeStyle = "";
               if (isActive) {
                 if (t.key === "sgk") activeStyle = "bg-gradient-to-r from-amber to-amber-deep text-white shadow-glow-amber border border-amber/40";
+                else if (t.key === "slide") activeStyle = "bg-gradient-to-r from-violet to-cyan-deep text-white shadow-glow-violet border border-violet/40";
                 else if (t.key === "theory") activeStyle = "bg-gradient-to-r from-cyan to-cyan-deep text-white shadow-glow-cyan border border-cyan/40";
                 else if (t.key === "games") activeStyle = "bg-gradient-to-r from-cyan via-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
                 else if (t.key === "mcq") activeStyle = "bg-gradient-to-r from-violet to-violet-deep text-white shadow-glow-violet border border-violet/40";
@@ -178,6 +193,30 @@ export default function LessonClient({
                   src={`/sgk/${lessonId}.html`}
                   title={`SGK ${lessonTitle}`}
                   className="h-[850px] w-full border-0"
+                />
+              </div>
+            </div>
+          )}
+
+          {activeTab === "slide" && slideUrl && (
+            <div className="animate-fade-in-up space-y-4">
+              <div className="flex flex-wrap items-center justify-between gap-3 rounded-2xl border border-violet/30 bg-violet/10 px-5 py-3 text-sm text-cyan-glow shadow-glow-violet">
+                <span>🖥️ Đang chiếu Slide bài giảng tương tác 15 slide chuẩn GDPT 2018 (Phím tắt: ← / → / Space / F phóng to)</span>
+                <a
+                  href={slideUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-bold underline hover:text-white"
+                >
+                  Phóng to toàn màn hình ↗
+                </a>
+              </div>
+              <div className="overflow-hidden rounded-3xl border border-void-border bg-void shadow-card">
+                <iframe
+                  src={slideUrl}
+                  title={`Slide ${lessonTitle}`}
+                  className="h-[850px] w-full border-0"
+                  allow="fullscreen"
                 />
               </div>
             </div>

@@ -9,6 +9,7 @@ import { getTF, getEssay } from "@/lib/extras";
 import { getLessonTheory } from "@/lib/theory";
 import { getLessonReview } from "@/lib/reviews";
 import { getLessonGames } from "@/lib/games";
+import { getSlideUrl } from "@/lib/slides";
 
 interface PageProps {
   params: { baiId: string };
@@ -45,6 +46,7 @@ export default function LessonPage({ params }: PageProps) {
   const essay = getEssay(baiId);
   const review = getLessonReview(baiId);
   const games = getLessonGames(baiId);
+  const slideUrl = getSlideUrl(baiId);
 
   const sgkPath = path.join(process.cwd(), "public", "sgk", `${baiId}.html`);
   const hasSgk = fs.existsSync(sgkPath);
@@ -61,6 +63,7 @@ export default function LessonPage({ params }: PageProps) {
       review={review}
       games={games}
       hasSgk={hasSgk}
+      slideUrl={slideUrl}
     />
   );
 }
