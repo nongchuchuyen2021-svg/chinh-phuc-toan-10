@@ -1,0 +1,12 @@
+.git
+.next
+.vercel
+.claude
+node_modules
+.env*
+Toan_10_Theo_Bai
+SGK Toan 10
+tmp
+**/*.pdf
+*.tsbuildinfo
+/bai-*-trinh-chieu.html
