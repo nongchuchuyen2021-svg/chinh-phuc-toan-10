@@ -57,7 +57,9 @@ export default function GameHub({
               Học Toán Qua Trò Chơi Tương Tác
             </h2>
             <p className="mt-1 text-xs sm:text-sm text-star-soft">
-              Rèn luyện phản xạ logic, nhận diện mệnh đề và thành thạo lượng từ toán học.
+              {lessonId === "bai-05"
+                ? "Nhận diện dấu của các giá trị lượng giác và ghép công thức của hai góc bù nhau."
+                : "Rèn luyện phản xạ logic, nhận diện mệnh đề và thành thạo lượng từ toán học."}
             </p>
           </div>
           <span className="text-4xl">🕹️</span>

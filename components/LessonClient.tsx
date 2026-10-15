@@ -326,7 +326,9 @@ export default function LessonClient({
             key: "games" as Mode,
             icon: "🎮",
             name: "Đấu trường Game tương tác",
-            desc: `${games.length} trò chơi sinh động · Kéo co tri thức 2 đội, Chinh phục đỉnh cao & Ghép thẻ`,
+            desc: lessonId === "bai-05"
+              ? "2 trò chơi · Phân loại dấu lượng giác và ghép công thức góc bù"
+              : `${games.length} trò chơi sinh động · Kéo co tri thức 2 đội, Chinh phục đỉnh cao & Ghép thẻ`,
             done: false,
             badge: `${games.length} game`,
             badgeColor: "bg-indigo/20 text-indigo-300 border-indigo/40",
