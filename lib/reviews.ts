@@ -677,90 +677,110 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
   },
 
   "bai-06": {
-    summary: "Làm chủ bộ đôi Định lí Côsin và Định lí Sin, 5 công thức tính diện tích kinh điển, kĩ thuật giải tam giác và đo đạc trắc địa thực tế.",
+    summary: "Làm chủ bộ đôi Định lí Côsin và Định lí Sin, công thức đường trung tuyến, ngũ đại công thức diện tích và tuyệt kĩ Heron để bẻ khoá mọi bài toán giải tam giác, đo đạc trắc địa và câu hỏi trắc nghiệm thực tế.",
     keyPoints: [
-      "Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A$, mở rộng định lí Pythagore sang tam giác bất kì.",
-      "Hệ quả tính góc: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Dấu của $\\cos A$ quyết định tính chất góc: nhọn ($> 0$), vuông ($= 0$) hay tù ($< 0$).",
+      "Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A$, là định lí Pythagore tổng quát cho tam giác bất kì; dùng để tính cạnh thứ ba khi biết C-G-C.",
+      "Hệ quả tính góc: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Dấu của $\\cos A$ quyết định tính chất góc: $\\cos > 0$ là góc nhọn, $\\cos = 0$ là vuông, $\\cos < 0$ là góc tù.",
+      "Công thức đường trung tuyến: $m_a^2 = \\frac{2(b^2+c^2)-a^2}{4}, m_b^2 = \\frac{2(a^2+c^2)-b^2}{4}, m_c^2 = \\frac{2(a^2+b^2)-c^2}{4}$.",
       "Định lí Sin: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$. Tỉ số giữa cạnh và sin góc đối bằng đường kính đường tròn ngoại tiếp $2R$.",
-      "Bán kính đường tròn ngoại tiếp $R$: $R = \\frac{a}{2\\sin A} = \\frac{abc}{4S}$.",
-      "Bán kính đường tròn nội tiếp $r$: $r = \\frac{S}{p}$ với nửa chu vi $p = \\frac{a+b+c}{2}$.",
-      "Bộ 5 công thức diện tích: $S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$ (Heron)."
+      "Ngũ đại công thức diện tích: $S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$ (Heron).",
+      "Bán kính đường tròn: Bán kính ngoại tiếp $R = \\frac{a}{2\\sin A} = \\frac{abc}{4S}$; Bán kính nội tiếp $r = \\frac{S}{p}$ với nửa chu vi $p = \\frac{a+b+c}{2}$.",
+      "Ứng dụng thực tế: Đo chiều cao ngọn tháp / ngọn núi qua 2 góc nâng $\\alpha, \\beta$ từ khoảng cách cọc tiêu $d$: $h = \\frac{d \\cdot \\sin\\alpha \\cdot \\sin\\beta}{\\sin(\\beta - \\alpha)}$."
     ],
     commonMistakes: [
       {
-        mistake: "Quên dấu trừ trong định lí Côsin hoặc bỏ quên dấu âm của côsin khi tính góc tù (ví dụ: $\\cos 120^\\circ = -0.5$).",
-        fix: "Ghi nhớ: $a^2 = b^2 + c^2 - 2bc\\cos A$. Khi góc $A$ tù, $\\cos A < 0$ thì $-2bc\\cos A > 0$, làm cho cạnh đối diện $a^2 > b^2 + c^2$."
+        mistake: "Quên dấu trừ trong định lí Côsin hoặc bỏ quên dấu âm của côsin khi tính góc tù (ví dụ: viết nhầm $\\cos 120^\\circ = \\frac{1}{2}$).",
+        fix: "Ghi nhớ: $a^2 = b^2 + c^2 - 2bc\\cos A$. Khi góc $A$ tù thì $\\cos A < 0$, khi đó $-2bc\\cos A > 0$ làm cạnh đối diện $a^2 > b^2 + c^2$. Ví dụ $\\cos 120^\\circ = -\\frac{1}{2} \\implies a^2 = b^2 + c^2 + bc$."
       },
       {
         mistake: "Nhầm lẫn giữa bán kính ngoại tiếp $R$ và đường kính $2R$ khi áp dụng định lí Sin.",
-        fix: "Định lí Sin cho tỉ số $\\frac{a}{\\sin A} = 2R$. Do đó muốn tính bán kính $R$ ta BẮT BUỘC phải chia cho 2: $R = \\frac{a}{2\\sin A}$."
+        fix: "Định lí Sin cho tỉ số $\\frac{a}{\\sin A} = 2R$ (đường kính). Muốn tính bán kính $R$ bắt buộc phải chia đôi: $R = \\frac{a}{2\\sin A}$."
       },
       {
-        mistake: "Dùng định lí Sin để tìm góc và chọn nhầm góc nhọn khi góc thực tế có thể là góc tù.",
-        fix: "Khi tìm góc trong tam giác, nên ưu tiên dùng hệ quả Định lí Côsin vì mỗi giá trị $\\cos$ chỉ ứng với đúng 1 góc duy nhất trong khoảng $(0^\\circ, 180^\\circ)$."
+        mistake: "Dùng định lí Sin để tìm góc và bị sót hoặc nhận nhầm nghiệm góc tù.",
+        fix: "Phương trình $\\sin B = k$ luôn có 2 nghiệm: góc nhọn $B$ và góc tù $180^\\circ - B$. Khi cần tìm góc, NÊN ƯU TIÊN HỆ QUẢ ĐỊNH LÍ CÔSIN vì hàm $\\cos$ chỉ ứng với 1 góc duy nhất trên $[0^\\circ; 180^\\circ]$."
+      },
+      {
+        mistake: "Nhầm lẫn giữa công thức tính bán kính ngoại tiếp $R$ và bán kính nội tiếp $r$.",
+        fix: "Khắc sâu: $R$ (ngoại tiếp - to hơn) gắn liền với tích 3 cạnh: $R = \\frac{abc}{4S}$. Còn $r$ (nội tiếp - nhỏ hơn) gắn liền với nửa chu vi: $r = \\frac{S}{p}$."
+      },
+      {
+        mistake: "Để máy tính cầm tay ở chế độ Radian (chữ R) khi tính toán các góc đo bằng độ.",
+        fix: "Bắt buộc kiểm tra chữ **D** (Degree) trên màn hình Casio: Trên fx-580VNX bấm `SHIFT MENU 2 1`. Nếu để chữ R, mọi kết quả tính $\\sin, \\cos$ sẽ sai hoàn toàn."
       }
     ],
     tips: [
-      "Chiến thuật chọn định lí: Biết 2 cạnh + góc xen giữa (C-G-C) hoặc 3 cạnh (C-C-C) $\\to$ Định lí Côsin; Biết cặp cạnh - góc đối diện hoặc hỏi về bán kính $R \\to$ Định lí Sin.",
-      "Tuyệt chiêu bẻ khoá tam giác 3 cạnh: Luôn tính nửa chu vi $p \\to$ tính $S$ bằng Heron $\\to$ tính nhanh $R = \\frac{abc}{4S}, r = \\frac{S}{p}, h_a = \\frac{2S}{a}$.",
-      "Kĩ thuật giải toán đo đạc thực tế: Trong bài toán đo chiều cao tháp, dùng góc ngoài $\\widehat{ACB} = \\beta - \\alpha$ và định lí Sin tính $BC$ trước, rồi tính chiều cao $h = BC\\sin\\beta$."
+      "Chiến thuật chọn định lí: Biết 2 cạnh + góc xen giữa (C-G-C) hoặc 3 cạnh (C-C-C) $\\to$ Định lí Côsin; Biết 1 cạnh + 2 góc (G-C-G) hoặc cặp cạnh-góc đối hoặc hỏi bán kính $R \\to$ Định lí Sin.",
+      "Tuyệt chiêu bẻ khoá tam giác 3 cạnh: Luôn tính nửa chu vi $p = (a+b+c)/2 \\to$ tính $S$ bằng Heron $\\to$ tính nhanh $R = \\frac{abc}{4S}, r = \\frac{S}{p}, h_a = \\frac{2S}{a}$.",
+      "Tam giác đều cạnh a tính nhẩm trong 3 giây: Diện tích $S = \\frac{a^2\\sqrt{3}}{4}$, chiều cao $h = \\frac{a\\sqrt{3}}{2}$, bán kính ngoại tiếp $R = \\frac{a\\sqrt{3}}{3}$, bán kính nội tiếp $r = \\frac{a\\sqrt{3}}{6}$.",
+      "Kĩ thuật bấm Casio lưu biến không sai số: Gán 3 cạnh vào biến nhớ `STO A`, `STO B`, `STO C`. Sau đó gán $(A+B+C)/2 \\to X$ và bấm $\\sqrt{X(X-A)(X-B)(X-C)}$ để ra diện tích tuyệt đối chính xác.",
+      "Phân biệt bài toán trắc địa thực tế: Góc nâng là góc nhìn ngước lên so với phương ngang; Góc hạ là góc nhìn chúc xuống. Khi đo tháp từ 2 cọc tiêu $A, B$, góc ngắm giữa 2 cọc là $\\beta - \\alpha$."
     ],
     flashcards: [
       {
-        front: "Định lí Côsin tính cạnh $a$ khi biết hai cạnh $b, c$ và góc $\\widehat{A}$?",
+        front: "Định lí Côsin tính độ dài cạnh $a$ khi biết hai cạnh $b, c$ và góc xen giữa $\\widehat{A}$?",
         back: "$a^2 = b^2 + c^2 - 2bc\\cos A$."
       },
       {
-        front: "Hệ quả định lí Côsin dùng để tính côsin góc $A$ khi biết 3 cạnh?",
+        front: "Hệ quả định lí Côsin dùng để tính côsin góc $\\widehat{A}$ khi biết cả 3 cạnh?",
         back: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$."
+      },
+      {
+        front: "Công thức tính độ dài đường trung tuyến $m_a$ kẻ từ đỉnh $A$ xuống cạnh $BC$?",
+        back: "$m_a^2 = \\frac{2(b^2 + c^2) - a^2}{4}$."
       },
       {
         front: "Phát biểu hệ thức định lí Sin trong tam giác $ABC$?",
         back: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$ (với $R$ là bán kính đường tròn ngoại tiếp)."
       },
       {
-        front: "Công thức liên hệ giữa diện tích $S$, 3 cạnh $a, b, c$ và bán kính ngoại tiếp $R$?",
-        back: "$S = \\frac{abc}{4R} \\iff R = \\frac{abc}{4S}$."
+        front: "Công thức tính bán kính đường tròn ngoại tiếp $R$ qua 3 cạnh và diện tích?",
+        back: "$R = \\frac{abc}{4S} \\iff S = \\frac{abc}{4R}$."
       },
       {
-        front: "Công thức tính bán kính đường tròn nội tiếp $r$?",
-        back: "$r = \\frac{S}{p}$ với $p = \\frac{a+b+c}{2}$ là nửa chu vi."
+        front: "Công thức liên hệ giữa diện tích $S$, nửa chu vi $p$ và bán kính nội tiếp $r$?",
+        back: "$S = p \\cdot r \\iff r = \\frac{S}{p}$ (với $p = \\frac{a+b+c}{2}$)."
       },
       {
-        front: "Công thức Heron tính diện tích tam giác theo 3 cạnh?",
-        back: "$S = \\sqrt{p(p-a)(p-b)(p-c)}$ với $p = \\frac{a+b+c}{2}$."
+        front: "Công thức Heron tính diện tích tam giác theo độ dài 3 cạnh?",
+        back: "$S = \\sqrt{p(p-a)(p-b)(p-c)}$ với nửa chu vi $p = \\frac{a+b+c}{2}$."
       },
       {
-        front: "Dấu hiệu nhận biết góc $A$ là góc tù qua độ dài 3 cạnh?",
+        front: "Dấu hiệu nhận biết góc $\\widehat{A}$ là góc tù thông qua độ dài 3 cạnh?",
         back: "$b^2 + c^2 < a^2 \\iff \\cos A < 0 \\iff \\widehat{A} > 90^\\circ$."
       },
       {
         front: "Công thức tính nhanh diện tích và chiều cao của tam giác đều cạnh $a$?",
-        back: "$S = \\frac{a^2\\sqrt{3}}{4}$ và chiều cao $h = \\frac{a\\sqrt{3}}{2}$."
+        back: "Diện tích $S = \\frac{a^2\\sqrt{3}}{4}$ và chiều cao $h = \\frac{a\\sqrt{3}}{2}$."
+      },
+      {
+        front: "Trong bài toán đo chiều cao tháp $h$ từ hai cọc tiêu cách nhau $d$ với hai góc nâng $\\alpha < \\beta$, công thức tính $h$ là gì?",
+        back: "$h = \\frac{d \\cdot \\sin\\alpha \\cdot \\sin\\beta}{\\sin(\\beta - \\alpha)}$."
       }
     ],
     checklist: [
-      "Tôi thuộc làu định lí Côsin và hệ quả tính góc.",
-      "Tôi áp dụng thành thạo định lí Sin và tính chính xác bán kính ngoại tiếp $R$.",
-      "Tôi nắm vững cả 5 công thức tính diện tích tam giác, đặc biệt là công thức Heron.",
-      "Tôi biết giải trọn vẹn tam giác trong cả 3 trường hợp C-G-C, C-C-C và G-C-G.",
-      "Tôi giải quyết thành thạo bài toán trắc địa đo chiều cao và khoảng cách thực tế."
+      "Tôi thuộc làu định lí Côsin, hệ quả tính góc và công thức đường trung tuyến.",
+      "Tôi áp dụng thành thạo định lí Sin và tính chính xác bán kính đường tròn ngoại tiếp $R$.",
+      "Tôi nắm vững cả 5 công thức tính diện tích tam giác, đặc biệt là tuyệt kĩ Heron.",
+      "Tôi giải trọn vẹn tam giác trong cả 3 trường hợp C-G-C, C-C-C và G-C-G.",
+      "Tôi biết cách nhận dạng tam giác nhọn, vuông, tù và tránh bẫy góc tù khi dùng định lí Sin.",
+      "Tôi giải quyết thành thạo bài toán trắc địa đo chiều cao và khoảng cách thực tế bằng Casio."
     ],
     mindmap: [
       {
         id: "mm-b6-1",
-        title: "1. Định lí Côsin",
+        title: "1. Định lí Côsin & Đường trung tuyến",
         emoji: "📐",
         description: "Mở rộng định lí Pythagore cho tam giác bất kì",
         formula: "$a^2 = b^2 + c^2 - 2bc\\cos A$",
         children: [
           {
             title: "Hệ quả tính góc",
-            detail: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. Dương là nhọn, 0 là vuông, âm là tù."
+            detail: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$. $\\cos > 0$ là nhọn, $\\cos = 0$ là vuông, $\\cos < 0$ là tù."
           },
           {
             title: "Đường trung tuyến",
-            detail: "$m_a^2 = \\frac{2(b^2+c^2)-a^2}{4}$."
+            detail: "$m_a^2 = \\frac{2(b^2+c^2)-a^2}{4}, m_b^2 = \\frac{2(a^2+c^2)-b^2}{4}, m_c^2 = \\frac{2(a^2+b^2)-c^2}{4}$."
           }
         ]
       },
@@ -768,29 +788,29 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
         id: "mm-b6-2",
         title: "2. Định lí Sin & Bán kính R",
         emoji: "🔵",
-        description: "Tỉ số vàng giữa cạnh và sin góc đối",
+        description: "Tỉ số vàng giữa cạnh và sin góc đối diện",
         formula: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$",
         children: [
           {
             title: "Bán kính ngoại tiếp R",
-            detail: "$R = \\frac{a}{2\\sin A} = \\frac{abc}{4S}$."
+            detail: "$R = \\frac{a}{2\\sin A} = \\frac{b}{2\\sin B} = \\frac{c}{2\\sin C} = \\frac{abc}{4S}$."
           },
           {
-            title: "Khi nào dùng Sin?",
-            detail: "Biết 1 cạnh và 2 góc, hoặc bài toán hỏi bán kính $R$."
+            title: "Dấu hiệu nhận biết",
+            detail: "Áp dụng khi biết 1 cạnh + 2 góc (G-C-G), hoặc có cặp cạnh-góc đối, hoặc hỏi về bán kính $R$."
           }
         ]
       },
       {
         id: "mm-b6-3",
-        title: "3. Năm công thức Diện tích",
+        title: "3. Ngũ đại Công thức Diện tích",
         emoji: "🌟",
         description: "Bộ công cụ vạn năng tính diện tích tam giác",
         formula: "$S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$",
         children: [
           {
             title: "Tuyệt kĩ Heron",
-            detail: "Áp dụng khi biết cả 3 cạnh $a, b, c$: tính $p \\to S \\to R, r, h_a$."
+            detail: "Tính diện tích khi biết 3 cạnh $a, b, c$: tính $p \\to S \\to$ rút ra $R, r, h_a$."
           },
           {
             title: "Tam giác đều cạnh a",
@@ -800,18 +820,35 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
       },
       {
         id: "mm-b6-4",
-        title: "4. Giải tam giác & Ứng dụng thực tế",
+        title: "4. Thuật toán Giải tam giác",
         emoji: "🧭",
-        description: "Quy trình giải tam giác và đo đạc trắc địa",
-        formula: "3 trường hợp: C-G-C, C-C-C, G-C-G",
+        description: "Quy trình tìm tất cả các yếu tố còn lại của tam giác",
+        formula: "3 trường hợp chuẩn: C-G-C, C-C-C, G-C-G",
         children: [
           {
-            title: "Thuật toán giải",
-            detail: "Biết C-G-C $\\to$ Côsin; Biết C-C-C $\\to$ Côsin/Heron; Biết G-C-G $\\to$ Sin."
+            title: "C-G-C & C-C-C",
+            detail: "Dùng Định lí Côsin tính cạnh/góc để tránh bẫy 2 nghiệm của hàm Sin."
           },
           {
-            title: "Ứng dụng trắc địa",
-            detail: "Đo chiều cao tháp, khoảng cách vượt chướng ngại vật bằng giác kế."
+            title: "G-C-G",
+            detail: "Tính góc thứ ba qua tổng $180^\\circ$, rồi dùng Định lí Sin tính 2 cạnh còn lại."
+          }
+        ]
+      },
+      {
+        id: "mm-b6-5",
+        title: "5. Ứng dụng Thực địa & Kĩ thuật Casio",
+        emoji: "🏗️",
+        description: "Đo đạc trắc địa thực tế và mẹo bấm máy tính",
+        formula: "Chiều cao tháp: $h = \\frac{d \\cdot \\sin\\alpha \\cdot \\sin\\beta}{\\sin(\\beta - \\alpha)}$",
+        children: [
+          {
+            title: "Mô hình trắc địa",
+            detail: "Đo khoảng cách qua đầm lầy, đo chiều cao tháp không tới được chân tháp."
+          },
+          {
+            title: "Kĩ thuật Casio",
+            detail: "Cài đặt Degree (D), lưu biến STO A, B, C và bấm Heron 1 dòng không sai số."
           }
         ]
       }

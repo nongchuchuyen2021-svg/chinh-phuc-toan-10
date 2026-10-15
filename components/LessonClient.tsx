@@ -314,6 +314,8 @@ export default function LessonClient({
             name: "Sách giáo khoa (HTML)",
             desc: lessonId === "bai-05"
               ? "Bài học theo SGK trang 33–37 · Đúng đề bài gốc, có lời giải gợi ý và ảnh trang gốc để đối chiếu"
+              : lessonId === "bai-06"
+              ? "Bài học theo SGK trang 38–43 · Tình huống thực địa hai con tàu, hoạt động khám phá, ví dụ mẫu và bài tập luyện tập giải chi tiết"
               : "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
             done: false,
             badge: null,
@@ -330,6 +332,8 @@ export default function LessonClient({
             name: "Đấu trường Game tương tác",
             desc: lessonId === "bai-05"
               ? "2 trò chơi · Phân loại dấu lượng giác và ghép công thức góc bù"
+              : lessonId === "bai-06"
+              ? "3 trò chơi hấp dẫn · Đấu trường Côsin vs Sin, Ghép đôi công thức vàng & Máy quét tam giác nhọn/tù"
               : `${games.length} trò chơi sinh động · Kéo co tri thức 2 đội, Chinh phục đỉnh cao & Ghép thẻ`,
             done: false,
             badge: `${games.length} game`,

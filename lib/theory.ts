@@ -1504,23 +1504,23 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
   },
 
   "bai-06": {
-    intro: "Hệ thức lượng trong tam giác là đỉnh cao của hình học phổ thông, mở rộng định lí Pythagore từ tam giác vuông sang tam giác bất kì. Thành thạo Định lí Côsin, Định lí Sin, công thức Heron cùng 5 công thức tính diện tích kinh điển sẽ cung cấp cho em bộ công cụ vạn năng để giải quyết mọi bài toán trắc nghiệm, tính toán độ dài, góc, bán kính đường tròn và giải quyết các bài toán đo đạc thực tế.",
-    minutes: 15,
+    intro: "Hệ thức lượng trong tam giác là đỉnh cao của hình học phổ thông, mở rộng định lí Pythagore từ tam giác vuông sang tam giác bất kì. Nắm vững Định lí Côsin, Định lí Sin, công thức đường trung tuyến, công thức Heron cùng ngũ đại công thức tính diện tích sẽ cung cấp cho em 'bộ công cụ vạn năng' để giải trọn vẹn tam giác, chinh phục mọi câu hỏi trắc nghiệm và giải quyết các bài toán trắc địa, đo đạc thực tế.",
+    minutes: 18,
     sections: [
       {
         id: "sec-1",
         emoji: "📐",
-        heading: "1. Định lí Côsin & Hệ quả tính góc (C-G-C & C-C-C)",
+        heading: "1. Định lí Côsin, Hệ quả tính góc & Công thức Đường trung tuyến",
         blocks: [
           {
             kind: "text",
-            text: "Trong tam giác $ABC$, ta quy ước độ dài các cạnh đối diện với các đỉnh $A, B, C$ lần lượt là $a, b, c$. Định lí Côsin cho phép tính bình phương một cạnh khi biết hai cạnh còn lại và góc xen giữa."
+            text: "Trong tam giác $ABC$, ta quy ước độ dài các cạnh đối diện với các đỉnh $A, B, C$ lần lượt là $a, b, c$. Nếu như định lí Pythagore chỉ áp dụng cho tam giác vuông, thì **Định lí Côsin** chính là định lí Pythagore tổng quát cho mọi tam giác bằng cách bổ sung số hạng hiệu chỉnh $-2bc\\cos A$."
           },
           {
             kind: "figure",
-            title: "Mô hình Định lí Côsin trong tam giác bất kì",
-            svg: `<svg viewBox="0 0 460 220" width="100%" height="210" class="max-w-[460px] mx-auto select-none"><defs><linearGradient id="cosGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff" stop-opacity="0.2"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/></linearGradient></defs><polygon points="70,180 390,180 180,45" fill="url(#cosGrad)" stroke="#00d4ff" stroke-width="2.5" stroke-linejoin="round"/><line x1="180" y1="45" x2="180" y2="180" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/><path d="M 180 168 L 192 168 L 192 180" fill="none" stroke="#f43f5e" stroke-width="1.5"/><text x="186" y="195" fill="#f43f5e" font-size="11" font-family="monospace">H</text><circle cx="180" cy="45" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="180" y="30" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold" text-anchor="middle">A</text><path d="M 160 62 A 28 28 0 0 0 200 62" fill="none" stroke="#fbbf24" stroke-width="2"/><text x="180" y="76" fill="#fbbf24" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">Â</text><circle cx="70" cy="180" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="52" y="195" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">B</text><circle cx="390" cy="180" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="402" y="195" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">C</text><text x="230" y="202" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">a (BC)</text><text x="110" y="105" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold">c (AB)</text><text x="295" y="105" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold">b (AC)</text><text x="190" y="120" fill="#f43f5e" font-size="11" font-family="monospace">h_a</text></svg>`,
-            caption: "Hình 6.1: Định lí Côsin biểu diễn cạnh đối diện $a$ qua hai cạnh kề $b, c$ và góc xen giữa $\\widehat{A}$."
+            title: "Mô hình Định lí Côsin và Đường trung tuyến trong tam giác bất kì",
+            svg: `<svg viewBox="0 0 480 230" width="100%" height="220" class="max-w-[480px] mx-auto select-none"><defs><linearGradient id="cosGrad" x1="0" y1="0" x2="1" y2="1"><stop offset="0%" stop-color="#00d4ff" stop-opacity="0.25"/><stop offset="100%" stop-color="#3b82f6" stop-opacity="0.05"/></linearGradient></defs><polygon points="70,185 410,185 190,45" fill="url(#cosGrad)" stroke="#00d4ff" stroke-width="2.5" stroke-linejoin="round"/><line x1="190" y1="45" x2="190" y2="185" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/><path d="M 190 173 L 202 173 L 202 185" fill="none" stroke="#f43f5e" stroke-width="1.5"/><text x="195" y="198" fill="#f43f5e" font-size="11" font-family="monospace">H</text><line x1="190" y1="45" x2="240" y2="185" stroke="#fbbf24" stroke-width="2" stroke-dasharray="5 3"/><circle cx="240" cy="185" r="4.5" fill="#fbbf24"/><text x="242" y="202" fill="#fbbf24" font-size="12" font-family="monospace" font-weight="bold">M (Trung điểm BC)</text><text x="222" y="115" fill="#fbbf24" font-size="11" font-family="monospace">m_a</text><circle cx="190" cy="45" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="190" y="30" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold" text-anchor="middle">A</text><path d="M 170 60 A 28 28 0 0 0 210 60" fill="none" stroke="#fbbf24" stroke-width="2"/><text x="190" y="74" fill="#fbbf24" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">Â</text><circle cx="70" cy="185" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="50" y="198" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">B</text><circle cx="410" cy="185" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="422" y="198" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">C</text><text x="240" y="220" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold" text-anchor="middle">a (BC)</text><text x="110" y="110" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold">c (AB)</text><text x="315" y="110" fill="#67e8f9" font-size="13" font-family="monospace" font-weight="bold">b (AC)</text><text x="175" y="125" fill="#f43f5e" font-size="11" font-family="monospace">h_a</text></svg>`,
+            caption: "Hình 6.1: Định lí Côsin biểu diễn cạnh đối diện qua hai cạnh kề và góc kẹp giữa; liên hệ mật thiết với đường trung tuyến m_a và đường cao h_a."
           },
           {
             kind: "cards",
@@ -1529,105 +1529,135 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "📜",
                 title: "Định lí Côsin (Tính độ dài cạnh)",
-                text: "$a^2 = b^2 + c^2 - 2bc \\cos A$\n$b^2 = a^2 + c^2 - 2ac \\cos B$\n$c^2 = a^2 + b^2 - 2ab \\cos C$"
+                text: "$a^2 = b^2 + c^2 - 2bc \\cos A$\n$b^2 = a^2 + c^2 - 2ac \\cos B$\n$c^2 = a^2 + b^2 - 2ab \\cos C$\n👉 Áp dụng khi biết 2 cạnh và góc xen giữa (C-G-C)."
               },
               {
                 emoji: "🎯",
                 title: "Hệ quả: Tính Côsin góc khi biết 3 cạnh",
-                text: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$\n$\\cos B = \\frac{a^2 + c^2 - b^2}{2ac}$\n$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$"
+                text: "$\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$\n$\\cos B = \\frac{a^2 + c^2 - b^2}{2ac}$\n$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab}$\n👉 Áp dụng khi biết cả 3 cạnh (C-C-C)."
               },
               {
                 emoji: "🌟",
-                title: "Mối liên hệ với Định lí Pythagore",
-                text: "Khi $\\widehat{A} = 90^\\circ \\implies \\cos 90^\\circ = 0$, công thức trở thành $a^2 = b^2 + c^2$.\nĐịnh lí Côsin chính là **Định lí Pythagore tổng quát** cho mọi loại tam giác!"
+                title: "Định lí Pythagore tổng quát",
+                text: "Khi $\\widehat{A} = 90^\\circ \\implies \\cos 90^\\circ = 0$, công thức trở thành $a^2 = b^2 + c^2$.\nNếu góc $\\widehat{A}$ nhọn thì $\\cos A > 0 \\implies a^2 < b^2 + c^2$.\nNếu góc $\\widehat{A}$ tù thì $\\cos A < 0 \\implies a^2 > b^2 + c^2$."
               },
               {
-                emoji: "🔍",
-                title: "Nhận biết góc Nhọn, Vuông hay Tù",
-                text: "• $b^2 + c^2 > a^2 \\iff \\cos A > 0 \\iff \\widehat{A}$ là góc nhọn.\n• $b^2 + c^2 = a^2 \\iff \\cos A = 0 \\iff \\widehat{A} = 90^\\circ$.\n• $b^2 + c^2 < a^2 \\iff \\cos A < 0 \\iff \\widehat{A}$ là góc tù."
+                emoji: "📍",
+                title: "Công thức Đường trung tuyến",
+                text: "Độ dài đường trung tuyến $m_a, m_b, m_c$:\n$m_a^2 = \\frac{2(b^2 + c^2) - a^2}{4}$\n$m_b^2 = \\frac{2(a^2 + c^2) - b^2}{4}$\n$m_c^2 = \\frac{2(a^2 + b^2) - c^2}{4}$"
               }
             ]
           },
           {
-            kind: "note",
-            text: "📌 **CẠM BẪY DẤU TRỪ KHI TÍNH GÓC TÙ**:\n• Khi góc $\\widehat{A}$ là góc tù ($90^\\circ < \\widehat{A} < 180^\\circ$), $\\cos A < 0$.\n• Khi đó đại lượng $-2bc\\cos A > 0$, làm cho cạnh đối diện $a^2 > b^2 + c^2$.\n• Ngược lại, nếu tính ra $\\cos A = -\\frac{1}{2}$, em bấm `SHIFT cos (-1/2)` máy tính Casio sẽ cho ra ngay $120^\\circ$ (không được bỏ dấu trừ!)."
-          },
-          {
-            kind: "check",
-            q: "Cho tam giác $ABC$ có $b = 6$, $c = 8$ và $\\widehat{A} = 60^\\circ$. Độ dài cạnh $a$ bằng bao nhiêu?",
-            options: [
-              "$a = 2\\sqrt{13}$",
-              "$a = 2\\sqrt{37}$",
-              "$a = 10$",
-              "$a = 52$"
-            ],
-            answer: 0,
-            explain: "Áp dụng định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2 \\cdot 6 \\cdot 8 \\cdot \\cos 60^\\circ = 36 + 64 - 96 \\cdot \\frac{1}{2} = 100 - 48 = 52$. Suy ra $a = \\sqrt{52} = 2\\sqrt{13}$."
-          }
-        ]
-      },
-      {
-        id: "sec-2",
-        emoji: "🔵",
-        heading: "2. Định lí Sin & Bán kính đường tròn ngoại tiếp $R$",
-        blocks: [
-          {
-            kind: "text",
-            text: "Định lí Sin thiết lập tỉ lệ vàng không đổi giữa mỗi cạnh của tam giác và sin của góc đối diện. Tỉ số này luôn bằng đúng **đường kính $2R$** của đường tròn ngoại tiếp tam giác."
-          },
-          {
-            kind: "figure",
-            title: "Định lí Sin và Đường tròn ngoại tiếp (O; R)",
-            svg: `<svg viewBox="0 0 460 240" width="100%" height="230" class="max-w-[460px] mx-auto select-none"><defs><radialGradient id="circGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#10b981" stop-opacity="0.1"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/></radialGradient></defs><circle cx="230" cy="120" r="105" fill="url(#circGrad)" stroke="#10b981" stroke-width="1.8" stroke-dasharray="5 4"/><circle cx="230" cy="120" r="3.5" fill="#10b981"/><text x="236" y="116" fill="#10b981" font-size="12" font-family="monospace" font-weight="bold">O</text><line x1="230" y1="120" x2="310" y2="52" stroke="#10b981" stroke-width="1.5" stroke-dasharray="3 3"/><text x="275" y="80" fill="#10b981" font-size="11" font-family="monospace" font-weight="bold">R</text><polygon points="140,185 320,185 200,20" fill="rgba(56, 189, 248, 0.12)" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round"/><circle cx="200" cy="20" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="200" y="10" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">A</text><circle cx="140" cy="185" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="122" y="198" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">B</text><circle cx="320" cy="185" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="332" y="198" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">C</text><text x="230" y="202" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">a</text><text x="160" y="95" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold">c</text><text x="270" y="95" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold">b</text></svg>`,
-            caption: "Hình 6.2: Tỉ số giữa độ dài cạnh và sin góc đối diện luôn bằng đường kính $2R$ của đường tròn ngoại tiếp."
-          },
-          {
             kind: "compare",
             left: {
-              title: "Định lí Sin chính tắc",
-              emoji: "📐",
+              title: "Nhận dạng Góc Nhọn (cos > 0)",
+              emoji: "🔷",
               items: [
-                "Công thức gốc: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$.",
-                "Tính cạnh qua góc và bán kính: $a = 2R\\sin A, \\quad b = 2R\\sin B, \\quad c = 2R\\sin C$.",
-                "Tính sin góc: $\\sin A = \\frac{a}{2R}, \\quad \\sin B = \\frac{b}{2R}, \\quad \\sin C = \\frac{c}{2R}$."
+                "Điều kiện: $b^2 + c^2 > a^2$.",
+                "Khi đó $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} > 0$.",
+                "Góc $\\widehat{A}$ là góc nhọn ($0^\\circ < \\widehat{A} < 90^\\circ$).",
+                "Ví dụ: Tam giác có 3 cạnh $7, 8, 9$ có $8^2 + 9^2 = 145 > 7^2 = 49 \\implies$ góc $A$ nhọn."
               ]
             },
             right: {
-              title: "Tuyệt chiêu tính Bán kính Ngoại tiếp R",
-              emoji: "🎯",
+              title: "Nhận dạng Góc Tù (cos < 0)",
+              emoji: "🔶",
               items: [
-                "Khi biết một cạnh và góc đối diện: $R = \\frac{a}{2\\sin A}$.",
-                "Đặc biệt khi $\\widehat{A} = 90^\\circ \\implies R = \\frac{a}{2}$ (nửa cạnh huyền).",
-                "Khi biết 3 cạnh và diện tích: $R = \\frac{abc}{4S}$."
+                "Điều kiện: $b^2 + c^2 < a^2$ (với $a$ là cạnh lớn nhất).",
+                "Khi đó $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} < 0$.",
+                "Góc $\\widehat{A}$ là góc tù ($90^\\circ < \\widehat{A} < 180^\\circ$).",
+                "Ví dụ: Tam giác có 3 cạnh $3, 4, 6$ có $3^2 + 4^2 = 25 < 6^2 = 36 \\implies$ góc lớn nhất là góc tù!"
               ]
             }
           },
           {
             kind: "note",
-            text: "💡 **KHI NÀO DÙNG ĐỊNH LÍ SIN?**\n1. Khi đề bài cho hoặc hỏi về **bán kính đường tròn ngoại tiếp $R$**.\n2. Khi bài toán cho **1 cạnh và 2 góc** (dễ dàng tính góc thứ ba qua tổng $180^\\circ$ rồi dùng Định lí Sin tìm 2 cạnh còn lại).\n3. Khi có một cặp **cạnh - góc đối diện** đầy đủ (ví dụ biết cạnh $a$ và góc $\\widehat{A}$)."
+            text: "📌 **CẠM BẪY DẤU TRỪ KHI GẶP GÓC TÙ**:\n• Khi $\\widehat{A}$ là góc tù ($90^\\circ < \\widehat{A} < 180^\\circ$), giá trị $\\cos A$ MANG DẤU ÂM.\n• Khi đó, số hạng $-2bc\\cos A$ trở thành MANG DẤU DƯƠNG ($> 0$), làm cho $a^2$ lớn hơn hẳn $b^2 + c^2$.\n• Ví dụ với góc $120^\\circ$: $\\cos 120^\\circ = -\\frac{1}{2}$, ta có $a^2 = b^2 + c^2 - 2bc\\left(-\\frac{1}{2}\\right) = b^2 + c^2 + bc$ (Dấu biến thành CỘNG!)."
           },
           {
             kind: "check",
-            q: "Tam giác $ABC$ có cạnh $a = 10$ và góc $\\widehat{A} = 30^\\circ$. Bán kính $R$ của đường tròn ngoại tiếp tam giác $ABC$ là:",
+            q: "Cho tam giác $ABC$ có hai cạnh $b = 6, c = 8$ và góc tù $\\widehat{A} = 120^\\circ$. Độ dài cạnh $a$ bằng bao nhiêu?",
             options: [
-              "$R = 5$",
-              "$R = 10$",
-              "$R = 20$",
-              "$R = 10\\sqrt{3}$"
+              "$a = 2\\sqrt{37}$",
+              "$a = 2\\sqrt{13}$",
+              "$a = 10$",
+              "$a = 148$"
             ],
-            answer: 1,
-            explain: "Áp dụng định lí Sin: $\\frac{a}{\\sin A} = 2R \\implies 2R = \\frac{10}{\\sin 30^\\circ} = \\frac{10}{0.5} = 20 \\implies R = 10$."
+            answer: 0,
+            explain: "Áp dụng định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2 \\cdot 6 \\cdot 8 \\cdot \\cos 120^\\circ = 36 + 64 - 96 \\cdot \\left(-\\frac{1}{2}\\right) = 100 + 48 = 148$. Suy ra $a = \\sqrt{148} = 2\\sqrt{37}$."
           }
         ]
       },
+
       {
-        id: "sec-3",
-        emoji: "🌟",
-        heading: "3. Bộ 5 công thức vàng tính Diện tích & Kĩ thuật Heron",
+        id: "sec-2",
+        emoji: "🔵",
+        heading: "2. Định lí Sin & Vòng tròn Ngoại tiếp Đường kính 2R",
         blocks: [
           {
             kind: "text",
-            text: "Diện tích tam giác có tới 5 công thức tính toán khác nhau tuỳ thuộc vào các đại lượng đã biết. Hãy nắm vững sơ đồ chuyển đổi dưới đây để chọn ngay công thức ngắn gọn nhất cho đề thi."
+            text: "Định lí Sin thiết lập **tỉ số vàng** bất biến trong mọi tam giác: Tỉ số giữa mỗi cạnh và sin của góc đối diện luôn bằng nhau và bằng đúng **đường kính $2R$** của đường tròn ngoại tiếp tam giác."
+          },
+          {
+            kind: "figure",
+            title: "Định lí Sin và Đường tròn ngoại tiếp tâm O, bán kính R",
+            svg: `<svg viewBox="0 0 480 250" width="100%" height="240" class="max-w-[480px] mx-auto select-none"><defs><radialGradient id="circGrad" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="#10b981" stop-opacity="0.15"/><stop offset="100%" stop-color="#10b981" stop-opacity="0.02"/></radialGradient></defs><circle cx="240" cy="125" r="110" fill="url(#circGrad)" stroke="#10b981" stroke-width="2" stroke-dasharray="6 4"/><circle cx="240" cy="125" r="4" fill="#10b981"/><text x="248" y="120" fill="#10b981" font-size="12" font-family="monospace" font-weight="bold">O</text><line x1="240" y1="125" x2="330" y2="55" stroke="#10b981" stroke-width="1.8" stroke-dasharray="3 3"/><text x="290" y="85" fill="#10b981" font-size="12" font-family="monospace" font-weight="bold">R</text><polygon points="145,195 335,195 210,18" fill="rgba(56, 189, 248, 0.15)" stroke="#38bdf8" stroke-width="2.5" stroke-linejoin="round"/><line x1="210" y1="18" x2="270" y2="232" stroke="#f43f5e" stroke-width="1.8" stroke-dasharray="4 3"/><circle cx="270" cy="232" r="3.5" fill="#f43f5e"/><text x="275" y="245" fill="#f43f5e" font-size="11" font-family="monospace">A' (Đường kính 2R)</text><circle cx="210" cy="18" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="210" y="10" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold" text-anchor="middle">A</text><circle cx="145" cy="195" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="125" y="210" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">B</text><circle cx="335" cy="195" r="5" fill="#38bdf8" stroke="#ffffff" stroke-width="2"/><text x="348" y="210" fill="#ffffff" font-size="14" font-family="sans-serif" font-weight="bold">C</text><text x="240" y="212" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">a</text><text x="165" y="100" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold">c</text><text x="285" y="100" fill="#67e8f9" font-size="12" font-family="monospace" font-weight="bold">b</text></svg>`,
+            caption: "Hình 6.2: Định lí Sin thiết lập tỉ số a/sinA = b/sinB = c/sinC = 2R với đường tròn ngoại tiếp."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "⚖️",
+                title: "Định lí Sin chính tắc",
+                text: "$\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$\nTrong đó $R$ là bán kính đường tròn ngoại tiếp tam giác."
+              },
+              {
+                emoji: "📏",
+                title: "Tính cạnh qua góc và bán kính R",
+                text: "$a = 2R\\sin A$\n$b = 2R\\sin B$\n$c = 2R\\sin C$\n👉 Cực nhanh khi biết bán kính $R$ và các góc!"
+              },
+              {
+                emoji: "🎯",
+                title: "Tuyệt chiêu tính Bán kính R",
+                text: "• Qua một cạnh và góc đối: $R = \\frac{a}{2\\sin A} = \\frac{b}{2\\sin B} = \\frac{c}{2\\sin C}$.\n• Qua 3 cạnh và diện tích: $R = \\frac{abc}{4S}$.\n• Tam giác vuông: $R = \\frac{\\text{cạnh huyền}}{2}$."
+              },
+              {
+                emoji: "🧭",
+                title: "Khi nào chọn Định lí Sin?",
+                text: "1. Đề bài cho hoặc hỏi về **bán kính ngoại tiếp $R$**.\n2. Bài toán cho **1 cạnh và 2 góc** (G-C-G).\n3. Khi có sẵn một **cặp cạnh - góc đối diện** hoàn chỉnh."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "⚠️ **CẢNH BÁO BẪY 2 NGHIỆM GÓC KHI DÙNG ĐỊNH LÍ SIN**:\n• Khi dùng $\\sin B = \\frac{b\\sin A}{a}$, vì $\\sin(180^\\circ - B) = \\sin B$ nên phương trình luôn cho **hai khả năng góc**: góc nhọn $B$ hoặc góc tù $180^\\circ - B$.\n• Nếu cạnh $b < a$ thì góc $B < A$ (không thể tù). Nhưng nếu $b > a$ thì góc $B$ hoàn toàn CÓ THỂ LÀ GÓC TÙ!\n• 👉 **Quy tắc vàng**: Khi cần tìm số đo góc, **LUÔN ƯU TIÊN DÙNG ĐỊNH LÍ CÔSIN**, vì hàm $\\cos$ trên $[0^\\circ; 180^\\circ]$ là đơn điệu, ứng với duy nhất 1 góc, không bao giờ bị bẫy 2 nghiệm!"
+          },
+          {
+            kind: "check",
+            q: "Tam giác $ABC$ có cạnh $a = 12$ và góc đối diện $\\widehat{A} = 45^\\circ$. Bán kính $R$ của đường tròn ngoại tiếp tam giác $ABC$ bằng:",
+            options: [
+              "$R = 6\\sqrt{2}$",
+              "$R = 12\\sqrt{2}$",
+              "$R = 6$",
+              "$R = 12$"
+            ],
+            answer: 0,
+            explain: "Áp dụng định lí Sin: $\\frac{a}{\\sin A} = 2R \\implies 2R = \\frac{12}{\\sin 45^\\circ} = \\frac{12}{\\frac{\\sqrt{2}}{2}} = 12\\sqrt{2} \\implies R = 6\\sqrt{2}$."
+          }
+        ]
+      },
+
+      {
+        id: "sec-3",
+        emoji: "🌟",
+        heading: "3. 'Ngũ đại công thức' Diện tích & Tuyệt kĩ Heron",
+        blocks: [
+          {
+            kind: "text",
+            text: "Diện tích tam giác có tới 5 công thức độc lập tuỳ thuộc vào dữ kiện đề bài đã cho. Nắm vững bảng đối chiếu chiến lược dưới đây giúp em chọn ngay công thức ngắn nhất để giải đề thi trắc nghiệm trong 30 giây."
           },
           {
             kind: "cards",
@@ -1636,17 +1666,17 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "1️⃣",
                 title: "Công thức Đường cao cổ điển",
-                text: "$S = \\frac{1}{2} a h_a = \\frac{1}{2} b h_b = \\frac{1}{2} c h_c$\n👉 Rút ra chiều cao: $h_a = \\frac{2S}{a}$"
+                text: "$S = \\frac{1}{2} a h_a = \\frac{1}{2} b h_b = \\frac{1}{2} c h_c$\n👉 Rút ra chiều cao: $h_a = \\frac{2S}{a}, h_b = \\frac{2S}{b}, h_c = \\frac{2S}{c}$"
               },
               {
                 emoji: "2️⃣",
-                title: "Công thức Góc xen giữa (Sin)",
-                text: "$S = \\frac{1}{2} bc \\sin A = \\frac{1}{2} ac \\sin B = \\frac{1}{2} ab \\sin C$\n👉 Cực nhanh khi biết 2 cạnh và góc kẹp giữa!"
+                title: "Công thức Góc kẹp giữa (Sin)",
+                text: "$S = \\frac{1}{2} bc \\sin A = \\frac{1}{2} ac \\sin B = \\frac{1}{2} ab \\sin C$\n👉 Cực nhanh khi biết 2 cạnh và góc xen giữa (C-G-C)!"
               },
               {
                 emoji: "3️⃣",
                 title: "Bán kính ngoại tiếp R",
-                text: "$S = \\frac{abc}{4R} \\iff R = \\frac{abc}{4S}$\n👉 Liên kết diện tích với 3 cạnh và bán kính ngoại tiếp"
+                text: "$S = \\frac{abc}{4R} \\iff R = \\frac{abc}{4S}$\n👉 Cầu nối liên kết giữa 3 cạnh, diện tích và bán kính ngoại tiếp"
               },
               {
                 emoji: "4️⃣",
@@ -1656,22 +1686,22 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 emoji: "5️⃣",
                 title: "Tuyệt kĩ Heron (Biết 3 cạnh)",
-                text: "$S = \\sqrt{p(p-a)(p-b)(p-c)}$\n(Tính diện tích thần tốc khi biết cả 3 cạnh $a, b, c$)"
+                text: "$S = \\sqrt{p(p-a)(p-b)(p-c)}$\n(Tính diện tích thần tốc khi biết 3 cạnh $a, b, c$ mà không cần tính góc)"
               },
               {
-                emoji: "🔥",
+                emoji: "⚡",
                 title: "Tam giác đều cạnh a (Công thức tính nhanh)",
-                text: "• $S = \\frac{a^2\\sqrt{3}}{4}$\n• Chiều cao $h = \\frac{a\\sqrt{3}}{2}$\n• Bán kính $R = \\frac{a\\sqrt{3}}{3}, \\quad r = \\frac{a\\sqrt{3}}{6}$"
+                text: "• Diện tích: $S = \\frac{a^2\\sqrt{3}}{4}$\n• Chiều cao: $h = \\frac{a\\sqrt{3}}{2}$\n• Bán kính ngoại tiếp: $R = \\frac{a\\sqrt{3}}{3}$\n• Bán kính nội tiếp: $r = \\frac{a\\sqrt{3}}{6}$"
               }
             ]
           },
           {
             kind: "note",
-            text: "⚡ **QUY TRÌNH 'BẺ KHÓA' TAM GIÁC BIẾT 3 CẠNH (C-C-C)**:\nBước 1: Tính nửa chu vi $p = \\frac{a+b+c}{2}$.\nBước 2: Dùng **công thức Heron** tính diện tích $S = \\sqrt{p(p-a)(p-b)(p-c)}$.\nBước 3: Từ $S$, dễ dàng tính ngay mọi đại lượng còn lại:\n• Bán kính nội tiếp: $r = \\frac{S}{p}$.\n• Bán kính ngoại tiếp: $R = \\frac{abc}{4S}$.\n• Đường cao tương ứng: $h_a = \\frac{2S}{a}, \\quad h_b = \\frac{2S}{b}, \\quad h_c = \\frac{2S}{c}$."
+            text: "🔥 **QUY TRÌNH 'BẺ KHÓA' TAM GIÁC BIẾT 3 CẠNH (C-C-C)**:\nKhi đề bài cho độ dài 3 cạnh $a, b, c$ và yêu cầu tìm $S, R, r$ hoặc đường cao $h_a$:\n• **Bước 1**: Tính nửa chu vi $p = \\frac{a+b+c}{2}$.\n• **Bước 2**: Dùng **công thức Heron** tính diện tích: $S = \\sqrt{p(p-a)(p-b)(p-c)}$.\n• **Bước 3**: Từ diện tích $S$, lập tức quét sạch mọi đại lượng còn lại:\n  + Bán kính nội tiếp: $r = \\frac{S}{p}$.\n  + Bán kính ngoại tiếp: $R = \\frac{abc}{4S}$.\n  + Chiều cao: $h_a = \\frac{2S}{a}, h_b = \\frac{2S}{b}, h_c = \\frac{2S}{c}$."
           },
           {
             kind: "check",
-            q: "Tam giác có 3 cạnh lần lượt là $13, 14, 15$. Diện tích $S$ và bán kính nội tiếp $r$ của tam giác này bằng:",
+            q: "Tam giác $ABC$ có ba cạnh lần lượt là $a = 13, b = 14, c = 15$. Diện tích $S$ và bán kính đường tròn nội tiếp $r$ của tam giác này bằng:",
             options: [
               "$S = 84, \\quad r = 4$",
               "$S = 84, \\quad r = 2$",
@@ -1679,18 +1709,19 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               "$S = 42, \\quad r = 2$"
             ],
             answer: 0,
-            explain: "1. Nửa chu vi $p = \\frac{13+14+15}{2} = 21$.\n2. Theo công thức Heron: $S = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$.\n3. Bán kính nội tiếp $r = \\frac{S}{p} = \\frac{84}{21} = 4$."
+            explain: "1. Nửa chu vi: $p = \\frac{13 + 14 + 15}{2} = \\frac{42}{2} = 21$.\n2. Công thức Heron: $S = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$.\n3. Bán kính nội tiếp: $r = \\frac{S}{p} = \\frac{84}{21} = 4$."
           }
         ]
       },
+
       {
         id: "sec-4",
         emoji: "🧭",
-        heading: "4. Thuật toán Giải tam giác trong mọi tình huống",
+        heading: "4. Thuật toán Toàn diện 'Giải tam giác' trong Mọi Tình huống",
         blocks: [
           {
             kind: "text",
-            text: "**Giải tam giác** là bài toán tìm tất cả các kích thước còn lại (3 cạnh, 3 góc, diện tích, bán kính $R, r$) khi biết trước 3 yếu tố độc lập (trong đó có ít nhất một yếu tố độ dài cạnh)."
+            text: "**Giải tam giác** là bài toán tìm toàn bộ các kích thước còn lại (3 cạnh, 3 góc, diện tích $S$, bán kính $R, r$, đường cao) khi biết trước 3 yếu tố độc lập của tam giác (trong đó bắt buộc phải có ít nhất một yếu tố độ dài cạnh)."
           },
           {
             kind: "steps",
@@ -1698,42 +1729,48 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
               {
                 label: "TH 1",
                 title: "Biết 2 cạnh và góc xen giữa (C-G-C: biết b, c và góc A)",
-                text: "• Bước 1: Dùng **Định lí Côsin** tính cạnh còn lại: $a = \\sqrt{b^2 + c^2 - 2bc\\cos A}$.\n• Bước 2: Dùng hệ quả Côsin tính góc thứ hai: $\\cos B = \\frac{a^2 + c^2 - b^2}{2ac} \\implies \\widehat{B}$.\n• Bước 3: Tính góc thứ ba: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$."
+                text: "• Bước 1: Dùng **Định lí Côsin** tính cạnh thứ ba: $a = \\sqrt{b^2 + c^2 - 2bc\\cos A}$.\n• Bước 2: Dùng hệ quả Côsin tính góc thứ hai: $\\cos B = \\frac{a^2 + c^2 - b^2}{2ac} \\implies \\widehat{B}$.\n• Bước 3: Tính góc thứ ba qua tổng $180^\\circ$: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$."
               },
               {
                 label: "TH 2",
                 title: "Biết 3 cạnh (C-C-C: biết a, b, c)",
-                text: "• Bước 1: Dùng hệ quả Định lí Côsin tính góc lớn nhất hoặc bất kì: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} \\implies \\widehat{A}$.\n• Bước 2: Tương tự tính $\\cos B \\implies \\widehat{B}$.\n• Bước 3: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$.\n• Bước 4: Dùng Heron tính $S \\to R, r, h_a$."
+                text: "• Bước 1: Dùng hệ quả Định lí Côsin tính góc lớn nhất (đối diện cạnh lớn nhất): $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} \\implies \\widehat{A}$.\n• Bước 2: Tương tự tính $\\cos B = \\frac{a^2 + c^2 - b^2}{2ac} \\implies \\widehat{B}$.\n• Bước 3: $\\widehat{C} = 180^\\circ - (\\widehat{A} + \\widehat{B})$.\n• Bước 4: Áp dụng Heron tính $S \\to R, r, h_a$."
               },
               {
                 label: "TH 3",
-                title: "Biết 1 cạnh và 2 góc kề (G-C-G: biết a và góc B, góc C)",
-                text: "• Bước 1: Tính góc còn lại: $\\widehat{A} = 180^\\circ - (\\widehat{B} + \\widehat{C})$.\n• Bước 2: Dùng **Định lí Sin** tính 2 cạnh còn lại:\n$b = \\frac{a \\cdot \\sin B}{\\sin A}, \\quad c = \\frac{a \\cdot \\sin C}{\\sin A}$.\n• Bước 3: Tính $R = \\frac{a}{2\\sin A}$."
+                title: "Biết 1 cạnh và 2 góc (G-C-G: biết a và góc B, góc C)",
+                text: "• Bước 1: Tính góc còn lại: $\\widehat{A} = 180^\\circ - (\\widehat{B} + \\widehat{C})$.\n• Bước 2: Dùng **Định lí Sin** tính 2 cạnh còn lại:\n$b = \\frac{a \\cdot \\sin B}{\\sin A}, \\quad c = \\frac{a \\cdot \\sin C}{\\sin A}$.\n• Bước 3: Bán kính ngoại tiếp: $R = \\frac{a}{2\\sin A}$."
+              },
+              {
+                label: "TH 4",
+                title: "Biết 2 cạnh và 1 góc không xen giữa (C-C-G: biết a, b và góc A nhọn)",
+                text: "• Bước 1: Dùng định lí Sin: $\\sin B = \\frac{b\\sin A}{a}$.\n• Bước 2: Biện luận số nghiệm:\n  + Nếu $\\sin B > 1$: Vô nghiệm (không tồn tại tam giác).\n  + Nếu $\\sin B = 1$: Tam giác vuông tại $B$ (1 nghiệm).\n  + Nếu $\\sin B < 1$: Nếu $b < a$ thì chỉ có 1 góc $B$ nhọn; Nếu $b > a$ thì có tới 2 góc $B$ thoả mãn (1 nhọn, 1 tù)!"
               }
             ]
           },
           {
             kind: "note",
-            text: "⚠️ **CẢNH BÁO NGUY HIỂM KHI DÙNG ĐỊNH LÍ SIN TÍNH GÓC**:\nKhi biết 2 cạnh và 1 góc không xen giữa (ví dụ biết $a, b, \\widehat{A}$ nhọn), nếu dùng $\\sin B = \\frac{b\\sin A}{a}$, phương trình lượng giác $\\sin B = m$ có thể cho **hai nghiệm** góc: $\\widehat{B}$ (góc nhọn) và $180^\\circ - \\widehat{B}$ (góc tù)!\n👉 **Lời khuyên**: Luôn ưu tiên dùng **Định lí Côsin** để tính góc, vì mỗi giá trị $\\cos$ chỉ ứng với DUY NHẤT một góc trong khoảng $[0^\\circ, 180^\\circ]$, hoàn toàn không bị bẫy nghiệm tù!"
+            text: "💡 **LỜI KHUYÊN PHÒNG THI**:\n• Khi biết 3 cạnh (C-C-C), luôn tính góc đối diện cạnh LỚN NHẤT trước bằng định lí Côsin. Nếu góc đó nhọn thì tam giác chắc chắn là tam giác nhọn; nếu góc đó tù thì tam giác là tam giác tù.\n• Không bao giờ dùng định lí Sin để tìm góc nếu chưa kiểm tra được cạnh đối diện lớn hơn hay nhỏ hơn!"
           },
           {
             kind: "check",
-            q: "Tam giác $ABC$ có cạnh $a = 7$, $\\widehat{B} = 45^\\circ$, $\\widehat{C} = 75^\\circ$. Độ dài cạnh $b$ bằng:",
+            q: "Tam giác $ABC$ có cạnh $a = 10, \\widehat{B} = 45^\\circ, \\widehat{C} = 75^\\circ$. Độ dài cạnh $b$ bằng:",
             options: [
-              "$b = \\frac{7\\sqrt{6}}{3}$",
-              "$b = 7\\sqrt{2}$",
-              "$b = 3.5$",
-              "$b = 7\\sqrt{3}$"
+              "$b = \\frac{10\\sqrt{6}}{3}$",
+              "$b = 10\\sqrt{2}$",
+              "$b = 5\\sqrt{6}$",
+              "$b = \\frac{5\\sqrt{6}}{2}$"
             ],
             answer: 0,
-            explain: "1. Tính góc $\\widehat{A} = 180^\\circ - (45^\\circ + 75^\\circ) = 60^\\circ$.\n2. Theo định lí Sin: $\\frac{b}{\\sin B} = \\frac{a}{\\sin A} \\implies b = \\frac{a \\cdot \\sin B}{\\sin A} = \\frac{7 \\cdot \\sin 45^\\circ}{\\sin 60^\\circ} = \\frac{7 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{\\sqrt{3}}{2}} = \\frac{7\\sqrt{2}}{\\sqrt{3}} = \\frac{7\\sqrt{6}}{3}$."
+            explain: "1. Tính góc $\\widehat{A} = 180^\\circ - (45^\\circ + 75^\\circ) = 60^\\circ$.\n2. Theo định lí Sin: $\\frac{b}{\\sin B} = \\frac{a}{\\sin A} \\implies b = \\frac{a \\cdot \\sin B}{\\sin A} = \\frac{10 \\cdot \\sin 45^\\circ}{\\sin 60^\\circ} = \\frac{10 \\cdot \\frac{\\sqrt{2}}{2}}{\\frac{\\sqrt{3}}{2}} = \\frac{10\\sqrt{2}}{\\sqrt{3}} = \\frac{10\\sqrt{6}}{3}$."
           }
         ]
       },
+
       {
         id: "sec-5",
         emoji: "🏗️",
-        heading: "5. Ứng dụng Thực tế Đo đạc & Tuyệt chiêu Casio",
+        heading: "5. Ứng dụng Thực tế Đo đạc & Tuyệt chiêu Casio Fx-580 / Fx-880",
         blocks: [
           {
             kind: "text",
@@ -1742,8 +1779,8 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
           {
             kind: "figure",
             title: "Mô hình Đo chiều cao ngọn tháp CD từ hai điểm quan sát A, B trên mặt đất",
-            svg: `<svg viewBox="0 0 480 230" width="100%" height="220" class="max-w-[460px] mx-auto select-none"><line x1="30" y1="190" x2="450" y2="190" stroke="#475569" stroke-width="2"/><line x1="400" y1="190" x2="400" y2="40" stroke="#f59e0b" stroke-width="5"/><polygon points="392,40 400,20 408,40" fill="#f59e0b"/><text x="400" y="15" fill="#f59e0b" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">C (Đỉnh tháp)</text><text x="415" y="195" fill="#94a3b8" font-size="12" font-family="monospace">D (Chân tháp)</text><path d="M 390 190 L 390 180 L 400 180" fill="none" stroke="#94a3b8" stroke-width="1.5"/><circle cx="90" cy="190" r="4.5" fill="#38bdf8"/><text x="85" y="210" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">A</text><circle cx="210" cy="190" r="4.5" fill="#38bdf8"/><text x="210" y="210" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">B</text><line x1="90" y1="190" x2="210" y2="190" stroke="#00d4ff" stroke-width="3"/><text x="150" y="206" fill="#00d4ff" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">d = AB</text><line x1="90" y1="190" x2="400" y2="40" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="210" y1="190" x2="400" y2="40" stroke="#10b981" stroke-width="2"/><path d="M 130 190 A 40 40 0 0 0 126 172" fill="none" stroke="#38bdf8" stroke-width="2"/><text x="135" y="180" fill="#38bdf8" font-size="11" font-family="monospace" font-weight="bold">α</text><path d="M 245 190 A 35 35 0 0 0 236 164" fill="none" stroke="#10b981" stroke-width="2"/><text x="252" y="180" fill="#10b981" font-size="11" font-family="monospace" font-weight="bold">β</text><text x="415" y="115" fill="#f59e0b" font-size="13" font-family="monospace" font-weight="bold">h = CD = ?</text></svg>`,
-            caption: "Hình 6.3: Phương pháp trắc địa: Tính độ dài $BC$ trong $\\triangle ABC$ bằng Định lí Sin rồi tính chiều cao $h = BC \\cdot \\sin \\beta$."
+            svg: `<svg viewBox="0 0 480 230" width="100%" height="220" class="max-w-[480px] mx-auto select-none"><line x1="20" y1="190" x2="460" y2="190" stroke="#475569" stroke-width="2"/><line x1="410" y1="190" x2="410" y2="35" stroke="#f59e0b" stroke-width="5"/><polygon points="402,35 410,15 418,35" fill="#f59e0b"/><text x="410" y="10" fill="#f59e0b" font-size="13" font-family="sans-serif" font-weight="bold" text-anchor="middle">C (Đỉnh tháp)</text><text x="425" y="195" fill="#94a3b8" font-size="12" font-family="monospace">D (Chân tháp)</text><path d="M 400 190 L 400 180 L 410 180" fill="none" stroke="#94a3b8" stroke-width="1.5"/><circle cx="90" cy="190" r="4.5" fill="#38bdf8"/><text x="85" y="210" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">A</text><circle cx="230" cy="190" r="4.5" fill="#38bdf8"/><text x="230" y="210" fill="#ffffff" font-size="13" font-family="sans-serif" font-weight="bold">B</text><line x1="90" y1="190" x2="230" y2="190" stroke="#00d4ff" stroke-width="3.5"/><text x="160" y="208" fill="#00d4ff" font-size="12" font-family="monospace" font-weight="bold" text-anchor="middle">Khoảng cách d = AB</text><line x1="90" y1="190" x2="410" y2="35" stroke="#38bdf8" stroke-width="1.8" stroke-dasharray="4 3"/><line x1="230" y1="190" x2="410" y2="35" stroke="#10b981" stroke-width="2.2"/><path d="M 130 190 A 40 40 0 0 0 125 170" fill="none" stroke="#38bdf8" stroke-width="2"/><text x="135" y="180" fill="#38bdf8" font-size="11" font-family="monospace" font-weight="bold">α</text><path d="M 270 190 A 40 40 0 0 0 258 155" fill="none" stroke="#10b981" stroke-width="2"/><text x="275" y="175" fill="#10b981" font-size="11" font-family="monospace" font-weight="bold">β</text><text x="425" y="110" fill="#f59e0b" font-size="13" font-family="monospace" font-weight="bold">h = CD = ?</text></svg>`,
+            caption: "Hình 6.3: Mô hình trắc địa: Tính độ dài cạnh nghiêng BC trong tam giác ABC rồi suy ra chiều cao h = BC · sin β."
           },
           {
             kind: "cards",
@@ -1751,41 +1788,52 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
             items: [
               {
                 emoji: "🗼",
-                title: "Thuật toán tính chiều cao tháp (Hình 6.3)",
-                text: "1. Trong $\\triangle ABC$, góc ngoài $\\beta = \\alpha + \\widehat{ACB} \\implies \\widehat{ACB} = \\beta - \\alpha$.\n2. Áp dụng định lí Sin trong $\\triangle ABC$:\n$BC = \\frac{AB \\cdot \\sin\\alpha}{\\sin(\\beta - \\alpha)}$.\n3. Trong $\\triangle BCD$ vuông tại $D$:\n$h = CD = BC \\cdot \\sin\\beta = \\frac{AB \\cdot \\sin\\alpha \\cdot \\sin\\beta}{\\sin(\\beta - \\alpha)}$."
+                title: "Công thức Đo chiều cao tháp (Hình 6.3)",
+                text: "1. Trong $\\triangle ABC$: góc ngoài $\\beta = \\alpha + \\widehat{ACB} \\implies \\widehat{ACB} = \\beta - \\alpha$.\n2. Theo định lí Sin: $BC = \\frac{AB \\cdot \\sin\\alpha}{\\sin(\\beta - \\alpha)}$.\n3. Chiều cao ngọn tháp:\n$h = CD = BC \\cdot \\sin\\beta = \\frac{AB \\cdot \\sin\\alpha \\cdot \\sin\\beta}{\\sin(\\beta - \\alpha)}$."
+              },
+              {
+                emoji: "🌊",
+                title: "Đo khoảng cách qua đầm lầy / chướng ngại vật",
+                text: "Để đo khoảng cách giữa hai điểm $A$ và $B$ không thể giăng dây qua đầm lầy:\n1. Chọn điểm quan sát $C$ nhìn thấy cả $A$ và $B$.\n2. Đo khoảng cách $CA = b, CB = a$ và góc $\\widehat{ACB} = \\gamma$.\n3. Dùng **Định lí Côsin**: $AB = \\sqrt{a^2 + b^2 - 2ab\\cos\\gamma}$."
+              },
+              {
+                emoji: "🚢",
+                title: "Bài toán Hải hành & Hàng không",
+                text: "Hai tàu hoặc hai máy bay rời cảng $O$ cùng lúc:\n• Quãng đường: $d_1 = v_1 \\cdot t, \\quad d_2 = v_2 \\cdot t$.\n• Hướng đi lệch nhau một góc $\\theta$.\n• Khoảng cách giữa hai tàu sau thời gian $t$:\n$d = \\sqrt{d_1^2 + d_2^2 - 2d_1 d_2 \\cos\\theta}$."
               },
               {
                 emoji: "📟",
-                title: "Tuyệt chiêu Bấm máy Casio Fx-580VNX / 880BTG",
-                text: "• **Chế độ góc**: Bắt buộc màn hình hiển thị chữ **D** (`SHIFT MENU 2 1`). Tránh để **R** (Radian) sẽ sai toàn bộ!\n• **Lưu biến**: Nhập số liệu và nhấn `STO A`, `STO B`, `STO C` để tránh sai số làm tròn trung gian.\n• **Tính Heron 1 chạm**: Nhập $(A+B+C)/2 \\to X$, sau đó nhập $\\sqrt{X(X-A)(X-B)(X-C)}$."
+                title: "Tuyệt kĩ Bấm máy Casio Fx-580 / Fx-880",
+                text: "• **Cài đặt chế độ Độ (D)**: Nhấn `SHIFT MENU 2 1` (fx-580) để hiện chữ **D** trên màn hình. Tuyệt đối không để chữ **R**.\n• **Lưu biến**: Bấm số và nhấn `STO A`, `STO B`, `STO C` để tránh sai số làm tròn số trung gian.\n• **Tính Heron 1 dòng**: Gán $(A+B+C)/2 \\to X$, sau đó bấm $\\sqrt{X(X-A)(X-B)(X-C)}$.\n• **Bấm góc ra Độ-Phút-Giây**: Sau khi bấm $\\cos^{-1}(...)$, nhấn phím `° ' \"` để chuyển kết quả sang độ, phút, giây."
               }
             ]
           },
           {
             kind: "note",
-            text: "📌 **BÍ QUYẾT PHÒNG THI**:\n• Đọc kĩ đề xem yêu cầu làm tròn đến hàng đơn vị, chữ số thập phân thứ nhất hay thứ hai.\n• Đối với bài toán thực tế, luôn vẽ lại mô hình tam giác và phân định rõ: góc nào là góc nâng (nhìn lên), góc nào là góc hạ (nhìn xuống)."
+            text: "📌 **BÍ QUYẾT PHÒNG THI TOÁN THỰC TẾ**:\n• Phân biệt rõ **góc nâng** (góc nhìn hướng lên trên so với phương ngang) và **góc hạ** (góc nhìn chúc xuống dưới so với phương ngang).\n• Đọc kĩ yêu cầu làm tròn của đề bài: làm tròn đến hàng đơn vị (ví dụ $45\\text{ m}$), chữ số thập phân thứ nhất ($45.3\\text{ m}$) hay thứ hai ($45.28\\text{ m}$).\n• Luôn cộng thêm chiều cao của giác kế (nếu đề bài cho người đo cầm giác kế cách mặt đất $1.2\\text{ m}$ hay $1.5\\text{ m}$)."
           },
           {
             kind: "check",
-            q: "Để đo chiều cao ngọn tháp, người ta cắm hai cọc tiêu tại $A$ và $B$ trên mặt đất cách nhau $24\\text{ m}$ thẳng hàng với chân tháp $D$. Góc nhìn đỉnh tháp từ $A$ là $30^\\circ$ và từ $B$ là $45^\\circ$ ($B$ nằm giữa $A$ và $D$). Chiều cao ngọn tháp gần nhất với giá trị nào?",
+            q: "Để đo chiều cao một toà tháp $CD$, người ta cắm hai cọc tiêu tại $A$ và $B$ trên mặt đất cách nhau $30\\text{ m}$ thẳng hàng với chân tháp $D$ ($B$ nằm giữa $A$ và $D$). Góc nâng nhìn đỉnh tháp từ $A$ là $30^\\circ$ và từ $B$ là $45^\\circ$. Chiều cao toà tháp gần nhất với giá trị nào sau đây?",
             options: [
-              "$32.8\\text{ m}$",
-              "$16.4\\text{ m}$",
-              "$45.2\\text{ m}$",
-              "$24.0\\text{ m}$"
+              "$41.0\\text{ m}$",
+              "$20.5\\text{ m}$",
+              "$56.5\\text{ m}$",
+              "$30.0\\text{ m}$"
             ],
             answer: 0,
-            explain: "1. $\\widehat{ACB} = 45^\\circ - 30^\\circ = 15^\\circ$.\n2. Trong $\\triangle ABC$, $BC = \\frac{AB \\cdot \\sin 30^\\circ}{\\sin 15^\\circ} = \\frac{24 \\cdot 0.5}{\\sin 15^\\circ} = \\frac{12}{\\sin 15^\\circ} \\approx 46.36\\text{ m}$.\n3. Chiều cao $CD = BC \\cdot \\sin 45^\\circ \\approx 46.36 \\cdot \\frac{\\sqrt{2}}{2} \\approx 32.78\\text{ m} \\approx 32.8\\text{ m}$."
+            explain: "1. $\\widehat{ACB} = 45^\\circ - 30^\\circ = 15^\\circ$.\n2. Trong $\\triangle ABC$, theo định lí Sin: $BC = \\frac{AB \\cdot \\sin 30^\\circ}{\\sin 15^\\circ} = \\frac{30 \\cdot 0.5}{\\sin 15^\\circ} = \\frac{15}{\\sin 15^\\circ} \\approx 57.96\\text{ m}$.\n3. Trong tam giác vuông $BCD$: chiều cao $CD = BC \\cdot \\sin 45^\\circ \\approx 57.96 \\cdot \\frac{\\sqrt{2}}{2} \\approx 40.98\\text{ m} \\approx 41.0\\text{ m}$."
           }
         ]
       }
     ],
     summary: [
-      "1. Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A$ (mở rộng Pythagore; dùng khi biết C-G-C hoặc C-C-C).",
-      "2. Định lí Sin: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$ (dùng khi biết cặp cạnh - góc đối hoặc liên quan bán kính ngoại tiếp $R$).",
-      "3. Năm công thức tính diện tích: $S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$.",
-      "4. Kĩ thuật giải tam giác khi biết 3 cạnh: Tính $p \\to$ tính $S$ bằng Heron $\\to$ rút ra $R = \\frac{abc}{4S}$, $r = \\frac{S}{p}$, $h_a = \\frac{2S}{a}$.",
-      "5. Luôn kiểm tra máy tính ở chế độ DEG (độ) và cẩn thận dấu trừ của $\\cos$ khi làm việc với góc tù."
+      "1. Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A$ (mở rộng Pythagore; áp dụng khi biết C-G-C hoặc C-C-C).",
+      "2. Hệ quả tính góc: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc}$ (nhận dạng tam giác: $\\cos > 0$ là nhọn, $\\cos = 0$ là vuông, $\\cos < 0$ là tù).",
+      "3. Định lí Sin: $\\frac{a}{\\sin A} = \\frac{b}{\\sin B} = \\frac{c}{\\sin C} = 2R$ (áp dụng khi biết G-C-G hoặc hỏi bán kính ngoại tiếp $R$).",
+      "4. Ngũ đại công thức diện tích: $S = \\frac{1}{2}ah_a = \\frac{1}{2}bc\\sin A = \\frac{abc}{4R} = pr = \\sqrt{p(p-a)(p-b)(p-c)}$.",
+      "5. Độ dài đường trung tuyến: $m_a^2 = \\frac{2(b^2 + c^2) - a^2}{4}$.",
+      "6. Kĩ thuật Casio: Bắt buộc cài đặt màn hình chữ D (Degree), lưu biến STO A, B, C và ưu tiên dùng định lí Côsin để tìm góc nhằm tránh bẫy 2 nghiệm của Sin."
     ]
   },
 

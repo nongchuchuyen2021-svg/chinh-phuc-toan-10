@@ -390,38 +390,38 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     tf: [
       {
         id: "b6-tf1",
-        context: "Cho tam giác $ABC$ có ba cạnh lần lượt là $a = 7, b = 8, c = 5$.",
+        context: "Cho tam giác $ABC$ có ba cạnh lần lượt là $a = 13, b = 14, c = 15$.",
         statements: [
           {
-            text: "Nửa chu vi của tam giác $ABC$ bằng $p = 10$.",
+            text: "Nửa chu vi của tam giác $ABC$ bằng $p = 21$.",
             answer: true,
-            explain: "$p = \\frac{a + b + c}{2} = \\frac{7 + 8 + 5}{2} = \\frac{20}{2} = 10$."
+            explain: "$p = \\frac{a + b + c}{2} = \\frac{13 + 14 + 15}{2} = \\frac{42}{2} = 21$."
           },
           {
-            text: "Góc $A$ của tam giác thoả mãn $\\cos A = \\frac{1}{2}$ và $\\widehat{A} = 60^\\circ$.",
+            text: "Diện tích của tam giác $ABC$ tính theo công thức Heron bằng $S = 84$.",
             answer: true,
-            explain: "Theo hệ quả định lí Côsin: $\\cos A = \\frac{b^2 + c^2 - a^2}{2bc} = \\frac{64 + 25 - 49}{2 \\cdot 8 \\cdot 5} = \\frac{40}{80} = \\frac{1}{2} \\implies \\widehat{A} = 60^\\circ$."
+            explain: "Áp dụng công thức Heron: $S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$."
           },
           {
-            text: "Diện tích của tam giác $ABC$ bằng $10\\sqrt{3}$.",
+            text: "Bán kính đường tròn nội tiếp $r = 4$ và bán kính đường tròn ngoại tiếp $R = 8.125$.",
             answer: true,
-            explain: "$S = \\frac{1}{2}bc \\sin A = \\frac{1}{2} \\cdot 8 \\cdot 5 \\cdot \\sin 60^\\circ = 20 \\cdot \\frac{\\sqrt{3}}{2} = 10\\sqrt{3}$."
+            explain: "• Bán kính nội tiếp: $r = \\frac{S}{p} = \\frac{84}{21} = 4$.\n• Bán kính ngoại tiếp: $R = \\frac{abc}{4S} = \\frac{13 \\times 14 \\times 15}{4 \\times 84} = \\frac{2730}{336} = \\frac{65}{8} = 8.125$."
           },
           {
-            text: "Bán kính đường tròn ngoại tiếp $R$ bằng $2\\sqrt{3}$.",
+            text: "Góc lớn nhất của tam giác $ABC$ là một góc tù.",
             answer: false,
-            explain: "Theo định lí Sin: $R = \\frac{a}{2\\sin A} = \\frac{7}{2 \\cdot \\sin 60^\\circ} = \\frac{7}{\\sqrt{3}} = \\frac{7\\sqrt{3}}{3} \\approx 4.04 \\ne 2\\sqrt{3} \\approx 3.46$."
+            explain: "Góc lớn nhất đối diện cạnh lớn nhất $c = 15$: $\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{13^2 + 14^2 - 15^2}{2 \\times 13 \\times 14} = \\frac{169 + 196 - 225}{364} = \\frac{140}{364} = \\frac{5}{13} > 0$. Do $\\cos C > 0$ nên góc $\\widehat{C}$ là góc nhọn. Vậy tam giác $ABC$ là tam giác nhọn, không có góc tù."
           }
         ]
       },
       {
         id: "b6-tf2",
-        context: "Cho tam giác $ABC$ có cạnh $b = 6, c = 8$ và góc tù $\\widehat{A} = 120^\\circ$.",
+        context: "Cho tam giác $ABC$ có hai cạnh $b = 6, c = 8$ và góc tù $\\widehat{A} = 120^\\circ$.",
         statements: [
           {
             text: "Độ dài cạnh $a$ bằng $2\\sqrt{37}$.",
             answer: true,
-            explain: "Định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2(6)(8)\\cos 120^\\circ = 36 + 64 - 96(-0.5) = 100 + 48 = 148 \\implies a = \\sqrt{148} = 2\\sqrt{37}$."
+            explain: "Theo định lí Côsin: $a^2 = b^2 + c^2 - 2bc\\cos A = 6^2 + 8^2 - 2(6)(8)\\cos 120^\\circ = 36 + 64 - 96\\left(-\\frac{1}{2}\\right) = 100 + 48 = 148 \\implies a = \\sqrt{148} = 2\\sqrt{37}$."
           },
           {
             text: "Diện tích tam giác $ABC$ bằng $12\\sqrt{3}$.",
@@ -431,12 +431,64 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
           {
             text: "Bán kính đường tròn ngoại tiếp $R$ bằng $\\frac{2\\sqrt{111}}{3}$.",
             answer: true,
-            explain: "$R = \\frac{a}{2\\sin A} = \\frac{2\\sqrt{37}}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\frac{2\\sqrt{37}}{\\sqrt{3}} = \\frac{2\\sqrt{111}}{3}$."
+            explain: "Theo định lí Sin: $R = \\frac{a}{2\\sin A} = \\frac{2\\sqrt{37}}{2 \\cdot \\frac{\\sqrt{3}}{2}} = \\frac{2\\sqrt{37}}{\\sqrt{3}} = \\frac{2\\sqrt{111}}{3}$."
           },
           {
-            text: "Độ dài đường cao $h_a$ kẻ từ đỉnh $A$ lớn hơn $6$.",
+            text: "Độ dài đường trung tuyến $m_a$ kẻ từ đỉnh $A$ bằng $\\sqrt{13}$.",
+            answer: true,
+            explain: "Công thức đường trung tuyến: $m_a^2 = \\frac{2(b^2+c^2)-a^2}{4} = \\frac{2(36+64)-148}{4} = \\frac{200-148}{4} = \\frac{52}{4} = 13 \\implies m_a = \\sqrt{13}$."
+          }
+        ]
+      },
+      {
+        id: "b6-tf3",
+        context: "Để đo chiều cao toà tháp truyền hình $CD = h$ (với $D$ là chân tháp trên mặt đất), hai quan sát viên đứng tại hai cọc tiêu $A$ và $B$ trên mặt đất cách nhau $40\\text{ m}$ thẳng hàng với $D$ ($B$ ở giữa $A$ và $D$). Sử dụng giác kế, người ta đo được góc nâng nhìn đỉnh tháp từ $A$ là $\\widehat{CAD} = 30^\\circ$ và từ $B$ là $\\widehat{CBD} = 60^\\circ$.",
+        statements: [
+          {
+            text: "Góc ngắm giữa hai vị trí quan sát từ đỉnh tháp là $\\widehat{ACB} = 30^\\circ$.",
+            answer: true,
+            explain: "Góc ngoài của $\\triangle ABC$ tại đỉnh $B$ là $\\widehat{CBD} = \\widehat{CAD} + \\widehat{ACB} \\implies \\widehat{ACB} = 60^\\circ - 30^\\circ = 30^\\circ$."
+          },
+          {
+            text: "Tam giác $ABC$ là tam giác cân tại $B$ và độ dài đoạn nghiêng $BC = 40\\text{ m}$.",
+            answer: true,
+            explain: "Vì $\\widehat{CAB} = 30^\\circ$ và $\\widehat{ACB} = 30^\\circ$ nên $\\triangle ABC$ cân tại $B$. Do đó $BC = AB = 40\\text{ m}$."
+          },
+          {
+            text: "Chiều cao $h$ của ngọn tháp bằng $20\\sqrt{3}\\text{ m} \\approx 34.6\\text{ m}$.",
+            answer: true,
+            explain: "Trong tam giác vuông $BCD$: chiều cao tháp $h = CD = BC \\cdot \\sin 60^\\circ = 40 \\cdot \\frac{\\sqrt{3}}{2} = 20\\sqrt{3}\\text{ m} \\approx 34.64\\text{ m}$."
+          },
+          {
+            text: "Khoảng cách từ cọc tiêu $A$ đến chân tháp $D$ bằng $80\\text{ m}$.",
             answer: false,
-            explain: "$h_a = \\frac{2S}{a} = \\frac{24\\sqrt{3}}{2\\sqrt{37}} = \\frac{12\\sqrt{3}}{\\sqrt{37}} \\approx 3.42 < 6$."
+            explain: "Trong $\\triangle BCD$ vuông tại $D$: $BD = BC \\cdot \\cos 60^\\circ = 40 \\cdot 0.5 = 20\\text{ m}$. Suy ra khoảng cách $AD = AB + BD = 40 + 20 = 60\\text{ m} \\ne 80\\text{ m}$."
+          }
+        ]
+      },
+      {
+        id: "b6-tf4",
+        context: "Từ trung tâm cứu hộ bờ biển $O$, hai tàu cứu hộ $A$ và $B$ nhận lệnh xuất phát đồng thời lúc 6 giờ sáng. Tàu $A$ chạy theo hướng đông với vận tốc $30\\text{ km/h}$. Tàu $B$ chạy theo hướng đông - bắc tạo với hướng tàu $A$ một góc $60^\\circ$ với vận tốc $40\\text{ km/h}$.",
+        statements: [
+          {
+            text: "Sau 2 giờ di chuyển, quãng đường tàu $A$ và tàu $B$ đi được lần lượt là $OA = 60\\text{ km}$ và $OB = 80\\text{ km}$.",
+            answer: true,
+            explain: "$OA = 30 \\times 2 = 60\\text{ km}$ và $OB = 40 \\times 2 = 80\\text{ km}$."
+          },
+          {
+            text: "Sau 2 giờ, khoảng cách giữa hai tàu $A$ và $B$ là $20\\sqrt{13}\\text{ km} \\approx 72.1\\text{ km}$.",
+            answer: true,
+            explain: "Áp dụng định lí Côsin trong $\\triangle OAB$:\n$AB^2 = OA^2 + OB^2 - 2 \\cdot OA \\cdot OB \\cdot \\cos 60^\\circ = 60^2 + 80^2 - 2(60)(80)(0.5) = 3600 + 6400 - 4800 = 5200$.\nSuy ra $AB = \\sqrt{5200} = 20\\sqrt{13} \\approx 72.11\\text{ km}$."
+          },
+          {
+            text: "Diện tích vùng biển tam giác $OAB$ được bao quát bởi hai tàu sau 2 giờ bằng $1200\\sqrt{3}\\text{ km}^2$.",
+            answer: true,
+            explain: "$S = \\frac{1}{2} \\cdot OA \\cdot OB \\cdot \\sin 60^\\circ = \\frac{1}{2} \\cdot 60 \\cdot 80 \\cdot \\frac{\\sqrt{3}}{2} = 1200\\sqrt{3}\\text{ km}^2$."
+          },
+          {
+            text: "Một máy bay tuần tra có thiết bị định vị phát hiện sóng trong bán kính tối đa $70\\text{ km}$ đặt tại tàu $A$ vẫn có thể quét tới vị trí tàu $B$ sau 2 giờ.",
+            answer: false,
+            explain: "Khoảng cách thực tế giữa hai tàu sau 2 giờ là $AB \\approx 72.11\\text{ km} > 70\\text{ km}$. Do đó tàu $B$ đã nằm ngoài tầm quét $70\\text{ km}$ của thiết bị định vị trên tàu $A$."
           }
         ]
       }
@@ -444,21 +496,33 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
     essay: [
       {
         id: "b6-es1",
-        q: "Cho tam giác $ABC$ có $a = 6, \\widehat{A} = 30^\\circ$. Tính bán kính đường tròn ngoại tiếp $R$ của tam giác.",
-        answer: "6",
-        explain: "Theo định lí Sin: $\\frac{a}{\\sin A} = 2R \\implies 2R = \\frac{6}{\\sin 30^\\circ} = \\frac{6}{0.5} = 12 \\implies R = 6$."
+        q: "Cho tam giác $ABC$ có ba cạnh $a = 4, b = 5, c = 6$. Tính côsin của góc lớn nhất trong tam giác $ABC$. (Kết quả viết dưới dạng phân số tối giản dạng a/b)",
+        answer: "1/8",
+        explain: "Góc lớn nhất trong tam giác là góc đối diện cạnh lớn nhất ($c = 6$, tức góc $\\widehat{C}$).\nÁp dụng hệ quả định lí Côsin:\n$\\cos C = \\frac{a^2 + b^2 - c^2}{2ab} = \\frac{4^2 + 5^2 - 6^2}{2 \\cdot 4 \\cdot 5} = \\frac{16 + 25 - 36}{40} = \\frac{5}{40} = \\frac{1}{8}$."
       },
       {
         id: "b6-es2",
-        q: "Một tam giác có độ dài ba cạnh lần lượt là $13, 14, 15$. Tính diện tích $S$ của tam giác này.",
-        answer: "84",
-        explain: "1. Nửa chu vi: $p = \\frac{13+14+15}{2} = 21$.\n2. Công thức Heron: $S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$."
+        q: "Một tam giác có độ dài ba cạnh lần lượt là $13, 14, 15$. Tính bán kính đường tròn nội tiếp $r$ của tam giác này.",
+        answer: "4",
+        explain: "1. Nửa chu vi: $p = \\frac{13+14+15}{2} = 21$.\n2. Công thức Heron: $S = \\sqrt{p(p-a)(p-b)(p-c)} = \\sqrt{21(21-13)(21-14)(21-15)} = \\sqrt{21 \\times 8 \\times 7 \\times 6} = \\sqrt{7056} = 84$.\n3. Bán kính đường tròn nội tiếp: $r = \\frac{S}{p} = \\frac{84}{21} = 4$."
       },
       {
         id: "b6-es3",
-        q: "Từ đài quan sát cao $30\\text{ m}$, người ta nhìn thấy hai chiếc thuyền $A$ và $B$ thẳng hàng với chân tháp quan sát. Góc hạ nhìn thuyền $A$ là $30^\\circ$, góc hạ nhìn thuyền $B$ là $45^\\circ$ ($B$ ở giữa tháp và $A$). Khoảng cách giữa hai chiếc thuyền (làm tròn đến hàng đơn vị mét) bằng bao nhiêu mét?",
-        answer: "22",
-        explain: "Gọi $H$ là chân đài quan sát ($h = 30\\text{ m}$). Tam giác vuông cho ta:\n• Khoảng cách từ tháp đến thuyền $A$: $HA = \\frac{h}{\\tan 30^\\circ} = 30\\sqrt{3} \\approx 51.96\\text{ m}$.\n• Khoảng cách từ tháp đến thuyền $B$: $HB = \\frac{h}{\\tan 45^\\circ} = 30\\text{ m}$.\n• Khoảng cách giữa hai thuyền là: $AB = HA - HB = 30(\\sqrt{3}-1) \\approx 30(1.732 - 1) = 21.96\\text{ m} \\approx 22\\text{ m}$."
+        q: "Cho tam giác $ABC$ có $b = 5, c = 8$ và $\\widehat{A} = 60^\\circ$. Tính độ dài cạnh $a$.",
+        answer: "7",
+        explain: "Áp dụng định lí Côsin:\n$a^2 = b^2 + c^2 - 2bc\\cos A = 5^2 + 8^2 - 2 \\cdot 5 \\cdot 8 \\cdot \\cos 60^\\circ = 25 + 64 - 80 \\cdot 0.5 = 89 - 40 = 49 \\implies a = 7$."
+      },
+      {
+        id: "b6-es4",
+        q: "Để đo chiều cao toà tháp $CD$, người ta cắm hai cọc tiêu tại $A$ và $B$ trên mặt đất cách nhau $30\\text{ m}$ thẳng hàng với chân tháp $D$ ($B$ ở giữa $A$ và $D$). Góc nâng nhìn đỉnh tháp từ $A$ là $30^\\circ$ và từ $B$ là $45^\\circ$. Tính chiều cao $h = CD$ của toà tháp (làm tròn đến hàng đơn vị mét).",
+        answer: "41",
+        explain: "1. Trong $\\triangle ABC$: góc ngắm $\\widehat{ACB} = 45^\\circ - 30^\\circ = 15^\\circ$.\n2. Định lí Sin: $BC = \\frac{AB \\cdot \\sin 30^\\circ}{\\sin 15^\\circ} = \\frac{30 \\cdot 0.5}{\\sin 15^\\circ} \\approx 57.96\\text{ m}$.\n3. Chiều cao $CD = BC \\cdot \\sin 45^\\circ \\approx 57.96 \\cdot \\frac{\\sqrt{2}}{2} \\approx 40.98\\text{ m} \\approx 41\\text{ m}$."
+      },
+      {
+        id: "b6-es5",
+        q: "Hai tàu thuỷ cùng xuất phát từ bến cảng $O$ lúc 8 giờ sáng, chạy thẳng theo hai hướng tạo với nhau một góc $60^\\circ$. Tàu 1 chạy với vận tốc $20\\text{ km/h}$, tàu 2 chạy với vận tốc $30\\text{ km/h}$. Hỏi sau 2 giờ, khoảng cách giữa hai tàu là bao nhiêu km? (Làm tròn đến chữ số thập phân thứ nhất, viết dạng thập phân dấu chấm như 52.9)",
+        answer: "52.9",
+        explain: "Sau 2 giờ: $OA = 20 \\times 2 = 40\\text{ km}$, $OB = 30 \\times 2 = 60\\text{ km}$.\nÁp dụng định lí Côsin trong $\\triangle OAB$:\n$AB = \\sqrt{OA^2 + OB^2 - 2 \\cdot OA \\cdot OB \\cdot \\cos 60^\\circ} = \\sqrt{40^2 + 60^2 - 2(40)(60)(0.5)} = \\sqrt{1600 + 3600 - 2400} = \\sqrt{2800} = 20\\sqrt{7} \\approx 52.9\\text{ km}$."
       }
     ]
   },

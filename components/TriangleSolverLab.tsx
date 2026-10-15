@@ -242,7 +242,7 @@ export default function TriangleSolverLab() {
               Phòng Thí Nghiệm Giải Tam Giác & Hệ Thức Lượng
             </h4>
             <p className="text-xs text-star-soft">
-              Mô phỏng hình học trực quan thời gian thực: tính toán tức thì 3 cạnh, 3 góc, diện tích $S$, bán kính $R, r$ và đường cao
+              <MathText content="Mô phỏng hình học trực quan thời gian thực: tính toán tức thì 3 cạnh, 3 góc, diện tích $S$, bán kính $R, r$ và đường cao" />
             </p>
           </div>
         </div>
@@ -285,7 +285,7 @@ export default function TriangleSolverLab() {
                   : "text-star-soft hover:text-star"
               }`}
             >
-              C-G-C (2 cạnh & góc xen giữa)
+              C-G-C (2 cạnh & góc)
             </button>
             <button
               type="button"
@@ -296,7 +296,7 @@ export default function TriangleSolverLab() {
                   : "text-star-soft hover:text-star"
               }`}
             >
-              C-C-C (Biết 3 cạnh $a, b, c$)
+              C-C-C (Biết 3 cạnh)
             </button>
           </div>
 
@@ -304,8 +304,10 @@ export default function TriangleSolverLab() {
           {mode === "SAS" ? (
             <div className="space-y-4 rounded-2xl border border-void-border/80 bg-void/40 p-4">
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Cạnh $b$ ($AC$):</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Cạnh $b$ ($AC$):" />
+                  </span>
                   <span className="font-bold text-cyan-glow">{bVal}</span>
                 </div>
                 <input
@@ -320,8 +322,10 @@ export default function TriangleSolverLab() {
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Cạnh $c$ ($AB$):</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Cạnh $c$ ($AB$):" />
+                  </span>
                   <span className="font-bold text-cyan-glow">{cVal}</span>
                 </div>
                 <input
@@ -336,8 +340,10 @@ export default function TriangleSolverLab() {
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Góc $\widehat&#123;A&#125;$:</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Góc $\widehat{A}$:" />
+                  </span>
                   <span className="font-bold text-amber-glow">{angleAVal}°</span>
                 </div>
                 <input
@@ -354,8 +360,10 @@ export default function TriangleSolverLab() {
           ) : (
             <div className="space-y-4 rounded-2xl border border-void-border/80 bg-void/40 p-4">
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Cạnh $a$ ($BC$):</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Cạnh $a$ ($BC$):" />
+                  </span>
                   <span className="font-bold text-cyan-glow">{aSideVal}</span>
                 </div>
                 <input
@@ -370,8 +378,10 @@ export default function TriangleSolverLab() {
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Cạnh $b$ ($AC$):</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Cạnh $b$ ($AC$):" />
+                  </span>
                   <span className="font-bold text-cyan-glow">{bSideVal}</span>
                 </div>
                 <input
@@ -386,8 +396,10 @@ export default function TriangleSolverLab() {
               </div>
 
               <div>
-                <div className="flex justify-between text-xs font-mono mb-1">
-                  <span className="text-star-soft">Cạnh $c$ ($AB$):</span>
+                <div className="flex justify-between items-center text-xs font-mono mb-1">
+                  <span className="text-star-soft">
+                    <MathText content="Cạnh $c$ ($AB$):" />
+                  </span>
                   <span className="font-bold text-cyan-glow">{cSideVal}</span>
                 </div>
                 <input
@@ -408,35 +420,38 @@ export default function TriangleSolverLab() {
             <button
               type="button"
               onClick={() => setShowCircumcircle(!showCircumcircle)}
-              className={`px-3 py-1.5 rounded-xl border transition ${
+              className={`px-3 py-1.5 rounded-xl border transition flex items-center gap-1.5 ${
                 showCircumcircle
                   ? "border-emerald/50 bg-emerald/15 text-emerald-glow"
                   : "border-void-border bg-void/50 text-star-mute"
               }`}
             >
-              🔵 Đường tròn ngoại tiếp $(O; R)$
+              <span>🔵</span>
+              <MathText content="Đường tròn ngoại tiếp $(O; R)$" />
             </button>
             <button
               type="button"
               onClick={() => setShowIncircle(!showIncircle)}
-              className={`px-3 py-1.5 rounded-xl border transition ${
+              className={`px-3 py-1.5 rounded-xl border transition flex items-center gap-1.5 ${
                 showIncircle
                   ? "border-amber/50 bg-amber/15 text-amber-glow"
                   : "border-void-border bg-void/50 text-star-mute"
               }`}
             >
-              🟠 Đường tròn nội tiếp $(I; r)$
+              <span>🟠</span>
+              <MathText content="Đường tròn nội tiếp $(I; r)$" />
             </button>
             <button
               type="button"
               onClick={() => setShowAltitude(!showAltitude)}
-              className={`px-3 py-1.5 rounded-xl border transition ${
+              className={`px-3 py-1.5 rounded-xl border transition flex items-center gap-1.5 ${
                 showAltitude
                   ? "border-rose/50 bg-rose/15 text-rose-glow"
                   : "border-void-border bg-void/50 text-star-mute"
               }`}
             >
-              📏 Đường cao $h_a$
+              <span>📏</span>
+              <MathText content="Đường cao $h_a$" />
             </button>
           </div>
         </div>
@@ -649,7 +664,7 @@ export default function TriangleSolverLab() {
               </svg>
 
               <div className="text-[11px] font-mono text-star-mute mt-1 text-center">
-                Màu xanh dương: $\triangle ABC$ | Xanh lục nét đứt: Đường tròn $(O; R)$ | Cam nét đứt: Đường tròn $(I; r)$
+                <MathText content="Màu xanh dương: $\triangle ABC$ | Xanh lục nét đứt: Đường tròn $(O; R)$ | Cam nét đứt: Đường tròn $(I; r)$" />
               </div>
             </div>
           ) : null}
@@ -660,37 +675,51 @@ export default function TriangleSolverLab() {
       {result.isValid && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 border-t border-void-border/80 pt-4">
           <div className="p-3 rounded-2xl bg-void/60 border border-void-border space-y-1">
-            <span className="text-[11px] font-mono text-star-mute block">Diện tích $S$</span>
-            <span className="text-base sm:text-lg font-mono font-bold text-cyan-glow">
+            <span className="text-[11px] font-mono text-star-mute block">
+              <MathText content="Diện tích $S$" />
+            </span>
+            <span className="text-base sm:text-lg font-mono font-bold text-cyan-glow block">
               {result.S.toFixed(2)}
             </span>
             <span className="text-[10px] text-star-mute block">
-              $S = \frac&#123;1&#125;&#123;2&#125;bc\sin A = \sqrt&#123;p(p-a)...&#125;$
+              <MathText content="$S = \frac{1}{2}bc\sin A = \sqrt{p(p-a)...}$" />
             </span>
           </div>
 
           <div className="p-3 rounded-2xl bg-void/60 border border-void-border space-y-1">
-            <span className="text-[11px] font-mono text-star-mute block">Bán kính ngoại tiếp $R$</span>
-            <span className="text-base sm:text-lg font-mono font-bold text-emerald-glow">
+            <span className="text-[11px] font-mono text-star-mute block">
+              <MathText content="Bán kính ngoại tiếp $R$" />
+            </span>
+            <span className="text-base sm:text-lg font-mono font-bold text-emerald-glow block">
               {result.R.toFixed(2)}
             </span>
-            <span className="text-[10px] text-star-mute block">$R = \frac&#123;a&#125;&#123;2\sin A&#125; = \frac&#123;abc&#125;&#123;4S&#125;$</span>
+            <span className="text-[10px] text-star-mute block">
+              <MathText content="$R = \frac{a}{2\sin A} = \frac{abc}{4S}$" />
+            </span>
           </div>
 
           <div className="p-3 rounded-2xl bg-void/60 border border-void-border space-y-1">
-            <span className="text-[11px] font-mono text-star-mute block">Bán kính nội tiếp $r$</span>
-            <span className="text-base sm:text-lg font-mono font-bold text-amber-glow">
+            <span className="text-[11px] font-mono text-star-mute block">
+              <MathText content="Bán kính nội tiếp $r$" />
+            </span>
+            <span className="text-base sm:text-lg font-mono font-bold text-amber-glow block">
               {result.r.toFixed(2)}
             </span>
-            <span className="text-[10px] text-star-mute block">$r = \frac&#123;S&#125;&#123;p&#125; \quad (p = {result.p.toFixed(1)})$</span>
+            <span className="text-[10px] text-star-mute block">
+              <MathText content={`$r = \\frac{S}{p} \\quad (p = ${result.p.toFixed(1)})$`} />
+            </span>
           </div>
 
           <div className="p-3 rounded-2xl bg-void/60 border border-void-border space-y-1">
-            <span className="text-[11px] font-mono text-star-mute block">Đường cao $h_a$ & Trung tuyến $m_a$</span>
+            <span className="text-[11px] font-mono text-star-mute block">
+              <MathText content="Đường cao $h_a$ & Trung tuyến $m_a$" />
+            </span>
             <div className="text-xs font-mono font-bold text-rose-glow">
-              $h_a = {result.ha.toFixed(2)}$ | $m_a = {result.ma.toFixed(2)}$
+              <MathText content={`$h_a = ${result.ha.toFixed(2)}$ | $m_a = ${result.ma.toFixed(2)}$`} />
             </div>
-            <span className="text-[10px] text-star-mute block">$h_a = \frac&#123;2S&#125;&#123;a&#125;$</span>
+            <span className="text-[10px] text-star-mute block">
+              <MathText content="$h_a = \frac{2S}{a}$" />
+            </span>
           </div>
         </div>
       )}
@@ -710,7 +739,9 @@ export default function TriangleSolverLab() {
               />
             </div>
             <div className="p-2.5 rounded-xl bg-void-card/60 border border-void-border">
-              <span className="text-emerald-glow font-bold block mb-1">2. Định lí Sin & Bán kính $R$:</span>
+              <div className="text-emerald-glow font-bold mb-1">
+                <MathText content="2. Định lí Sin & Bán kính $R$:" />
+              </div>
               <MathText
                 content={`$$2R = \\frac{a}{\\sin A} = \\frac{${result.a.toFixed(2)}}{\\sin(${result.angleA.toFixed(0)}^\\circ)} \\approx ${(2 * result.R).toFixed(2)} \\implies R \\approx ${result.R.toFixed(2)}$$`}
               />

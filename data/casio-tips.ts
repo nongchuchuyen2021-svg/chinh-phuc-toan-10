@@ -292,4 +292,27 @@ export const CASIO_TIPS: CasioTip[] = [
     pitfall: "Chú ý dấu của hệ số $c$. Ở đây $-c$ thành $-(-12) = +12$. Học sinh rất hay quên đổi dấu dẫn đến tính sai $R$.",
     lessonIds: ["bai-21"],
   },
+  {
+    id: "casio-13",
+    category: "Hệ thức lượng trong tam giác",
+    title: "Giải Tam Giác, Tính Heron 1 Dòng & Tìm Góc Chuẩn Độ-Phút-Giây",
+    model: "fx-580VNX & fx-880BTG",
+    icon: "📐",
+    shortcut: "[SHIFT] [MENU] [2] [1] (Độ) | [STO] | [SHIFT] [cos] | [° ' \"]",
+    description:
+      "Kĩ thuật lưu biến độ dài 3 cạnh, tính diện tích theo công thức Heron 1 dòng không sai số làm tròn và bấm tìm góc chuẩn xác từng độ, phút, giây.",
+    steps: [
+      { key: "[SHIFT] [MENU] [2] [1]", note: "Bắt buộc cài đặt đơn vị góc Degree (màn hình hiện chữ D)" },
+      { key: "Gán biến STO A, B, C", note: "Nhập độ dài 3 cạnh và bấm [STO] [A], [STO] [B], [STO] [C]" },
+      { key: "Tính Heron 1 dòng", note: "Gán $(A+B+C)/2 \\to X$, bấm $\\sqrt{X(X-A)(X-B)(X-C)}$ ra diện tích S" },
+      { key: "[SHIFT] [cos] và [° ' \"]", note: "Bấm $\\cos A = (B^2+C^2-A^2)/(2BC)$, bấm [SHIFT] [cos] [Ans] [=] rồi bấm phím [° ' \"] chuyển sang độ-phút-giây" },
+    ],
+    example: {
+      problem: "Cho tam giác có ba cạnh $a = 7, b = 8, c = 11$. Tính góc $\\widehat{A}$ và diện tích $S$.",
+      action: "Lưu 7 vào A, 8 vào B, 11 vào C. Bấm $(B^2+C^2-A^2)/(2BC) = 17/22$. Bấm [SHIFT] [cos] [Ans] [=] rồi bấm [° ' \"].",
+      result: "Góc $\\widehat{A} \\approx 39^\\circ 34' 14''$. Bấm Heron ra diện tích $S = 4\\sqrt{30} \\approx 21.91$.",
+    },
+    pitfall: "Tuyệt đối không để màn hình ở chữ R (Radian) khi tính các bài toán tam giác đo bằng độ. Luôn ưu tiên dùng định lí Côsin để tính góc nhằm tránh bẫy 2 nghiệm góc tù của hàm Sin.",
+    lessonIds: ["bai-06"],
+  },
 ];

@@ -28,7 +28,7 @@ export const CURRICULUM: Topic[] = [
     emoji: "🔺",
     lessons: [
       { id: "bai-05", title: "Bài 5. Giá trị lượng giác của một góc từ 0° đến 180°", desc: "Định nghĩa sin, cos, tan, cot trên nửa đường tròn đơn vị và quan hệ lượng giác phụ, bù.", available: true },
-      { id: "bai-06", title: "Bài 6. Hệ thức lượng trong tam giác", desc: "Định lí côsin, định lí sin, các công thức tính diện tích tam giác và giải tam giác.", available: true },
+      { id: "bai-06", title: "Bài 6. Hệ thức lượng trong tam giác", desc: "Định lí côsin, định lí sin, công thức trung tuyến, ngũ đại công thức diện tích, Heron và bài toán trắc địa thực tế.", available: true },
     ],
   },
   {
