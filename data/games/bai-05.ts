@@ -78,6 +78,8 @@ const matchGame: MatchGame = {
   id: "ghep-doi-luong-giac",
   title: "Ghép đôi Lượng giác & Góc Bù",
   emoji: "🔗",
+  leftLabel: "📌 Biểu thức lượng giác",
+  rightLabel: "🔄 Giá trị tương ứng",
   instructions:
     "Ghép nối biểu thức lượng giác hoặc góc bù với kết quả chính xác tương ứng.",
   pairs: [
