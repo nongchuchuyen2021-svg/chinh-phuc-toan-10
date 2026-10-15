@@ -1,0 +1,2177 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bài 5: Giá trị lượng giác của một góc từ 0° đến 180° — Bài giảng điện tử Toán 10 · THPT Na Rì</title>
+  <!-- KaTeX for beautiful math formulas -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js" onload="if(window.renderMathInElement) renderMathInElement(document.body, {delimiters: [{left: '$$', right: '$$', display: true}, {left: '$', right: '$', display: false}]});"></script>
+  <style>
+    :root {
+      --bg: #060A14;
+      --bg-card: rgba(11, 18, 38, 0.94);
+      --border-card: rgba(0, 242, 254, 0.2);
+      --ink: #FFFFFF;
+      --ink-soft: #94A3B8;
+      --cyan: #00F2FE;
+      --cyan-light: #4FACFE;
+      --cyan-glow: rgba(0, 242, 254, 0.38);
+      --purple: #8B5CF6;
+      --purple-light: #A78BFA;
+      --purple-glow: rgba(139, 92, 246, 0.38);
+      --gold: #F59E0B;
+      --gold-light: #FBBF24;
+      --gold-glow: rgba(245, 158, 11, 0.38);
+      --emerald: #10B981;
+      --emerald-light: #34D399;
+      --emerald-glow: rgba(16, 185, 129, 0.38);
+      --coral: #F43F5E;
+      --coral-light: #FB7185;
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-sm: 10px;
+      --font-main: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: 'Consolas', 'Fira Code', 'Courier New', monospace;
+      --transition-slide: transform 0.55s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.45s ease;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background-color: var(--bg);
+      color: var(--ink);
+      font-family: var(--font-main);
+      overflow: hidden;
+      height: 100vh;
+      width: 100vw;
+      user-select: none;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Ambient cyber-math glow */
+    .ambient-glow {
+      position: fixed;
+      width: 750px;
+      height: 750px;
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 0;
+      filter: blur(140px);
+      opacity: 0.18;
+    }
+    .glow-1 { top: -220px; left: -160px; background: radial-gradient(circle, var(--cyan), transparent 70%); }
+    .glow-2 { bottom: -220px; right: -160px; background: radial-gradient(circle, var(--purple), transparent 70%); }
+    .glow-3 { top: 35%; left: 45%; background: radial-gradient(circle, var(--gold), transparent 75%); opacity: 0.08; }
+
+    /* Lưới toạ độ toán học Cyberpunk */
+    .cyber-grid {
+      position: fixed; inset: 0;
+      background-image: 
+        linear-gradient(rgba(0, 242, 254, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 242, 254, 0.04) 1px, transparent 1px);
+      background-size: 38px 38px;
+      pointer-events: none; z-index: 1;
+    }
+
+    /* Ký hiệu Logic & Lượng giác trôi nổi */
+    .floating-symbols {
+      position: fixed; inset: 0;
+      pointer-events: none; z-index: 1;
+      overflow: hidden;
+    }
+    .float-tag {
+      position: absolute;
+      font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+      color: rgba(79, 172, 254, 0.35);
+      border: 1px solid rgba(0, 242, 254, 0.25);
+      padding: 5px 14px; border-radius: 999px;
+      background: rgba(11, 18, 38, 0.55);
+      backdrop-filter: blur(8px);
+      animation: floatUp 25s linear infinite;
+    }
+    @keyframes floatUp {
+      0%   { transform: translateY(105vh) rotate(0deg); opacity: 0; }
+      10%  { opacity: 0.65; }
+      90%  { opacity: 0.65; }
+      100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
+    }
+
+    /* Container Trình Chiếu */
+    .deck-container {
+      position: relative; width: 100vw; height: 100vh;
+      display: flex; justify-content: center; align-items: center; z-index: 2;
+    }
+
+    /* Khung Slide Chuẩn 88vh */
+    .slide {
+      position: absolute;
+      width: 95vw; max-width: 1360px;
+      height: 88vh; max-height: 860px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: var(--radius-lg);
+      backdrop-filter: blur(28px);
+      -webkit-backdrop-filter: blur(28px);
+      box-shadow: 0 35px 80px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.12);
+      padding: 22px 36px 26px 36px;
+      display: flex; flex-direction: column;
+      opacity: 0; pointer-events: none;
+      transform: translateX(70px) scale(0.96);
+      transition: var(--transition-slide);
+      overflow-y: auto;
+    }
+    .slide::-webkit-scrollbar { width: 6px; }
+    .slide::-webkit-scrollbar-thumb { background: rgba(0, 242, 254, 0.3); border-radius: 4px; }
+    .slide.active { opacity: 1; pointer-events: auto; transform: translateX(0) scale(1); z-index: 3; }
+    .slide.prev   { opacity: 0; pointer-events: none; transform: translateX(-70px) scale(0.96); }
+
+    /* Header Mỗi Slide */
+    .slide-header {
+      display: flex; justify-content: space-between; align-items: flex-start;
+      margin-bottom: 12px; border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      padding-bottom: 8px; flex-shrink: 0;
+    }
+    .slide-badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 4px 13px; border-radius: 20px;
+      font-size: 11.5px; font-weight: 700; letter-spacing: 0.5px; text-transform: uppercase;
+      background: rgba(0, 242, 254, 0.18); color: var(--cyan-light);
+      border: 1px solid rgba(0, 242, 254, 0.35); margin-bottom: 4px;
+    }
+    .slide-badge.purple  { background: rgba(139, 92, 246, 0.18);  color: var(--purple-light); border-color: rgba(139, 92, 246, 0.35); }
+    .slide-badge.gold    { background: rgba(245, 158, 11, 0.18);  color: var(--gold-light);   border-color: rgba(245, 158, 11, 0.35); }
+    .slide-badge.emerald { background: rgba(16, 185, 129, 0.18);  color: var(--emerald-light);border-color: rgba(16, 185, 129, 0.35); }
+    .slide-badge.coral   { background: rgba(244, 63, 94, 0.18);   color: var(--coral-light);  border-color: rgba(244, 63, 94, 0.35); }
+
+    .slide-title {
+      font-size: 25px; font-weight: 800; letter-spacing: -0.4px; line-height: 1.25;
+      background: linear-gradient(135deg, #FFFFFF 30%, #4FACFE 70%, #A78BFA 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .slide-subtitle {
+      font-size: 13.5px; color: var(--ink-soft); margin-top: 2px;
+    }
+
+    /* Thanh Progressive Reveal */
+    .reveal-toolbar {
+      display: flex; align-items: center; gap: 8px; flex-shrink: 0;
+    }
+    .reveal-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      color: var(--ink); border-radius: 8px;
+      padding: 5px 12px; font-size: 12px; font-weight: 600; cursor: pointer;
+      display: inline-flex; align-items: center; gap: 6px;
+      transition: all 0.2s ease;
+    }
+    .reveal-btn:hover {
+      background: rgba(0, 242, 254, 0.22);
+      border-color: var(--cyan);
+      transform: translateY(-1px);
+    }
+    .reveal-btn.primary {
+      background: linear-gradient(135deg, rgba(0, 242, 254, 0.35), rgba(139, 92, 246, 0.35));
+      border-color: rgba(0, 242, 254, 0.5);
+      color: #FFFFFF;
+    }
+    .reveal-status {
+      font-size: 11.5px; color: var(--ink-soft); font-family: var(--font-mono);
+      padding: 4px 8px; background: rgba(0, 0, 0, 0.25); border-radius: 6px;
+    }
+
+    /* Thân Slide */
+    .slide-body {
+      flex: 1; display: flex; flex-direction: column; justify-content: center;
+      gap: 14px; position: relative; min-height: 0;
+    }
+
+    /* Khối Hiện Từng Ý */
+    .reveal-item {
+      opacity: 0.12; filter: blur(1.5px);
+      transform: translateY(10px);
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: none;
+    }
+    .reveal-item.revealed {
+      opacity: 1; filter: blur(0);
+      transform: translateY(0);
+      pointer-events: auto;
+    }
+
+    /* Thẻ Giao Diện & Glassmorphism */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      transition: all 0.25s ease;
+      position: relative; overflow: hidden;
+    }
+    .glass-card:hover {
+      border-color: rgba(0, 242, 254, 0.4);
+      background: rgba(255, 255, 255, 0.06);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    }
+    .glass-card.highlight {
+      border-color: rgba(0, 242, 254, 0.5);
+      background: linear-gradient(145deg, rgba(0, 242, 254, 0.12), rgba(139, 92, 246, 0.08));
+    }
+    .glass-card.purple-glow {
+      border-color: rgba(139, 92, 246, 0.45);
+      background: linear-gradient(145deg, rgba(139, 92, 246, 0.12), rgba(244, 63, 94, 0.08));
+    }
+    .glass-card.gold-glow {
+      border-color: rgba(245, 158, 11, 0.45);
+      background: linear-gradient(145deg, rgba(245, 158, 11, 0.12), rgba(244, 63, 94, 0.08));
+    }
+    .glass-card.emerald-glow {
+      border-color: rgba(16, 185, 129, 0.45);
+      background: linear-gradient(145deg, rgba(16, 185, 129, 0.12), rgba(0, 242, 254, 0.08));
+    }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; }
+    .grid-4 { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+
+    /* Hộp Công Thức Nổi Bật */
+    .formula-box {
+      background: rgba(0, 242, 254, 0.08);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-left: 4px solid var(--cyan);
+      border-radius: 8px;
+      padding: 10px 16px;
+      margin: 8px 0;
+      font-size: 15px;
+    }
+    .formula-box.purple {
+      background: rgba(139, 92, 246, 0.08);
+      border-color: rgba(139, 92, 246, 0.3);
+      border-left-color: var(--purple);
+    }
+    .formula-box.gold {
+      background: rgba(245, 158, 11, 0.08);
+      border-color: rgba(245, 158, 11, 0.3);
+      border-left-color: var(--gold);
+    }
+    .formula-box.emerald {
+      background: rgba(16, 185, 129, 0.08);
+      border-color: rgba(16, 185, 129, 0.3);
+      border-left-color: var(--emerald);
+    }
+
+    .kbd {
+      display: inline-block;
+      padding: 3px 8px;
+      font-family: var(--font-mono);
+      font-size: 11.5px;
+      font-weight: 800;
+      color: #FFFFFF;
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      border-bottom: 2px solid rgba(255, 255, 255, 0.4);
+      border-radius: 6px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      vertical-align: middle;
+      margin: 0 2px;
+    }
+
+    /* Thanh Điều Hướng Đáy */
+    .deck-nav {
+      position: fixed; bottom: 14px; left: 50%;
+      transform: translateX(-50%);
+      display: flex; align-items: center; gap: 12px;
+      padding: 8px 18px;
+      background: rgba(11, 18, 38, 0.88);
+      border: 1px solid rgba(0, 242, 254, 0.3);
+      border-radius: 999px;
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.65), 0 0 20px rgba(0, 242, 254, 0.2);
+      z-index: 100;
+    }
+    .nav-btn {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #FFFFFF; width: 36px; height: 36px;
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 16px; transition: all 0.2s ease;
+    }
+    .nav-btn:hover {
+      background: var(--cyan); color: #060914;
+      border-color: var(--cyan); transform: scale(1.1);
+      box-shadow: 0 0 15px var(--cyan-glow);
+    }
+    .nav-counter {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 700;
+      color: var(--cyan-light); min-width: 60px; text-align: center;
+    }
+    .seek-container {
+      width: 220px; height: 8px; background: rgba(255, 255, 255, 0.12);
+      border-radius: 4px; overflow: hidden; cursor: pointer; position: relative;
+    }
+    .seek-bar {
+      height: 100%; width: 6.66%;
+      background: linear-gradient(90deg, var(--cyan), var(--purple));
+      border-radius: 4px; transition: width 0.3s ease;
+    }
+
+    /* Modal Mục Lục (TOC) */
+    .toc-modal {
+      position: fixed; inset: 0; background: rgba(6, 9, 20, 0.85);
+      backdrop-filter: blur(24px); z-index: 200;
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; pointer-events: none; transition: all 0.3s ease;
+    }
+    .toc-modal.open { opacity: 1; pointer-events: auto; }
+    .toc-box {
+      width: 90vw; max-width: 960px; max-height: 82vh;
+      background: rgba(11, 18, 38, 0.95);
+      border: 1px solid rgba(0, 242, 254, 0.4);
+      border-radius: var(--radius-lg); padding: 28px 34px;
+      box-shadow: 0 30px 70px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 242, 254, 0.25);
+      display: flex; flex-direction: column; gap: 18px;
+    }
+    .toc-header {
+      display: flex; justify-content: space-between; align-items: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1); padding-bottom: 12px;
+    }
+    .toc-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+      overflow-y: auto; max-height: 60vh; padding-right: 6px;
+    }
+    .toc-item {
+      padding: 12px 14px; background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08); border-radius: var(--radius-sm);
+      cursor: pointer; transition: all 0.2s ease; display: flex; align-items: center; gap: 10px;
+    }
+    .toc-item:hover, .toc-item.current {
+      background: rgba(0, 242, 254, 0.18);
+      border-color: var(--cyan); transform: translateX(3px);
+    }
+    .toc-item-num {
+      font-family: var(--font-mono); font-size: 13px; font-weight: 800;
+      color: var(--cyan); min-width: 28px;
+    }
+    .toc-item-title { font-size: 13px; font-weight: 600; line-height: 1.3; }
+
+    /* Canvas Pháo Hoa */
+    #confettiCanvas {
+      position: fixed; inset: 0; pointer-events: none; z-index: 999;
+    }
+
+    /* Interactive Quiz Cards */
+    .quiz-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 12px; padding: 12px 16px;
+      cursor: pointer; transition: all 0.2s ease;
+      display: flex; align-items: center; gap: 12px;
+    }
+    .quiz-card:hover {
+      background: rgba(0, 242, 254, 0.1);
+      border-color: var(--cyan);
+    }
+    .quiz-card.correct {
+      background: rgba(16, 185, 129, 0.22) !important;
+      border-color: var(--emerald) !important;
+      color: var(--emerald-light) !important;
+    }
+    .quiz-card.wrong {
+      background: rgba(244, 63, 94, 0.22) !important;
+      border-color: var(--coral) !important;
+      color: var(--coral-light) !important;
+    }
+    .quiz-opt-letter {
+      width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(255, 255, 255, 0.2);
+      display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 13px; flex-shrink: 0;
+    }
+
+    /* Thanh trượt góc tương tác */
+    .angle-slider {
+      width: 100%;
+      height: 8px;
+      border-radius: 5px;
+      background: rgba(255, 255, 255, 0.15);
+      outline: none;
+      -webkit-appearance: none;
+      cursor: pointer;
+    }
+    .angle-slider::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--cyan);
+      box-shadow: 0 0 12px var(--cyan-glow);
+      cursor: pointer;
+      border: 2px solid #FFFFFF;
+      transition: transform 0.15s ease;
+    }
+    .angle-slider::-webkit-slider-thumb:hover {
+      transform: scale(1.2);
+    }
+
+    /* Bảng tra cứu tương tác */
+    .trig-table {
+      width: 100%; border-collapse: collapse; font-size: 12.5px;
+    }
+    .trig-table th {
+      background: rgba(0, 242, 254, 0.15); color: var(--cyan-light);
+      padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.12); font-weight: 700;
+    }
+    .trig-table td {
+      padding: 8px 10px; border: 1px solid rgba(255, 255, 255, 0.08); text-align: center;
+      transition: background 0.2s ease;
+    }
+    .trig-table tr:hover td {
+      background: rgba(0, 242, 254, 0.1);
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+  <div class="cyber-grid"></div>
+
+  <div class="floating-symbols">
+    <div class="float-tag" style="left: 8%; animation-delay: 0s;">sin²α + cos²α = 1</div>
+    <div class="float-tag" style="left: 28%; animation-delay: 5s;">sin(180° - α) = sin α</div>
+    <div class="float-tag" style="left: 50%; animation-delay: 10s;">cos(180° - α) = -cos α</div>
+    <div class="float-tag" style="left: 72%; animation-delay: 2s;">M(cos α; sin α)</div>
+    <div class="float-tag" style="left: 88%; animation-delay: 8s;">R = 1 (Nửa đường tròn)</div>
+  </div>
+
+  <canvas id="confettiCanvas"></canvas>
+
+  <div class="deck-container">
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 1: TRANG BÌA BÀI HỌC (HERO COVER)
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide active" id="slide-1">
+      <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; max-width: 980px; margin: 0 auto;">
+        <div style="display: flex; gap: 8px; align-items: center; margin-bottom: 12px;">
+          <span class="slide-badge">Toán 10 · KNTT</span>
+          <span class="slide-badge purple">Chương III: Hệ thức lượng trong tam giác</span>
+          <span class="slide-badge gold">THPT Na Rì</span>
+        </div>
+
+        <h1 style="font-size: 40px; font-weight: 900; line-height: 1.25; margin-bottom: 16px; background: linear-gradient(135deg, #FFFFFF 15%, #00F2FE 55%, #FBBF24 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+          Bài 5: Giá Trị Lượng Giác Của Một Góc<br>Từ 0° Đến 180°
+        </h1>
+
+        <p style="font-size: 16.5px; color: var(--ink-soft); line-height: 1.7; margin-bottom: 26px; max-width: 820px;">
+          Mở rộng cánh cửa lượng giác từ góc nhọn trong tam giác vuông cấp THCS lên toàn bộ dải góc từ <strong>0° đến 180°</strong>. 
+          Khám phá kỳ quan <strong>Nửa đường tròn đơn vị</strong>, định nghĩa chuẩn mực <strong>$\sin\alpha = y_0, \cos\alpha = x_0$</strong>, 
+          quy luật <strong>"Sin bù, Cos đối"</strong> và làm chủ bộ 4 hằng đẳng thức lượng giác cơ bản.
+        </p>
+
+        <div class="grid-3" style="width: 100%; margin-bottom: 28px;">
+          <div class="glass-card highlight" style="text-align: left;">
+            <div style="font-size: 24px; margin-bottom: 6px;">⭕</div>
+            <div style="font-size: 14px; font-weight: 700; color: #FFF;">Nửa Đường Tròn Đơn Vị</div>
+            <div style="font-size: 12px; color: var(--ink-soft); margin-top: 3px;">Bán kính $R = 1$ trên nửa mặt phẳng $y \ge 0$, định vị điểm $M(x_0; y_0)$</div>
+          </div>
+          <div class="glass-card purple-glow" style="text-align: left;">
+            <div style="font-size: 24px; margin-bottom: 6px;">🧭</div>
+            <div style="font-size: 14px; font-weight: 700; color: #FFF;">Sin Bù &amp; Cos Đối</div>
+            <div style="font-size: 12px; color: var(--ink-soft); margin-top: 3px;">$\sin(180^\circ - \alpha) = \sin\alpha$, $\cos(180^\circ - \alpha) = -\cos\alpha$</div>
+          </div>
+          <div class="glass-card gold-glow" style="text-align: left;">
+            <div style="font-size: 24px; margin-bottom: 6px;">⚡</div>
+            <div style="font-size: 14px; font-weight: 700; color: #FFF;">Bộ 4 Hằng Đẳng Thức</div>
+            <div style="font-size: 12px; color: var(--ink-soft); margin-top: 3px;">$\sin^2\alpha + \cos^2\alpha = 1$, liên hệ $\tan, \cot$ và tính nhanh 30s</div>
+          </div>
+        </div>
+
+        <div style="display: flex; gap: 14px;">
+          <button class="reveal-btn primary" onclick="nextSlide()" style="padding: 11px 26px; font-size: 14px;">
+            Khám phá bài học ngay ▶
+          </button>
+          <button class="reveal-btn" onclick="goToSlide(7)" style="padding: 11px 20px; font-size: 13.5px;">
+            🎮 Lab: Nửa đường tròn động
+          </button>
+          <button class="reveal-btn" onclick="goToSlide(8)" style="padding: 11px 20px; font-size: 13.5px;">
+            🪞 Lab: Soi gương góc bù
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 2: BẢN ĐỒ 4 NĂNG LỰC CỐT LÕI (GDPT 2018)
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-2">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge purple">Mục tiêu bài học</span>
+          <h2 class="slide-title">Bản Đồ 4 Năng Lực Cốt Lõi Cần Đạt (GDPT 2018)</h2>
+          <div class="slide-subtitle">Trang bị tư duy toạ độ lượng giác vững chắc làm nền móng cho hình học tam giác và vật lý 10</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-2">0/4 ý</span>
+          <button class="reveal-btn" onclick="revealNext(2)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(2)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="font-size: 26px; background: rgba(0, 242, 254, 0.2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+              <div>
+                <h3 style="font-size: 15.5px; font-weight: 800; color: var(--cyan-light);">Nắm Vững Nửa Đường Tròn Đơn Vị</h3>
+                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 5px;">
+                  Hiểu rõ mô hình nửa đường tròn tâm $O(0;0)$, bán kính $R = 1$ nằm phía trên trục hoành. 
+                  Biết cách xác định điểm $M(x_0; y_0)$ ứng với góc $\alpha = \widehat{xOM}$ từ $0^\circ$ đến $180^\circ$.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="font-size: 26px; background: rgba(139, 92, 246, 0.2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+              <div>
+                <h3 style="font-size: 15.5px; font-weight: 800; color: var(--purple-light);">Định Nghĩa Toạ Độ Của $\sin, \cos, \tan, \cot$</h3>
+                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 5px;">
+                  Khắc sâu: $\sin\alpha = y_0$ (tung độ), $\cos\alpha = x_0$ (hoành độ). 
+                  Nhận biết tính chất sống còn: Với mọi $\alpha \in [0^\circ; 180^\circ]$ thì $\sin\alpha \ge 0$, còn $\cos\alpha$ có thể âm khi góc tù.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card gold-glow reveal-item" onclick="revealThis(this)">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="font-size: 26px; background: rgba(245, 158, 11, 0.2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+              <div>
+                <h3 style="font-size: 15.5px; font-weight: 800; color: var(--gold-light);">Làm Chủ Quan Hệ Góc Bù &amp; Phụ Nhau</h3>
+                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 5px;">
+                  Áp dụng nhuần nhuyễn tính chất đối xứng: $\sin(180^\circ - \alpha) = \sin\alpha$, $\cos(180^\circ - \alpha) = -\cos\alpha$. 
+                  Rút gọn biểu thức lượng giác phức tạp về các góc nhọn đặc biệt.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <div style="display: flex; gap: 12px; align-items: flex-start;">
+              <div style="font-size: 26px; background: rgba(16, 185, 129, 0.2); width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+              <div>
+                <h3 style="font-size: 15.5px; font-weight: 800; color: var(--emerald-light);">Vận Dụng Hằng Đẳng Thức &amp; Bấm Máy Casio</h3>
+                <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.5; margin-top: 5px;">
+                  Thành thạo công thức $\sin^2\alpha + \cos^2\alpha = 1$ để tính các giá trị còn lại khi biết 1 giá trị lượng giác. 
+                  Sử dụng thành thạo máy tính Casio để đổi độ/rad và tính toán siêu tốc.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 3: NỬA ĐƯỜNG TRÒN ĐƠN VỊ LÀ GÌ?
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-3">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge">Mục 1: Cơ sở hình học</span>
+          <h2 class="slide-title">Nửa Đường Tròn Đơn Vị Là Gì?</h2>
+          <div class="slide-subtitle">Không gian hình học chuẩn mực làm bệ phóng cho định nghĩa lượng giác hiện đại</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-3">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(3)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(3)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 8px;">
+              ⭕ Định Nghĩa Chuẩn
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Trong mặt phẳng toạ độ $Oxy$, <strong>nửa đường tròn đơn vị</strong> là nửa đường tròn:
+            </p>
+            <div class="formula-box" style="font-size: 13px;">
+              - Tâm là gốc toạ độ $O(0; 0)$<br>
+              - Bán kính $R = 1$<br>
+              - Nằm ở nửa mặt phẳng phía trên trục hoành ($y \ge 0$)
+            </div>
+            <p style="font-size: 12.5px; color: var(--cyan-light);">
+              Đường tròn cắt $Ox$ tại hai điểm $A(1; 0)$ và $A'(-1; 0)$, cắt $Oy$ tại $B(0; 1)$.
+            </p>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              📐 Đặt Góc $\alpha = \widehat{xOM}$
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Với mỗi góc $\alpha$ thoả mãn $0^\circ \le \alpha \le 180^\circ$:
+            </p>
+            <div style="background: rgba(139,92,246,0.15); border-radius: 8px; padding: 10px; margin: 8px 0; font-size: 12.5px;">
+              Tia $OM$ quét từ tia gốc $Ox$ ngược chiều kim đồng hồ đến vị trí góc $\alpha$.<br>
+              👉 Luôn tồn tại <strong>duy nhất một điểm $M(x_0; y_0)$</strong> trên nửa đường tròn đơn vị sao cho:
+              $$\widehat{xOM} = \alpha$$
+            </div>
+          </div>
+
+          <div class="glass-card gold-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--gold-light); margin-bottom: 8px;">
+              💡 So Sánh Với THCS
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 12.5px; line-height: 1.5;">
+              <div style="background: rgba(255,255,255,0.05); padding: 8px; border-radius: 6px;">
+                <strong>Cấp 2 (Tam giác vuông):</strong> Góc $\alpha$ chỉ có thể là góc nhọn ($0^\circ < \alpha < 90^\circ$).
+              </div>
+              <div style="background: rgba(16,185,129,0.15); border: 1px solid var(--emerald); padding: 8px; border-radius: 6px; color: #FFF;">
+                <strong>Lớp 10 (Nửa đường tròn):</strong> Góc $\alpha$ có thể là <strong>góc vuông ($90^\circ$)</strong>, <strong>góc tù ($90^\circ < \alpha < 180^\circ$)</strong> hoặc góc bẹt ($180^\circ$)!
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 4: ĐỊNH NGHĨA 4 GIÁ TRỊ LƯỢNG GIÁC
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-4">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge emerald">Định nghĩa trọng tâm</span>
+          <h2 class="slide-title">Định Nghĩa Toạ Độ: $\sin, \cos, \tan, \cot$</h2>
+          <div class="slide-subtitle">Bản chất toạ độ hình học của điểm $M(x_0; y_0)$ trên nửa đường tròn đơn vị</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-4">0/4 ý</span>
+          <button class="reveal-btn" onclick="revealNext(4)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(4)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-4">
+          <!-- Sin -->
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 6px;">
+              1. Sin $\alpha$ (Tung độ)
+            </h4>
+            <div class="formula-box">
+              $$\sin\alpha = y_0$$
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              $\sin\alpha$ chính là <strong>tung độ</strong> của điểm $M$.<br>
+              Vì $M$ nằm trên nửa đường tròn ($y \ge 0$) nên:
+              <strong style="color: var(--cyan-light);">$\sin\alpha \ge 0$ với mọi $\alpha \in [0^\circ, 180^\circ]$!</strong>
+            </p>
+          </div>
+
+          <!-- Cos -->
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 6px;">
+              2. Cos $\alpha$ (Hoành độ)
+            </h4>
+            <div class="formula-box purple">
+              $$\cos\alpha = x_0$$
+            </div>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              $\cos\alpha$ chính là <strong>hoành độ</strong> của điểm $M$.<br>
+              - Nhọn: $x_0 > 0 \implies \cos\alpha > 0$<br>
+              - Vuông: $x_0 = 0 \implies \cos 90^\circ = 0$<br>
+              - Tù: $x_0 < 0 \implies \cos\alpha < 0$!
+            </p>
+          </div>
+
+          <!-- Tan -->
+          <div class="glass-card gold-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--gold-light); margin-bottom: 6px;">
+              3. Tan $\alpha$
+            </h4>
+            <div class="formula-box gold">
+              $$\tan\alpha = \frac{y_0}{x_0} = \frac{\sin\alpha}{\cos\alpha}$$
+            </div>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5;">
+              Tỉ số giữa tung độ và hoành độ.<br>
+              ⚠️ Điều kiện: $\alpha \ne 90^\circ$ (vì $\cos 90^\circ = 0$, mẫu số triệt tiêu).
+            </p>
+          </div>
+
+          <!-- Cot -->
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--emerald-light); margin-bottom: 6px;">
+              4. Cot $\alpha$
+            </h4>
+            <div class="formula-box emerald">
+              $$\cot\alpha = \frac{x_0}{y_0} = \frac{\cos\alpha}{\sin\alpha}$$
+            </div>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5;">
+              Tỉ số giữa hoành độ và tung độ.<br>
+              ⚠️ Điều kiện: $\alpha \ne 0^\circ$ và $\alpha \ne 180^\circ$ (vì $\sin = 0$).
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 5: BẢNG DẤU LƯỢNG GIÁC: GÓC NHỌN VS GÓC TÙ
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-5">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge gold">Quy luật dấu</span>
+          <h2 class="slide-title">Bảng Dấu Lượng Giác: Góc Nhọn vs Góc Tù</h2>
+          <div class="slide-subtitle">Bí kíp phân biệt dấu dương âm để không bao giờ bị trừ điểm trong bài thi</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-5">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(5)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(5)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <!-- Bảng so sánh -->
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 10px;">
+              📊 Bảng Xét Dấu Tổng Hợp
+            </h4>
+            <table class="trig-table">
+              <thead>
+                <tr>
+                  <th>Giá trị</th>
+                  <th>Góc nhọn ($0^\circ < \alpha < 90^\circ$)</th>
+                  <th>$\alpha = 90^\circ$</th>
+                  <th>Góc tù ($90^\circ < \alpha < 180^\circ$)</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td style="font-weight: 800; color: var(--cyan);">$\sin\alpha$</td>
+                  <td style="color: var(--emerald-light); font-weight: 700;">+ (Dương)</td>
+                  <td style="color: #FFF; font-weight: 700;">1</td>
+                  <td style="color: var(--emerald-light); font-weight: 700;">+ (Dương)</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 800; color: var(--purple-light);">$\cos\alpha$</td>
+                  <td style="color: var(--emerald-light); font-weight: 700;">+ (Dương)</td>
+                  <td style="color: #FFF; font-weight: 700;">0</td>
+                  <td style="color: var(--coral-light); font-weight: 700;">- (Âm) ⚠️</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 800; color: var(--gold-light);">$\tan\alpha$</td>
+                  <td style="color: var(--emerald-light); font-weight: 700;">+ (Dương)</td>
+                  <td style="color: var(--ink-soft);">Không XĐ</td>
+                  <td style="color: var(--coral-light); font-weight: 700;">- (Âm) ⚠️</td>
+                </tr>
+                <tr>
+                  <td style="font-weight: 800; color: var(--emerald-light);">$\cot\alpha$</td>
+                  <td style="color: var(--emerald-light); font-weight: 700;">+ (Dương)</td>
+                  <td style="color: #FFF; font-weight: 700;">0</td>
+                  <td style="color: var(--coral-light); font-weight: 700;">- (Âm) ⚠️</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Khẩu quyết ghi nhớ -->
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              💡 2 Khẩu Quyết Vàng Nhớ Đời
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 10px; font-size: 13px;">
+              <div style="background: rgba(0, 242, 254, 0.12); border-left: 4px solid var(--cyan); padding: 10px 14px; border-radius: 8px;">
+                <div style="font-weight: 800; color: var(--cyan); font-size: 14px;">1. "Sin đi học, Cos khóc hoài"</div>
+                <div style="color: var(--ink-soft); margin-top: 3px;">
+                  Trục đứng $Oy$ là trục $\sin$ (luôn dương trên nửa đường tròn).<br>
+                  Trục ngang $Ox$ là trục $\cos$ (bên phải dương, bên trái âm).
+                </div>
+              </div>
+              <div style="background: rgba(244, 63, 94, 0.12); border-left: 4px solid var(--coral); padding: 10px 14px; border-radius: 8px;">
+                <div style="font-weight: 800; color: var(--coral-light); font-size: 14px;">2. "Góc Tù: Duy Nhất Sin Dương!"</div>
+                <div style="color: var(--ink-soft); margin-top: 3px;">
+                  Khi góc $\alpha > 90^\circ$, chỉ có duy nhất $\sin\alpha > 0$. Còn lại $\cos, \tan, \cot$ đều mang dấu <strong>ÂM</strong>!
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 6: BẢNG GIÁ TRỊ CÁC GÓC ĐẶC BIỆT
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-6">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge purple">Bảng tra cứu</span>
+          <h2 class="slide-title">Bảng Giá Trị Lượng Giác Các Góc Đặc Biệt</h2>
+          <div class="slide-subtitle">Các góc thường gặp nhất: $0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ, 120^\circ, 135^\circ, 150^\circ, 180^\circ$</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-6">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(6)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(6)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="glass-card highlight reveal-item" onclick="revealThis(this)" style="padding: 12px 16px;">
+          <table class="trig-table">
+            <thead>
+              <tr>
+                <th>$\alpha$</th>
+                <th>$0^\circ$</th>
+                <th>$30^\circ$</th>
+                <th>$45^\circ$</th>
+                <th>$60^\circ$</th>
+                <th>$90^\circ$</th>
+                <th>$120^\circ$</th>
+                <th>$135^\circ$</th>
+                <th>$150^\circ$</th>
+                <th>$180^\circ$</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td style="font-weight: 800; color: var(--cyan);">$\sin\alpha$</td>
+                <td>$0$</td>
+                <td>$\frac{1}{2}$</td>
+                <td>$\frac{\sqrt{2}}{2}$</td>
+                <td>$\frac{\sqrt{3}}{2}$</td>
+                <td>$1$</td>
+                <td>$\frac{\sqrt{3}}{2}$</td>
+                <td>$\frac{\sqrt{2}}{2}$</td>
+                <td>$\frac{1}{2}$</td>
+                <td>$0$</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--purple-light);">$\cos\alpha$</td>
+                <td>$1$</td>
+                <td>$\frac{\sqrt{3}}{2}$</td>
+                <td>$\frac{\sqrt{2}}{2}$</td>
+                <td>$\frac{1}{2}$</td>
+                <td>$0$</td>
+                <td style="color: var(--coral-light);">$-\frac{1}{2}$</td>
+                <td style="color: var(--coral-light);">$-\frac{\sqrt{2}}{2}$</td>
+                <td style="color: var(--coral-light);">$-\frac{\sqrt{3}}{2}$</td>
+                <td style="color: var(--coral-light);">$-1$</td>
+              </tr>
+              <tr>
+                <td style="font-weight: 800; color: var(--gold-light);">$\tan\alpha$</td>
+                <td>$0$</td>
+                <td>$\frac{\sqrt{3}}{3}$</td>
+                <td>$1$</td>
+                <td>$\sqrt{3}$</td>
+                <td style="color: var(--ink-soft);">||</td>
+                <td style="color: var(--coral-light);">$-\sqrt{3}$</td>
+                <td style="color: var(--coral-light);">$-1$</td>
+                <td style="color: var(--coral-light);">$-\frac{\sqrt{3}}{3}$</td>
+                <td>$0$</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="grid-2 reveal-item" onclick="revealThis(this)">
+          <div class="glass-card emerald-glow">
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--emerald-light); margin-bottom: 4px;">
+              💡 Mẹo Bàn Tay Nhớ $\sin$: $\frac{\sqrt{0}}{2}, \frac{\sqrt{1}}{2}, \frac{\sqrt{2}}{2}, \frac{\sqrt{3}}{2}, \frac{\sqrt{4}}{2}$
+            </h4>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              Giá trị $\sin$ của $0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ$ tăng đều theo thứ tự căn bậc hai từ 0 đến 4 rồi chia cho 2!
+            </p>
+          </div>
+          <div class="glass-card gold-glow">
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--gold-light); margin-bottom: 4px;">
+              🪞 Tính Đối Xứng Qua $90^\circ$
+            </h4>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              Các góc đối xứng nhau qua $90^\circ$ (như $60^\circ$ và $120^\circ$) có $\sin$ hoàn toàn bằng nhau, còn $\cos$ đổi dấu âm!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 7: VIRTUAL LAB 1 - NỬA ĐƯỜNG TRÒN ĐỘNG (INTERACTIVE CANVAS)
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-7">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge">Phòng thí nghiệm số 1</span>
+          <h2 class="slide-title">Virtual Lab: Cỗ Máy Nửa Đường Tròn Đơn Vị Tương Tác</h2>
+          <div class="slide-subtitle">Kéo thanh trượt góc $\alpha$ để quan sát toạ độ điểm $M(x_0; y_0)$ và sự đổi màu của $\sin, \cos$</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-7">Canvas tương tác</span>
+          <button class="reveal-btn primary" onclick="setAngle(60)">Góc mẫu 60° ⚡</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2" style="align-items: center;">
+          <!-- Canvas nửa đường tròn -->
+          <div class="glass-card" style="padding: 10px; display: flex; justify-content: center; align-items: center; background: #080E1E;">
+            <canvas id="unitCircleCanvas" width="460" height="320" style="border-radius: 12px;"></canvas>
+          </div>
+
+          <!-- Bảng điều khiển góc & giá trị -->
+          <div class="glass-card highlight">
+            <div style="display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 8px;">
+              <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light);">
+                🎛️ Góc $\alpha$: <span id="angleValueText" style="color: var(--gold-light); font-size: 20px; font-family: var(--font-mono);">60°</span>
+              </h4>
+              <span id="angleTypeText" style="font-size: 12px; color: var(--emerald-light); font-weight: 700;">Góc Nhọn</span>
+            </div>
+
+            <!-- Slider kéo góc -->
+            <input type="range" min="0" max="180" value="60" class="angle-slider" id="angleSlider" oninput="onAngleSliderChange(this.value)">
+
+            <!-- Nút chọn nhanh các góc đặc biệt -->
+            <div style="display: flex; gap: 6px; flex-wrap: wrap; margin-top: 12px;">
+              <button class="reveal-btn" onclick="setAngle(30)">30°</button>
+              <button class="reveal-btn" onclick="setAngle(45)">45°</button>
+              <button class="reveal-btn" onclick="setAngle(60)">60°</button>
+              <button class="reveal-btn" onclick="setAngle(90)">90°</button>
+              <button class="reveal-btn" onclick="setAngle(120)">120°</button>
+              <button class="reveal-btn" onclick="setAngle(135)">135°</button>
+              <button class="reveal-btn" onclick="setAngle(150)">150°</button>
+            </div>
+
+            <!-- Giá trị tức thời -->
+            <div id="liveValuesBox" style="margin-top: 14px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; font-family: var(--font-mono);">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 8: VIRTUAL LAB 2 - SOI GƯƠNG HAI GÓC BÙ NHAU
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-8">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge purple">Phòng thí nghiệm số 2</span>
+          <h2 class="slide-title">Virtual Lab: Cỗ Máy Soi Gương Hai Góc Bù Nhau</h2>
+          <div class="slide-subtitle">Quan sát trực tiếp sự đối xứng qua trục tung $Oy$ giải thích vì sao "Sin bù, Cos đối"</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-8">Symmetry Lab</span>
+          <button class="reveal-btn primary" onclick="setMirrorAngle(30)">Thử cặp 30° &amp; 150° 🪞</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2" style="align-items: center;">
+          <div class="glass-card" style="padding: 10px; display: flex; justify-content: center; align-items: center; background: #080E1E;">
+            <canvas id="mirrorCanvas" width="460" height="320" style="border-radius: 12px;"></canvas>
+          </div>
+
+          <div class="glass-card purple-glow">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              🪞 Định Lý Góc Bù Nhau: $\alpha$ và $180^\circ - \alpha$
+            </h4>
+            <div id="mirrorExplanation" style="font-size: 13px; line-height: 1.6; color: var(--ink-soft);">
+              Bấm nút chọn góc để quan sát 2 điểm $M$ và $M'$ đối xứng nhau qua trục $Oy$:
+            </div>
+
+            <div style="display: flex; gap: 8px; margin-top: 12px; flex-wrap: wrap;">
+              <button class="reveal-btn" onclick="setMirrorAngle(30)">30° &amp; 150°</button>
+              <button class="reveal-btn" onclick="setMirrorAngle(45)">45° &amp; 135°</button>
+              <button class="reveal-btn" onclick="setMirrorAngle(60)">60° &amp; 120°</button>
+            </div>
+
+            <div class="formula-box purple" style="margin-top: 14px; font-size: 13.5px;">
+              $$\begin{aligned}
+              \sin(180^\circ - \alpha) &= \sin\alpha \quad \text{(Tung độ bằng nhau!)} \\
+              \cos(180^\circ - \alpha) &= -\cos\alpha \quad \text{(Hoành độ đối nhau!)} \\
+              \tan(180^\circ - \alpha) &= -\tan\alpha \\
+              \cot(180^\circ - \alpha) &= -\cot\alpha
+              \end{aligned}$$
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 9: QUAN HỆ HAI GÓC PHỤ NHAU
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-9">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge gold">Quan hệ góc</span>
+          <h2 class="slide-title">Quan Hệ Hai Góc Phụ Nhau: $\alpha$ và $90^\circ - \alpha$</h2>
+          <div class="slide-subtitle">Quy tắc "Phụ chéo" kinh điển kế thừa từ hình học tam giác vuông</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-9">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(9)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(9)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 8px;">
+              🎯 Quy Tắc "Phụ Chéo"
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Nếu hai góc có tổng bằng $90^\circ$ ($\alpha + \beta = 90^\circ$):
+            </p>
+            <div class="formula-box" style="font-size: 13.5px;">
+              $$\sin(90^\circ - \alpha) = \cos\alpha$$
+              $$\cos(90^\circ - \alpha) = \sin\alpha$$
+              $$\tan(90^\circ - \alpha) = \cot\alpha$$
+              $$\cot(90^\circ - \alpha) = \tan\alpha$$
+            </div>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              📝 Ví Dụ Tính Nhanh
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.5;">
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px;">
+                $\sin 30^\circ = \cos 60^\circ = \frac{1}{2}$
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px;">
+                $\cos 15^\circ = \sin 75^\circ$
+              </div>
+              <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px;">
+                $\tan 20^\circ \cdot \tan 70^\circ = \tan 20^\circ \cdot \cot 20^\circ = 1$
+              </div>
+            </div>
+          </div>
+
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--emerald-light); margin-bottom: 8px;">
+              🧠 Câu Thần Chú Bất Hủ
+            </h4>
+            <div style="background: rgba(16,185,129,0.15); border: 1px solid var(--emerald); padding: 14px; border-radius: 10px; font-size: 14px; color: #FFF; line-height: 1.6;">
+              <em>"Cos đối, Sin bù, Phụ chéo!"</em><br>
+              - Đối: $\cos(-\alpha) = \cos\alpha$<br>
+              - Bù: $\sin(180^\circ - \alpha) = \sin\alpha$<br>
+              - Phụ: Chéo nhau ($\sin \leftrightarrow \cos, \tan \leftrightarrow \cot$)
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 10: 4 HẰNG ĐẲNG THỨC LƯỢNG GIÁC CƠ BẢN
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-10">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge purple">Công thức nền tảng</span>
+          <h2 class="slide-title">Bộ 4 Hằng Đẳng Thức Lượng Giác Cơ Bản</h2>
+          <div class="slide-subtitle">Vũ khí tối thượng giải quyết các bài toán rút gọn và tính giá trị biểu thức</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-10">0/4 ý</span>
+          <button class="reveal-btn" onclick="revealNext(10)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(10)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <!-- Cột công thức -->
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 8px;">
+              📐 4 Công Thức Cốt Lõi
+            </h4>
+            <div class="formula-box">
+              $$\sin^2\alpha + \cos^2\alpha = 1$$
+            </div>
+            <div class="formula-box purple">
+              $$1 + \tan^2\alpha = \frac{1}{\cos^2\alpha} \quad (\alpha \ne 90^\circ)$$
+            </div>
+            <div class="formula-box gold">
+              $$1 + \cot^2\alpha = \frac{1}{\sin^2\alpha} \quad (\alpha \ne 0^\circ, 180^\circ)$$
+            </div>
+            <div class="formula-box emerald">
+              $$\tan\alpha \cdot \cot\alpha = 1$$
+            </div>
+          </div>
+
+          <!-- Bài toán mẫu -->
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--emerald-light); margin-bottom: 8px;">
+              📝 Bài Toán Thực Chiến: Biết 1 Tính 3
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Cho $\cos\alpha = -\frac{3}{5}$ với $90^\circ < \alpha < 180^\circ$ (góc tù). Tính $\sin\alpha, \tan\alpha$.
+            </p>
+            <div style="background: rgba(255,255,255,0.05); padding: 10px 14px; border-radius: 8px; margin-top: 8px; font-size: 12.5px; line-height: 1.6;">
+              1) Áp dụng: $\sin^2\alpha = 1 - \cos^2\alpha = 1 - \left(-\frac{3}{5}\right)^2 = \frac{16}{25}$.<br>
+              2) Vì $\alpha$ là góc tù $\implies \sin\alpha > 0 \implies \mathbf{\sin\alpha = \frac{4}{5}}$.<br>
+              3) $\tan\alpha = \frac{\sin\alpha}{\cos\alpha} = \frac{4/5}{-3/5} = \mathbf{-\frac{4}{3}}$.
+            </div>
+            <p style="font-size: 12px; color: var(--emerald-light); margin-top: 6px;">
+              ⚠️ Luôn kiểm tra dấu theo góc nhọn hay tù trước khi khai căn!
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 11: KỸ THUẬT CASIO 580VN X GIẢI NHANH 30 GIÂY
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-11">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge gold">Kỹ thuật Casio</span>
+          <h2 class="slide-title">Kỹ Thuật Casio 580VN X: Tính Nhanh &amp; Tìm Góc Siêu Tốc</h2>
+          <div class="slide-subtitle">Thao tác chuẩn xác trên máy tính cầm tay để không bao giờ bị lệch đơn vị hay sai dấu</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-11">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(11)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(11)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 8px;">
+              1. Cài Đặt Đơn Vị Độ (Deg)
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Trước khi bấm máy tính lượng giác góc độ:
+            </p>
+            <div style="background: rgba(0, 242, 254, 0.08); padding: 10px; border-radius: 8px; margin: 8px 0; font-size: 12.5px;">
+              Bấm: <span class="kbd">SHIFT</span> <span class="kbd">MENU</span> <span class="kbd">2</span> <span class="kbd">1</span> (Chọn Degree)<br>
+              Màn hình phải hiện chữ <strong>D</strong> nhỏ phía trên!
+            </div>
+            <p style="font-size: 12px; color: var(--coral-light);">
+              ⚠️ Nếu để chữ R (Radian) sẽ bị ra kết quả sai lệch hoàn toàn!
+            </p>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              2. Tính Cotang Trên Casio
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Máy tính không có phím $\cot$, bấm như thế nào?
+            </p>
+            <div style="background: rgba(139, 92, 246, 0.08); padding: 10px; border-radius: 8px; margin: 8px 0; font-size: 12.5px;">
+              Cách 1: Nhập <span class="kbd">1</span> / <span class="kbd">tan</span>($\alpha$)<br>
+              Cách 2: Nhập <span class="kbd">tan</span>($\alpha$) rồi bấm phím <span class="kbd">x⁻¹</span>.
+            </div>
+            <p style="font-size: 12px; color: var(--purple-light);">
+              Ví dụ: $\cot 30^\circ = 1 / \tan(30) = \sqrt{3}$.
+            </p>
+          </div>
+
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--emerald-light); margin-bottom: 8px;">
+              3. Tìm Góc Khi Biết Giá Trị
+            </h4>
+            <p style="font-size: 13px; color: var(--ink-soft); line-height: 1.6;">
+              Biết $\sin\alpha = 0.5$, tìm góc $\alpha$:
+            </p>
+            <div style="background: rgba(16, 185, 129, 0.08); padding: 10px; border-radius: 8px; margin: 8px 0; font-size: 12.5px;">
+              Bấm: <span class="kbd">SHIFT</span> <span class="kbd">sin</span> <span class="kbd">0.5</span> <span class="kbd">=</span><br>
+              Máy hiện: $30^\circ$.<br>
+              ⚠️ Nhớ còn một góc bù nữa: $180^\circ - 30^\circ = 150^\circ$!
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 12: ĐẤU TRƯỜNG TRẮC NGHIỆM TƯƠNG TÁC (5 CÂU)
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-12">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge coral">Đấu trường trắc nghiệm</span>
+          <h2 class="slide-title">Đấu Trường Trắc Nghiệm 5 Câu Phân Hoá</h2>
+          <div class="slide-subtitle">Thực chiến trắc nghiệm nhận diện dấu, góc bù, phụ và hằng đẳng thức lượng giác</div>
+        </div>
+        <div class="reveal-toolbar">
+          <div style="display: flex; gap: 10px; align-items: center;">
+            <span class="reveal-status" id="quizProgressText">Câu hỏi 1 / 5</span>
+            <span class="reveal-status" style="color: var(--gold-light);">Điểm: <span id="quizScore">0</span></span>
+            <span class="reveal-status" style="color: var(--emerald-light);">Streak: <span id="quizStreak">0</span> 🔥</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="slide-body" style="justify-content: flex-start; padding-top: 10px;">
+        <div class="glass-card highlight" style="margin-bottom: 12px;">
+          <div id="quizQuestion" style="font-size: 16px; font-weight: 700; color: #FFFFFF; line-height: 1.5;">
+            Đang tải câu hỏi trắc nghiệm...
+          </div>
+        </div>
+
+        <div id="quizOptions" style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+        </div>
+
+        <div id="quizFeedback" style="display: none; padding: 12px 16px; border-radius: 10px; font-size: 13.5px; line-height: 1.5; margin-top: 8px;">
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 13: TOP 5 BẪY THI LƯỢNG GIÁC HAY GẶP
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-13">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge coral">Cảnh báo sai lầm</span>
+          <h2 class="slide-title">Top 5 Bẫy Lượng Giác Hay Bị Trừ Điểm Oan Uổng</h2>
+          <div class="slide-subtitle">Tổng hợp các bẫy tinh vi nhất trong đề thi giữa kỳ và học kỳ môn Toán 10</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-13">0/3 ý</span>
+          <button class="reveal-btn" onclick="revealNext(13)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(13)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-3">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 14.5px; font-weight: 800; color: var(--coral-light); margin-bottom: 6px;">
+              ⚠️ Bẫy 1: Quên Dấu Âm Của $\cos$ Góc Tù
+            </h4>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              Khi tính $\cos\alpha = \pm\sqrt{1 - \sin^2\alpha}$, đề bài cho $\alpha$ là góc tù ($90^\circ < \alpha < 180^\circ$) nhưng học sinh lại lấy dấu cộng ($+$). Phải lấy dấu âm ($-$)!
+            </p>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 14.5px; font-weight: 800; color: var(--coral-light); margin-bottom: 6px;">
+              ⚠️ Bẫy 2: Thiếu Nghiệm Khi Biết Sin
+            </h4>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              Biết $\sin\alpha = \frac{1}{2}$, bấm máy ra $30^\circ$ và kết luận ngay. Thực tế có <strong>hai góc</strong> thoả mãn: $30^\circ$ và góc bù $180^\circ - 30^\circ = 150^\circ$!
+            </p>
+          </div>
+
+          <div class="glass-card gold-glow reveal-item" onclick="revealThis(this)">
+            <h4 style="font-size: 14.5px; font-weight: 800; color: var(--coral-light); margin-bottom: 6px;">
+              ⚠️ Bẫy 3: Nhầm Lẫn Công Thức Góc Bù
+            </h4>
+            <p style="font-size: 12.5px; color: var(--ink-soft); line-height: 1.5;">
+              Nhầm viết $\sin(180^\circ - \alpha) = -\sin\alpha$. Nhớ kỹ: Chỉ có $\sin$ là giữ nguyên dấu dương! Còn $\cos, \tan, \cot$ mới có dấu trừ đằng trước.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 14: SƠ ĐỒ TƯ DUY TOÀN BỘ BÀI 5
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-14">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge purple">Tổng hợp tri thức</span>
+          <h2 class="slide-title">Sơ Đồ Tư Duy Hệ Thống Hoá Toàn Bộ Bài 5</h2>
+          <div class="slide-subtitle">Bức tranh toàn cảnh 4 trụ cột lượng giác từ $0^\circ$ đến $180^\circ$</div>
+        </div>
+        <div class="reveal-toolbar">
+          <span class="reveal-status" id="rev-stat-14">0/4 trụ cột</span>
+          <button class="reveal-btn" onclick="revealNext(14)">Hiện tiếp (↓)</button>
+          <button class="reveal-btn primary" onclick="revealAll(14)">Hiện tất cả</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-4">
+          <div class="glass-card highlight reveal-item" onclick="revealThis(this)">
+            <div style="font-size: 20px; margin-bottom: 4px;">1️⃣</div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--cyan-light);">Nửa Đường Tròn</h4>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin-top: 4px;">
+              - Tâm $O(0; 0), R = 1$<br>
+              - $M(x_0; y_0)$<br>
+              - $\sin\alpha = y_0 \ge 0$<br>
+              - $\cos\alpha = x_0$
+            </p>
+          </div>
+
+          <div class="glass-card purple-glow reveal-item" onclick="revealThis(this)">
+            <div style="font-size: 20px; margin-bottom: 4px;">2️⃣</div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--purple-light);">Quy Luật Dấu</h4>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin-top: 4px;">
+              - Nhọn: Tất cả đều $(+)$<br>
+              - Tù: Duy nhất $\sin > 0$<br>
+              - $\cos, \tan, \cot$ đều âm $(-)$
+            </p>
+          </div>
+
+          <div class="glass-card gold-glow reveal-item" onclick="revealThis(this)">
+            <div style="font-size: 20px; margin-bottom: 4px;">3️⃣</div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--gold-light);">Góc Bù &amp; Phụ</h4>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin-top: 4px;">
+              - $\sin(180^\circ - \alpha) = \sin\alpha$<br>
+              - $\cos(180^\circ - \alpha) = -\cos\alpha$<br>
+              - Phụ chéo: $\sin \leftrightarrow \cos$
+            </p>
+          </div>
+
+          <div class="glass-card emerald-glow reveal-item" onclick="revealThis(this)">
+            <div style="font-size: 20px; margin-bottom: 4px;">4️⃣</div>
+            <h4 style="font-size: 14px; font-weight: 800; color: var(--emerald-light);">4 Hằng Đẳng Thức</h4>
+            <p style="font-size: 12px; color: var(--ink-soft); line-height: 1.5; margin-top: 4px;">
+              - $\sin^2 + \cos^2 = 1$<br>
+              - $1 + \tan^2 = 1/\cos^2$<br>
+              - $1 + \cot^2 = 1/\sin^2$<br>
+              - $\tan \cdot \cot = 1$
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═════════════════════════════════════════════════════════════
+         SLIDE 15: TỔNG KẾT & NHIỆM VỤ VỀ NHÀ
+    ═════════════════════════════════════════════════════════════ -->
+    <section class="slide" id="slide-15">
+      <div class="slide-header">
+        <div>
+          <span class="slide-badge gold">Hoàn thành bài học</span>
+          <h2 class="slide-title">Tổng Kết Toàn Bài &amp; Nhiệm Vụ Học Tập Về Nhà</h2>
+          <div class="slide-subtitle">Xin chúc mừng các em học sinh THPT Na Rì đã xuất sắc chinh phục Bài 5 Lượng Giác</div>
+        </div>
+        <div class="reveal-toolbar">
+          <button class="reveal-btn primary" onclick="triggerCelebration()">🎉 Bắn pháo hoa hoàn thành!</button>
+        </div>
+      </div>
+
+      <div class="slide-body">
+        <div class="grid-2">
+          <div class="glass-card highlight">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--cyan-light); margin-bottom: 8px;">
+              🏆 4 Chìa Khóa Vàng Bài 5
+            </h4>
+            <ul style="font-size: 13px; color: var(--ink-soft); line-height: 1.7; padding-left: 20px;">
+              <li>$\sin\alpha = y_0$ (tung độ), $\cos\alpha = x_0$ (hoành độ) trên nửa đường tròn đơn vị.</li>
+              <li>Với mọi góc từ $0^\circ$ đến $180^\circ$, $\sin\alpha$ luôn không âm ($\ge 0$).</li>
+              <li>"Sin bù, Cos đối": $\sin(180^\circ - \alpha) = \sin\alpha$, $\cos(180^\circ - \alpha) = -\cos\alpha$.</li>
+              <li>Luôn nhớ công thức cốt tử: $\sin^2\alpha + \cos^2\alpha = 1$.</li>
+            </ul>
+          </div>
+
+          <div class="glass-card purple-glow">
+            <h4 style="font-size: 15px; font-weight: 800; color: var(--purple-light); margin-bottom: 8px;">
+              📝 Nhiệm Vụ Về Nhà
+            </h4>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; color: var(--ink-soft);">
+              <div>1. Học thuộc bảng giá trị lượng giác các góc đặc biệt ($0^\circ, 30^\circ, 45^\circ, 60^\circ, 90^\circ...$).</div>
+              <div>2. Làm bài tập 3.1, 3.2, 3.3, 3.4 trang 37 SGK Toán 10 Kết nối tri thức.</div>
+              <div>3. Chuẩn bị trước <strong>Bài 6: Hệ thức lượng trong tam giác (Định lý Côsin &amp; Định lý Sin)</strong>!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div> <!-- End Deck Container -->
+
+  <!-- Thanh Điều Hướng Đáy -->
+  <div class="deck-nav">
+    <button class="nav-btn" onclick="prevSlide()" title="Slide trước (Phím ←)">◀</button>
+    <div class="seek-container" onclick="handleSeek(event)">
+      <div class="seek-bar" id="seekBar"></div>
+    </div>
+    <div class="nav-counter" id="navCounter">01 / 15</div>
+    <button class="nav-btn" onclick="nextSlide()" title="Slide kế tiếp (Phím →)">▶</button>
+    <button class="nav-btn" onclick="toggleToc()" title="Mục lục 15 Slide (Phím T)">☰</button>
+    <button class="nav-btn" id="btnSound" onclick="toggleMute()" title="Bật/Tắt âm thanh (Phím M)">🔊</button>
+    <button class="nav-btn" id="btnFullscreen" onclick="toggleFullscreen()" title="Toàn màn hình (Phím F)">⛶</button>
+  </div>
+
+  <!-- Modal Mục Lục 15 Slide -->
+  <div class="toc-modal" id="tocModal" onclick="closeTocOnBackdrop(event)">
+    <div class="toc-box">
+      <div class="toc-header">
+        <h3 style="font-size: 18px; font-weight: 800; color: var(--cyan-light);">
+          📑 Mục Lục 15 Slide Bài Giảng — Bài 5: Giá Trị Lượng Giác Từ 0° Đến 180°
+        </h3>
+        <button class="nav-btn" onclick="toggleToc()" style="width:30px;height:30px;">✕</button>
+      </div>
+      <div class="toc-grid" id="tocGrid">
+      </div>
+    </div>
+  </div>
+
+  <!-- Script Logic -->
+  <script>
+    /* ─── 1. WEB AUDIO API SYNTHESIZER ─── */
+    let audioCtx = null;
+    let isMuted = false;
+
+    function getAudio() {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playTone(freq, type = 'sine', duration = 0.12, vol = 0.15) {
+      if (isMuted) return;
+      try {
+        const ctx = getAudio();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = type;
+        osc.frequency.setValueAtTime(freq, ctx.currentTime);
+        gain.gain.setValueAtTime(vol, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.0001, ctx.currentTime + duration);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + duration);
+      } catch (e) {}
+    }
+
+    function playClick() { playTone(600, 'sine', 0.06, 0.1); }
+    function playSlideSound() { playTone(500, 'triangle', 0.12, 0.08); }
+    function playChime() {
+      playTone(523.25, 'triangle', 0.15, 0.15);
+      setTimeout(() => playTone(659.25, 'triangle', 0.15, 0.15), 100);
+      setTimeout(() => playTone(783.99, 'triangle', 0.25, 0.18), 200);
+    }
+    function playBuzzer() {
+      playTone(220, 'sawtooth', 0.15, 0.16);
+      setTimeout(() => playTone(196, 'sawtooth', 0.25, 0.16), 120);
+    }
+
+    function toggleMute() {
+      isMuted = !isMuted;
+      document.getElementById('btnSound').textContent = isMuted ? '🔇' : '🔊';
+      playClick();
+    }
+
+    function toggleFullscreen() {
+      if (!document.fullscreenElement) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      } else {
+        document.exitFullscreen().catch(() => {});
+      }
+      playClick();
+    }
+
+    /* ─── 2. HỆ THỐNG ĐIỀU HƯỚNG 15 SLIDE ─── */
+    const TOTAL_SLIDES = 15;
+    let currentSlide = 1;
+
+    const slideTitles = [
+      "Trang bìa: Giá trị lượng giác từ 0° đến 180°",
+      "Bản đồ 4 năng lực cốt lõi (GDPT 2018)",
+      "Nửa đường tròn đơn vị là gì?",
+      "Định nghĩa toạ độ: sin, cos, tan, cot",
+      "Bảng dấu lượng giác: Góc nhọn vs Góc tù",
+      "Bảng giá trị các góc đặc biệt",
+      "Virtual Lab 1: Cỗ máy nửa đường tròn động",
+      "Virtual Lab 2: Soi gương hai góc bù nhau",
+      "Quan hệ hai góc phụ nhau (Phụ chéo)",
+      "Bộ 4 hằng đẳng thức lượng giác cơ bản",
+      "Kỹ thuật Casio 580VN X giải nhanh 30 giây",
+      "Đấu trường trắc nghiệm tương tác (5 câu)",
+      "Top 5 bẫy thi lượng giác hay mất điểm oan",
+      "Sơ đồ tư duy toàn bài",
+      "Tổng kết toàn bài & Nhiệm vụ về nhà"
+    ];
+
+    function updateSlideView() {
+      for (let i = 1; i <= TOTAL_SLIDES; i++) {
+        const el = document.getElementById(`slide-${i}`);
+        if (!el) continue;
+        el.classList.remove('active', 'prev');
+        if (i === currentSlide) {
+          el.classList.add('active');
+        } else if (i < currentSlide) {
+          el.classList.add('prev');
+        }
+      }
+
+      document.getElementById('navCounter').textContent = `${String(currentSlide).padStart(2, '0')} / ${TOTAL_SLIDES}`;
+      document.getElementById('seekBar').style.width = `${(currentSlide / TOTAL_SLIDES) * 100}%`;
+
+      updateTocHighlight();
+      updateRevealStatus(currentSlide);
+
+      const curElem = document.getElementById(`slide-${currentSlide}`);
+      if (curElem && window.renderMathInElement) {
+        renderMathInElement(curElem, {
+          delimiters: [
+            {left: '$$', right: '$$', display: true},
+            {left: '$', right: '$', display: false}
+          ]
+        });
+      }
+
+      if (currentSlide === 7) {
+        setTimeout(drawUnitCircle, 60);
+      } else if (currentSlide === 8) {
+        setTimeout(drawMirrorCircle, 60);
+      }
+    }
+
+    function nextSlide() {
+      if (currentSlide < TOTAL_SLIDES) {
+        currentSlide++;
+        playSlideSound();
+        updateSlideView();
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlide > 1) {
+        currentSlide--;
+        playSlideSound();
+        updateSlideView();
+      }
+    }
+
+    function goToSlide(n) {
+      if (n >= 1 && n <= TOTAL_SLIDES) {
+        currentSlide = n;
+        playSlideSound();
+        updateSlideView();
+        closeToc();
+      }
+    }
+
+    function handleSeek(e) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const clickX = e.clientX - rect.left;
+      const pct = Math.max(0, Math.min(1, clickX / rect.width));
+      const target = Math.max(1, Math.min(TOTAL_SLIDES, Math.ceil(pct * TOTAL_SLIDES)));
+      goToSlide(target);
+    }
+
+    /* ─── 3. PROGRESSIVE REVEAL ─── */
+    function getSlideReveals(slideNum) {
+      const slideEl = document.getElementById(`slide-${slideNum}`);
+      if (!slideEl) return [];
+      return Array.from(slideEl.querySelectorAll('.reveal-item'));
+    }
+
+    function updateRevealStatus(slideNum) {
+      const items = getSlideReveals(slideNum);
+      const statEl = document.getElementById(`rev-stat-${slideNum}`);
+      if (!statEl) return;
+      const count = items.filter(el => el.classList.contains('revealed')).length;
+      statEl.textContent = `${count}/${items.length} ý`;
+    }
+
+    function revealNext(slideNum) {
+      const items = getSlideReveals(slideNum);
+      const next = items.find(el => !el.classList.contains('revealed'));
+      if (next) {
+        next.classList.add('revealed');
+        playTone(700, 'sine', 0.08, 0.1);
+        updateRevealStatus(slideNum);
+      }
+    }
+
+    function revealAll(slideNum) {
+      const items = getSlideReveals(slideNum);
+      items.forEach(el => el.classList.add('revealed'));
+      playTone(850, 'triangle', 0.15, 0.12);
+      updateRevealStatus(slideNum);
+    }
+
+    function revealThis(el) {
+      if (!el.classList.contains('revealed')) {
+        el.classList.add('revealed');
+        playTone(700, 'sine', 0.08, 0.1);
+        updateRevealStatus(currentSlide);
+      }
+    }
+
+    /* ─── 4. TOC MODAL ─── */
+    function initToc() {
+      const grid = document.getElementById('tocGrid');
+      grid.innerHTML = '';
+      slideTitles.forEach((title, idx) => {
+        const item = document.createElement('div');
+        item.className = 'toc-item' + (idx + 1 === currentSlide ? ' current' : '');
+        item.innerHTML = `
+          <div class="toc-item-num">${String(idx + 1).padStart(2, '0')}</div>
+          <div class="toc-item-title">${title}</div>
+        `;
+        item.onclick = () => goToSlide(idx + 1);
+        grid.appendChild(item);
+      });
+    }
+
+    function updateTocHighlight() {
+      document.querySelectorAll('.toc-item').forEach((item, idx) => {
+        item.classList.toggle('current', idx + 1 === currentSlide);
+      });
+    }
+
+    function toggleToc() {
+      const m = document.getElementById('tocModal');
+      m.classList.toggle('open');
+      playClick();
+    }
+    function closeToc() {
+      document.getElementById('tocModal').classList.remove('open');
+    }
+    function closeTocOnBackdrop(e) {
+      if (e.target.id === 'tocModal') closeToc();
+    }
+
+    /* ─── 5. CANVAS CONFETTI ─── */
+    let confettiParticles = [];
+    let confettiAnimId = null;
+
+    function triggerCelebration() {
+      playChime();
+      const canvas = document.getElementById('confettiCanvas');
+      const ctx = canvas.getContext('2d');
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+
+      const colors = ['#00F2FE', '#8B5CF6', '#F59E0B', '#10B981', '#F43F5E', '#FFFFFF'];
+      confettiParticles = [];
+      for (let i = 0; i < 140; i++) {
+        confettiParticles.push({
+          x: canvas.width / 2,
+          y: canvas.height * 0.45,
+          vx: (Math.random() - 0.5) * 18,
+          vy: (Math.random() - 0.8) * 16,
+          size: Math.random() * 8 + 4,
+          color: colors[Math.floor(Math.random() * colors.length)],
+          rotation: Math.random() * 360,
+          vRot: (Math.random() - 0.5) * 12,
+          alpha: 1
+        });
+      }
+
+      if (confettiAnimId) cancelAnimationFrame(confettiAnimId);
+
+      function loop() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        let activeCount = 0;
+        confettiParticles.forEach(p => {
+          p.x += p.vx;
+          p.y += p.vy;
+          p.vy += 0.35;
+          p.rotation += p.vRot;
+          p.alpha -= 0.008;
+
+          if (p.alpha > 0) {
+            activeCount++;
+            ctx.save();
+            ctx.globalAlpha = p.alpha;
+            ctx.translate(p.x, p.y);
+            ctx.rotate((p.rotation * Math.PI) / 180);
+            ctx.fillStyle = p.color;
+            ctx.fillRect(-p.size / 2, -p.size / 2, p.size, p.size * 0.6);
+            ctx.restore();
+          }
+        });
+
+        if (activeCount > 0) {
+          confettiAnimId = requestAnimationFrame(loop);
+        } else {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+        }
+      }
+      loop();
+    }
+
+    /* ─── 6. VIRTUAL LAB 1: INTERACTIVE UNIT CIRCLE ─── */
+    let curAngleDeg = 60;
+
+    function setAngle(deg) {
+      curAngleDeg = deg;
+      document.getElementById('angleSlider').value = deg;
+      playClick();
+      drawUnitCircle();
+    }
+
+    function onAngleSliderChange(deg) {
+      curAngleDeg = parseFloat(deg);
+      drawUnitCircle();
+    }
+
+    function drawUnitCircle() {
+      const cvs = document.getElementById('unitCircleCanvas');
+      if (!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const w = cvs.width;
+      const h = cvs.height;
+      const cx = w / 2;
+      const cy = h - 50; // origin placed near bottom
+      const R = 180;     // radius in px
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 30) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 30) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Semicircle background filled glow
+      ctx.save();
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, Math.PI, 0, false);
+      ctx.fillStyle = 'rgba(0, 242, 254, 0.04)';
+      ctx.fill();
+      ctx.restore();
+
+      // Axes
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.lineWidth = 1.5;
+      // Ox
+      ctx.beginPath(); ctx.moveTo(20, cy); ctx.lineTo(w - 20, cy); ctx.stroke();
+      // Oy
+      ctx.beginPath(); ctx.moveTo(cx, cy + 20); ctx.lineTo(cx, 20); ctx.stroke();
+
+      // Axis arrowheads
+      ctx.fillStyle = '#94A3B8';
+      ctx.fillText('x (Cos)', w - 45, cy - 8);
+      ctx.fillText('y (Sin)', cx + 8, 28);
+      ctx.fillText('O', cx - 14, cy + 18);
+      ctx.fillText('1', cx + R - 6, cy + 18);
+      ctx.fillText('-1', cx - R - 14, cy + 18);
+      ctx.fillText('1', cx - 16, cy - R + 4);
+
+      // Semicircle arc R = 1
+      ctx.strokeStyle = 'rgba(0, 242, 254, 0.6)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, Math.PI, 0, false);
+      ctx.stroke();
+
+      // Calculate Point M
+      const rad = (curAngleDeg * Math.PI) / 180;
+      const cosVal = Math.cos(rad);
+      const sinVal = Math.sin(rad);
+      const mx = cx + cosVal * R;
+      const my = cy - sinVal * R;
+
+      // Sector arc for angle alpha
+      ctx.save();
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.arc(cx, cy, 38, 0, -rad, true);
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(245, 158, 11, 0.2)';
+      ctx.fill();
+      ctx.strokeStyle = '#F59E0B';
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+      ctx.restore();
+
+      // Cos projection line (on Ox)
+      ctx.save();
+      ctx.strokeStyle = cosVal >= 0 ? '#10B981' : '#F43F5E';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(mx, cy);
+      ctx.stroke();
+      ctx.restore();
+
+      // Sin projection line (vertical from Ox to M)
+      ctx.save();
+      ctx.strokeStyle = '#00F2FE';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.moveTo(mx, cy);
+      ctx.lineTo(mx, my);
+      ctx.stroke();
+      ctx.restore();
+
+      // Dashed projection to Oy
+      ctx.save();
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.35)';
+      ctx.setLineDash([4, 4]);
+      ctx.beginPath();
+      ctx.moveTo(cx, my);
+      ctx.lineTo(mx, my);
+      ctx.stroke();
+      ctx.restore();
+
+      // Radius line OM
+      ctx.save();
+      ctx.strokeStyle = '#FBBF24';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(mx, my);
+      ctx.stroke();
+      ctx.restore();
+
+      // Point M with glowing circle
+      ctx.save();
+      ctx.shadowColor = '#00F2FE';
+      ctx.shadowBlur = 15;
+      ctx.fillStyle = '#00F2FE';
+      ctx.beginPath();
+      ctx.arc(mx, my, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 2;
+      ctx.stroke();
+      ctx.restore();
+
+      // Point M label
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 12px Consolas, monospace';
+      ctx.fillText(`M (${cosVal.toFixed(2)}; ${sinVal.toFixed(2)})`, mx - 20, my - 14);
+
+      // Update text in control panel
+      document.getElementById('angleValueText').textContent = `${curAngleDeg.toFixed(0)}°`;
+      const typeText = document.getElementById('angleTypeText');
+      if (curAngleDeg === 0) { typeText.textContent = "Góc 0°"; typeText.style.color = "var(--cyan)"; }
+      else if (curAngleDeg < 90) { typeText.textContent = "Góc Nhọn"; typeText.style.color = "var(--emerald-light)"; }
+      else if (curAngleDeg === 90) { typeText.textContent = "Góc Vuông"; typeText.style.color = "var(--gold-light)"; }
+      else if (curAngleDeg < 180) { typeText.textContent = "Góc Tù"; typeText.style.color = "var(--coral-light)"; }
+      else { typeText.textContent = "Góc Bẹt (180°)"; typeText.style.color = "var(--purple-light)"; }
+
+      const tanVal = Math.abs(cosVal) < 0.0001 ? "Không XĐ (||)" : (sinVal / cosVal).toFixed(3);
+      const cotVal = Math.abs(sinVal) < 0.0001 ? "Không XĐ (||)" : (cosVal / sinVal).toFixed(3);
+
+      const liveBox = document.getElementById('liveValuesBox');
+      liveBox.innerHTML = `
+        <div style="background: rgba(0,242,254,0.1); border-left: 3px solid var(--cyan); padding: 6px 10px; border-radius: 4px;">
+          <strong>sin(${curAngleDeg}°)</strong> = <span style="color:var(--cyan-light); font-weight:800;">${sinVal.toFixed(4)}</span> (Tung độ y ≥ 0)
+        </div>
+        <div style="background: ${cosVal >= 0 ? 'rgba(16,185,129,0.1)' : 'rgba(244,63,94,0.1)'}; border-left: 3px solid ${cosVal >= 0 ? 'var(--emerald)' : 'var(--coral)'}; padding: 6px 10px; border-radius: 4px;">
+          <strong>cos(${curAngleDeg}°)</strong> = <span style="color:${cosVal >= 0 ? 'var(--emerald-light)' : 'var(--coral-light)'}; font-weight:800;">${cosVal.toFixed(4)}</span> (Hoành độ x ${cosVal < 0 ? '< 0 [Âm]' : '≥ 0'})
+        </div>
+        <div style="background: rgba(245,158,11,0.1); border-left: 3px solid var(--gold); padding: 6px 10px; border-radius: 4px;">
+          <strong>tan(${curAngleDeg}°)</strong> = <span style="color:var(--gold-light); font-weight:800;">${tanVal}</span>
+        </div>
+      `;
+    }
+
+    /* ─── 7. VIRTUAL LAB 2: MIRROR ANGLE (GÓC BÙ) ─── */
+    let mirrorAngleDeg = 30;
+
+    function setMirrorAngle(deg) {
+      mirrorAngleDeg = deg;
+      playClick();
+      drawMirrorCircle();
+    }
+
+    function drawMirrorCircle() {
+      const cvs = document.getElementById('mirrorCanvas');
+      if (!cvs) return;
+      const ctx = cvs.getContext('2d');
+      const w = cvs.width;
+      const h = cvs.height;
+      const cx = w / 2;
+      const cy = h - 50;
+      const R = 180;
+
+      ctx.clearRect(0, 0, w, h);
+
+      // Grid
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.04)';
+      ctx.lineWidth = 1;
+      for (let x = 0; x < w; x += 30) {
+        ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke();
+      }
+      for (let y = 0; y < h; y += 30) {
+        ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke();
+      }
+
+      // Axes
+      ctx.strokeStyle = 'rgba(255, 255, 255, 0.4)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath(); ctx.moveTo(20, cy); ctx.lineTo(w - 20, cy); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(cx, cy + 20); ctx.lineTo(cx, 20); ctx.stroke();
+
+      // Mirror axis Oy highlight
+      ctx.save();
+      ctx.strokeStyle = 'rgba(139, 92, 246, 0.6)';
+      ctx.lineWidth = 3;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(cx, 20); ctx.stroke();
+      ctx.restore();
+
+      ctx.fillStyle = '#94A3B8';
+      ctx.font = '11px Consolas, monospace';
+      ctx.fillText('x', w - 35, cy - 8);
+      ctx.fillText('y (Trục đối xứng)', cx + 8, 28);
+      ctx.fillText('O', cx - 14, cy + 18);
+
+      // Arc
+      ctx.strokeStyle = 'rgba(0, 242, 254, 0.5)';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.arc(cx, cy, R, Math.PI, 0, false);
+      ctx.stroke();
+
+      const a1 = (mirrorAngleDeg * Math.PI) / 180;
+      const a2 = Math.PI - a1; // 180 - alpha
+      const deg2 = 180 - mirrorAngleDeg;
+
+      const m1x = cx + Math.cos(a1) * R;
+      const m1y = cy - Math.sin(a1) * R;
+      const m2x = cx + Math.cos(a2) * R;
+      const m2y = cy - Math.sin(a2) * R;
+
+      // Horizontal dashed line connecting M1 and M2
+      ctx.save();
+      ctx.strokeStyle = '#00F2FE';
+      ctx.lineWidth = 2;
+      ctx.setLineDash([5, 5]);
+      ctx.beginPath();
+      ctx.moveTo(m2x, m1y);
+      ctx.lineTo(m1x, m1y);
+      ctx.stroke();
+      ctx.restore();
+
+      // Radii OM1 and OM2
+      ctx.save();
+      ctx.strokeStyle = '#10B981';
+      ctx.lineWidth = 2;
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(m1x, m1y); ctx.stroke();
+      ctx.strokeStyle = '#F43F5E';
+      ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(m2x, m2y); ctx.stroke();
+      ctx.restore();
+
+      // Points M1 & M2
+      ctx.fillStyle = '#10B981';
+      ctx.beginPath(); ctx.arc(m1x, m1y, 6, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#F43F5E';
+      ctx.beginPath(); ctx.arc(m2x, m2y, 6, 0, Math.PI * 2); ctx.fill();
+
+      // Labels
+      ctx.fillStyle = '#10B981';
+      ctx.font = 'bold 12px Consolas, monospace';
+      ctx.fillText(`M (${mirrorAngleDeg}°)`, m1x + 8, m1y - 6);
+
+      ctx.fillStyle = '#FB7185';
+      ctx.fillText(`M' (${deg2}°)`, m2x - 70, m2y - 6);
+
+      // Explanation box
+      const exp = document.getElementById('mirrorExplanation');
+      exp.innerHTML = `
+        <div style="background: rgba(255,255,255,0.05); padding: 8px 12px; border-radius: 6px;">
+          Đang xét cặp góc bù: <strong style="color:var(--emerald-light);">${mirrorAngleDeg}°</strong> và <strong style="color:var(--coral-light);">${deg2}°</strong>:<br>
+          • <strong>Tung độ:</strong> $y_M = y_{M'} = ${(Math.sin(a1)).toFixed(3)} \implies \sin(${deg2}^\circ) = \sin(${mirrorAngleDeg}^\circ)$ (Bằng nhau!)<br>
+          • <strong>Hoành độ:</strong> $x_{M'} = -x_M = ${(-Math.cos(a1)).toFixed(3)} \implies \cos(${deg2}^\circ) = -\cos(${mirrorAngleDeg}^\circ)$ (Đối nhau!)
+        </div>
+      `;
+      if (window.renderMathInElement) {
+        renderMathInElement(exp, { delimiters: [{left: '$', right: '$', display: false}] });
+      }
+    }
+
+    /* ─── 8. QUIZ ENGINE (5 CÂU) ─── */
+    const quizData = [
+      {
+        q: "Với góc α là góc tù (90° < α < 180°), khẳng định nào sau đây là ĐÚNG?",
+        opts: [
+          "sin α > 0 và cos α > 0",
+          "sin α > 0 và cos α < 0",
+          "sin α < 0 và cos α < 0",
+          "sin α < 0 và cos α > 0"
+        ],
+        ans: 1,
+        exp: "Chính xác! Với góc tù, tung độ y > 0 nên sin α > 0, còn hoành độ x < 0 nên cos α < 0 ('Góc tù duy nhất Sin dương')."
+      },
+      {
+        q: "Giá trị của cos 120° bằng bao nhiêu?",
+        opts: [
+          "1/2",
+          "-1/2",
+          "√3/2",
+          "-√3/2"
+        ],
+        ans: 1,
+        exp: "Rất giỏi! Áp dụng công thức hai góc bù nhau: cos 120° = cos(180° - 60°) = -cos 60° = -1/2."
+      },
+      {
+        q: "Cho sin α = 3/5 với 0° < α < 90°. Giá trị của cos α bằng bao nhiêu?",
+        opts: [
+          "4/5",
+          "-4/5",
+          "16/25",
+          "2/5"
+        ],
+        ans: 0,
+        exp: "Xuất sắc! Áp dụng sin²α + cos²α = 1 => cos²α = 1 - (3/5)² = 16/25. Vì α nhọn nên cos α > 0 => cos α = 4/5."
+      },
+      {
+        q: "Khẳng định nào sau đây là SAI?",
+        opts: [
+          "sin(180° - α) = sin α",
+          "cos(180° - α) = -cos α",
+          "tan(180° - α) = -tan α",
+          "sin(90° - α) = -cos α"
+        ],
+        ans: 3,
+        exp: "Chính xác! Hai góc phụ nhau có quan hệ 'Phụ chéo': sin(90° - α) = cos α (dấu dương), không có dấu trừ!"
+      },
+      {
+        q: "Giá trị của biểu thức P = sin² 35° + sin² 55° bằng bao nhiêu?",
+        opts: [
+          "0",
+          "1",
+          "2",
+          "1/2"
+        ],
+        ans: 1,
+        exp: "Tuyệt vời! Vì 35° + 55° = 90° (hai góc phụ nhau) nên sin 55° = cos 35°. Khi đó P = sin² 35° + cos² 35° = 1!"
+      }
+    ];
+
+    let currentQuizIdx = 0;
+    let quizScore = 0;
+    let quizStreak = 0;
+
+    function renderQuiz() {
+      const q = quizData[currentQuizIdx];
+      document.getElementById('quizProgressText').textContent = `Câu hỏi ${currentQuizIdx + 1} / ${quizData.length}`;
+      document.getElementById('quizQuestion').textContent = q.q;
+
+      const optsBox = document.getElementById('quizOptions');
+      optsBox.innerHTML = '';
+      const fb = document.getElementById('quizFeedback');
+      fb.style.display = 'none';
+
+      q.opts.forEach((opt, idx) => {
+        const card = document.createElement('div');
+        card.className = 'quiz-card';
+        card.innerHTML = `
+          <div class="quiz-opt-letter">${String.fromCharCode(65 + idx)}</div>
+          <div style="font-size: 13.5px; font-weight: 600; line-height: 1.4;">${opt}</div>
+        `;
+        card.onclick = () => checkQuiz(idx, card);
+        optsBox.appendChild(card);
+      });
+    }
+
+    function checkQuiz(chosenIdx, cardEl) {
+      const q = quizData[currentQuizIdx];
+      const allCards = document.querySelectorAll('.quiz-card');
+      allCards.forEach(c => c.style.pointerEvents = 'none');
+
+      const fb = document.getElementById('quizFeedback');
+      fb.style.display = 'block';
+
+      if (chosenIdx === q.ans) {
+        cardEl.classList.add('correct');
+        quizScore++;
+        quizStreak++;
+        fb.style.background = 'rgba(16, 185, 129, 0.2)';
+        fb.style.border = '1px solid var(--emerald)';
+        fb.style.color = 'var(--emerald-light)';
+        fb.innerHTML = '🎉 ' + q.exp;
+        playChime();
+      } else {
+        cardEl.classList.add('wrong');
+        quizStreak = 0;
+        allCards[q.ans].classList.add('correct');
+        fb.style.background = 'rgba(244, 63, 94, 0.2)';
+        fb.style.border = '1px solid var(--coral)';
+        fb.style.color = 'var(--coral-light)';
+        fb.innerHTML = '⚠️ ' + q.exp;
+        playBuzzer();
+      }
+
+      document.getElementById('quizScore').textContent = quizScore;
+      document.getElementById('quizStreak').textContent = quizStreak;
+
+      setTimeout(() => {
+        if (currentQuizIdx < quizData.length - 1) {
+          currentQuizIdx++;
+          renderQuiz();
+        } else {
+          showQuizFinished();
+        }
+      }, 2500);
+    }
+
+    function showQuizFinished() {
+      const optsBox = document.getElementById('quizOptions');
+      document.getElementById('quizQuestion').textContent = `KẾT QUẢ ĐẤU TRƯỜNG: ${quizScore} / ${quizData.length} ĐIỂM!`;
+      optsBox.innerHTML = `
+        <div class="glass-card" style="text-align: center; padding: 20px; grid-column: span 2;">
+          <div style="font-size: 38px; margin-bottom: 8px;">${quizScore >= 4 ? '🏆' : '📚'}</div>
+          <div style="font-size: 16px; font-weight: 800; color: #FFFFFF;">
+            ${quizScore >= 4 ? 'Xuất sắc! Em đã làm chủ trọn vẹn Giá trị lượng giác từ 0° đến 180°!' : 'Cố gắng lên! Hãy xem lại các slide lý thuyết để đạt trọn điểm 10 nhé!'}
+          </div>
+          <button class="reveal-btn primary" onclick="resetQuiz()" style="margin-top: 14px;">Làm lại Đấu trường</button>
+        </div>
+      `;
+      if (quizScore >= 4) triggerCelebration();
+    }
+
+    function resetQuiz() {
+      currentQuizIdx = 0;
+      quizScore = 0;
+      quizStreak = 0;
+      document.getElementById('quizScore').textContent = '0';
+      document.getElementById('quizStreak').textContent = '0';
+      renderQuiz();
+      playClick();
+    }
+
+    /* ─── 9. KEYBOARD SHORTCUTS ─── */
+    window.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      if (e.key === 'ArrowRight' || e.key === 'PageDown') {
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp') {
+        prevSlide();
+      } else if (e.key === 'ArrowDown' || e.key === ' ') {
+        e.preventDefault();
+        revealNext(currentSlide);
+      } else if (e.key === 'f' || e.key === 'F') {
+        toggleFullscreen();
+      } else if (e.key === 'm' || e.key === 'M') {
+        toggleMute();
+      } else if (e.key === 't' || e.key === 'T') {
+        toggleToc();
+      }
+    });
+
+    /* ─── KHỞI TẠO TẤT CẢ KHI TẢI TRANG ─── */
+    window.addEventListener('DOMContentLoaded', () => {
+      initToc();
+      renderQuiz();
+      updateSlideView();
+    });
+  </script>
+</body>
+</html>
