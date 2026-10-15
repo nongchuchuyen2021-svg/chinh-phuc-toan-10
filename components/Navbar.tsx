@@ -31,7 +31,7 @@ export default function Navbar() {
 
   return (
     <nav className="sticky top-0 z-40 w-full border-b border-void-border/80 bg-void/85 backdrop-blur-xl transition-all">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6">
+      <div className="mx-auto flex max-w-5xl items-center justify-between px-4 py-3 sm:px-6">
         {/* Brand Logo */}
         <Link
           href="/"

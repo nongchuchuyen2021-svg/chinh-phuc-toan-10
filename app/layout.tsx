@@ -41,21 +41,7 @@ export default function RootLayout({
       >
         <MathCanvas />
         <Navbar />
-        <div className="relative z-10">{children}</div>
-
-        <footer className="relative z-10 mt-20 border-t border-void-border/70 bg-void-card/85 backdrop-blur-xl py-10 text-center text-xs text-star-soft">
-          <div className="max-w-7xl mx-auto px-4 space-y-2">
-            <p className="font-semibold text-star text-sm">
-              Hệ thống Chinh phục Toán 10 — Trường THPT Na Rì, tỉnh Thái Nguyên
-            </p>
-            <p className="text-star-soft">
-              Bám sát chương trình SGK Toán 10 (Bộ sách Kết nối tri thức với cuộc sống) & Định dạng câu hỏi cấu trúc mới của Bộ GD&ĐT
-            </p>
-            <p className="text-star-mute text-[11px] pt-2">
-              © 2026 THPT Na Rì. Không gian tự học Toán học số thế hệ mới tích hợp KaTeX và tự động lưu tiến độ.
-            </p>
-          </div>
-        </footer>
+        <main className="relative">{children}</main>
       </body>
     </html>
   );

@@ -105,9 +105,23 @@ export type Topic = {
 };
 
 export type LessonProgress = {
-  best: number;
-  attempts: number;
-  lastAt: string;
+  best?: number;
+  attempts?: number;
+  lastAt?: string;
+  completedTheory?: boolean;
+  mcScore?: {
+    correct: number;
+    total: number;
+    percent: number;
+    date?: string;
+  };
+  tfScore?: {
+    correct: number;
+    total: number;
+    score: number;
+    date?: string;
+  };
+  wrongQuestions?: string[];
 };
 
 export type ProgressMap = Record<string, LessonProgress>;
