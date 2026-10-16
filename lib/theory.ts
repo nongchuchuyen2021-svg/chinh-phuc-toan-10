@@ -1915,353 +1915,186 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
   },
 
   "bai-07": {
-    intro: "Chào mừng các em bước vào Chương IV — Thế giới Vectơ! Trong đời sống và khoa học tự nhiên, nhiều đại lượng không chỉ có độ lớn mà còn mang hướng chuyển động (vận tốc cơn gió, lực kéo con tàu, độ dịch chuyển máy bay). Vectơ chính là công cụ toán học tối tân để biểu diễn và giải quyết những bài toán đa chiều đó.",
-    minutes: 15,
-    sections: [
-      {
-        id: "sec-1",
-        emoji: "↗️",
-        heading: "1. Khái niệm Vectơ & Điểm đầu, Điểm cuối, Độ dài",
-        blocks: [
-          {
-            kind: "text",
-            text: "Trong hình học phẳng, đoạn thẳng $AB$ cho ta biết khoảng cách giữa hai điểm nhưng không cho biết chiều chuyển động từ đâu tới đâu. Khi ta quy định một hướng chuyển động xác định (chẳng hạn từ $A$ đến $B$), ta được một **đoạn thẳng có hướng**, gọi là một **vectơ**."
-          },
-          {
-            kind: "cards",
-            tone: "nebula",
-            items: [
-              {
-                emoji: "🎯",
-                title: "Định nghĩa Vectơ",
-                text: "Vectơ là một đoạn thẳng có hướng. Nghĩa là trong hai điểm mút của đoạn thẳng, đã chỉ rõ điểm nào là điểm đầu (gốc), điểm nào là điểm cuối (ngọn)."
-              },
-              {
-                emoji: "✍️",
-                title: "Kí hiệu chuẩn xác",
-                text: "Vectơ có điểm đầu $A$ và điểm cuối $B$ được kí hiệu là $\\overrightarrow{AB}$ (đọc là 'vectơ AB'). Mũi tên luôn hướng từ trái sang phải trên đầu hai chữ cái."
-              },
-              {
-                emoji: "🔤",
-                title: "Kí hiệu bằng chữ in thường",
-                text: "Khi không cần chỉ rõ điểm đầu và điểm cuối, vectơ còn được kí hiệu là $\\vec{a}, \\vec{b}, \\vec{u}, \\vec{v}, \\vec{x}, \\dots$"
-              },
-              {
-                emoji: "📏",
-                title: "Độ dài của Vectơ",
-                text: "Độ dài của vectơ $\\overrightarrow{AB}$ chính là khoảng cách giữa điểm đầu $A$ và điểm cuối $B$, kí hiệu là $|\\overrightarrow{AB}|$. Như vậy: $|\\overrightarrow{AB}| = AB = BA$."
-              }
-            ]
-          },
-          {
-            kind: "compare",
-            left: {
-              title: "Đoạn thẳng thông thường (AB)",
-              emoji: "➖",
-              items: [
-                "Không có hướng chuyển động, hai đầu mút vai trò bình đẳng.",
-                "Đoạn thẳng $AB$ và đoạn thẳng $BA$ là một hình duy nhất ($AB \\equiv BA$).",
-                "Chỉ có độ dài số học $AB \\ge 0$ (vô hướng)."
-              ]
-            },
-            right: {
-              title: "Vectơ có hướng (AB)",
-              emoji: "↗️",
-              items: [
-                "Có hướng xác định từ điểm đầu $A$ đến điểm cuối $B$.",
-                "$\\overrightarrow{AB}$ và $\\overrightarrow{BA}$ là hai vectơ hoàn toàn khác nhau (ngược hướng nhau!).",
-                "Vừa có độ dài $|\\overrightarrow{AB}|$, vừa có phương và hướng chuyển động."
-              ]
-            }
-          },
-          {
-            kind: "figure",
-            title: "Minh hoạ Đoạn thẳng có hướng và Kí hiệu Vectơ",
-            svg: `<svg viewBox="0 0 540 180" width="100%" height="170" class="max-w-[540px] mx-auto select-none"><defs><marker id="arrCyan1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#00f2fe"/></marker><marker id="arrRose1" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#f43f5e"/></marker></defs><rect width="540" height="180" fill="#070f1e" rx="14"/><line x1="50" y1="60" x2="230" y2="60" stroke="#00f2fe" stroke-width="3" marker-end="url(#arrCyan1)"/><circle cx="50" cy="60" r="4.5" fill="#00f2fe" stroke="#fff" stroke-width="1.5"/><circle cx="230" cy="60" r="4.5" fill="#00f2fe" stroke="#fff" stroke-width="1.5"/><text x="45" y="45" fill="#67e8f9" font-size="13" font-family="sans-serif" font-weight="bold">A (Gốc)</text><text x="215" y="45" fill="#67e8f9" font-size="13" font-family="sans-serif" font-weight="bold">B (Ngọn)</text><text x="110" y="90" fill="#00f2fe" font-size="12" font-family="monospace" font-weight="bold">vectơ AB (hướng A → B)</text><line x1="490" y1="120" x2="310" y2="120" stroke="#f43f5e" stroke-width="3" marker-end="url(#arrRose1)"/><circle cx="490" cy="120" r="4.5" fill="#f43f5e" stroke="#fff" stroke-width="1.5"/><circle cx="310" cy="120" r="4.5" fill="#f43f5e" stroke="#fff" stroke-width="1.5"/><text x="480" y="145" fill="#fca5a5" font-size="13" font-family="sans-serif" font-weight="bold">B (Gốc)</text><text x="300" y="145" fill="#fca5a5" font-size="13" font-family="sans-serif" font-weight="bold">A (Ngọn)</text><text x="370" y="90" fill="#f43f5e" font-size="12" font-family="monospace" font-weight="bold">vectơ BA (hướng B → A)</text></svg>`,
-            caption: "Hình 7.1: Hai điểm phân biệt A, B xác định được đúng 2 vectơ có hướng ngược nhau: vectơ AB và vectơ BA."
-          },
-          {
-            kind: "example",
-            title: "Ví dụ 1: Xác định số lượng vectơ từ các đỉnh tam giác",
-            text: "Cho tam giác $ABC$. Có bao nhiêu vectơ khác vectơ-không có điểm đầu và điểm cuối là các đỉnh của tam giác $ABC$?",
-            solution: "Mỗi cặp điểm phân biệt $\{X, Y\}$ xác định được đúng 2 vectơ có hướng ngược nhau là $\\overrightarrow{XY}$ và $\\overrightarrow{YX}$.\nBa đỉnh $A, B, C$ tạo thành 3 cặp đỉnh: $\{A, B\}, \{B, C\}, \{C, A\}$.\nDo đó ta lập được $3 \\times 2 = 6$ vectơ khác $\\vec{0}$:\n$$\\overrightarrow{AB}, \\overrightarrow{BA}, \\overrightarrow{BC}, \\overrightarrow{CB}, \\overrightarrow{CA}, \\overrightarrow{AC}$$\n💡 **Mẹo tính nhanh**: Với $n$ điểm phân biệt ($n \\ge 2$), số vectơ khác $\\vec{0}$ lập được luôn là số chỉnh hợp chập 2 của $n$ phần tử: $A_n^2 = n(n - 1)$."
-          },
-          {
-            kind: "check",
-            q: "Cho hình chữ nhật $ABCD$ có $AB = 4\\text{ cm}$ và $BC = 3\\text{ cm}$. Tính độ dài của vectơ $\\overrightarrow{AC}$.",
-            options: [
-              "$|\\overrightarrow{AC}| = 5\\text{ cm}$",
-              "$|\\overrightarrow{AC}| = 7\\text{ cm}$",
-              "$|\\overrightarrow{AC}| = 1\\text{ cm}$",
-              "$|\\overrightarrow{AC}| = 25\\text{ cm}$"
-            ],
-            answer: 0,
-            explain: "Độ dài của vectơ $\\overrightarrow{AC}$ chính là độ dài đoạn thẳng $AC$. Áp dụng định lí Pytago trong tam giác vuông $ABC$: $AC = \\sqrt{AB^2 + BC^2} = \\sqrt{4^2 + 3^2} = 5\\text{ cm}$. Do đó $|\\overrightarrow{AC}| = 5\\text{ cm}$."
-          }
-        ]
-      },
-
-      {
-        id: "sec-2",
-        emoji: "🧭",
-        heading: "2. Giá của Vectơ & Hai Vectơ Cùng Phương, Cùng Hướng",
-        blocks: [
-          {
-            kind: "text",
-            text: "Để nghiên cứu phương hướng của vectơ trong không gian toán học, ta cần một đường chuẩn gọi là **giá của vectơ**. Đây là khái niệm bản lề để định nghĩa hai vectơ cùng phương."
-          },
-          {
-            kind: "cards",
-            tone: "plasma",
-            items: [
-              {
-                emoji: "📐",
-                title: "Giá của vectơ là gì?",
-                text: "Đường thẳng đi qua điểm đầu và điểm cuối của một vectơ được gọi là **giá** của vectơ đó. Ví dụ: Giá của vectơ $\\overrightarrow{AB}$ chính là đường thẳng $AB$."
-              },
-              {
-                emoji: "🛤️",
-                title: "Hai vectơ cùng phương",
-                text: "Hai vectơ được gọi là **cùng phương** nếu giá của chúng **song song hoặc trùng nhau**."
-              },
-              {
-                emoji: "➡️",
-                title: "Hai vectơ cùng hướng / ngược hướng",
-                text: "Nếu hai vectơ đã **cùng phương**, thì chúng chỉ có thể **cùng hướng** (mũi tên chỉ về cùng một phía) hoặc **ngược hướng** (mũi tên chỉ về hai phía trái ngược nhau)."
-              },
-              {
-                emoji: "⚠️",
-                title: "Lưu ý sống còn",
-                text: "Khái niệm 'cùng hướng' hay 'ngược hướng' **CHỈ ĐƯỢC XÉT** khi hai vectơ đó đã cùng phương! Nếu hai vectơ có giá cắt nhau thì ta kết luận ngay là **không cùng phương**, tuyệt đối không xét hướng."
-              }
-            ]
-          },
-          {
-            kind: "steps",
-            items: [
-              {
-                label: "Bước 1",
-                title: "Kiểm tra vị trí tương đối của hai đường thẳng giá",
-                text: "Vẽ đường thẳng chứa vectơ thứ nhất và đường thẳng chứa vectơ thứ hai. Nếu hai đường thẳng này song song hoặc trùng nhau $\\implies$ Hai vectơ cùng phương. Nếu cắt nhau $\\implies$ Không cùng phương."
-              },
-              {
-                label: "Bước 2",
-                title: "So sánh chiều mũi tên định hướng",
-                text: "Nếu cùng phương: Quan sát chiều mũi tên. Cùng chỉ sang phải / sang trái / lên / xuống $\\implies$ Cùng hướng. Một chỉ xuôi một chỉ ngược $\\implies$ Ngược hướng."
-              }
-            ]
-          },
-          {
-            kind: "figure",
-            title: "Ba vị trí tương đối giữa hai vectơ",
-            svg: `<svg viewBox="0 0 540 200" width="100%" height="190" class="max-w-[540px] mx-auto select-none"><defs><marker id="arrC" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#38bdf8"/></marker><marker id="arrG" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#34d399"/></marker><marker id="arrR" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#f87171"/></marker></defs><rect width="540" height="200" fill="#070f1e" rx="14"/><line x1="20" y1="50" x2="160" y2="50" stroke="#475569" stroke-width="1" stroke-dasharray="3 3"/><line x1="30" y1="50" x2="110" y2="50" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrC)"/><line x1="20" y1="90" x2="160" y2="90" stroke="#475569" stroke-width="1" stroke-dasharray="3 3"/><line x1="50" y1="90" x2="140" y2="90" stroke="#38bdf8" stroke-width="3" marker-end="url(#arrC)"/><text x="25" y="130" fill="#38bdf8" font-size="11" font-family="sans-serif" font-weight="bold">Giá song song</text><text x="25" y="148" fill="#94a3b8" font-size="10" font-family="monospace">CÙNG HƯỚNG</text><line x1="190" y1="70" x2="350" y2="70" stroke="#475569" stroke-width="1" stroke-dasharray="3 3"/><line x1="200" y1="70" x2="260" y2="70" stroke="#34d399" stroke-width="3" marker-end="url(#arrG)"/><line x1="340" y1="70" x2="280" y2="70" stroke="#f87171" stroke-width="3" marker-end="url(#arrR)"/><text x="210" y="130" fill="#34d399" font-size="11" font-family="sans-serif" font-weight="bold">Giá trùng nhau</text><text x="210" y="148" fill="#f87171" font-size="10" font-family="monospace">NGƯỢC HƯỚNG</text><line x1="390" y1="100" x2="520" y2="40" stroke="#f87171" stroke-width="2.5" marker-end="url(#arrR)"/><line x1="390" y1="50" x2="500" y2="105" stroke="#38bdf8" stroke-width="2.5" marker-end="url(#arrC)"/><text x="395" y="145" fill="#fca5a5" font-size="11" font-family="sans-serif" font-weight="bold">Giá cắt nhau</text><text x="395" y="163" fill="#cbd5e1" font-size="10" font-family="monospace">KHÔNG CÙNG PHƯƠNG</text></svg>`,
-            caption: "Hình 7.2: Ba tình huống kinh điển: Cùng phương cùng hướng, cùng phương ngược hướng, và giá cắt nhau."
-          },
-          {
-            kind: "note",
-            text: "🌟 **Định lí về ba điểm thẳng hàng (Cực kì quan trọng trong giải toán)**:\nBa điểm phân biệt $A, B, C$ thẳng hàng khi và chỉ khi hai vectơ $\\overrightarrow{AB}$ và $\\overrightarrow{AC}$ cùng phương!"
-          },
-          {
-            kind: "check",
-            q: "Khẳng định nào sau đây là SAI?",
-            options: [
-              "Hai vectơ cùng hướng thì chắc chắn cùng phương.",
-              "Hai vectơ cùng phương thì chắc chắn cùng hướng.",
-              "Hai vectơ ngược hướng thì luôn cùng phương.",
-              "Hai vectơ có giá song song với nhau thì cùng phương."
-            ],
-            answer: 1,
-            explain: "Khẳng định 'Hai vectơ cùng phương thì chắc chắn cùng hướng' là SAI. Vì hai vectơ cùng phương có thể cùng hướng HOẶC ngược hướng với nhau."
-          }
-        ]
-      },
-
-      {
-        id: "sec-3",
-        emoji: "⚖️",
-        heading: "3. Hai Vectơ Bằng Nhau & Hai Vectơ Đối Nhau",
-        blocks: [
-          {
-            kind: "text",
-            text: "Trong đại số, hai số bằng nhau khi chúng có cùng giá trị. Trong hình học vectơ, vì mỗi vectơ có cả độ dài lẫn hướng, nên để hai vectơ được coi là 'bằng nhau', chúng phải thoả mãn đồng thời cả hai yếu tố."
-          },
-          {
-            kind: "cards",
-            tone: "nebula",
-            items: [
-              {
-                emoji: "✨",
-                title: "Định nghĩa Hai vectơ bằng nhau",
-                text: "Hai vectơ $\\vec{a}$ và $\\vec{b}$ được gọi là bằng nhau nếu chúng có **cùng hướng** và **cùng độ dài**, kí hiệu là $\\vec{a} = \\vec{b}$."
-              },
-              {
-                emoji: "📌",
-                title: "Điều kiện cần và đủ",
-                text: "$$\\vec{a} = \\vec{b} \\iff \\begin{cases} \\vec{a} \\text{ cùng hướng với } \\vec{b} \\\\ |\\vec{a}| = |\\vec{b}| \\end{cases}$$"
-              },
-              {
-                emoji: "🔄",
-                title: "Hai vectơ đối nhau",
-                text: "Hai vectơ được gọi là đối nhau nếu chúng có **ngược hướng** và **cùng độ dài**, kí hiệu $\\vec{a} = -\\vec{b}$. Đặc biệt, với bất kì đoạn thẳng $AB$, ta luôn có: $\\overrightarrow{BA} = -\\overrightarrow{AB}$."
-              },
-              {
-                emoji: "🚀",
-                title: "Tự do tịnh tiến của Vectơ",
-                text: "Khi hai vectơ bằng nhau, ta có thể xem chúng là một. Cho trước điểm $O$ và vectơ $\\vec{a}$, luôn tìm được **duy nhất một điểm $A$** sao cho $\\overrightarrow{OA} = \\vec{a}$."
-              }
-            ]
-          },
-          {
-            kind: "figure",
-            title: "Vectơ bằng nhau trong Hình bình hành ABCD",
-            svg: `<svg viewBox="0 0 540 190" width="100%" height="180" class="max-w-[540px] mx-auto select-none"><defs><marker id="arrE" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#10b981"/></marker><marker id="arrV" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 1.5 L 10 5 L 0 8.5 z" fill="#38bdf8"/></marker></defs><rect width="540" height="190" fill="#070f1e" rx="14"/><polygon points="80,140 280,140 370,50 170,50" fill="rgba(16, 185, 129, 0.06)" stroke="#334155" stroke-width="1.5"/><line x1="80" y1="140" x2="280" y2="140" stroke="#10b981" stroke-width="3" marker-end="url(#arrE)"/><line x1="170" y1="50" x2="370" y2="50" stroke="#10b981" stroke-width="3" marker-end="url(#arrE)"/><circle cx="80" cy="140" r="4" fill="#10b981"/><text x="65" y="158" fill="#10b981" font-size="12" font-family="sans-serif" font-weight="bold">A</text><circle cx="280" cy="140" r="4" fill="#10b981"/><text x="285" y="158" fill="#10b981" font-size="12" font-family="sans-serif" font-weight="bold">B</text><circle cx="370" cy="50" r="4" fill="#10b981"/><text x="380" y="52" fill="#10b981" font-size="12" font-family="sans-serif" font-weight="bold">C</text><circle cx="170" cy="50" r="4" fill="#10b981"/><text x="155" y="52" fill="#10b981" font-size="12" font-family="sans-serif" font-weight="bold">D</text><text x="410" y="80" fill="#34d399" font-size="12" font-family="monospace" font-weight="bold">AB = DC</text><text x="410" y="115" fill="#38bdf8" font-size="12" font-family="monospace" font-weight="bold">AD = BC</text><text x="410" y="150" fill="#f87171" font-size="11" font-family="sans-serif">Chú ý: AB ≠ CD</text></svg>`,
-            caption: "Hình 7.3: Trong hình bình hành ABCD, cạnh AB song song và bằng DC, hướng A→B trùng D→C nên AB = DC (nhưng AB ngược hướng CD)."
-          },
-          {
-            kind: "example",
-            title: "Ví dụ 2: Nhận diện vectơ bằng nhau trong Lục giác đều",
-            text: "Cho lục giác đều $ABCDEF$ có tâm $O$. Hãy chỉ ra các vectơ bằng vectơ $\\overrightarrow{AB}$.",
-            solution: "Trong lục giác đều $ABCDEF$ tâm $O$:\n- Đoạn thẳng $AB$ song song và bằng các đoạn $FO, OC, ED$.\n- Xét hướng từ $A$ đến $B$ (hướng từ trái sang phải, chếch xuống):\n  + $\\overrightarrow{FO}$ cùng hướng và cùng độ dài với $\\overrightarrow{AB} \\implies \\overrightarrow{FO} = \\overrightarrow{AB}$.\n  + $\\overrightarrow{OC}$ cùng hướng và cùng độ dài với $\\overrightarrow{AB} \\implies \\overrightarrow{OC} = \\overrightarrow{AB}$.\n  + $\\overrightarrow{ED}$ cùng hướng và cùng độ dài với $\\overrightarrow{AB} \\implies \\overrightarrow{ED} = \\overrightarrow{AB}$.\nVậy có đúng 3 vectơ bằng vectơ $\\overrightarrow{AB}$ là: $\\overrightarrow{FO}, \\overrightarrow{OC}, \\overrightarrow{ED}$."
-          },
-          {
-            kind: "check",
-            q: "Cho hình bình hành $ABCD$ tâm $O$. Khẳng định nào sau đây là ĐÚNG?",
-            options: [
-              "$\\overrightarrow{AO} = \\overrightarrow{OC}$",
-              "$\\overrightarrow{AO} = \\overrightarrow{CO}$",
-              "$\\overrightarrow{OB} = \\overrightarrow{OD}$",
-              "$\\overrightarrow{AB} = \\overrightarrow{CD}$"
-            ],
-            answer: 0,
-            explain: "Vì $O$ là trung điểm của $AC$ nên $AO = OC$, và hướng từ $A$ đến $O$ cùng hướng từ $O$ đến $C$. Do đó $\\overrightarrow{AO} = \\overrightarrow{OC}$."
-          }
-        ]
-      },
-
-      {
-        id: "sec-4",
-        emoji: "⭕",
-        heading: "4. Kỳ quan Vectơ-không (0) & Các Quy ước Vàng",
-        blocks: [
-          {
-            kind: "text",
-            text: "Số $0$ đóng vai trò cốt lõi trong đại số, thì trong hình học vectơ cũng tồn tại một phần tử đặc biệt tương tự: **vectơ-không**, kí hiệu là $\\vec{0}$."
-          },
-          {
-            kind: "cards",
-            tone: "plasma",
-            items: [
-              {
-                emoji: "0️⃣",
-                title: "Định nghĩa Vectơ-không",
-                text: "Vectơ-không là vectơ có **điểm đầu và điểm cuối trùng nhau**. Ví dụ: $\\overrightarrow{AA}, \\overrightarrow{BB}, \\overrightarrow{MM}$ đều là các biểu diễn của vectơ-không."
-              },
-              {
-                emoji: "📏",
-                title: "Độ dài của Vectơ-không",
-                text: "Độ dài của vectơ-không bằng $0$, kí hiệu: $|\\vec{0}| = 0$."
-              },
-              {
-                emoji: "👑",
-                title: "Quy ước vàng (Đặc biệt hay thi trắc nghiệm!)",
-                text: "Vectơ-không $\\vec{0}$ được quy ước là **cùng phương và cùng hướng với mọi vectơ**."
-              },
-              {
-                emoji: "🤝",
-                title: "Sự duy nhất của Vectơ-không",
-                text: "Mọi vectơ có độ dài bằng 0 đều bằng nhau: $\\overrightarrow{AA} = \\overrightarrow{BB} = \\overrightarrow{CC} = \\vec{0}$."
-              }
-            ]
-          },
-          {
-            kind: "note",
-            text: "⚠️ **Cảnh báo bẫy thi thường gặp**:\n1. Phân biệt rõ số $0$ (vô hướng) và vectơ-không $\\vec{0}$ (có mũi tên). Đẳng thức $\\overrightarrow{AA} = 0$ là viết **SAI**. Phải viết là $\\overrightarrow{AA} = \\vec{0}$ hoặc $|\\overrightarrow{AA}| = 0$.\n2. Nếu đề bài hỏi 'Hai vectơ cùng phương thì giá song song hoặc trùng', hãy nhớ trường hợp $\\vec{0}$ không có giá xác định cụ thể nhưng vẫn cùng phương với mọi vectơ theo quy ước."
-          },
-          {
-            kind: "check",
-            q: "Mệnh đề nào sau đây là ĐÚNG?",
-            options: [
-              "Vectơ-không cùng phương, cùng hướng với mọi vectơ.",
-              "Vectơ-không có độ dài bằng 1.",
-              "Vectơ-không có giá là một đường thẳng duy nhất.",
-              "Hai vectơ $\\overrightarrow{AA}$ và $\\overrightarrow{BB}$ là hai vectơ khác nhau."
-            ],
-            answer: 0,
-            explain: "Theo quy ước nền tảng của hình học vectơ, vectơ-không $\\vec{0}$ cùng phương và cùng hướng với mọi vectơ."
-          }
-        ]
-      },
-
-      {
-        id: "sec-5",
-        emoji: "🚀",
-        heading: "5. Vectơ trong Thực tiễn & Mô hình Hoá Vật Lý",
-        blocks: [
-          {
-            kind: "text",
-            text: "Vectơ ra đời từ chính nhu cầu mô tả tự nhiên của các nhà vật lí học. Trong cuộc sống có hai loại đại lượng căn bản:"
-          },
-          {
-            kind: "compare",
-            left: {
-              title: "Đại lượng vô hướng (Scalar)",
-              emoji: "⏱️",
-              items: [
-                "Chỉ được xác định hoàn toàn bởi một giá trị số kèm đơn vị đo.",
-                "Không có hướng trong không gian.",
-                "Ví dụ: Khối lượng ($50\\text{ kg}$), Thời gian ($2\\text{ giờ}$), Nhiệt độ ($28^\\circ\\text{C}$), Chiều dài đoạn đường ($10\\text{ km}$)."
-              ]
-            },
-            right: {
-              title: "Đại lượng vectơ (Vector)",
-              emoji: "🎯",
-              items: [
-                "Cần đồng thời cả độ lớn (độ dài) và hướng (phương + chiều).",
-                "Nếu đổi hướng thì đại lượng đó đã thay đổi bản chất.",
-                "Ví dụ: Vận tốc $\\vec{v}$ ($60\\text{ km/h}$ hướng Bắc), Lực tác dụng $\\vec{F}$ ($100\\text{ N}$ kéo lên), Độ dịch chuyển $\\vec{d}$."
-              ]
-            }
-          },
-          {
-            kind: "cards",
-            tone: "nebula",
-            items: [
-              {
-                emoji: "✈️",
-                title: "Vận tốc máy bay & Hướng gió",
-                text: "Khi một máy bay bay theo hướng chính Đông với vận tốc $\\vec{v}_1$, nếu có gió thổi từ phương Bắc xuống phương Nam với vận tốc $\\vec{v}_2$, vectơ vận tốc thực tế của máy bay đối với mặt đất sẽ là hợp của hai vectơ này."
-              },
-              {
-                emoji: "⚓",
-                title: "Cân bằng lực của con tàu",
-                text: "Một con tàu đứng yên trên mặt nước khi tổng các lực tác dụng lên nó (lực kéo của động cơ, lực cản của nước, lực đẩy Ác-si-mét, trọng lực) triệt tiêu lẫn nhau tạo thành vectơ-không: $\\vec{F}_1 + \\vec{F}_2 + \\dots = \\vec{0}$."
-              }
-            ]
-          },
-          {
-            kind: "check",
-            q: "Đại lượng nào sau đây là một đại lượng vectơ?",
-            options: [
-              "Vận tốc chuyển động",
-              "Khối lượng vật thể",
-              "Nhiệt độ phòng",
-              "Thể tích chất lỏng"
-            ],
-            answer: 0,
-            explain: "Vận tốc là đại lượng vectơ vì nó có cả độ lớn (tốc độ) và hướng chuyển động. Khối lượng, nhiệt độ, thể tích chỉ là các đại lượng vô hướng."
-          }
-        ]
-      }
-    ],
-    summary: [
-      "Vectơ là đoạn thẳng có hướng. Điểm đầu và điểm cuối xác định duy nhất vectơ $\\overrightarrow{AB}$.",
-      "Độ dài của $\\overrightarrow{AB}$ là khoảng cách $|\\overrightarrow{AB}| = AB$. Luôn có $|\\vec{a}| \\ge 0$.",
-      "Giá của vectơ là đường thẳng đi qua gốc và ngọn. Hai vectơ cùng phương $\\iff$ giá song song hoặc trùng nhau.",
-      "Hai vectơ bằng nhau $\\iff$ cùng hướng VÀ cùng độ dài. Trong hình bình hành $ABCD$: $\\overrightarrow{AB} = \\overrightarrow{DC}$.",
-      "Vectơ-không $\\vec{0}$ có điểm đầu trùng điểm cuối, độ dài bằng 0, cùng phương và cùng hướng với mọi vectơ.",
-      "Ba điểm $A, B, C$ thẳng hàng $\\iff \\overrightarrow{AB}$ và $\\overrightarrow{AC}$ cùng phương."
-    ]
-  }
+  "intro": "Học theo SGK Kết nối tri thức trang 46–50: hiểu gốc–ngọn, tự dựng vectơ bằng nhau, phân biệt hướng với độ dài. Xưởng lưới có ba nhiệm vụ, cho phép sửa theo phản hồi. Ví dụ lục giác và cách kiểm tra bằng tọa độ là phần bổ sung.",
+  "minutes": 25,
+  "sections": [
+    {
+      "id": "vector-meaning",
+      "emoji": "↗️",
+      "heading": "1. Một độ dài và một hướng",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Vectơ là đoạn thẳng có hướng: $\\overrightarrow{AB}$ có gốc A, ngọn B; $|\\overrightarrow{AB}|=AB$."
+        },
+        {
+          "kind": "example",
+          "title": "HĐ1 · SGK trang 47",
+          "text": "Từ đảo A đi 10 km về Đông rồi 10 km về Nam tới B. Nếu đi thẳng từ A tới B thì theo hướng nào và bao xa?",
+          "solution": "Hướng Đông Nam; tam giác vuông cho $AB=\\sqrt{10^2+10^2}=10\\sqrt2$ km. Quãng đường gấp khúc 20 km khác độ dài độ dịch chuyển."
+        },
+        {
+          "kind": "example",
+          "title": "Ví dụ 1 · SGK trang 47",
+          "text": "Hình vuông ABCD cạnh 1. Tính độ dài các vectơ AC, CA, BD.",
+          "solution": "Cả ba độ dài bằng $\\sqrt2$. Hai đường chéo bằng độ dài; đổi chiều không đổi độ dài."
+        },
+        {
+          "kind": "check",
+          "q": "Với A khác B, khẳng định nào đúng?",
+          "options": [
+            "$\\overrightarrow{AB}$ = $\\overrightarrow{BA}$",
+            "Độ dài AB và BA bằng nhau",
+            "AB và BA cùng hướng",
+            "AB là đường thẳng"
+          ],
+          "answer": 1,
+          "explain": "AB và BA ngược hướng nhưng cùng độ dài."
+        }
+      ]
+    },
+    {
+      "id": "vector-direction",
+      "emoji": "🧭",
+      "heading": "2. Cùng phương, cùng hướng",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Hai vectơ khác 0 cùng phương khi giá song song hoặc trùng nhau. Chỉ khi cùng phương mới xét cùng hướng hay ngược hướng."
+        },
+        {
+          "kind": "example",
+          "title": "HĐ2–HĐ3 · SGK trang 47–48",
+          "text": "Quan sát các làn đường và những mũi tên trong Hình 4.7. Tách câu hỏi về phương và câu hỏi về hướng.",
+          "solution": "Làn đường song song cho cùng phương. Với Hình 4.7: AB và y cùng hướng a; x và z ngược hướng a; b không cùng phương với các vectơ đó. Đối chiếu mũi tên trong trang gốc."
+        },
+        {
+          "kind": "note",
+          "text": "“Không cùng hướng” chưa đủ để nói “ngược hướng”. Hai vectơ vuông góc là phản ví dụ. Vectơ-không được xét theo quy ước riêng."
+        },
+        {
+          "kind": "check",
+          "q": "Hai vectơ khác 0 có giá trùng nhau thì:",
+          "options": [
+            "Không cùng phương",
+            "Cùng phương",
+            "Chắc chắn bằng nhau",
+            "Chắc chắn ngược hướng"
+          ],
+          "answer": 1,
+          "explain": "Trùng giá là một trường hợp cùng phương; cần xem chiều và độ dài để xét tiếp."
+        }
+      ]
+    },
+    {
+      "id": "vector-equality",
+      "emoji": "⚖️",
+      "heading": "3. Bằng nhau: giữ cả hướng và độ dài",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Hai vectơ bằng nhau khi cùng hướng và cùng độ dài. Vị trí khác nhau vẫn có thể biểu diễn cùng một vectơ."
+        },
+        {
+          "kind": "example",
+          "title": "Ví dụ 2 · SGK trang 48",
+          "text": "Hình chữ nhật ABCD: so sánh AD với BC; AB với CD; AC với BD.",
+          "solution": "AD và BC bằng nhau về vectơ. AB và CD cùng độ dài nhưng ngược hướng. AC và BD cùng độ dài nhưng khác phương."
+        },
+        {
+          "kind": "example",
+          "title": "Luyện tập 2 · SGK trang 49",
+          "text": "Hình thang cân ABCD có AB và CD là hai đáy, AB < CD. So sánh các cặp như Ví dụ 2.",
+          "solution": "AD và BC cùng độ dài, khác phương; AB và CD ngược hướng, khác độ dài; AC và BD cùng độ dài, khác phương. Không cặp nào bằng nhau."
+        },
+        {
+          "kind": "example",
+          "title": "Ví dụ bổ sung · lục giác đều",
+          "text": "Lục giác đều ABCDEF tâm O. Có bao nhiêu mũi tên bằng AB với hai mút trong bảy điểm?",
+          "solution": "Có 4: AB, ED, FO, OC. Phải tính cả chính AB."
+        },
+        {
+          "kind": "check",
+          "q": "Từ một gốc O, cho trước vectơ a, dựng được bao nhiêu điểm A sao cho OA bằng a?",
+          "options": [
+            "0",
+            "1",
+            "2",
+            "Vô số"
+          ],
+          "answer": 1,
+          "explain": "Điểm cuối là duy nhất khi giữ cả hướng và độ dài. Với vectơ-không, A trùng O."
+        }
+      ]
+    },
+    {
+      "id": "vector-zero",
+      "emoji": "⭕",
+      "heading": "4. Vectơ-không và điều kiện nằm giữa",
+      "blocks": [
+        {
+          "kind": "text",
+          "text": "Vectơ-không có hai mút trùng nhau, độ dài 0; quy ước cùng phương và cùng hướng với mọi vectơ."
+        },
+        {
+          "kind": "example",
+          "title": "Ví dụ 3 · SGK trang 49",
+          "text": "Chứng minh A,B,C phân biệt thẳng hàng khi và chỉ khi AB và AC cùng phương.",
+          "solution": "Chiều thuận: hai giá trùng đường thẳng ABC. Chiều đảo: hai giá cùng phương, cùng đi qua A nên trùng nhau; vì thế A,B,C thẳng hàng."
+        },
+        {
+          "kind": "check",
+          "q": "M nằm giữa A,B phân biệt khi:",
+          "options": [
+            "MA và MB cùng phương",
+            "AB và AM cùng hướng",
+            "MA và MB ngược hướng",
+            "AB và AM ngược hướng"
+          ],
+          "answer": 2,
+          "explain": "Cùng phương hoặc cùng hướng không loại được M nằm ngoài đoạn. Hai tia MA,MB đối nhau chính là điều kiện M nằm giữa."
+        }
+      ]
+    },
+    {
+      "id": "vector-application",
+      "emoji": "⛵",
+      "heading": "5. Hình học và chuyển động",
+      "blocks": [
+        {
+          "kind": "example",
+          "title": "Ví dụ 4 · SGK trang 49–50",
+          "text": "Vật chìm hoàn toàn. Trong Hình 4.11b, trọng lực có độ dài biểu diễn gấp 3 lực đẩy Archimedes.",
+          "solution": "Hai lực thẳng đứng ngược hướng. $|\\vec P|=d'V$, $|\\vec F|=dV$, nên $d'=3d$. Dùng cùng tỉ lệ biểu diễn cho hai lực."
+        },
+        {
+          "kind": "example",
+          "title": "Vận dụng · SGK trang 50",
+          "text": "Hai ca nô tốc độ riêng 15 km/h; dòng nước 3 km/h. A xuôi, B ngược.",
+          "solution": "A: 18 km/h xuôi dòng; B: 12 km/h ngược dòng so với bờ. Các vectơ cùng phương; A cùng hướng dòng nước, B ngược hướng."
+        },
+        {
+          "kind": "example",
+          "title": "Bài 4.5 · SGK trang 50",
+          "text": "A(1;2), M(0;−1), N(3;5). Vật đi từ M với vận tốc OA, thời gian giờ.",
+          "solution": "OA đi 1 ô ngang 2 ô lên; MN đi 3 ô ngang 6 ô lên. Cùng hướng, MN dài gấp 3 OA, nên vật tới N sau 3 giờ."
+        },
+        {
+          "kind": "note",
+          "text": "Đếm theo cặp điểm đầu–cuối khác nhau từ n điểm: n(n−1) mũi tên. Nếu gộp những vectơ bằng nhau, số nhóm có thể ít hơn."
+        }
+      ]
+    }
+  ],
+  "summary": [
+    "Vectơ là đoạn thẳng có hướng: $\\overrightarrow{AB}$ có gốc A, ngọn B; $|\\overrightarrow{AB}|=AB$.",
+    "Hai vectơ khác 0 cùng phương khi giá song song hoặc trùng nhau. Chỉ khi cùng phương mới xét cùng hướng hay ngược hướng.",
+    "Hai vectơ bằng nhau khi cùng hướng và cùng độ dài. Vị trí khác nhau vẫn có thể biểu diễn cùng một vectơ.",
+    "Vectơ-không có hai mút trùng nhau, độ dài 0; quy ước cùng phương và cùng hướng với mọi vectơ.",
+    "Với A,B,C phân biệt: A,B,C thẳng hàng khi và chỉ khi AB và AC cùng phương. M nằm giữa A,B khi MA và MB ngược hướng.",
+    "Đếm theo cặp điểm đầu–cuối khác nhau từ n điểm: n(n−1) mũi tên. Nếu gộp những vectơ bằng nhau, số nhóm có thể ít hơn."
+  ]
+}
 };
 
 export function hasTheory(lessonId: string): boolean {

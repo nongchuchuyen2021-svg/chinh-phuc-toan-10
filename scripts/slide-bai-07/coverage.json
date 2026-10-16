@@ -1,0 +1,27 @@
+{
+  "source": "Toan_10_Theo_Bai/Bai_07_Cac_khai_niem_mo_dau.pdf",
+  "pages": [46, 47, 48, 49, 50],
+  "coverage": [
+    {"page": 46, "item": "Khởi động", "slide": 1, "sgk": "Khởi động"},
+    {"page": 47, "item": "HĐ1", "slide": 2, "result": "Đông Nam; 10√2 km"},
+    {"page": 47, "item": "Định nghĩa, độ dài", "slides": [3, 4]},
+    {"page": 47, "item": "Ví dụ 1", "slide": 5, "result": "Ba độ dài bằng √2"},
+    {"page": 47, "item": "Luyện tập 1", "slide": 6, "result": "6 mũi tên dài a"},
+    {"page": 47, "item": "HĐ2", "slide": 7, "result": "a,c đúng; b sai"},
+    {"page": 48, "item": "HĐ3, phương, hướng, bằng nhau", "slides": [8, 9, 10], "sgk": "hd3; Hình 4.7 gốc"},
+    {"page": 48, "item": "Vectơ-không; tính duy nhất", "slides": [12, 13]},
+    {"page": 48, "item": "Ví dụ 2", "slide": 14, "result": "AD = BC về vectơ"},
+    {"page": 49, "item": "Luyện tập 2", "slide": 15, "result": "Không cặp được hỏi nào bằng nhau"},
+    {"page": 49, "item": "Ví dụ 3", "slide": 16, "result": "Chứng minh hai chiều"},
+    {"page": 49, "item": "Luyện tập 3", "slide": 17, "result": "d"},
+    {"pages": [49, 50], "item": "Ví dụ 4", "slide": 22, "result": "Hình b; d′ = 3d"},
+    {"page": 50, "item": "Vận dụng", "slide": 23, "result": "A:18 xuôi; B:12 ngược; cùng phương"},
+    {"page": 50, "item": "4.1", "slide": 20, "sgk": "bt-41", "result": "a,c,d đúng; b sai"},
+    {"page": 50, "item": "4.2", "sgk": "bt-42; Hình 4.12 gốc", "result": "a,b,c cùng phương; a=c; b ngược hướng a,c; d khác phương"},
+    {"page": 50, "item": "4.3", "slide": 21, "sgk": "bt-43", "result": "ABCD hình bình hành iff BC = AD về vectơ"},
+    {"page": 50, "item": "4.4", "slide": 18, "sgk": "bt-44", "result": "20 cặp đầu-cuối, chia 12 nhóm"},
+    {"page": 50, "item": "4.5", "slide": 24, "sgk": "bt-45", "result": "Cùng hướng; MN dài gấp 3 OA; t=3 giờ"}
+  ],
+  "supplementary": ["Xưởng dựng 3 nhiệm vụ", "Lục giác đều: AB, ED, FO, OC", "Xoay vectơ", "Phản ví dụ và tự sửa sai", "Hoạt động nhóm 3 phút", "12 câu tự chấm"],
+  "offline": "HTML nhúng KaTeX, CSS, JavaScript, font; các liên kết website cần mạng"
+}

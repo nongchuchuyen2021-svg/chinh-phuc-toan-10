@@ -59,6 +59,8 @@ export default function GameHub({
             <p className="mt-1 text-xs sm:text-sm text-star-soft">
               {lessonId === "bai-05"
                 ? "Nhận diện dấu của các giá trị lượng giác và ghép công thức của hai góc bù nhau."
+                : lessonId === "bai-07"
+                ? "Phân biệt phương, hướng, độ dài; ghép đúng khái niệm và tự sửa các nhận định sai về vectơ."
                 : "Rèn luyện phản xạ logic, nhận diện mệnh đề và thành thạo lượng từ toán học."}
             </p>
           </div>

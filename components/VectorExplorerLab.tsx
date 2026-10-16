@@ -390,7 +390,7 @@ export default function VectorExplorerLab() {
                   onChange={(e) => setShowSecondVector(e.target.checked)}
                   className="accent-amber rounded w-4 h-4 cursor-pointer"
                 />
-                <span>Bật vectơ thứ hai để so sánh: $\overrightarrow{CD}$</span>
+                <span>Bật vectơ thứ hai để so sánh: vectơ CD</span>
               </label>
             </div>
 

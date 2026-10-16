@@ -316,26 +316,35 @@ export const CASIO_TIPS: CasioTip[] = [
     lessonIds: ["bai-06"],
   },
   {
-    id: "casio-14",
-    category: "Các khái niệm mở đầu về vectơ",
-    title: "Tính Độ Dài Vectơ, Đếm Số Vectơ Bằng Chỉnh Hợp nPr & Chế Độ Vectơ",
-    model: "fx-580VNX & fx-880BTG",
-    icon: "↗️",
-    shortcut: "[SHIFT] [×] (nPr) | [MENU] [5] (Vector) | [SHIFT] [)] (Abs)",
-    description:
-      "Kĩ thuật bấm máy tính đếm thần tốc số lượng vectơ khác vectơ-không tạo từ n điểm phân biệt bằng chỉnh hợp nPr, tính độ dài vectơ và sử dụng chức năng VECTOR.",
-    steps: [
-      { key: "[n] [SHIFT] [×] [2] [=]", note: "Bấm tính số vectơ khác $\\vec{0}$ từ $n$ điểm phân biệt ($A_n^2 = n(n-1)$). Ví dụ với 6 điểm: bấm 6 [SHIFT] [×] 2 [=] ra ngay 30" },
-      { key: "[MENU] [5] (fx-580)", note: "Vào chức năng VECTOR (Vectơ). Bấm 1 để chọn VctA, chọn kích thước 2 (mặt phẳng Oxy) hoặc 3 (không gian Oxyz)" },
-      { key: "[HOME] > [Vectơ] (fx-880)", note: "Trên fx-880BTG: Vào ứng dụng Vectơ, bấm [TOOLS] để chọn kích thước 2D và nhập toạ độ" },
-      { key: "[SHIFT] [)] hoặc [Abs]", note: "Tính nhanh độ lớn hợp lực hoặc độ dài vectơ: bấm $\\sqrt{x^2 + y^2}$ hoặc dùng hàm Abs" },
-    ],
-    example: {
-      problem: "Từ 8 điểm phân biệt không có 3 điểm nào thẳng hàng, có bao nhiêu vectơ khác $\\vec{0}$? Tính độ dài vectơ có toạ độ $(12; -5)$.",
-      action: "Bấm 8 [SHIFT] [×] 2 [=] ra 56. Bấm [√] 12 [x²] [+] [(-)] 5 [x²] [=] ra 13.",
-      result: "Lập được đúng 56 vectơ khác $\\vec{0}$. Độ dài vectơ bằng $\\sqrt{12^2 + (-5)^2} = 13$.",
+  "id": "casio-14",
+  "category": "Các khái niệm mở đầu về vectơ",
+  "title": "Kiểm tra độ dài và đếm mũi tên bằng phép tính cơ bản",
+  "model": "Máy tính có phép nhân và căn bậc hai",
+  "icon": "↗️",
+  "shortcut": "5 × 4 = 20 · √(1² + 1²) = √2",
+  "description": "Bài 7 ưu tiên hình vẽ và giải thích phương, hướng. Máy tính chỉ hỗ trợ kiểm tra số học; chưa cần dùng chế độ Vector hoặc tọa độ tổng quát.",
+  "steps": [
+    {
+      "key": "Đếm theo điểm đầu–cuối",
+      "note": "Có 5 điểm: mỗi điểm đầu có 4 điểm cuối khác nó. Nhập 5 × 4, được 20 mũi tên."
     },
-    pitfall: "Học sinh rất hay nhầm lẫn giữa số đoạn thẳng ($C_n^2$, bấm phím [SHIFT] [÷]) và số vectơ ($A_n^2$, bấm phím [SHIFT] [×]). Vì mỗi đoạn thẳng AB cho đúng 2 vectơ ngược hướng là AB và BA nên số vectơ luôn gấp 2 lần số đoạn thẳng!",
-    lessonIds: ["bai-07"],
+    {
+      "key": "Kiểm tra đường chéo",
+      "note": "Hình vuông cạnh 1: nhập căn bậc hai của (1² + 1²), được √2, xấp xỉ 1,414."
+    },
+    {
+      "key": "Giải thích trước khi bấm",
+      "note": "Dùng hình để xét cùng phương, cùng hướng, bằng nhau. Số đo độ dài không tự quyết định hai vectơ bằng nhau."
+    }
+  ],
+  "example": {
+    "problem": "Bài 4.4: hình vuông ABCD tâm O. Có bao nhiêu mũi tên khác vectơ-không, rồi bao nhiêu nhóm vectơ bằng nhau?",
+    "action": "Tính 5 × 4 = 20. Sau đó phân nhóm bằng hướng và độ dài trên hình, không dùng kết quả 20 làm số nhóm.",
+    "result": "20 mũi tên, chia thành 12 nhóm bằng nhau: 8 nhóm đôi và 4 nhóm đơn."
   },
+  "pitfall": "Công thức n(n−1) đếm cặp điểm đầu–cuối khác nhau. Nếu gộp các vectơ bằng nhau thì số nhóm có thể ít hơn. Không dùng máy tính để thay cho chứng minh về hướng.",
+  "lessonIds": [
+    "bai-07"
+  ]
+},
 ];

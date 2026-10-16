@@ -299,7 +299,7 @@ export default function LessonClient({
               : lessonId === "bai-06"
               ? "26 slide tương tác · Khám phá côsin, sin, giải tam giác, đo khoảng cách, diện tích và 12 câu hỏi tự chấm"
               : lessonId === "bai-07"
-              ? "15 slide tương tác · Khái niệm vectơ, độ dài, giá của vectơ, cùng phương, bằng nhau, vectơ-không và 3 phòng Lab mô phỏng"
+              ? "28 slide tương tác · Xưởng tự dựng 3 nhiệm vụ, phản hồi sửa sai, 12 câu tự chấm và bài tập đúng SGK"
               : "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
             done: false,
             badge: "Mới ✨",
@@ -319,7 +319,7 @@ export default function LessonClient({
               : lessonId === "bai-06"
               ? "Bài học theo SGK trang 38–43 · Tình huống thực địa hai con tàu, hoạt động khám phá, ví dụ mẫu và bài tập luyện tập giải chi tiết"
               : lessonId === "bai-07"
-              ? "Bài học theo SGK trang 46–51 · Khái niệm vectơ, cùng phương, vectơ bằng nhau, vectơ-không và bài tập 4.1–4.5 giải chi tiết"
+              ? "SGK trang 46–50 · Đúng đề 4.1–4.5, lời giải bổ sung và 5 trang gốc để đối chiếu"
               : "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
             done: false,
             badge: null,

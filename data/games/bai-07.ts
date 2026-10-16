@@ -103,7 +103,7 @@ const matchGame: MatchGame = {
   pairs: [
     {
       id: "p1",
-      left: "Độ dài $|\overrightarrow{AB}|$",
+      left: "Độ dài $|\\overrightarrow{AB}|$",
       right: "Khoảng cách giữa điểm đầu và điểm cuối ($= AB$)",
       explain: "Độ dài vectơ là một số thực không âm bằng khoảng cách số học giữa 2 điểm.",
     },
@@ -198,7 +198,7 @@ const truthGame: SortGame = {
     {
       id: "tr-5",
       emoji: "5️⃣",
-      label: "Với ba điểm phân biệt $A, B, C$, nếu $\\overrightarrow{AB} = \\overrightarrow{AC}$ thì $B$ trùng $C$.",
+      label: "Với các điểm $A, B, C$, nếu $\\overrightarrow{AB} = \\overrightarrow{AC}$ thì $B$ trùng $C$.",
       isMatch: true,
       explain: "Đúng! Cho trước điểm $A$ và một vectơ, chỉ tồn tại duy nhất một điểm ngọn xác định.",
     },

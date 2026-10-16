@@ -684,113 +684,151 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
   },
 
   "bai-07": {
-    tf: [
-      {
-        id: "b7-tf1",
-        context: "Cho hình bình hành $ABCD$ có tâm $O$. Xét tính đúng/sai của các khẳng định sau:",
-        statements: [
-          {
-            text: "$\\overrightarrow{AB} = \\overrightarrow{DC}$.",
-            answer: true,
-            explain: "Trong hình bình hành $ABCD$, cạnh $AB$ song song và bằng cạnh $DC$. Hướng từ $A$ sang $B$ cùng hướng từ $D$ sang $C$. Do đó hai vectơ cùng hướng và cùng độ dài, nên $\\overrightarrow{AB} = \\overrightarrow{DC}$."
-          },
-          {
-            text: "Hai vectơ $\\overrightarrow{AD}$ và $\\overrightarrow{CB}$ cùng hướng nhau.",
-            answer: false,
-            explain: "Tứ giác $ABCD$ là hình bình hành nên $AD \\parallel CB$. Tuy nhiên, hướng từ $A$ đến $D$ ngược với hướng từ $C$ đến $B$. Do đó hai vectơ $\\overrightarrow{AD}$ và $\\overrightarrow{CB}$ ngược hướng nhau."
-          },
-          {
-            text: "Độ dài $|\\overrightarrow{AO}| = |\\overrightarrow{CO}|$.",
-            answer: true,
-            explain: "Tâm $O$ là trung điểm của đường chéo $AC$ nên khoảng cách $AO = CO$. Vì độ dài vectơ là khoảng cách hình học nên $|\\overrightarrow{AO}| = |\\overrightarrow{CO}| = AO$."
-          },
-          {
-            text: "Hai vectơ $\\overrightarrow{OA}$ và $\\overrightarrow{OC}$ bằng nhau.",
-            answer: false,
-            explain: "Hai vectơ $\\overrightarrow{OA}$ và $\\overrightarrow{OC}$ có cùng độ dài nhưng ngược hướng nhau (chúng là hai vectơ đối nhau). Do đó $\\overrightarrow{OA} \\ne \\overrightarrow{OC}$."
-          }
-        ]
-      },
-      {
-        id: "b7-tf2",
-        context: "Cho lục giác đều $ABCDEF$ có tâm $O$. Xét tính đúng/sai của các mệnh đề sau:",
-        statements: [
-          {
-            text: "Vectơ $\\overrightarrow{AB}$ cùng phương với vectơ $\\overrightarrow{ED}$.",
-            answer: true,
-            explain: "Trong lục giác đều, cạnh $AB$ song song với cạnh $ED$ nên giá của hai vectơ song song với nhau. Do đó $\\overrightarrow{AB}$ và $\\overrightarrow{ED}$ cùng phương."
-          },
-          {
-            text: "Có đúng 3 vectơ khác $\\vec{0}$ có điểm đầu và điểm cuối là các đỉnh hoặc tâm $O$ bằng với $\\overrightarrow{AB}$.",
-            answer: true,
-            explain: "Các vectơ cùng hướng và cùng độ dài với $\\overrightarrow{AB}$ là: $\\overrightarrow{FO}, \\overrightarrow{OC}, \\overrightarrow{ED}$. Có đúng 3 vectơ."
-          },
-          {
-            text: "Độ dài $|\\overrightarrow{AD}| = 2|\\overrightarrow{AB}|$.",
-            answer: true,
-            explain: "Đường chéo chính $AD$ của lục giác đều đi qua tâm $O$ và có độ dài $AD = 2AB$. Do đó $|\\overrightarrow{AD}| = 2|\\overrightarrow{AB}|$."
-          },
-          {
-            text: "Hai vectơ $\\overrightarrow{AO}$ và $\\overrightarrow{OD}$ là hai vectơ đối nhau.",
-            answer: false,
-            explain: "Điểm $O$ là trung điểm của $AD$, nên vectơ $\\overrightarrow{AO}$ và vectơ $\\overrightarrow{OD}$ có cùng hướng và cùng độ dài. Chúng là hai vectơ bằng nhau ($\\overrightarrow{AO} = \\overrightarrow{OD}$), không phải đối nhau."
-          }
-        ]
-      },
-      {
-        id: "b7-tf3",
-        context: "Xét các tính chất cơ bản về vectơ và vectơ-không trong mặt phẳng:",
-        statements: [
-          {
-            text: "Vectơ $\\overrightarrow{AA}$ là một vectơ-không.",
-            answer: true,
-            explain: "Vectơ có điểm đầu trùng với điểm cuối được định nghĩa là vectơ-không."
-          },
-          {
-            text: "Vectơ-không có độ dài bằng 0, kí hiệu $|\\vec{0}| = 0$.",
-            answer: true,
-            explain: "Khoảng cách giữa hai điểm trùng nhau bằng 0 nên độ dài vectơ-không bằng 0."
-          },
-          {
-            text: "Vectơ-không cùng phương và cùng hướng với mọi vectơ.",
-            answer: true,
-            explain: "Đây là quy ước nền tảng được định nghĩa trong SGK Toán 10."
-          },
-          {
-            text: "Nếu hai vectơ $\\vec{a}$ và $\\vec{b}$ có cùng độ dài ($|\\vec{a}| = |\\vec{b}|$) thì $\\vec{a} = \\vec{b}$.",
-            answer: false,
-            explain: "Hai vectơ bằng nhau đòi hỏi đồng thời cả 2 điều kiện: Cùng độ dài VÀ Cùng hướng. Nếu chỉ cùng độ dài nhưng khác hướng thì hai vectơ không bằng nhau."
-          }
-        ]
-      }
-    ],
-    essay: [
-      {
-        id: "b7-es1",
-        q: "Cho 5 điểm phân biệt $A, B, C, D, E$ trong đó không có 3 điểm nào thẳng hàng. Có bao nhiêu vectơ khác vectơ-không có điểm đầu và điểm cuối là các đỉnh của ngũ giác?",
-        answer: "20",
-        explain: "Mỗi cách chọn có thứ tự 2 điểm từ 5 điểm cho trước tạo thành 1 vectơ khác $\\vec{0}$. Số lượng vectơ là: $A_5^2 = 5 \\times 4 = 20$."
-      },
-      {
-        id: "b7-es2",
-        q: "Cho hình vuông $ABCD$ có cạnh bằng $5\\text{ cm}$. Tính độ dài của vectơ đường chéo $\\overrightarrow{AC}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, dùng dấu chấm, ví dụ: 7.1).",
-        answer: "7.1",
-        explain: "Độ dài đường chéo hình vuông: $AC = 5\\sqrt{2} \\approx 7.071\\text{ cm} \\approx 7.1\\text{ cm}$."
-      },
-      {
-        id: "b7-es3",
-        q: "Cho tam giác $ABC$ đều cạnh bằng $6\\text{ cm}$. Gọi $M$ là trung điểm của cạnh $BC$. Tính độ dài của vectơ trung tuyến $\\overrightarrow{AM}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, ví dụ: 5.2).",
-        answer: "5.2",
-        explain: "Đường cao tam giác đều: $AM = \\frac{6\\sqrt{3}}{2} = 3\\sqrt{3} \\approx 5.196\\text{ cm} \\approx 5.2\\text{ cm}$."
-      },
-      {
-        id: "b7-es4",
-        q: "Hai lực $\\vec{F}_1$ và $\\vec{F}_2$ cùng tác dụng vào một vật, có phương vuông góc với nhau và độ lớn lần lượt là $60\\text{ N}$ và $80\\text{ N}$. Tính độ lớn của hợp lực $\\vec{F} = \\vec{F}_1 + \\vec{F}_2$ (đơn vị: N).",
-        answer: "100",
-        explain: "Vì hai lực vuông góc nên theo định lí Pytago: $F = \\sqrt{F_1^2 + F_2^2} = \\sqrt{60^2 + 80^2} = \\sqrt{3600 + 6400} = \\sqrt{10000} = 100\\text{ N}$."
-      }
-    ]
-  }
+  "tf": [
+    {
+      "id": "b7-tf1",
+      "context": "Cho hình bình hành $ABCD$ có tâm $O$. Xét tính đúng/sai của các khẳng định sau:",
+      "statements": [
+        {
+          "text": "$\\overrightarrow{AB} = \\overrightarrow{DC}$.",
+          "answer": true,
+          "explain": "Trong hình bình hành $ABCD$, cạnh $AB$ song song và bằng cạnh $DC$. Hướng từ $A$ sang $B$ cùng hướng từ $D$ sang $C$. Do đó hai vectơ cùng hướng và cùng độ dài, nên $\\overrightarrow{AB} = \\overrightarrow{DC}$."
+        },
+        {
+          "text": "Hai vectơ $\\overrightarrow{AD}$ và $\\overrightarrow{CB}$ cùng hướng nhau.",
+          "answer": false,
+          "explain": "Tứ giác $ABCD$ là hình bình hành nên $AD \\parallel CB$. Tuy nhiên, hướng từ $A$ đến $D$ ngược với hướng từ $C$ đến $B$. Do đó hai vectơ $\\overrightarrow{AD}$ và $\\overrightarrow{CB}$ ngược hướng nhau."
+        },
+        {
+          "text": "Độ dài $|\\overrightarrow{AO}| = |\\overrightarrow{CO}|$.",
+          "answer": true,
+          "explain": "Tâm $O$ là trung điểm của đường chéo $AC$ nên khoảng cách $AO = CO$. Vì độ dài vectơ là khoảng cách hình học nên $|\\overrightarrow{AO}| = |\\overrightarrow{CO}| = AO$."
+        },
+        {
+          "text": "Hai vectơ $\\overrightarrow{OA}$ và $\\overrightarrow{OC}$ bằng nhau.",
+          "answer": false,
+          "explain": "Hai vectơ $\\overrightarrow{OA}$ và $\\overrightarrow{OC}$ có cùng độ dài nhưng ngược hướng nhau (chúng là hai vectơ đối nhau). Do đó $\\overrightarrow{OA} \\ne \\overrightarrow{OC}$."
+        }
+      ]
+    },
+    {
+      "id": "b7-tf2",
+      "context": "Cho lục giác đều $ABCDEF$ có tâm $O$. Xét tính đúng/sai của các mệnh đề sau:",
+      "statements": [
+        {
+          "text": "Vectơ $\\overrightarrow{AB}$ cùng phương với vectơ $\\overrightarrow{ED}$.",
+          "answer": true,
+          "explain": "Trong lục giác đều, cạnh $AB$ song song với cạnh $ED$ nên giá của hai vectơ song song với nhau. Do đó $\\overrightarrow{AB}$ và $\\overrightarrow{ED}$ cùng phương."
+        },
+        {
+          "text": "Có đúng 4 vectơ có hai mút thuộc các đỉnh và tâm O bằng $\\overrightarrow{AB}$.",
+          "answer": true,
+          "explain": "Gồm AB, ED, FO, OC. Phải tính cả AB."
+        },
+        {
+          "text": "Độ dài $|\\overrightarrow{AD}| = 2|\\overrightarrow{AB}|$.",
+          "answer": true,
+          "explain": "Đường chéo chính $AD$ của lục giác đều đi qua tâm $O$ và có độ dài $AD = 2AB$. Do đó $|\\overrightarrow{AD}| = 2|\\overrightarrow{AB}|$."
+        },
+        {
+          "text": "Hai vectơ $\\overrightarrow{AO}$ và $\\overrightarrow{OD}$ là hai vectơ đối nhau.",
+          "answer": false,
+          "explain": "Điểm $O$ là trung điểm của $AD$, nên vectơ $\\overrightarrow{AO}$ và vectơ $\\overrightarrow{OD}$ có cùng hướng và cùng độ dài. Chúng là hai vectơ bằng nhau ($\\overrightarrow{AO} = \\overrightarrow{OD}$), không phải đối nhau."
+        }
+      ]
+    },
+    {
+      "id": "b7-tf3",
+      "context": "Xét các tính chất cơ bản về vectơ và vectơ-không trong mặt phẳng:",
+      "statements": [
+        {
+          "text": "Vectơ $\\overrightarrow{AA}$ là một vectơ-không.",
+          "answer": true,
+          "explain": "Vectơ có điểm đầu trùng với điểm cuối được định nghĩa là vectơ-không."
+        },
+        {
+          "text": "Vectơ-không có độ dài bằng 0, kí hiệu $|\\vec{0}| = 0$.",
+          "answer": true,
+          "explain": "Khoảng cách giữa hai điểm trùng nhau bằng 0 nên độ dài vectơ-không bằng 0."
+        },
+        {
+          "text": "Vectơ-không cùng phương và cùng hướng với mọi vectơ.",
+          "answer": true,
+          "explain": "Đây là quy ước nền tảng được định nghĩa trong SGK Toán 10."
+        },
+        {
+          "text": "Nếu hai vectơ $\\vec{a}$ và $\\vec{b}$ có cùng độ dài ($|\\vec{a}| = |\\vec{b}|$) thì $\\vec{a} = \\vec{b}$.",
+          "answer": false,
+          "explain": "Hai vectơ bằng nhau đòi hỏi đồng thời cả 2 điều kiện: Cùng độ dài VÀ Cùng hướng. Nếu chỉ cùng độ dài nhưng khác hướng thì hai vectơ không bằng nhau."
+        }
+      ]
+    },
+    {
+      "id": "b7-tf4",
+      "context": "Cho hình vuông ABCD cạnh 1 có tâm O. Đếm mũi tên theo cặp điểm đầu–cuối, rồi phân nhóm vectơ bằng nhau.",
+      "statements": [
+        {
+          "text": "Có 20 mũi tên khác vectơ-không có hai mút trong A, B, C, D, O.",
+          "answer": true,
+          "explain": "5 điểm đầu × 4 điểm cuối khác điểm đầu = 20."
+        },
+        {
+          "text": "$\\overrightarrow{AO}$ = $\\overrightarrow{OC}$.",
+          "answer": true,
+          "explain": "O là trung điểm AC; AO và OC cùng hướng, cùng độ dài."
+        },
+        {
+          "text": "$\\overrightarrow{AC}$ = $\\overrightarrow{BD}$.",
+          "answer": false,
+          "explain": "Hai đường chéo cùng độ dài nhưng khác phương."
+        },
+        {
+          "text": "Gộp các vectơ bằng nhau được 12 nhóm.",
+          "answer": true,
+          "explain": "4 nhóm cạnh đôi, 4 nhóm nửa đường chéo đôi và 4 nhóm đường chéo đơn: 4 + 4 + 4 = 12."
+        }
+      ]
+    }
+  ],
+  "essay": [
+    {
+      "id": "b7-es1",
+      "q": "Cho 5 điểm phân biệt $A, B, C, D, E$ trong đó không có 3 điểm nào thẳng hàng. Có bao nhiêu vectơ khác vectơ-không có điểm đầu và điểm cuối là các đỉnh của ngũ giác?",
+      "answer": "20",
+      "explain": "Mỗi cách chọn có thứ tự 2 điểm từ 5 điểm cho trước tạo thành 1 vectơ khác $\\vec{0}$. Số lượng vectơ là: $A_5^2 = 5 \\times 4 = 20$."
+    },
+    {
+      "id": "b7-es2",
+      "q": "Cho hình vuông $ABCD$ có cạnh bằng $5\\text{ cm}$. Tính độ dài của vectơ đường chéo $\\overrightarrow{AC}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, dùng dấu chấm, ví dụ: 7.1).",
+      "answer": "7.1",
+      "explain": "Độ dài đường chéo hình vuông: $AC = 5\\sqrt{2} \\approx 7.071\\text{ cm} \\approx 7.1\\text{ cm}$."
+    },
+    {
+      "id": "b7-es3",
+      "q": "Cho tam giác $ABC$ đều cạnh bằng $6\\text{ cm}$. Gọi $M$ là trung điểm của cạnh $BC$. Tính độ dài của vectơ trung tuyến $\\overrightarrow{AM}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, ví dụ: 5.2).",
+      "answer": "5.2",
+      "explain": "Đường cao tam giác đều: $AM = \\frac{6\\sqrt{3}}{2} = 3\\sqrt{3} \\approx 5.196\\text{ cm} \\approx 5.2\\text{ cm}$."
+    },
+    {
+      "id": "b7-es4",
+      "q": "Theo Bài 4.5 SGK: O(0;0), A(1;2), M(0;−1), N(3;5). Vật từ M đi đều với vận tốc biểu diễn bằng OA, thời gian tính bằng giờ. Sau bao nhiêu giờ vật tới N?",
+      "answer": "3",
+      "explain": "Sau t giờ, vật đi t ô ngang, 2t ô lên. Từ M tới N cần 3 ô ngang và 6 ô lên, nên t = 3 giờ."
+    },
+    {
+      "id": "b7-es5",
+      "q": "Trong xưởng dựng: A(1;1), B(5;3), C(2;4). Đặt D sao cho CD bằng AB về vectơ. Hoành độ của D bằng bao nhiêu?",
+      "answer": "6",
+      "explain": "A tới B đi 4 ô ngang và 2 ô lên. Từ C(2;4), tới D(6;6). Hoành độ D là 6. Ví dụ bổ sung."
+    },
+    {
+      "id": "b7-es6",
+      "q": "Trong hình vuông ABCD tâm O, phân các mũi tên khác vectơ-không với hai mút trong A,B,C,D,O thành nhóm vectơ bằng nhau. Có bao nhiêu nhóm?",
+      "answer": "12",
+      "explain": "4 nhóm cạnh đôi; 4 nhóm nửa đường chéo đôi; 4 nhóm đường chéo đơn. Tổng 12 nhóm, gồm 20 mũi tên."
+    }
+  ]
+}
 };
 
 export function getTF(lessonId: string): TFQuestion[] {
