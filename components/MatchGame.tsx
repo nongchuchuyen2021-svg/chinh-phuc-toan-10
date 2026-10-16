@@ -132,7 +132,7 @@ export default function MatchGameClient({
             Chúc mừng Bậc thầy Logic!
           </h2>
           <p className="mt-2 text-sm text-star-soft">
-            Bạn đã ghép đúng toàn bộ {game.pairs.length} cặp mệnh đề và phủ định.
+            Bạn đã ghép đúng toàn bộ {game.pairs.length} {lessonId === "bai-07" ? "cặp khái niệm và đặc điểm vectơ" : "cặp mệnh đề và phủ định"}.
           </p>
           <div className="mt-4 inline-flex items-center gap-2 rounded-2xl bg-cyan/10 border border-cyan/30 px-4 py-2 font-mono text-xs font-bold text-cyan-glow">
             <span>Độ chuẩn xác: {accuracy}% ({attempts} lượt thử)</span>
