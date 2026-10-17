@@ -6,6 +6,7 @@ import bai04 from "@/data/games/bai-04";
 import bai05 from "@/data/games/bai-05";
 import bai06 from "@/data/games/bai-06";
 import bai07 from "@/data/games/bai-07";
+import bai08 from "@/data/games/bai-08";
 
 const GAMES_MAP: Record<string, LessonGame[]> = {
   "bai-01": bai01,
@@ -15,6 +16,7 @@ const GAMES_MAP: Record<string, LessonGame[]> = {
   "bai-05": bai05,
   "bai-06": bai06,
   "bai-07": bai07,
+  "bai-08": bai08,
 };
 
 export function getLessonGames(lessonId: string): LessonGame[] {

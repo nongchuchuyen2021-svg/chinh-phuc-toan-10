@@ -2095,6 +2095,310 @@ export const THEORY_BANK: Record<string, LessonTheory> = {
     "Đếm theo cặp điểm đầu–cuối khác nhau từ n điểm: n(n−1) mũi tên. Nếu gộp những vectơ bằng nhau, số nhóm có thể ít hơn."
   ]
 }
+,
+  "bai-08": {
+    intro: "Tổng và hiệu của hai vectơ là công cụ đại số - hình học then chốt, đặt nền móng cho các bài toán tổng hợp lực, phân tích lực và vận tốc trong Vật lí cũng như phương pháp toạ độ phẳng sau này.",
+    minutes: 15,
+    sections: [
+      {
+        id: "sec-1",
+        emoji: "🔺",
+        heading: "1. Tổng của hai vectơ & Quy tắc ba điểm (Nối đuôi)",
+        blocks: [
+          {
+            kind: "text",
+            text: "Cho hai vectơ $\\vec{a}$ và $\\vec{b}$. Lấy một điểm $A$ tuỳ ý, vẽ $\\overrightarrow{AB} = \\vec{a}$ rồi vẽ tiếp $\\overrightarrow{BC} = \\vec{b}$. Vectơ $\\overrightarrow{AC}$ nối từ gốc ban đầu $A$ tới ngọn cuối cùng $C$ gọi là tổng của hai vectơ $\\vec{a}$ và $\\vec{b}$, kí hiệu $\\vec{a} + \\vec{b}$."
+          },
+          {
+            kind: "figure",
+            title: "Quy tắc ba điểm: Nối đuôi liên tiếp từ gốc ban đầu tới ngọn cuối cùng",
+            svg: `<svg viewBox="0 0 500 200" width="100%" height="200" class="max-w-[500px] mx-auto select-none"><defs><marker id="arr-c" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#00d4ff"/></marker><marker id="arr-a" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#f59e0b"/></marker><marker id="arr-g" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#10b981"/></marker></defs><line x1="60" y1="150" x2="220" y2="50" stroke="#00d4ff" stroke-width="3" marker-end="url(#arr-c)"/><text x="125" y="85" fill="#00d4ff" font-size="14" font-weight="bold">a = AB</text><circle cx="60" cy="150" r="5" fill="#ffffff"/><text x="45" y="170" fill="#ffffff" font-size="14" font-weight="bold">A</text><circle cx="220" cy="50" r="5" fill="#ffffff"/><text x="220" y="35" fill="#ffffff" font-size="14" font-weight="bold">B</text><line x1="220" y1="50" x2="420" y2="150" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-a)"/><text x="335" y="85" fill="#f59e0b" font-size="14" font-weight="bold">b = BC</text><circle cx="420" cy="150" r="5" fill="#ffffff"/><text x="430" y="170" fill="#ffffff" font-size="14" font-weight="bold">C</text><line x1="60" y1="150" x2="420" y2="150" stroke="#10b981" stroke-width="3.5" stroke-dasharray="6 4" marker-end="url(#arr-g)"/><text x="240" y="180" fill="#10b981" font-size="15" font-weight="bold" text-anchor="middle">Tổng AC = a + b</text></svg>`,
+            caption: "Hình 8.1: Quy tắc ba điểm: Vectơ AC có gốc tại A (gốc của vectơ đầu tiên) và ngọn tại C (ngọn của vectơ thứ hai)."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "🎯",
+                title: "Công thức Quy tắc ba điểm",
+                text: "Với ba điểm bất kì $A, B, C$:\n$$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$$\n(Điểm $B$ ở giữa được 'nối đuôi' triệt tiêu)."
+              },
+              {
+                emoji: "⛓️",
+                title: "Mở rộng chuỗi n điểm",
+                text: "Tổng của nhiều vectơ nối tiếp liên tục:\n$$\\overrightarrow{A_1 A_2} + \\overrightarrow{A_2 A_3} + \\dots + \\overrightarrow{A_{n-1} A_n} = \\overrightarrow{A_1 A_n}$$\n(Điểm đầu là $A_1$, điểm cuối là $A_n$)."
+              },
+              {
+                emoji: "🔄",
+                title: "Quy tắc vòng khép kín",
+                text: "Khi chuỗi vectơ trở về điểm xuất phát ban đầu:\n$$\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CA} = \\overrightarrow{AA} = \\vec{0}$$"
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Với 4 điểm bất kì $A, B, C, D$, tổng vectơ $\\overrightarrow{AB} + \\overrightarrow{BC} + \\overrightarrow{CD}$ bằng vectơ nào sau đây?",
+            options: [
+              "$\\overrightarrow{AD}$",
+              "$\\overrightarrow{DA}$",
+              "$\\overrightarrow{AC}$",
+              "$\\overrightarrow{BD}$"
+            ],
+            answer: 0,
+            explain: "Áp dụng quy tắc ba điểm nối tiếp: $(\\overrightarrow{AB} + \\overrightarrow{BC}) + \\overrightarrow{CD} = \\overrightarrow{AC} + \\overrightarrow{CD} = \\overrightarrow{AD}$."
+          }
+        ]
+      },
+      {
+        id: "sec-2",
+        emoji: "▱",
+        heading: "2. Quy tắc Hình bình hành & Tính chất phép cộng",
+        blocks: [
+          {
+            kind: "text",
+            text: "Nếu hai vectơ cần cộng có CHUNG GỐC xuất phát từ một điểm (ví dụ $\\overrightarrow{AB}$ và $\\overrightarrow{AD}$), ta sử dụng quy tắc hình bình hành thay cho việc dời điểm."
+          },
+          {
+            kind: "figure",
+            title: "Quy tắc Hình bình hành: Tổng hai vectơ chung gốc bằng vectơ đường chéo",
+            svg: `<svg viewBox="0 0 500 200" width="100%" height="200" class="max-w-[500px] mx-auto select-none"><defs><marker id="arr-p1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#00d4ff"/></marker><marker id="arr-p2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#f59e0b"/></marker><marker id="arr-diag" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#ec4899"/></marker></defs><polygon points="60,160 220,50 440,50 280,160" fill="rgba(14,165,233,0.08)" stroke="#334155" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="60" y1="160" x2="220" y2="50" stroke="#00d4ff" stroke-width="3" marker-end="url(#arr-p1)"/><text x="120" y="95" fill="#00d4ff" font-size="14" font-weight="bold">AB</text><line x1="60" y1="160" x2="280" y2="160" stroke="#f59e0b" stroke-width="3" marker-end="url(#arr-p2)"/><text x="170" y="185" fill="#f59e0b" font-size="14" font-weight="bold">AD</text><line x1="60" y1="160" x2="440" y2="50" stroke="#ec4899" stroke-width="3.5" marker-end="url(#arr-diag)"/><text x="260" y="95" fill="#ec4899" font-size="15" font-weight="bold">AC = AB + AD</text><circle cx="60" cy="160" r="5" fill="#ffffff"/><text x="45" y="180" fill="#ffffff" font-size="14" font-weight="bold">A</text><circle cx="220" cy="50" r="5" fill="#ffffff"/><text x="215" y="35" fill="#ffffff" font-size="14" font-weight="bold">B</text><circle cx="280" cy="160" r="5" fill="#ffffff"/><text x="290" y="180" fill="#ffffff" font-size="14" font-weight="bold">D</text><circle cx="440" cy="50" r="5" fill="#ffffff"/><text x="450" y="55" fill="#ffffff" font-size="14" font-weight="bold">C</text></svg>`,
+            caption: "Hình 8.2: Quy tắc hình bình hành: AB + AD = AC (đường chéo xuất phát từ chung gốc A)."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "🔄",
+                title: "Tính chất giao hoán",
+                text: "$$\\vec{a} + \\vec{b} = \\vec{b} + \\vec{a}$$\n(Đổi thứ tự cộng không làm thay đổi vectơ tổng)."
+              },
+              {
+                emoji: "🔗",
+                title: "Tính chất kết hợp",
+                text: "$$(\\vec{a} + \\vec{b}) + \\vec{c} = \\vec{a} + (\\vec{b} + \\vec{c})$$\n(Cho phép cộng nhóm bất kì mà không cần dấu ngoặc: $\\vec{a} + \\vec{b} + \\vec{c}$)."
+              },
+              {
+                emoji: "0️⃣",
+                title: "Cộng với vectơ-không",
+                text: "$$\\vec{a} + \\vec{0} = \\vec{0} + \\vec{a} = \\vec{a}$$\n(Vectơ-không đóng vai trò là phần tử trung hoà)."
+              }
+            ]
+          },
+          {
+            kind: "compare",
+            left: {
+              title: "Quy tắc Ba Điểm (Nối đuôi)",
+              emoji: "🔺",
+              items: [
+                "Áp dụng khi ngọn vectơ này nối với gốc vectơ kia.",
+                "Dạng thức: $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$.",
+                "Tạo thành một tam giác khép kín."
+              ]
+            },
+            right: {
+              title: "Quy tắc Hình bình hành",
+              emoji: "▱",
+              items: [
+                "Áp dụng khi hai vectơ CÙNG CHUNG GỐC.",
+                "Dạng thức: $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+                "Tổng là vectơ đường chéo xuất phát từ gốc chung."
+              ]
+            }
+          },
+          {
+            kind: "check",
+            q: "Cho hình chữ nhật $ABCD$ có $AB = 3, AD = 4$. Độ dài của vectơ $\\overrightarrow{AB} + \\overrightarrow{AD}$ bằng:",
+            options: [
+              "$7$",
+              "$5$",
+              "$\\sqrt{7}$",
+              "$1$"
+            ],
+            answer: 1,
+            explain: "Theo quy tắc hình bình hành: $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$. Trong hình chữ nhật $ABCD$, tam giác $ABC$ vuông tại $B$ nên $AC = \\sqrt{AB^2 + BC^2} = \\sqrt{3^2 + 4^2} = 5$. Vậy $|\\overrightarrow{AB} + \\overrightarrow{AD}| = 5$."
+          }
+        ]
+      },
+      {
+        id: "sec-3",
+        emoji: "➖",
+        heading: "3. Hiệu của hai vectơ, Vectơ đối & Quy tắc hiệu",
+        blocks: [
+          {
+            kind: "text",
+            text: "Phép trừ vectơ thực chất là phép cộng với vectơ đối. Vectơ đối của $\\vec{a}$ (kí hiệu $-\\vec{a}$) là vectơ có cùng độ dài nhưng ngược hướng với $\\vec{a}$."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "⚖️",
+                title: "Định nghĩa Vectơ đối",
+                text: "• $|-\\vec{a}| = |\\vec{a}|$ và $-\\vec{a}$ ngược hướng với $\\vec{a}$.\n• $\\vec{a} + (-\\vec{a}) = \\vec{0}$.\n• Vectơ đối của $\\overrightarrow{AB}$ là $-\\overrightarrow{AB} = \\overrightarrow{BA}$."
+              },
+              {
+                emoji: "➖",
+                title: "Định nghĩa Hiệu hai vectơ",
+                text: "$$\\vec{a} - \\vec{b} = \\vec{a} + (-\\vec{b})$$\nHiệu của $\\vec{a}$ và $\\vec{b}$ là tổng của $\\vec{a}$ với vectơ đối của $\\vec{b}$."
+              },
+              {
+                emoji: "🎯",
+                title: "Quy tắc hiệu (Chung gốc)",
+                text: "Với ba điểm bất kì $O, M, N$:\n$$\\overrightarrow{MN} = \\overrightarrow{ON} - \\overrightarrow{OM}$$\n(Quy tắc vàng: 'Ngọn trừ Gốc' khi chung gốc $O$)."
+              }
+            ]
+          },
+          {
+            kind: "steps",
+            items: [
+              {
+                label: "Bước 1",
+                title: "Nhận dạng chung gốc",
+                text: "Quan sát hai vectơ có chung gốc: $\\overrightarrow{OB} - \\overrightarrow{OA}$."
+              },
+              {
+                label: "Bước 2",
+                title: "Áp dụng công thức ngọn trừ gốc",
+                text: "Điểm đứng sau dấu trừ ($A$) trở thành GỐC, điểm đứng trước dấu trừ ($B$) trở thành NGỌN."
+              },
+              {
+                label: "Bước 3",
+                title: "Chốt kết quả",
+                text: "$\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$. Kiểm tra lại: $\\overrightarrow{OA} + \\overrightarrow{AB} = \\overrightarrow{OB}$ (chuẩn xác)."
+              }
+            ]
+          },
+          {
+            kind: "note",
+            text: "⚠️ **CẢNH BÁO BẪY PHÒNG THI**:\n• Rất nhiều học sinh nhầm $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{BA}$. Hãy nhớ thần chú: 'Ngọn của vectơ bị trừ là ngọn của hiệu' $\\implies \\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$!\n• Độ dài của hiệu KHÔNG BẰNG hiệu hai độ dài: $|\\vec{a} - \\vec{b}| \\ne |\\vec{a}| - |\\vec{b}|$."
+          },
+          {
+            kind: "check",
+            q: "Với ba điểm phân biệt $A, B, C$, hiệu hai vectơ $\\overrightarrow{AB} - \\overrightarrow{AC}$ bằng vectơ nào sau đây?",
+            options: [
+              "$\\overrightarrow{BC}$",
+              "$\\overrightarrow{CB}$",
+              "$\\overrightarrow{CA}$",
+              "$\\overrightarrow{BA}$"
+            ],
+            answer: 1,
+            explain: "Chung gốc $A$: $\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CA} + \\overrightarrow{AB} = \\overrightarrow{CB}$."
+          }
+        ]
+      },
+      {
+        id: "sec-4",
+        emoji: "⭐",
+        heading: "4. Hai hệ thức vectơ kinh điển: Trung điểm & Trọng tâm",
+        blocks: [
+          {
+            kind: "text",
+            text: "Trung điểm của đoạn thẳng và trọng tâm của tam giác có tính chất cân bằng vectơ tuyệt đẹp, xuất hiện trong hầu hết các đề thi THPT."
+          },
+          {
+            kind: "cards",
+            tone: "plasma",
+            items: [
+              {
+                emoji: "📍",
+                title: "Hệ thức Trung điểm kinh điển",
+                text: "Cho điểm $I$ là trung điểm của đoạn thẳng $AB$:\n1. $\\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}$ (tổng vectơ đối).\n2. Với mọi điểm $M$ bất kì trong mặt phẳng:\n$$\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$$"
+              },
+              {
+                emoji: "🔺",
+                title: "Hệ thức Trọng tâm kinh điển",
+                text: "Cho điểm $G$ là trọng tâm của tam giác $ABC$:\n1. $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$.\n2. Với mọi điểm $M$ bất kì trong mặt phẳng:\n$$\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}$$"
+              },
+              {
+                emoji: "▱",
+                title: "Mở rộng: Trọng tâm tứ giác",
+                text: "Cho tứ giác $ABCD$. Gọi $M, N$ lần lượt là trung điểm của $AB, CD$, và $O$ là trung điểm của $MN$:\n$$\\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} + \\overrightarrow{OD} = \\vec{0}$$"
+              }
+            ]
+          },
+          {
+            kind: "example",
+            title: "Ví dụ mẫu SGK trang 53",
+            text: "Cho tam giác $ABC$. Chứng minh rằng nếu $G$ là trọng tâm tam giác $ABC$ thì $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$.",
+            solution: "Gọi $I$ là trung điểm của $BC$, ta có $\\overrightarrow{GB} + \\overrightarrow{GC} = 2\\overrightarrow{GI}$. Do $G$ là trọng tâm nên $G$ nằm trên trung tuyến $AI$ và $GA = 2GI$. Mặt khác hai vectơ $\\overrightarrow{GA}$ và $\\overrightarrow{GI}$ ngược hướng nhau, do đó $\\overrightarrow{GA} = -2\\overrightarrow{GI} \\implies \\overrightarrow{GA} + 2\\overrightarrow{GI} = \\vec{0} \\implies \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$."
+          },
+          {
+            kind: "check",
+            q: "Cho tam giác $ABC$ đều cạnh $a$ có trung điểm cạnh $BC$ là $M$. Độ dài của vectơ $\\overrightarrow{AB} + \\overrightarrow{AC}$ bằng:",
+            options: [
+              "$a\\sqrt{3}$",
+              "$\\frac{a\\sqrt{3}}{2}$",
+              "$2a$",
+              "$a$"
+            ],
+            answer: 0,
+            explain: "Ta có $\\overrightarrow{AB} + \\overrightarrow{AC} = 2\\overrightarrow{AM}$. Trong tam giác đều cạnh $a$, độ dài đường trung tuyến $AM = \\frac{a\\sqrt{3}}{2}$. Do đó $|\\overrightarrow{AB} + \\overrightarrow{AC}| = 2AM = 2 \\cdot \\frac{a\\sqrt{3}}{2} = a\\sqrt{3}$."
+          }
+        ]
+      },
+      {
+        id: "sec-5",
+        emoji: "🚀",
+        heading: "5. Ứng dụng Thực tế: Tổng hợp lực, Kéo pháo & Vận tốc Sông nước",
+        blocks: [
+          {
+            kind: "text",
+            text: "Vectơ ra đời từ nhu cầu mô tả thế giới tự nhiên. Trong cơ học, các định luật cân bằng và tổng hợp đại lượng vectơ thể hiện trọn vẹn bản chất vật lí."
+          },
+          {
+            kind: "figure",
+            title: "Mô hình tổng hợp lực và phân tích trọng lực trên mặt phẳng nghiêng",
+            svg: `<svg viewBox="0 0 520 220" width="100%" height="220" class="max-w-[520px] mx-auto select-none"><defs><marker id="arr-f1" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#00d4ff"/></marker><marker id="arr-f2" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#f59e0b"/></marker><marker id="arr-fres" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M 0 0 L 8 4 L 0 8 z" fill="#10b981"/></marker></defs><line x1="20" y1="190" x2="380" y2="190" stroke="#475569" stroke-width="2"/><line x1="20" y1="190" x2="350" y2="40" stroke="#00d4ff" stroke-width="2.5"/><path d="M 80 190 A 60 60 0 0 0 72 165" fill="none" stroke="#f59e0b" stroke-width="2"/><text x="90" y="180" fill="#f59e0b" font-size="13" font-weight="bold">30°</text><rect x="180" y="85" width="55" height="35" rx="4" transform="rotate(-24.5 180 85)" fill="rgba(16,185,129,0.25)" stroke="#10b981" stroke-width="2"/><line x1="205" y1="100" x2="205" y2="190" stroke="#ef4444" stroke-width="2.5" marker-end="url(#arr-f2)"/><text x="215" y="160" fill="#ef4444" font-size="13" font-weight="bold">Trọng lực P</text><line x1="205" y1="100" x2="275" y2="68" stroke="#00d4ff" stroke-width="3" marker-end="url(#arr-f1)"/><text x="260" y="55" fill="#00d4ff" font-size="13" font-weight="bold">Lực kéo F</text><line x1="205" y1="100" x2="170" y2="25" stroke="#a855f7" stroke-width="2" stroke-dasharray="3 3"/><text x="145" y="40" fill="#a855f7" font-size="12">Phản lực w</text></svg>`,
+            caption: "Hình 8.3: Kéo pháo lên dốc nghiêng 30°: Lực kéo F cân bằng với thành phần trượt của trọng lực P dọc theo mặt dốc: F = P · sin 30°."
+          },
+          {
+            kind: "cards",
+            tone: "nebula",
+            items: [
+              {
+                emoji: "⚙️",
+                title: "Công thức độ lớn Hợp lực",
+                text: "Hai lực $\\vec{F}_1, \\vec{F}_2$ tạo góc $\\theta$:\n$$F^2 = F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta$$\n• $\\theta = 0^\\circ$: $F = F_1 + F_2$ (cực đại).\n• $\\theta = 180^\\circ$: $F = |F_1 - F_2|$ (cực tiểu).\n• $\\theta = 90^\\circ$: $F = \\sqrt{F_1^2 + F_2^2}$."
+              },
+              {
+                emoji: "💥",
+                title: "Bài toán Kéo pháo Điện Biên Phủ",
+                text: "Pháo trọng lượng $P = 22\\,148\\text{ N}$, dốc nghiêng $30^\\circ$:\n• Lực kéo cần thiết: $F = P \\sin 30^\\circ = 11\\,074\\text{ N}$.\n• Mỗi người kéo $100\\text{ N}$ $\\implies$ Cần tối thiểu $\\lceil 110{,}74 \\rceil = 111\\text{ người}$."
+              },
+              {
+                emoji: "⛵",
+                title: "Vận tốc thuyền qua sông",
+                text: "Vận tốc thực tế của thuyền: $\\vec{v} = \\vec{v}_r + \\vec{v}_n$.\nĐể sang bờ nhanh nhất, giữ lái vuông góc bờ sông vì vận tốc sang sông $v_y = v_r \\sin\\alpha$ đạt cực đại khi $\\alpha = 90^\\circ$."
+              }
+            ]
+          },
+          {
+            kind: "check",
+            q: "Hai lực đồng quy $\\vec{F}_1$ và $\\vec{F}_2$ có độ lớn lần lượt là $6\\text{ N}$ và $8\\text{ N}$ vuông góc với nhau. Độ lớn của hợp lực $\\vec{F} = \\vec{F}_1 + \\vec{F}_2$ bằng:",
+            options: [
+              "$10\\text{ N}$",
+              "$14\\text{ N}$",
+              "$2\\text{ N}$",
+              "$48\\text{ N}$"
+            ],
+            answer: 0,
+            explain: "Vì hai lực vuông góc nhau: $F = \\sqrt{F_1^2 + F_2^2} = \\sqrt{6^2 + 8^2} = \\sqrt{36 + 64} = \\sqrt{100} = 10\\text{ N}$."
+          }
+        ]
+      }
+    ],
+    summary: [
+      "1. Quy tắc ba điểm (nối đuôi liên tiếp): $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$. Mở rộng: $\\overrightarrow{A_1 A_2} + \\dots + \\overrightarrow{A_{n-1} A_n} = \\overrightarrow{A_1 A_n}$.",
+      "2. Quy tắc hình bình hành (chung gốc): Nếu $ABCD$ là hình bình hành thì $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+      "3. Hiệu hai vectơ: $\\vec{a} - \\vec{b} = \\vec{a} + (-\\vec{b})$. Quy tắc hiệu chung gốc: $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$ ('ngọn trừ gốc').",
+      "4. Hệ thức trung điểm: $I$ là trung điểm $AB \\iff \\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$ với mọi điểm $M$.",
+      "5. Hệ thức trọng tâm: $G$ là trọng tâm $\\triangle ABC \\iff \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}$ với mọi điểm $M$.",
+      "6. Ứng dụng thực tế: Độ lớn hợp lực $F = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta}$; bài toán kéo pháo $F = P \\sin\\alpha$; sang sông nhanh nhất khi lái thuyền vuông góc bờ sông."
+    ]
+  }
 };
 
 export function hasTheory(lessonId: string): boolean {

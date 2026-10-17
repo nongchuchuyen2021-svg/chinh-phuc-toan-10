@@ -1,0 +1,31 @@
+{
+  "source": "SGK Toán 10 Tập 1 (Kết nối tri thức với cuộc sống), Bài 8",
+  "pages": [51, 52, 53, 54],
+  "coverage": [
+    {"page": 51, "item": "Khởi động: Ca nô vượt sông", "slide": 2, "result": "v = v_cano + v_nuoc"},
+    {"page": 51, "item": "HĐ1: Nối tiếp hai chặng", "slide": 3, "result": "AB + BC = AC"},
+    {"page": 51, "item": "HĐ1: Tính độc lập điểm gốc", "slide": 4, "result": "AC = A'C'"},
+    {"page": 51, "item": "Quy tắc 3 điểm", "slide": 5, "result": "AB + BC = AC"},
+    {"page": 51, "item": "HĐ2: Hai lực đồng quy", "slide": 7, "result": "Cơ sở hình bình hành"},
+    {"page": 51, "item": "Quy tắc hình bình hành", "slide": 8, "result": "AB + AD = AC"},
+    {"page": 52, "item": "HĐ3: Tính chất phép cộng", "slide": 10, "result": "Giao hoán, kết hợp, cộng vectơ 0"},
+    {"page": 52, "item": "Ví dụ 1", "slide": 11, "result": "AB + CD = 0; BA + DA + AC = 0"},
+    {"page": 52, "item": "Luyện tập 1", "slide": 12, "result": "|AB + AD| = a√3"},
+    {"page": 52, "item": "HĐ4: Vectơ đối", "slide": 13, "result": "IA + IB = 0; -AB = BA"},
+    {"page": 53, "item": "Định nghĩa hiệu vectơ", "slide": 14, "result": "a - b = a + (-b)"},
+    {"page": 53, "item": "Quy tắc hiệu", "slide": 15, "result": "OB - OA = AB"},
+    {"page": 53, "item": "Ví dụ 2", "slide": 16, "result": "AB - AC = CB"},
+    {"page": 53, "item": "Ví dụ 3a: Hệ thức trung điểm", "slide": 17, "result": "IA + IB = 0; MA + MB = 2MI"},
+    {"page": 53, "item": "Ví dụ 3b: Hệ thức trọng tâm", "slide": 18, "result": "GA + GB + GC = 0; MA + MB + MC = 3MG"},
+    {"page": 53, "item": "Luyện tập 2", "slide": 19, "result": "AC + BD = 2MN"},
+    {"pages": [53, 54], "item": "Ví dụ 4: Hợp lực 60°", "slide": 20, "result": "F = 10√3 N ≈ 17,32 N"},
+    {"page": 54, "item": "Vận dụng: Kéo pháo Điện Biên Phủ", "slide": 21, "result": "Px = 11 074 N; tối thiểu 111 người"},
+    {"page": 54, "item": "Bài 4.6", "slide": 23, "result": "AB + CD = AD + CB"},
+    {"page": 54, "item": "Bài 4.7", "slide": 23, "result": "AB + AD + CA = 0"},
+    {"page": 54, "item": "Bài 4.8", "slide": 24, "result": "Tâm O: OA + OB + OC + OD = 0; MA+MB+MC+MD=4MO"},
+    {"page": 54, "item": "Bài 4.9", "slide": 24, "result": "F1=3N, F2=2N, 120° ⇒ F = √7 N ≈ 2,65 N"},
+    {"page": 54, "item": "Bài 4.10", "slide": 25, "result": "Cùng vy = v0·sinα ⇒ cập bến cùng lúc"}
+  ],
+  "supplementary": ["Lab ghép chuỗi vectơ", "Lab hình bình hành co giãn góc", "Mô phỏng sườn dốc kéo pháo", "Phòng phản biện 4 lỗi kinh điển", "Đồng hồ nhóm 3 phút", "Đấu trường Quiz 12 câu tự chấm"],
+  "offline": "Hỗ trợ KaTeX, âm thanh Web Audio và pháo hoa SVG/CSS đầy đủ"
+}

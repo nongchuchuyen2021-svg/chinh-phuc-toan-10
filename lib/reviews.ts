@@ -956,7 +956,117 @@ export const REVIEWS_BANK: Record<string, LessonReview> = {
     }
   ]
 }
+,
+
+  "bai-08": {
+    summary: "Làm chủ hai quy tắc nền tảng: Quy tắc ba điểm (nối đuôi) và Quy tắc hình bình hành (chung gốc), hiểu bản chất phép trừ vectơ và vận dụng thành thạo vào bài toán vật lí tổng hợp lực, kéo pháo và thuyền qua sông.",
+    keyPoints: [
+      "Quy tắc ba điểm (nối đuôi liên tiếp): $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$. Mở rộng: $\\overrightarrow{A_1 A_2} + \\dots + \\overrightarrow{A_{n-1} A_n} = \\overrightarrow{A_1 A_n}$.",
+      "Quy tắc hình bình hành (chung gốc): Nếu $ABCD$ là hình bình hành thì $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$.",
+      "Vectơ đối và phép trừ: $\\vec{a} - \\vec{b} = \\vec{a} + (-\\vec{b})$. Quy tắc hiệu chung gốc: $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$ ('ngọn trừ gốc').",
+      "Hệ thức trung điểm kinh điển: $I$ là trung điểm $AB \\iff \\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$ với mọi điểm $M$.",
+      "Hệ thức trọng tâm kinh điển: $G$ là trọng tâm $\\triangle ABC \\iff \\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}$ với mọi điểm $M$.",
+      "Ứng dụng vật lí: Hợp lực $\\vec{F} = \\vec{F}_1 + \\vec{F}_2$ có độ lớn $F = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta}$; thuyền sang sông nhanh nhất khi mũi tàu vuông góc bờ sông."
+    ],
+    commonMistakes: [
+      {
+        mistake: "Nhầm lẫn giữa quy tắc hiệu và viết ngược đỉnh: $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{BA}$.",
+        fix: "Thần chú ghi nhớ: 'Ngọn trừ gốc'. Vectơ bị trừ ($OB$) có ngọn là $B$ thì vectơ hiệu phải có ngọn là $B$: $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$."
+      },
+      {
+        mistake: "Đồng nhất độ dài của tổng bằng tổng độ dài: $|\\vec{a} + \\vec{b}| = |\\vec{a}| + |\\vec{b}|$.",
+        fix: "Theo bất đẳng thức tam giác: $|\\vec{a} + \\vec{b}| \\le |\\vec{a}| + |\\vec{b}|$. Dấu bằng chỉ xảy ra khi hai vectơ cùng hướng."
+      },
+      {
+        mistake: "Quên nhân hệ số 2 trong công thức trung điểm: viết nhầm $\\overrightarrow{MA} + \\overrightarrow{MB} = \\overrightarrow{MI}$.",
+        fix: "Phải là $2\\overrightarrow{MI}$ vì $\\overrightarrow{MA} + \\overrightarrow{MB} = (\\overrightarrow{MI} + \\overrightarrow{IA}) + (\\overrightarrow{MI} + \\overrightarrow{IB}) = 2\\overrightarrow{MI} + \\vec{0} = 2\\overrightarrow{MI}$."
+      }
+    ],
+    tips: [
+      "Khi gặp tổng nhiều vectơ nối tiếp nhau vòng quanh một đa giác khép kín, kết quả luôn bằng vectơ-không $\\vec{0}$.",
+      "Để tính độ dài của tổng hoặc hiệu vectơ trong hình thoi/tam giác, hãy thay thế bằng một vectơ đơn lẻ trước khi tính độ dài số học.",
+      "Mẹo nhớ công thức hợp lực: $F^2 = F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta$. Chú ý dấu cộng $+2F_1 F_2 \\cos\\theta$ (khác với dấu trừ trong định lí Côsin vì đây là đường chéo hình bình hành)."
+    ],
+    flashcards: [
+      {
+        front: "Phát biểu Quy tắc ba điểm của phép cộng vectơ?",
+        back: "Với ba điểm bất kì $A, B, C$, ta luôn có: $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$."
+      },
+      {
+        front: "Phát biểu Quy tắc hình bình hành?",
+        back: "Nếu $ABCD$ là hình bình hành thì $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$ (tổng hai cạnh kề bằng vectơ đường chéo chung gốc)."
+      },
+      {
+        front: "Phát biểu Quy tắc hiệu của hai vectơ chung gốc?",
+        back: "Với ba điểm bất kì $O, M, N$, ta có: $\\overrightarrow{MN} = \\overrightarrow{ON} - \\overrightarrow{OM}$ ('ngọn trừ gốc')."
+      },
+      {
+        front: "Thế nào là hai vectơ đối nhau?",
+        back: "Là hai vectơ có cùng độ dài nhưng ngược hướng. Tổng của hai vectơ đối nhau luôn bằng $\\vec{0}$."
+      },
+      {
+        front: "Hệ thức vectơ đối với trung điểm $I$ của đoạn thẳng $AB$?",
+        back: "$\\overrightarrow{IA} + \\overrightarrow{IB} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}$ với mọi điểm $M$."
+      },
+      {
+        front: "Hệ thức vectơ đối với trọng tâm $G$ của tam giác $ABC$?",
+        back: "$\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$, và $\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}$ với mọi điểm $M$."
+      },
+      {
+        front: "Độ lớn hợp lực của hai lực vuông góc $\\vec{F}_1 \\perp \\vec{F}_2$ tính như thế nào?",
+        back: "$F = \\sqrt{F_1^2 + F_2^2}$ (theo định lí Pythagore)."
+      },
+      {
+        front: "Để thuyền sang bờ bên kia nhanh nhất, cần giữ bánh lái như thế nào?",
+        back: "Luôn giữ mũi thuyền vuông góc với bờ sông (vì thành phần vận tốc vuông góc với bờ đạt cực đại $v_r$)."
+      }
+    ],
+    checklist: [
+      "Tôi áp dụng thành thạo Quy tắc ba điểm để rút gọn chuỗi vectơ nối tiếp.",
+      "Tôi không bị nhầm lẫn chiều vectơ trong Quy tắc hiệu $\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$.",
+      "Tôi vận dụng chuẩn xác hệ thức trung điểm $2\\overrightarrow{MI}$ và hệ thức trọng tâm $3\\overrightarrow{MG}$.",
+      "Tôi giải đúng các bài toán vật lí về tổng hợp lực và bài toán kéo pháo trên dốc nghiêng."
+    ],
+    mindmap: [
+      {
+        id: "mm-b8-1",
+        title: "1. Quy tắc Ba Điểm (Nối đuôi)",
+        emoji: "🔺",
+        description: "Ngọn vectơ trước nối với gốc vectơ sau",
+        formula: "$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$"
+      },
+      {
+        id: "mm-b8-2",
+        title: "2. Quy tắc Hình bình hành",
+        emoji: "▱",
+        description: "Hai vectơ chung gốc tạo thành đường chéo",
+        formula: "$\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$"
+      },
+      {
+        id: "mm-b8-3",
+        title: "3. Quy tắc Hiệu & Vectơ đối",
+        emoji: "➖",
+        description: "Chung gốc: ngọn trừ gốc",
+        formula: "$\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}$"
+      },
+      {
+        id: "mm-b8-4",
+        title: "4. Trung điểm & Trọng tâm",
+        emoji: "⭐",
+        description: "Tính chất cân bằng vectơ",
+        formula: "$\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}; \\quad \\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}$"
+      },
+      {
+        id: "mm-b8-5",
+        title: "5. Hợp lực & Vận tốc Sông nước",
+        emoji: "🚀",
+        description: "Mô hình hoá thực tế",
+        formula: "$F = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos\\theta}; \\quad F_{\\text{kéo}} = P \\sin\\alpha$"
+      }
+    ]
+  }
 };
+
 
 export function getLessonReview(lessonId: string): LessonReview {
   return (

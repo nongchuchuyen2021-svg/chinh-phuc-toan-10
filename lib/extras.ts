@@ -827,8 +827,103 @@ export const EXTRA_BANK: Record<string, LessonExtra> = {
       "answer": "12",
       "explain": "4 nhóm cạnh đôi; 4 nhóm nửa đường chéo đôi; 4 nhóm đường chéo đơn. Tổng 12 nhóm, gồm 20 mũi tên."
     }
-  ]
-}
+  ],
+  },
+
+  "bai-08": {
+    tf: [
+      {
+        id: "b8-tf1",
+        context: "Cho tam giác $ABC$ có trọng tâm $G$, gọi $M$ là trung điểm của cạnh $BC$ và $O$ là một điểm bất kì trong mặt phẳng.",
+        statements: [
+          {
+            text: "Đẳng thức $\\overrightarrow{MB} + \\overrightarrow{MC} = \\vec{0}$ là một khẳng định đúng.",
+            answer: true,
+            explain: "Do $M$ là trung điểm của $BC$ nên hai vectơ $\\overrightarrow{MB}$ và $\\overrightarrow{MC}$ cùng độ dài nhưng ngược hướng (đối nhau), do đó tổng bằng $\\vec{0}$."
+          },
+          {
+            text: "Với điểm $A$, ta luôn có đẳng thức $\\overrightarrow{AB} + \\overrightarrow{AC} = \\overrightarrow{AM}$.",
+            answer: false,
+            explain: "Khẳng định này sai. Theo quy tắc trung điểm mở rộng, đẳng thức đúng phải là $\\overrightarrow{AB} + \\overrightarrow{AC} = 2\\overrightarrow{AM}$."
+          },
+          {
+            text: "Hệ thức trọng tâm $\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec{0}$ luôn thoả mãn.",
+            answer: true,
+            explain: "Đúng. Đây là tính chất trọng tâm kinh điển của tam giác trong hình học vectơ."
+          },
+          {
+            text: "Với điểm $O$ bất kì, ta luôn có $\\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} = 3\\overrightarrow{OG}$.",
+            answer: true,
+            explain: "Đúng. Ta có $\\overrightarrow{OA} + \\overrightarrow{OB} + \\overrightarrow{OC} = (\\overrightarrow{OG} + \\overrightarrow{GA}) + (\\overrightarrow{OG} + \\overrightarrow{GB}) + (\\overrightarrow{OG} + \\overrightarrow{GC}) = 3\\overrightarrow{OG} + (\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC}) = 3\\overrightarrow{OG} + \\vec{0} = 3\\overrightarrow{OG}$."
+          }
+        ]
+      },
+      {
+        id: "b8-tf2",
+        context: "Cho hình bình hành $ABCD$ tâm $O$. Hai lực $\\vec{F}_1 = \\overrightarrow{AB}$ và $\\vec{F}_2 = \\overrightarrow{AD}$ cùng tác dụng vào chất điểm $A$.",
+        statements: [
+          {
+            text: "Hợp lực của hai lực $\\vec{F}_1$ và $\\vec{F}_2$ được biểu diễn bởi vectơ đường chéo $\\overrightarrow{AC}$.",
+            answer: true,
+            explain: "Đúng theo Quy tắc hình bình hành: $\\vec{F} = \\vec{F}_1 + \\vec{F}_2 = \\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$."
+          },
+          {
+            text: "Hiệu của hai vectơ $\\overrightarrow{AB} - \\overrightarrow{AD}$ bằng vectơ $\\overrightarrow{BD}$.",
+            answer: false,
+            explain: "Sai. Theo quy tắc hiệu hai vectơ chung gốc: $\\overrightarrow{AB} - \\overrightarrow{AD} = \\overrightarrow{DB}$ (chứ không phải $\\overrightarrow{BD}$)."
+          },
+          {
+            text: "Vectơ đối của vectơ $\\overrightarrow{OA}$ là vectơ $\\overrightarrow{OC}$.",
+            answer: true,
+            explain: "Đúng. Do $O$ là trung điểm của đường chéo $AC$ nên $\\overrightarrow{OA}$ và $\\overrightarrow{OC}$ ngược hướng và cùng độ dài ($OA = OC$), tức $\\overrightarrow{OA} + \\overrightarrow{OC} = \\vec{0}$."
+          },
+          {
+            text: "Nếu hình bình hành $ABCD$ là hình vuông cạnh $a$ thì $|\\overrightarrow{AB} + \\overrightarrow{AD}| = |\\overrightarrow{AB} - \\overrightarrow{AD}|$.",
+            answer: true,
+            explain: "Đúng. Ta có $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC} \\implies |\\overrightarrow{AB} + \\overrightarrow{AD}| = AC = a\\sqrt{2}$. Mặt khác $\\overrightarrow{AB} - \\overrightarrow{AD} = \\overrightarrow{DB} \\implies |\\overrightarrow{AB} - \\overrightarrow{AD}| = DB = a\\sqrt{2}$. Hai đường chéo hình vuông bằng nhau nên hai độ dài này bằng nhau."
+          }
+        ]
+      }
+    ],
+    essay: [
+      {
+        id: "b8-es1",
+        q: "Cho tam giác đều $ABC$ có cạnh bằng $8\\text{ cm}$. Tính độ dài của vectơ hiệu $\\overrightarrow{AB} - \\overrightarrow{AC}$ (nhập kết quả là một số nguyên).",
+        answer: "8",
+        explain: "Áp dụng quy tắc hiệu: $\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{CB}$. Do đó $|\\overrightarrow{AB} - \\overrightarrow{AC}| = |\\overrightarrow{CB}| = CB = 8\\text{ cm}$."
+      },
+      {
+        id: "b8-es2",
+        q: "Cho hình vuông $ABCD$ có cạnh bằng $5\\text{ cm}$. Tính độ dài của vectơ tổng $\\overrightarrow{AB} + \\overrightarrow{AD}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, ví dụ: 7.1).",
+        answer: "7.1",
+        explain: "Theo quy tắc hình bình hành: $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$. Độ dài đường chéo hình vuông là $AC = 5\\sqrt{2} \\approx 7.071\\text{ cm} \\approx 7.1\\text{ cm}$."
+      },
+      {
+        id: "b8-es3",
+        q: "Cho tam giác đều $ABC$ có cạnh bằng $4\\text{ cm}$. Gọi $M$ là trung điểm của cạnh $BC$. Tính độ dài của vectơ tổng $\\overrightarrow{AB} + \\overrightarrow{AC}$ (nhập kết quả làm tròn đến chữ số thập phân thứ nhất, ví dụ: 6.9).",
+        answer: "6.9",
+        explain: "Do $M$ là trung điểm $BC$ nên $\\overrightarrow{AB} + \\overrightarrow{AC} = 2\\overrightarrow{AM}$. Chiều cao tam giác đều: $AM = \\frac{4\\sqrt{3}}{2} = 2\\sqrt{3}\\text{ cm}$. Do đó $|\\overrightarrow{AB} + \\overrightarrow{AC}| = 2AM = 4\\sqrt{3} \\approx 6.928\\text{ cm} \\approx 6.9\\text{ cm}$."
+      },
+      {
+        id: "b8-es4",
+        q: "Theo bài toán kéo pháo SGK trang 54: Để kéo khẩu pháo trọng lượng $22\\,148\\text{ N}$ lên con dốc nghiêng $30^\\circ$, mỗi người kéo được một lực $100\\text{ N}$ dọc theo mặt dốc. Bỏ qua ma sát, cần tối thiểu bao nhiêu người để kéo pháo? (nhập số nguyên).",
+        answer: "111",
+        explain: "Lực kéo cân bằng thành phần trọng lực trượt dọc dốc: $F = P \\sin 30^\\circ = 22\\,148 \\cdot 0.5 = 11\\,074\\text{ N}$. Số người cần thiết: $N \\ge 11\\,074 / 100 = 110{,}74 \\implies$ Cần tối thiểu 111 người."
+      },
+      {
+        id: "b8-es5",
+        q: "Hai lực $\\vec{F}_1, \\vec{F}_2$ cùng tác dụng vào một chất điểm, có độ lớn lần lượt là $12\\text{ N}$ và $5\\text{ N}$, góc giữa hai lực bằng $90^\\circ$. Tính độ lớn của hợp lực $\\vec{F} = \\vec{F}_1 + \\vec{F}_2$ (nhập số nguyên).",
+        answer: "13",
+        explain: "Hai lực vuông góc nhau nên độ lớn hợp lực tính theo Pythagore: $F = \\sqrt{F_1^2 + F_2^2} = \\sqrt{12^2 + 5^2} = \\sqrt{144 + 25} = \\sqrt{169} = 13\\text{ N}$."
+      },
+      {
+        id: "b8-es6",
+        q: "Theo Bài tập 4.9 SGK trang 54: Hai lực $\\vec{F}_1, \\vec{F}_2$ có độ lớn $F_1 = 3\\text{ N}, F_2 = 2\\text{ N}$, hợp với nhau một góc $120^\\circ$. Tính độ lớn của hợp lực $\\vec{F} = \\vec{F}_1 + \\vec{F}_2$ (nhập kết quả làm tròn đến chữ số thập phân thứ hai, ví dụ: 2.65).",
+        answer: "2.65",
+        explain: "Theo định lí hình bình hành: $F = \\sqrt{F_1^2 + F_2^2 + 2F_1 F_2 \\cos 120^\\circ} = \\sqrt{3^2 + 2^2 + 2(3)(2)(-0.5)} = \\sqrt{9 + 4 - 6} = \\sqrt{7} \\approx 2.64575\\text{ N} \\approx 2.65\\text{ N}$."
+      }
+    ]
+  }
 };
 
 export function getTF(lessonId: string): TFQuestion[] {

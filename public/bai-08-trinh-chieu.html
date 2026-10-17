@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Bài 8 Toán 10: 28 slide trình chiếu tương tác về tổng và hiệu của hai vectơ, quy tắc hình bình hành, kéo pháo Điện Biên Phủ và đấu trường quiz.">
+  <title>Bài 8 · Tổng và hiệu của hai vectơ · Toán 10</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.16.8/dist/katex.min.js"></script>
+  <style>:root{--bg:#081321;--ink:#eef5ff;--muted:#b3c5d8;--cyan:#38bdf8;--gold:#fbbf24;--pink:#f43f5e;--green:#10b981;--purple:#818cf8;--line:#24324f;font-family:system-ui,-apple-system,'Segoe UI',sans-serif;color-scheme:dark}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);height:100dvh;display:grid;grid-template-rows:58px minmax(0,1fr) 72px;overflow:hidden}body:before{content:'';position:fixed;inset:0;pointer-events:none;background:radial-gradient(ellipse at 8% 4%,#162038 0%,transparent 60%),radial-gradient(ellipse at 95% 92%,#1a243b 0%,transparent 60%);z-index:-1}button,a,input,select{font:inherit}button{cursor:pointer}button:disabled{cursor:default;opacity:.5}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,summary:focus-visible{outline:3px solid var(--gold);outline-offset:4px}button,a{touch-action:manipulation}button{color:var(--ink)}[hidden]{display:none!important}.topbar,.bottom{display:flex;align-items:center;gap:12px;padding:10px 24px;background:#091726e8;border-bottom:1px solid var(--line)}.brand{font-size:14px;letter-spacing:.06em;white-space:nowrap}.brand b{color:var(--cyan)}.spacer{flex:1}.tool,.action,.nav,.tab{background:#ffffff07;border:1px solid var(--line);border-radius:11px;min-height:42px;padding:9px 14px;color:var(--ink);font-size:15px}.tool:hover,.action:hover,.tab:hover{background:#38bdf81a;border-color:var(--cyan)}.primary{background:var(--cyan);border-color:var(--cyan);color:#08222a;font-weight:750}.primary:hover{background:#7dd3fc}.stage{overflow:auto;overscroll-behavior:contain;padding:24px 34px}.slide{max-width:1420px;min-height:100%;margin:auto;display:flex;flex-direction:column;gap:22px;animation:pageIn .4s ease}.slide-head{flex-shrink:0}.eyebrow{font-size:12px;letter-spacing:.14em;color:var(--gold);margin:0 0 7px;font-weight:700}.slide h1,.slide h2{font-size:clamp(28px,3.1vw,44px);line-height:1.15;letter-spacing:-.025em;margin:0;font-weight:760}.lead{color:var(--muted);font-size:19px;line-height:1.5;margin:11px 0 0;max-width:1050px}.reveal-tools{display:none}.body{display:flex;flex:1;flex-direction:column;justify-content:center;gap:18px;min-width:0}.bottom{border-bottom:0;border-top:1px solid var(--line);gap:10px}.progress{height:5px;background:#ffffff15;border-radius:4px;flex:1;min-width:15px;overflow:hidden}.progress span{display:block;height:100%;background:var(--cyan);transition:width .4s}.counter{font-size:15px;font-variant-numeric:tabular-nums;white-space:nowrap}.footer-count{font-size:13px;color:var(--cyan);white-space:nowrap}.key-help{font-size:11px;line-height:1.5;color:var(--muted)}.nav{font-size:23px;min-width:46px;padding:5px 12px}.reveal{opacity:0;visibility:hidden;transform:translateY(15px)}.reveal.shown{opacity:1;visibility:visible;transform:none;animation:ideaIn .45s ease both}.grid{display:grid;gap:18px;min-width:0}.two{grid-template-columns:repeat(2,minmax(0,1fr))}.three{grid-template-columns:repeat(3,minmax(0,1fr))}.card{padding:21px 24px;background:#ffffff05;border:1px solid var(--line);border-radius:20px;min-width:0}.card .icon{font-size:29px}.card h3{font-size:23px;margin:8px 0 10px;line-height:1.3}.card p,.card li{font-size:20px;line-height:1.55;margin:0;color:var(--muted)}.card strong{color:var(--ink)}.ribbon{padding:12px 18px;background:#38bdf80f;border-left:3px solid var(--cyan);font-size:19px;line-height:1.5;border-radius:0 12px 12px 0}.choice{display:flex;align-items:center;gap:13px;width:100%;text-align:left;background:#ffffff06;border:1px solid var(--line);padding:14px 17px;border-radius:13px;min-height:54px;font-size:20px;color:var(--ink)}.choice:hover{border-color:var(--cyan);background:#38bdf810}.choice.correct{background:#10b9811a;border-color:var(--green)}.choice.wrong{background:#f43f5e18;border-color:var(--pink)}.choice.correct:disabled,.choice.wrong:disabled{opacity:1}.letter{display:grid;place-items:center;width:31px;min-width:31px;height:31px;background:#ffffff0b;border-radius:8px;font-size:16px;font-weight:750}.responses{display:grid;gap:10px}.feedback{font-size:19px;line-height:1.5;border-radius:13px;padding:13px 16px;background:#fbbf240d;border:1px solid #fbbf2440;margin-top:12px}.feedback:empty{display:none}.feedback.good{background:#10b9810d;border-color:#10b98140}.quiz-options{display:grid;grid-template-columns:1fr 1fr;gap:12px}.quiz-question{font-size:26px;line-height:1.4;margin:0 0 20px}.quiz-meta{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:16px;margin-bottom:13px;color:var(--muted)}.quiz-actions{display:flex;justify-content:flex-end;gap:10px;margin-top:16px}.score-big{font-size:80px;font-weight:850;color:var(--cyan)}.quiz-end{text-align:center}.quiz-end p{margin-bottom:20px}.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);padding:15px 24px;border:1px solid var(--cyan);background:#102b3b;border-radius:15px;font-size:18px;z-index:80;max-width:90vw}.confetti{position:fixed;inset:0;pointer-events:none;z-index:90;overflow:hidden}.confetti i{position:absolute;top:-30px;width:9px;height:17px;animation:fall 1.8s ease-in both}dialog{background:#102536;color:var(--ink);border:1px solid var(--line);border-radius:20px;max-width:1000px;width:92vw;max-height:88dvh;padding:24px}dialog::backdrop{background:#000b;backdrop-filter:blur(4px)}.dialog-head{display:flex;align-items:center;justify-content:space-between;gap:20px}.dialog-head h2{font-size:25px;margin:0}.toc-grid{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin-top:18px}.toc-grid button{text-align:left;font-size:16px}.toc-grid button[aria-current=step]{border-color:var(--cyan)}.katex{font-size:1.1em}.katex-display{margin:.5em 0}.tabs,.pills{display:flex;flex-wrap:wrap;gap:8px}.tab[aria-pressed=true],.pills button[aria-pressed=true]{background:var(--cyan);color:#08222a;border-color:var(--cyan)}.links{display:flex;gap:12px;flex-wrap:wrap}.links a{text-decoration:none}.notes{position:fixed;right:25px;bottom:88px;width:min(470px,90vw);padding:20px;background:#132b3bf5;border:1px solid var(--gold);box-shadow:0 15px 70px #0009;border-radius:18px;z-index:60;max-height:50vh;overflow:auto}.notes p{font-size:17px;line-height:1.6;color:var(--muted);margin:10px 0 0}.notes strong{color:var(--gold)}@keyframes pageIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}@keyframes ideaIn{from{opacity:0;transform:translateY(15px)}to{opacity:1;transform:none}}@keyframes fall{to{transform:translateY(110vh) rotate(650deg);opacity:.3}}@keyframes dash{to{stroke-dashoffset:0}}@keyframes pulse{50%{filter:drop-shadow(0 0 9px #38bdf8);opacity:.7}}body.motion-off *,body.motion-off *:before,body.motion-off *:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}}@media(max-width:1050px){.key-help{display:none}.stage{padding:22px}.slide{gap:18px}.slide h1,.slide h2{font-size:33px}.lead{font-size:18px}.tool{font-size:13px;padding:8px 11px}.card{padding:18px}.card p{font-size:19px}}@media(max-width:700px){body{grid-template-rows:auto minmax(0,1fr) 64px}.topbar{flex-wrap:wrap;gap:6px;padding:8px 12px}.brand{width:100%}.spacer{display:none}.tool{font-size:11px;padding:7px 9px;min-height:36px}.stage{padding:20px 15px}.slide{gap:17px}.slide h1,.slide h2{font-size:29px}.lead{font-size:17px}.body{justify-content:flex-start}.grid.two,.grid.three,.quiz-options{grid-template-columns:1fr}.card p{font-size:19px}.card h3{font-size:23px}.bottom{gap:7px;padding:8px 10px}.bottom .progress,.footer-count{display:none}.bottom .action{font-size:12px;padding:8px}.bottom .nav{min-width:37px}.counter{font-size:12px}.toc-grid{grid-template-columns:1fr}.ribbon{font-size:18px}.quiz-question{font-size:23px}.quiz-meta{flex-wrap:wrap}.choice{font-size:18px}.notes{right:12px;bottom:78px}}
+
+:root{--a:#fbbf24;--b:#38bdf8;--c:#f43f5e;--d:#10b981}.split{display:grid;grid-template-columns:1.08fr 1fr;gap:28px;align-items:center;min-width:0}.split>div{min-width:0}.scene{border-radius:23px;background:linear-gradient(145deg,#13223880,#091626d0);border:1px solid #38bdf830;padding:12px;overflow:hidden;min-width:0}.scene svg{display:block;width:100%;max-height:340px;height:auto;overflow:visible}.scene text{font:19px system-ui;fill:#e5f0fc;paint-order:stroke;stroke:#081321;stroke-width:3px;stroke-linejoin:round}.scene .small{font-size:15px;fill:#b3c5d8}.scene .edge{fill:none;stroke-width:4;stroke-linecap:round;stroke-linejoin:round}.scene .aux{fill:none;stroke:#b3c5d8;stroke-width:2;stroke-dasharray:6 6}.scene .node{fill:#fff;stroke:#153947;stroke-width:2}.scene .angle{fill:#fbbf2420;stroke:#fbbf24;stroke-width:1.5}.scene .draw{stroke-dasharray:1500;stroke-dashoffset:1500;animation:dash 2s ease forwards}.scene .pulse{animation:pulse 3s ease-in-out infinite}.lab{display:flex;flex-direction:column;gap:15px;min-width:0}.control{display:grid;grid-template-columns:1fr auto;gap:8px;font-size:20px}.control output{color:var(--gold);font-weight:750}.control input{grid-column:1/-1;width:100%;accent-color:var(--cyan);min-height:30px;margin:0}.metric{padding:13px 17px;border:1px solid var(--line);border-radius:14px;background:#ffffff05;font-size:22px;line-height:1.6;overflow-x:auto}.metric strong{color:var(--gold)}.metric small{display:block;font-size:16px;color:var(--muted)}.formula{font-size:clamp(22px,2.2vw,30px);line-height:1.8;padding:18px 22px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);overflow-x:auto}.formula .katex{font-size:1.1em}.formula-stack{display:flex;flex-direction:column;gap:13px}.formula-stack .formula{padding:9px 18px;font-size:23px}.a{color:var(--a)}.b{color:var(--b)}.c{color:var(--c)}.hero-six{display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:center}.hero-title{font-size:clamp(36px,4.5vw,64px);font-weight:800;line-height:1.1;letter-spacing:-.04em;margin:0 0 20px}.hero-title em{font-style:normal;color:var(--cyan)}.problem{font-size:24px;line-height:1.6;padding:18px 22px;background:#ffffff05;border:1px solid var(--line);border-radius:18px}.problem p{margin:0 0 10px}.solution{display:grid;gap:10px;font-size:21px;line-height:1.55}.solution p{margin:0;padding:11px 16px;border-left:3px solid #38bdf880;background:#38bdf808;border-radius:0 10px 10px 0}.solution p:last-child{color:var(--cyan)}.accent{color:var(--gold)}.caption{font-size:16px;color:var(--muted);line-height:1.5;margin:6px 0 0}.input-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}.input-grid label{font-size:16px;color:var(--muted);display:grid;gap:7px}input[type=number],select{background:#091b2b;color:var(--ink);border:1px solid #38bdf855;border-radius:10px;width:100%;min-width:0;padding:10px 12px;min-height:45px;font-size:20px}.solver-result{min-height:85px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.solver-result div{padding:11px 14px;background:#ffffff05;border:1px solid var(--line);border-radius:12px;font-size:22px}.solver-result small{display:block;font-size:14px;color:var(--muted)}.checklist{display:grid;gap:12px}.check{display:flex;align-items:center;gap:12px;width:100%;padding:15px 18px;min-height:55px;border:1px solid var(--line);border-radius:13px;background:#ffffff05;text-align:left;font-size:20px}.check[aria-pressed=true]{border-color:var(--cyan);background:#38bdf815}.check[aria-pressed=true] .check-icon{color:var(--cyan)}.timer{text-align:center;padding:25px}.timer output{display:block;font-size:80px;font-weight:850;color:var(--gold);font-variant-numeric:tabular-nums;line-height:1.2}.timer .pills{justify-content:center;margin-top:18px}.timer p{font-size:16px;color:var(--muted);line-height:1.5}.timer.running{border-color:var(--gold)}.quiz-layout{max-width:1070px;width:100%;margin:auto}.finish-title{font-size:40px;margin:0 0 15px;color:var(--cyan)}.mistake{font-size:23px;padding:20px;text-align:center;border:1px solid var(--line);border-radius:18px;line-height:1.6}.token{display:inline-block;padding:3px 10px;border:1px solid currentColor;border-radius:7px;margin:2px}@media(max-width:1100px){.scene svg{max-height:300px}.split{gap:20px}.formula{font-size:23px;padding:15px}.solution{font-size:19px}.problem{font-size:22px}.lab{gap:12px}.metric{font-size:21px}.hero-title{font-size:46px}}@media(max-height:760px) and (min-width:701px){.stage{padding-top:18px;padding-bottom:18px}.slide{gap:15px}.body{gap:14px}.slide h1,.slide h2{font-size:34px}.scene svg{max-height:270px}.hero-title{font-size:44px}.card{padding:16px 19px}.card p{font-size:19px}.formula{font-size:23px;padding:12px 18px}.metric{font-size:21px;padding:10px 15px}.quiz-question{font-size:24px}.choice{font-size:19px;padding:11px 14px}}@media(max-width:700px){.split{grid-template-columns:1fr;gap:15px}.hero-title{font-size:40px}.scene svg{max-height:280px}.scene text{font-size:21px}.scene .small{font-size:17px}.formula{font-size:22px;padding:14px 12px}.metric{font-size:21px}.solution{font-size:19px}.problem{font-size:21px}.timer output{font-size:64px}.mistake{font-size:21px}.finish-title{font-size:32px}}
+</style>
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">TOÁN 10 <b> / BÀI 08</b></div>
+  <div class="spacer"></div>
+  <button class="tool" id="contents" aria-haspopup="dialog">☰ Mục lục</button>
+  <button class="tool" id="motion" aria-pressed="true">✨ Hiệu ứng: Bật</button>
+  <button class="tool" id="sound" aria-pressed="false">🔇 Âm thanh: Tắt</button>
+  <button class="tool" id="fullscreen" aria-label="Toàn màn hình" title="Toàn màn hình (F)">⛶</button>
+</header>
+<main class="stage" id="stage">
+  <div id="deck"></div>
+  <noscript>
+    <h1>Bài 8: Tổng và hiệu của hai vectơ</h1>
+    <p>Bật JavaScript để dùng bài trình chiếu.</p>
+  </noscript>
+</main>
+<footer class="bottom">
+  <button class="nav" id="prev" aria-label="Trang trước">←</button>
+  <div class="progress" aria-hidden="true"><span id="progress"></span></div>
+  <span class="counter" id="counter">01 / 28</span>
+  <span class="footer-count" id="reveal-counter"></span>
+  <button class="action" id="all-ideas">Hiện hết</button>
+  <button class="action primary next-idea" id="next-idea">Hiện ý tiếp ↓</button>
+  <button class="nav" id="next" aria-label="Trang tiếp">→</button>
+  <span class="key-help">Space/→: hiện ý, rồi chuyển trang<br>↑: ẩn ý · F: toàn màn hình · M: âm thanh</span>
+</footer>
+<dialog id="toc" aria-labelledby="toc-title">
+  <div class="dialog-head">
+    <h2 id="toc-title">Hành trình Bài 8 · 28 Slide</h2>
+    <button class="action" id="close-toc">Đóng ✕</button>
+  </div>
+  <div id="toc-grid" class="toc-grid"></div>
+</dialog>
+<div id="toast" class="toast" role="status" hidden></div>
+<div id="confetti" class="confetti" aria-hidden="true"></div>
+<script>'use strict';
+const $=(s,r=document)=>r.querySelector(s),$$=(s,r=document)=>[...r.querySelectorAll(s)];
+const esc=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const m=t=>katex.renderToString(t,{throwOnError:false,trust:false,output:'htmlAndMathml'});
+const V=t=>m(`\\overrightarrow{${t}}`);
+const graph=(id,label)=>`<div class="scene"><svg id="${id}" viewBox="0 0 620 340" role="img" aria-label="${label}"></svg></div>`;
+const step=t=>`<p class="reveal" aria-hidden="true" inert>${t}</p>`;
+const ribbon=t=>`<div class="ribbon">${t}</div>`;
+const formula=t=>`<div class="formula">${m(t)}</div>`;
+const card=(icon,title,text)=>`<div class="card reveal" aria-hidden="true" inert><h3>${title}</h3><p>${text}</p></div>`;
+const pick=(id,options)=>`<div class="responses" id="${id}">${options.map((t,i)=>`<button class="choice" data-choice="${id}" data-value="${i}"><span class="letter">${'ABCD'[i]}</span><span>${t}</span></button>`).join('')}</div><div class="feedback" id="${id}-feedback" role="status"></div>`;
+const split=(id,label,right)=>`<div class="split">${graph(id,label)}<div class="lab">${right}</div></div>`;
+
+const quizQuestions=[
+  ['Cho 3 điểm A, B, C bất kì. Phép cộng nối tiếp cho kết quả là vectơ nào?',[V('CA'),V('AC'),V('BA'),V('CB')],1,'Quy tắc ba điểm: ngọn của vectơ thứ nhất ghép với gốc của vectơ thứ hai: AB + BC = AC.'],
+  ['Trong hình bình hành ABCD, vectơ tổng AB + AD bằng vectơ nào sau đây?',[V('BD'),V('DB'),V('AC'),V('CA')],2,'Quy tắc hình bình hành: đường chéo chính xuất phát từ đỉnh chung A là AC: AB + AD = AC.'],
+  ['Vectơ đối của vectơ a là vectơ có đặc điểm gì?',['Cùng hướng và cùng độ dài','Ngược hướng và cùng độ dài','Cùng hướng và khác độ dài','Vuông góc và cùng độ dài'],1,'Vectơ đối có cùng độ dài nhưng ngược hướng hoàn toàn: a + (-a) = 0.'],
+  ['Vectơ đối của vectơ AB được kí hiệu và viết lại là:',[V('AB'),V('BA'),'-'+V('BA'),'0'],1,'Vectơ đối của AB là -AB = BA.'],
+  ['Với ba điểm O, A, B bất kì, quy tắc hiệu (ngọn trừ gốc) cho đẳng thức:',[V('OB')+'-'+V('OA')+'='+V('AB'),V('OB')+'-'+V('OA')+'='+V('BA'),V('OA')+'-'+V('OB')+'='+V('AB'),V('OB')+'+'+V('OA')+'='+V('AB')],0,'Quy tắc hiệu với gốc chung O: OB - OA = AB (lấy ngọn của số bị trừ trừ ngọn của số trừ).'],
+  ['Cho điểm I là trung điểm của đoạn thẳng AB. Khẳng định nào sau đây là SAI?',[V('IA')+'+'+V('IB')+'=\\vec0',V('IA')+'='+V('IB'),'|'+V('IA')+'|=|'+V('IB')+'|',V('MA')+'+'+V('MB')+'=2'+V('MI')],1,'IA và IB ngược hướng nhau nên IA = -IB ≠ IB.'],
+  ['Cho tam giác ABC có trọng tâm G. Đẳng thức vectơ nào sau đây luôn đúng?',[V('GA')+'+'+V('GB')+'+'+V('GC')+'=\\vec0',V('GA')+'+'+V('GB')+'='+V('GC'),'|'+V('GA')+'|=|'+V('GB')+'|',V('MA')+'+'+V('MB')+'=3'+V('MG')],0,'Hệ thức trọng tâm cơ bản: GA + GB + GC = 0.'],
+  ['Hình thoi ABCD cạnh a có góc BAD = 60°. Độ lớn của vectơ AB + AD bằng bao nhiêu?',['a',m('a\\sqrt2'),m('a\\sqrt3'),'2a'],2,'AB + AD = AC. Tam giác ABD đều cạnh a, đường chéo AC = 2·(a√3/2) = a√3.'],
+  ['Hai lực F1 = 3 N và F2 = 2 N cùng tác dụng vào một chất điểm, hợp nhau góc 120°. Hợp lực có độ lớn bằng:',['5 N','1 N',m('\\sqrt7\\text{ N} \\approx 2{,}65\\text{ N}'),m('\\sqrt{13}\\text{ N}')],2,'Theo định lí côsin: F² = 3² + 2² + 2·3·2·cos(120°) = 9 + 4 - 6 = 7 ⇒ F = √7 N.'],
+  ['Kéo pháo nặng 2 260 kg lên dốc nghiêng 30°, g = 9,8 m/s². Mỗi chiến sĩ tạo lực 100 N. Cần tối thiểu bao nhiêu người?',['110 người','111 người','226 người','150 người'],1,'Lực trượt dốc Px = P·sin30° = 2260·9,8·0,5 = 11 074 N. Số người tối thiểu = ⌈11 074 / 100⌉ = 111 chiến sĩ.'],
+  ['Hai tàu cùng vận tốc riêng, cùng bẻ lái góc α so với bờ để qua sông xiết. Tàu nào cập bến đối diện trước?',['Tàu xuôi dòng hơn','Tàu ngược dòng hơn','Cả hai cập bến cùng lúc','Tùy vào bề rộng dòng sông'],2,'Vận tốc sang sông là vy = v0·sinα. Vì cùng vận tốc riêng và cùng góc bẻ lái nên thời gian qua sông t = d/vy là như nhau.'],
+  ['Khi nào thì độ lớn của vectơ tổng bằng tổng các độ dài: |a + b| = |a| + |b|?',['Hai vectơ vuông góc','Hai vectơ cùng hướng','Hai vectơ ngược hướng','Luôn đúng với mọi cặp vectơ'],1,'Bất đẳng thức tam giác: |a + b| ≤ |a| + |b|. Dấu bằng xảy ra khi và chỉ khi hai vectơ cùng hướng (hoặc có ít nhất một vectơ bằng 0).']
+];
+
+const sections=[
+  {
+    tag:'BÀI 8 · TOÁN 10 · KẾT NỐI TRI THỨC',
+    title:'Tổng và hiệu của hai vectơ',
+    lead:'Quy tắc ba điểm · Quy tắc hình bình hành · Kéo pháo Điện Biên Phủ · Vận tốc qua sông',
+    note:'SGK Toán 10 Tập 1 trang 51–54. Bài học xây dựng hoàn chỉnh phép cộng, trừ vectơ, hệ thức trung điểm - trọng tâm và ứng dụng vật lí cơ học.',
+    html:split('cover','Mô hình cộng hai vectơ liên tiếp',`<p class="hero-title">Hai lực tác dụng.<br><em>Một hướng chuyển động!</em></p><p class="caption">Khám phá cách ghép nối các đại lượng có hướng trong không gian.</p><div class="links"><a class="action" href="/luyen/bai-08" target="_blank" rel="noopener">Mở Game Hub & Luyện tập</a><a class="action" href="/sgk/bai-08.html" target="_blank" rel="noopener">Xem SGK Trang 51–54</a></div>`)
+  },
+  {
+    tag:'01 · MỞ ĐẦU · SGK TRANG 51',
+    title:'Ca nô qua dòng sông nước chảy xiết',
+    lead:'Động cơ đẩy thẳng sang bờ đối diện, dòng nước cuốn trôi xuôi dòng.',
+    note:'Vận tốc thực tế của ca nô đối với bờ là sự kết hợp của hai vận tốc đồng thời.',
+    html:split('river-boat','Sơ đồ vectơ vận tốc ca nô và dòng nước',`${pick('river-pick',['Ca nô đi thẳng sang điểm đối diện','Ca nô bị trôi dạt xiên chéo về phía hạ lưu','Ca nô quay tròn tại chỗ'])}${ribbon('Vận tốc thực tế đối với bờ: '+m('\\vec v = \\vec v_{\\text{ca nô}} + \\vec v_{\\text{nước}}'))}`)
+  },
+  {
+    tag:'02 · HĐ1 · SGK TRANG 51',
+    title:'Nối tiếp hai chặng đường đi',
+    lead:'Từ vị trí ban đầu A, đi theo vectơ a đến B, rồi tiếp tục theo vectơ b đến C.',
+    note:'HĐ1 SGK trang 51: Xây dựng vectơ tổng qua điểm ngọn nối điểm gốc.',
+    html:split('triangle-add','Quy tắc ba điểm nối tiếp AB + BC = AC',`<div class="solution">${step('Vectơ '+V('AB')+' biểu diễn chặng thứ nhất: xuất phát từ A đến B.')}${step('Vectơ '+V('BC')+' biểu diễn chặng thứ hai: xuất phát từ B đến C.')}${step('Độ dịch chuyển tổng hợp cuối cùng từ đầu đến đích là '+V('AC')+'.')}</div>`)
+  },
+  {
+    tag:'03 · TÍNH ĐỘC LẬP GỐC · SGK TRANG 51',
+    title:'Chọn điểm gốc ban đầu khác: Tổng có đổi không?',
+    lead:'Lấy điểm A\' khác A, vẽ A\'B\' = a và B\'C\' = b. So sánh AC và A\'C\'.',
+    note:'HĐ1 phần b: Chứng minh AC = A\'C\' thông qua tính chất của hình bình hành.',
+    html:split('independent-root','Hai tam giác dời chỗ nhau bảo toàn vectơ tổng',`<div class="solution">${step('Vì '+V('AB')+' = '+V('A\'B\'')+' nên tứ giác ABB\'A\' là hình bình hành ⇒ '+V('AA\'')+' = '+V('BB\'')+'.')}${step('Vì '+V('BC')+' = '+V('B\'C\'')+' nên '+V('BB\'')+' = '+V('CC\'')+'. Suy ra '+V('AA\'')+' = '+V('CC\'')+'.')}${step('Do đó tứ giác ACC\'A\' là hình bình hành ⇒ '+V('AC')+' = '+V('A\'C\'')+'.')}</div>`)
+  },
+  {
+    tag:'04 · ĐỊNH NGHĨA TỔNG & QUY TẮC BA ĐIỂM',
+    title:'Quy tắc ba điểm: Ghép ngọn vào gốc',
+    lead:'Cho hai vectơ a và b. Tổng của chúng là vectơ AC khi AB = a và BC = b.',
+    note:'Quy tắc cốt lõi: chữ cái ở giữa nối tiếp nhau: AB + BC = AC.',
+    html:split('three-points','Quy tắc 3 điểm AB + BC = AC',`<div class="solution">${formula('\\vec a + \\vec b = \\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}')}${step('Điểm cuối của vectơ thứ nhất trùng điểm đầu của vectơ thứ hai.')}${step('Kí hiệu: '+m('\\vec a + \\vec b')+'.')}</div>`)
+  },
+  {
+    tag:'05 · PHÒNG THÍ NGHIỆM TỔNG NỐI TIẾP',
+    title:'Tự ghép chuỗi vectơ nối đuôi',
+    lead:'Chọn các chặng để quan sát sự tạo thành vectơ tổng tổng quát.',
+    note:'Mở rộng quy tắc ba điểm sang đa giác nhiều điểm: A1A2 + A2A3 + ... + An-1An = A1An.',
+    html:split('chain-lab','Chuỗi nhiều vectơ nối tiếp',`<div class="pills">${['3 Chặng (A→B→C)','4 Chặng (A→B→C→D)','Khép kín về A (Tổng bằng 0)'].map((t,i)=>`<button class="action" data-chain="${i}">${t}</button>`).join('')}</div><div id="chain-result" class="metric">Chọn một cấu hình để xem hợp vectơ.</div>`)
+  },
+  {
+    tag:'06 · HĐ2 · SGK TRANG 51',
+    title:'Hai lực cùng tác dụng tại một điểm',
+    lead:'Hai con thuyền hoặc hai người cùng kéo một vật tại mút A.',
+    note:'HĐ2 SGK trang 51: Cơ sở vật lí của quy tắc hình bình hành.',
+    html:split('force-pull','Hai lực cùng gốc tác dụng lên vật',`<div class="solution">${step('Lực thứ nhất kéo theo hướng '+V('AB')+'.')}${step('Lực thứ hai kéo theo hướng '+V('AD')+'.')}${step('Lực tổng hợp kéo vật chuyển động dọc theo đường chéo '+V('AC')+'.')}</div>`)
+  },
+  {
+    tag:'07 · QUY TẮC HÌNH BÌNH HÀNH · SGK TRANG 51',
+    title:'Quy tắc hình bình hành (Chung gốc)',
+    lead:'Nếu ABCD là hình bình hành thì tổng hai cạnh kề bằng đường chéo chung gốc.',
+    note:'AB + AD = AC. Chú ý: Cả ba vectơ đều xuất phát từ đỉnh A.',
+    html:split('parallelogram-rule','Hình bình hành ABCD với đường chéo AC = AB + AD',`<div class="solution">${formula('\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}')}${step('Chứng minh: Vì ABCD là hình bình hành nên '+V('AD')+' = '+V('BC')+'.')}${step('Thay vào ta được: '+V('AB')+' + '+V('AD')+' = '+V('AB')+' + '+V('BC')+' = '+V('AC')+'.')}</div>`)
+  },
+  {
+    tag:'08 · LAB QUY TẮC HÌNH BÌNH HÀNH',
+    title:'Góc giữa hai lực thay đổi hợp lực thế nào?',
+    lead:'Thay đổi góc kẹp giữa hai lực có độ lớn 10 N để xem độ dài đường chéo.',
+    note:'Khám phá độ lớn hợp lực: F = 2·F0·cos(θ/2). Khi θ = 0° thì max = 20 N; khi θ = 180° thì min = 0 N.',
+    html:split('parallelogram-lab','Mô phỏng hình bình hành với góc co giãn',`<label class="control" for="pbh-angle">Góc giữa hai lực <output id="pbh-angle-val">60°</output><input id="pbh-angle" type="range" min="0" max="180" step="15" value="60"></label><div id="pbh-result" class="metric">Hợp lực đang tính...</div>`)
+  },
+  {
+    tag:'09 · TÍNH CHẤT PHÉP CỘNG · SGK TRANG 52',
+    title:'Tính chất giao hoán, kết hợp & vectơ-không',
+    lead:'Phép cộng vectơ thỏa mãn các định luật toán học tương tự số thực.',
+    note:'HĐ3 SGK trang 52: Giao hoán, kết hợp và cộng với vectơ-không.',
+    html:`<div class="grid three"><div class="card"><h3>1. Giao hoán</h3><p>${m('\\vec a + \\vec b = \\vec b + \\vec a')}</p><p class="caption">Đổi thứ tự không đổi tổng.</p></div><div class="card"><h3>2. Kết hợp</h3><p>${m('(\\vec a + \\vec b) + \\vec c = \\vec a + (\\vec b + \\vec c)')}</p><p class="caption">Nhóm tùy ý theo cặp thuận tiện.</p></div><div class="card"><h3>3. Cộng với \\(\\vec0\\)</h3><p>${m('\\vec a + \\vec0 = \\vec0 + \\vec a = \\vec a')}</p><p class="caption">Vectơ-không đóng vai trò phần tử trung hòa.</p></div></div>`
+  },
+  {
+    tag:'10 · VÍ DỤ 1 · SGK TRANG 52',
+    title:'Biến đổi tổng vectơ trong hình bình hành',
+    lead:'Cho hình bình hành ABCD. Chứng minh hai đẳng thức triệt tiêu.',
+    note:'Ví dụ 1 SGK trang 52: AB + CD = 0 và BA + DA + AC = 0.',
+    html:split('vd1-scene','Hình bình hành ABCD cho Ví dụ 1',`<div class="solution">${step('a) Vì ABCD là HBH nên CD và AB ngược hướng, cùng độ dài ⇒ '+V('CD')+' = -'+V('AB')+'.')}${step('Do đó: '+V('AB')+' + '+V('CD')+' = '+V('AB')+' + (-'+V('AB')+') = \\vec0.')}${step('b) Theo quy tắc hình bình hành: '+V('BA')+' + '+V('DA')+' = '+V('CA')+'.')}${step('Do đó: '+V('BA')+' + '+V('DA')+' + '+V('AC')+' = '+V('CA')+' + '+V('AC')+' = '+V('CC')+' = \\vec0.')}</div>`)
+  },
+  {
+    tag:'11 · LUYỆN TẬP 1 · SGK TRANG 52',
+    title:'Tính độ lớn tổng vectơ trong hình thoi',
+    lead:'Hình thoi ABCD cạnh a có góc BAD = 60°. Tính độ lớn |AB + AD|.',
+    note:'Luyện tập 1 SGK trang 52: Tính độ dài đường chéo chính trong hình thoi góc 60°.',
+    html:split('lt1-scene','Hình thoi ABCD góc BAD 60 độ',`<div class="solution">${step('Theo quy tắc hình bình hành: '+V('AB')+' + '+V('AD')+' = '+V('AC')+'.')}${step('Suy ra độ lớn: |'+V('AB')+' + '+V('AD')+'| = |'+V('AC')+'| = AC.')}${step('Vì tam giác ABD có AB = AD = a và góc A = 60° nên là tam giác đều.')}${step('Đường chéo AC = 2·(a√3 / 2) = a√3.')}${formula('|\\overrightarrow{AB} + \\overrightarrow{AD}| = a\\sqrt3')}</div>`)
+  },
+  {
+    tag:'12 · HĐ4 · SGK TRANG 52',
+    title:'Hai lực kéo giằng co: Khái niệm Vectơ đối',
+    lead:'Hai bạn kéo sợi dây cùng độ lớn nhưng ngược chiều.',
+    note:'HĐ4 SGK trang 52: Định nghĩa hai vectơ đối nhau và vectơ đối của a.',
+    html:split('opposite-vectors','Hai vectơ IA và IB đối nhau qua trung điểm I',`<div class="solution">${step('Hai vectơ cùng phương, ngược hướng và có cùng độ dài gọi là hai vectơ đối nhau.')}${step('Vectơ đối của '+m('\\vec a')+' được kí hiệu là '+m('-\\vec a')+'.')}${step('Tổng của hai vectơ đối luôn bằng vectơ-không: '+m('\\vec a + (-\\vec a) = \\vec0')+'.')}${step('Đặc biệt: vectơ đối của '+V('AB')+' là -'+V('AB')+' = '+V('BA')+'.')}</div>`)
+  },
+  {
+    tag:'13 · ĐỊNH NGHĨA HIỆU CỦA HAI VECTƠ',
+    title:'Phép trừ là phép cộng với vectơ đối',
+    lead:'Hiệu của vectơ a và vectơ b là tổng của a với vectơ đối của b.',
+    note:'Định nghĩa phép trừ SGK trang 53: a - b = a + (-b).',
+    html:split('subtraction-def','Minh họa a - b = a + (-b)',`<div class="solution">${formula('\\vec a - \\vec b = \\vec a + (-\\vec b)')}${step('Bước 1: Giữ nguyên vectơ số bị trừ a.')}${step('Bước 2: Lấy vectơ đối của vectơ số trừ b là -b.')}${step('Bước 3: Thực hiện phép cộng nối tiếp a + (-b).')}</div>`)
+  },
+  {
+    tag:'14 · QUY TẮC HIỆU · SGK TRANG 53',
+    title:'Quy tắc hiệu: Ngọn trừ Gốc (Chung gốc)',
+    lead:'Với ba điểm O, A, B bất kì, ta luôn có OB - OA = AB.',
+    note:'Quy tắc cực kì thông dụng: trừ hai vectơ cùng gốc thì ngọn trước trừ ngọn sau.',
+    html:split('diff-rule','Tam giác OAB với OB - OA = AB',`<div class="solution">${formula('\\overrightarrow{OB} - \\overrightarrow{OA} = \\overrightarrow{AB}')}${step('Gốc chung là điểm O.')}${step('Kết quả là vectơ nối từ ngọn của số trừ (A) đến ngọn của số bị trừ (B).')}${step('Mẹo ghi nhớ: "Hiệu chung gốc = Ngọn trừ Ngọn, đuôi sau đầu trước".')}</div>`)
+  },
+  {
+    tag:'15 · VÍ DỤ 2 · SGK TRANG 53',
+    title:'Quy tắc hiệu trong tam giác ABC',
+    lead:'Chứng minh rằng: AB - AC = CB.',
+    note:'Ví dụ 2 SGK trang 53: Ứng dụng trực tiếp quy tắc hiệu.',
+    html:split('vd2-scene','Tam giác ABC với AB - AC = CB',`<div class="solution">${step('Vế trái có gốc chung là đỉnh A.')}${step('Áp dụng quy tắc hiệu: '+V('AB')+' - '+V('AC')+' = '+V('CB')+'.')}${step('Cách biến đổi đại số: '+V('AB')+' - '+V('AC')+' = '+V('AB')+' + '+V('CA')+' = '+V('CA')+' + '+V('AB')+' = '+V('CB')+'.')}</div>`)
+  },
+  {
+    tag:'16 · HỆ THỨC TRUNG ĐIỂM · SGK TRANG 53',
+    title:'Ví dụ 3a: Tính chất trung điểm đoạn thẳng',
+    lead:'I là trung điểm của AB khi và chỉ khi IA + IB = 0.',
+    note:'Ví dụ 3a SGK trang 53: Hệ thức trung điểm và mở rộng cho điểm M bất kì: MA + MB = 2MI.',
+    html:split('midpoint-rule','Đoạn thẳng AB với trung điểm I và điểm M tùy ý',`<div class="solution">${formula('\\overrightarrow{IA} + \\overrightarrow{IB} = \\vec0')}${formula('\\overrightarrow{MA} + \\overrightarrow{MB} = 2\\overrightarrow{MI}')}${step('Với mọi điểm M bất kì trong mặt phẳng, chèn điểm I vào vế trái.')}${step('MA + MB = (MI + IA) + (MI + IB) = 2MI + (IA + IB) = 2MI + 0 = 2MI.')}</div>`)
+  },
+  {
+    tag:'17 · HỆ THỨC TRỌNG TÂM · SGK TRANG 53',
+    title:'Ví dụ 3b: Tính chất trọng tâm tam giác',
+    lead:'G là trọng tâm tam giác ABC khi và chỉ khi GA + GB + GC = 0.',
+    note:'Ví dụ 3b SGK trang 53: Hệ thức trọng tâm và mở rộng cho điểm M bất kì: MA + MB + MC = 3MG.',
+    html:split('centroid-rule','Tam giác ABC với trọng tâm G và các trung tuyến',`<div class="solution">${formula('\\overrightarrow{GA} + \\overrightarrow{GB} + \\overrightarrow{GC} = \\vec0')}${formula('\\overrightarrow{MA} + \\overrightarrow{MB} + \\overrightarrow{MC} = 3\\overrightarrow{MG}')}${step('Mở rộng: Tâm của hệ 3 đỉnh triệt tiêu tổng vectơ khoảng cách.')}${step('Đây là công cụ then chốt để giải các bài toán cực trị hình học và tìm quỹ tích điểm.')}</div>`)
+  },
+  {
+    tag:'18 · LUYỆN TẬP 2 · SGK TRANG 53',
+    title:'Đoạn nối hai trung điểm trong tứ giác',
+    lead:'Tứ giác ABCD có M, N là trung điểm của AB và CD. Chứng minh AC + BD = 2MN.',
+    note:'Luyện tập 2 SGK trang 53: Kĩ thuật chèn hai điểm trung gian M, N.',
+    html:split('lt2-scene','Tứ giác ABCD với hai trung điểm M và N',`<div class="solution">${step('Chèn hai điểm M và N vào các vectơ ở vế trái:')}${step(V('AC')+' = '+V('AM')+' + '+V('MN')+' + '+V('NC'))}${step(V('BD')+' = '+V('BM')+' + '+V('MN')+' + '+V('ND'))}${step('Cộng lại: '+V('AC')+' + '+V('BD')+' = 2'+V('MN')+' + ('+V('AM')+'+'+V('BM')+') + ('+V('NC')+'+'+V('ND')+') = 2'+V('MN')+'.')}</div>`)
+  },
+  {
+    tag:'19 · VÍ DỤ 4 · SGK TRANG 53–54',
+    title:'Hợp lực của hai lực 10 N góc 60°',
+    lead:'Hai lực đồng quy F1 và F2 có cùng độ lớn 10 N, góc giữa chúng là 60°.',
+    note:'Ví dụ 4 SGK trang 53–54: Tính độ lớn hợp lực theo hình thoi.',
+    html:split('vd4-scene','Hai vectơ lực 10N hợp góc 60 độ',`<div class="solution">${step('Dựng hình thoi tạo bởi hai vectơ lực F1 và F2.')}${step('Đường chéo hợp lực chia góc 60° thành hai góc 30°.')}${step('Độ lớn hợp lực: F = 2 · 10 · cos(30°) = 20 · (√3 / 2) = 10√3 N.')}${formula('|\\vec F| = 10\\sqrt3\\text{ N} \\approx 17{,}32\\text{ N}')}</div>`)
+  },
+  {
+    tag:'20 · VẬN DỤNG KÉO PHÁO · SGK TRANG 54',
+    title:'Hào khí Điện Biên Phủ: Kéo pháo lên dốc 30°',
+    lead:'Khẩu pháo 2 260 kg trên dốc nghiêng 30°. Cần bao nhiêu chiến sĩ kéo?',
+    note:'Vận dụng SGK trang 54: Phân tích lực kéo pháo, triệt tiêu thành phần trượt dốc Px.',
+    html:split('cannon-scene','Sơ đồ phân tích lực kéo pháo Điện Biên Phủ',`<div class="solution">${step('1. Trọng lực khẩu pháo: P = m·g = 2 260 × 9,8 = 22 148 N.')}${step('2. Thành phần kéo pháo trượt xuống dốc: Px = P·sin(30°) = 22 148 × 0,5 = 11 074 N.')}${step('3. Mỗi chiến sĩ kéo trung bình 100 N dọc theo dốc.')}${step('4. Số người tối thiểu = 11 074 / 100 = 110,74 ⇒ Cần ít nhất 111 chiến sĩ!')}</div>`)
+  },
+  {
+    tag:'21 · MÔ PHỎNG SƯỜN DỐC KÉO PHÁO',
+    title:'Phòng thí nghiệm lực trượt trên mặt dốc',
+    lead:'Kéo thay đổi góc dốc để thấy lực kéo cần thiết biến thiên theo hàm sin.',
+    note:'Tương tác trực quan: dốc càng nghiêng thì Px càng lớn, đòi hỏi càng nhiều chiến sĩ.',
+    html:split('incline-lab','Mô phỏng động góc dốc và phân tích lực',`<label class="control" for="slope-angle">Góc nghiêng của dốc <output id="slope-angle-val">30°</output><input id="slope-angle" type="range" min="5" max="60" step="5" value="30"></label><div id="slope-result" class="metric">Lực trượt đang tính...</div>`)
+  },
+  {
+    tag:'22 · BÀI TẬP 4.6 & 4.7 · SGK TRANG 54',
+    title:'Đẳng thức bốn điểm & Hình bình hành',
+    lead:'Bài 4.6: AB + CD = AD + CB · Bài 4.7: AB + AD + CA = 0.',
+    note:'Bài tập 4.6 và 4.7 SGK trang 54: Rèn luyện kĩ thuật biến đổi quy tắc cộng và trừ.',
+    html:`<div class="grid two"><div class="card"><h3>Bài 4.6: Đẳng thức 4 điểm</h3><p>${m('\\overrightarrow{AB} + \\overrightarrow{CD} = \\overrightarrow{AD} + \\overrightarrow{CB}')}</p><p class="caption">Chuyển vế: AB - AD = CB - CD ⇔ DB = DB (luôn đúng!).</p></div><div class="card"><h3>Bài 4.7: Hình bình hành</h3><p>${m('\\overrightarrow{AB} + \\overrightarrow{AD} + \\overrightarrow{CA} = \\vec0')}</p><p class="caption">Áp dụng HBH: AB + AD = AC ⇒ AC + CA = AA = 0.</p></div></div>`
+  },
+  {
+    tag:'23 · BÀI TẬP 4.8 & 4.9 · SGK TRANG 54',
+    title:'Tâm hình bình hành & Hợp lực góc 120°',
+    lead:'Bài 4.8: Tâm O triệt tiêu 4 vectơ đỉnh · Bài 4.9: F1 = 3 N, F2 = 2 N, góc 120°.',
+    note:'Bài 4.8 và 4.9 SGK trang 54: Tính tổng từ tâm HBH và định lí côsin tính hợp lực.',
+    html:`<div class="grid two"><div class="card"><h3>Bài 4.8: Tâm hình bình hành</h3><p>${m('\\sum_{k=A,B,C,D} \\overrightarrow{OK} = \\vec0')}</p><p class="caption">(OA + OC) + (OB + OD) = 0 + 0 = 0. Với M bất kì: MA + MB + MC + MD = 4MO.</p></div><div class="card"><h3>Bài 4.9: Hợp lực góc 120°</h3><p>${m('F = \\sqrt{3^2 + 2^2 + 2\\cdot 3\\cdot 2\\cos 120^\\circ} = \\sqrt7\\text{ N}')}</p><p class="caption">Hợp lực có độ lớn xấp xỉ 2,65 N.</p></div></div>`
+  },
+  {
+    tag:'24 · BÀI TẬP 4.10 · SGK TRANG 54',
+    title:'Hai con tàu sang sông: Ai cập bến trước?',
+    lead:'Cùng vận tốc riêng v0, cùng góc lái α so với bờ sông xiết.',
+    note:'Bài 4.10 SGK trang 54: Phân tích hình chiếu vận tốc lên phương vuông góc với bờ.',
+    html:split('boat-race','Hai con tàu bẻ cùng góc lái α qua sông',`<div class="solution">${step('Vận tốc của tàu đối với bờ: v = v_riêng + v_nước.')}${step('Dòng nước chảy dọc bờ nên không có thành phần vận tốc nào giúp tàu sang sông.')}${step('Vận tốc theo phương vuông góc với bờ là: vy = v0 · sin(α).')}${step('Thời gian sang sông t = d / (v0 · sin α). Vì v0 và α giống nhau nên cả hai tàu sang bờ cùng lúc!')}</div>`)
+  },
+  {
+    tag:'25 · PHÒNG PHẢN BIỆN & SỬA SAI',
+    title:'4 Sai lầm kinh điển cần tránh',
+    lead:'Nhận diện ngay những cạm bẫy học sinh hay mắc phải nhất.',
+    note:'Phản biện các kết luận vội vã: cộng độ dài, nhầm thứ tự quy tắc hiệu, quên vectơ-không.',
+    html:`<div class="grid two"><div class="mistake"><span style="color:#f43f5e;font-weight:bold;">❌ SAI:</span> |a + b| = |a| + |b|<br><span style="color:#10b981;font-weight:bold;">✓ ĐÚNG:</span> |a + b| ≤ |a| + |b|. Dấu bằng chỉ xảy ra khi a, b cùng hướng!</div><div class="mistake"><span style="color:#f43f5e;font-weight:bold;">❌ SAI:</span> OB - OA = BA<br><span style="color:#10b981;font-weight:bold;">✓ ĐÚNG:</span> OB - OA = AB (ngọn bị trừ trừ ngọn trừ, ngọn B đứng sau thì viết trước).</div><div class="mistake"><span style="color:#f43f5e;font-weight:bold;">❌ SAI:</span> AB + BA = 0 (số 0)<br><span style="color:#10b981;font-weight:bold;">✓ ĐÚNG:</span> AB + BA = AA = 0 (vectơ-không, có mũi tên).</div><div class="mistake"><span style="color:#f43f5e;font-weight:bold;">❌ SAI:</span> I là trung điểm AB ⇒ IA = IB<br><span style="color:#10b981;font-weight:bold;">✓ ĐÚNG:</span> IA = -IB hay IA + IB = 0 (vì hai vectơ ngược hướng).</div></div>`
+  },
+  {
+    tag:'26 · HOẠT ĐỘNG NHÓM · 3 PHÚT',
+    title:'Thử thách giải mã: Phân tích lực trong thực tế',
+    lead:'Thảo luận nhóm 3 phút: Nêu 1 ví dụ trong đời sống cần dùng phép cộng hoặc trừ vectơ.',
+    note:'3 phút thảo luận: kéo co, máy bay bay đón gió, cano vượt thác, giàn treo đèn chùm.',
+    html:`<div class="split"><div class="solution">${step('1. Xác định các vectơ lực / vận tốc tham gia vào bài toán.')}${step('2. Vận dụng quy tắc 3 điểm hoặc hình bình hành để dựng vectơ tổng.')}${step('3. Đại diện nhóm trình bày cách tính toán và bảo vệ kết quả.')}</div><div class="card timer"><output id="group-time">03:00</output><div class="pills"><button class="action primary" id="group-start">Bắt đầu</button><button class="action" id="group-pause">Tạm dừng</button><button class="action" id="group-reset">Đặt lại</button></div><p>Chuyển slide hoặc ẩn tab: đồng hồ tự động tạm dừng.</p></div></div>`
+  },
+  {
+    tag:'27 · ĐẤU TRƯỜNG QUIZ · 12 CÂU HỎI',
+    title:'Kiểm tra tốc độ & Độ chính xác',
+    lead:'Chọn phương án đúng nhất. Có âm thanh phản hồi, giải thích và pháo hoa khi đạt điểm tối đa.',
+    note:'12 câu hỏi trắc nghiệm phủ trọn nhận biết, thông hiểu, vận dụng Bài 8.',
+    html:'<div class="quiz-layout" id="quiz"></div>'
+  },
+  {
+    tag:'28 · TỔNG KẾT & BẢN ĐỒ NĂNG LỰC',
+    title:'Làm chủ 4 Quy tắc vàng của Vectơ',
+    lead:'Đánh dấu năng lực em đã chinh phục thành công hôm nay.',
+    note:'Checklist tự đánh giá: Quy tắc 3 điểm, hình bình hành, quy tắc hiệu, hệ thức trung điểm - trọng tâm.',
+    html:`<div class="checklist">${['Biết dựng và tính tổng của hai vectơ bằng quy tắc ba điểm nối tiếp.','Vận dụng thành thạo quy tắc hình bình hành để tổng hợp hai lực đồng quy.','Sử dụng chính xác quy tắc hiệu "ngọn trừ gốc" trong biến đổi đẳng thức.','Ứng dụng thuần thục hệ thức trung điểm và trọng tâm vào bài toán vật lí thực tiễn.'].map(t=>`<button class="check" aria-pressed="false"><span class="check-icon">□</span>${t}</button>`).join('')}</div><div class="links"><a class="action primary" href="/luyen/bai-08" target="_blank" rel="noopener">Luyện tập câu hỏi & Đấu trường game</a><a class="action" href="/sgk/bai-08.html" target="_blank" rel="noopener">Đọc SGK & Lời giải bài 4.6–4.10</a></div>`}
+  }
+];
+
+let current = 0;
+let audioEnabled = false;
+let audioContext;
+let motion = !matchMedia('(prefers-reduced-motion: reduce)').matches;
+let liveTimer;
+let toastTimer;
+const reveals = sections.map(()=>0);
+$('#deck').innerHTML = sections.map((s,i)=>`<section class="slide" id="slide-${i+1}" ${i?'hidden':''} aria-labelledby="title-${i+1}"><div class="slide-head"><div class="heading"><p class="eyebrow">${s.tag}</p><h${i?2:1} id="title-${i+1}" tabindex="-1">${s.title}</h${i?2:1}><p class="lead">${s.lead}</p></div><div class="reveal-tools"><span class="count"></span><button class="action reveal-one">+ Hiện ý</button><button class="action reveal-all">Hiện hết</button></div></div><div class="body">${s.html}</div></section>`).join('');
+$('#toc-grid').innerHTML = sections.map((s,i)=>`<button class="action" data-goto="${i}">${String(i+1).padStart(2,'0')} · ${s.title}</button>`).join('');
+
+function sound(kind='click') {
+  if (!audioEnabled) return;
+  try {
+    const Audio = window.AudioContext || window.webkitAudioContext;
+    if (!Audio) return;
+    audioContext ||= new Audio();
+    if(audioContext.state==='suspended') audioContext.resume().catch(()=>{});
+    const now=audioContext.currentTime;
+    (kind==='good'?[523,659,784]:kind==='bad'?[240]:[560]).forEach((f,i)=>{
+      const o=audioContext.createOscillator(),g=audioContext.createGain();
+      o.type='sine';o.frequency.value=f;o.connect(g);g.connect(audioContext.destination);
+      g.gain.setValueAtTime(.045,now+i*.075);g.gain.exponentialRampToValueAtTime(.001,now+i*.075+.13);
+      o.start(now+i*.075);o.stop(now+i*.075+.14);
+    });
+  } catch { /* Audio is optional */ }
+}
+function notify(message) {
+  $('#toast').textContent=message;$('#toast').hidden=false;clearTimeout(toastTimer);
+  toastTimer=setTimeout(()=>$('#toast').hidden=true,3500);
+}
+function syncReveal() {
+  const slide=$(`#slide-${current+1}`),items=$$('.reveal',slide),count=reveals[current];
+  items.forEach((el,i)=>{const shown=i<count;el.classList.toggle('shown',shown);el.inert=!shown;el.setAttribute('aria-hidden',String(!shown));});
+  $('.reveal-tools',slide).hidden=!items.length;
+  $('.count',slide).textContent=`${count} / ${items.length}`;
+  $('.reveal-one',slide).disabled=count===items.length;
+  $('.reveal-all',slide).disabled=count===items.length;
+  $('#next-idea').textContent=count<items.length?'Hiện ý tiếp ↓':current===sections.length-1?'Về đầu bài ↺':'Trang tiếp →';
+  $('#all-ideas').hidden=!items.length;$('#all-ideas').disabled=count===items.length;
+  $('#reveal-counter').textContent=items.length?`Ý ${count}/${items.length}`:'';
+}
+function reveal(all=false) {
+  const length=$$('.reveal',$(`#slide-${current+1}`)).length;
+  if(reveals[current]>=length)return false;
+  reveals[current]=all?length:reveals[current]+1;syncReveal();sound();return true;
+}
+function showSlide(index,focus=true) {
+  if(index<0||index>=sections.length)return;
+  current=index;
+  $$('.slide').forEach((s,i)=>{s.hidden=i!==index;s.classList.toggle('active',i===index);});
+  $('#stage').scrollTop=0;$('#counter').textContent=`${String(index+1).padStart(2,'0')} / ${sections.length}`;
+  $('#progress').style.width=`${(index+1)/sections.length*100}%`;
+  $('#prev').disabled=index===0;$('#next').disabled=index===sections.length-1;
+  $$('[data-goto]').forEach((b,i)=>b.setAttribute('aria-current',i===index?'step':'false'));
+  syncReveal();if(focus)$(`#title-${index+1}`).focus({preventScroll:true});
+}
+function nextIdea(){if(!reveal()){sound();showSlide(current===sections.length-1?0:current+1);}}
+$('#prev').onclick=()=>{sound();showSlide(current-1);};$('#next').onclick=()=>{sound();showSlide(current+1);};$('#next-idea').onclick=nextIdea;
+$('#all-ideas').onclick=()=>reveal(true);
+$$('.reveal-one').forEach(b=>b.onclick=()=>reveal());$$('.reveal-all').forEach(b=>b.onclick=()=>reveal(true));
+$('#contents').onclick=()=>$('#toc').showModal();$('#close-toc').onclick=()=>$('#toc').close();
+$$('[data-goto]').forEach(b=>b.onclick=()=>{$('#toc').close();showSlide(Number(b.dataset.goto));sound();});
+$('#sound').onclick=()=>{audioEnabled=!audioEnabled;$('#sound').setAttribute('aria-pressed',String(audioEnabled));$('#sound').textContent=audioEnabled?'🔊 Âm thanh: Bật':'🔇 Âm thanh: Tắt';sound();};
+function syncMotion(){document.body.classList.toggle('motion-off',!motion);$('#motion').setAttribute('aria-pressed',String(motion));$('#motion').textContent=motion?'✨ Hiệu ứng: Bật':'✨ Hiệu ứng: Tắt';}
+$('#motion').onclick=()=>{motion=!motion;syncMotion();};syncMotion();
+async function fullscreen(){try{if(document.fullscreenElement)await document.exitFullscreen();else if(document.documentElement.requestFullscreen)await document.documentElement.requestFullscreen();else notify('Trình duyệt này chưa hỗ trợ toàn màn hình.');}catch{notify('Hãy mở slide ở tab riêng để dùng chế độ toàn màn hình.');}}
+$('#fullscreen').onclick=fullscreen;
+document.addEventListener('keydown',e=>{
+  if($('#toc').open||e.altKey||e.ctrlKey||e.metaKey||e.target.closest('input,textarea,select,[contenteditable="true"]'))return;
+  if(e.code==='Space'&&e.target.closest('button,a'))return;
+  const key=e.key.toLowerCase();
+  if(['arrowright','pagedown'].includes(key)){e.preventDefault();nextIdea();}
+  else if(key===' '){e.preventDefault();nextIdea();}
+  else if(['arrowleft','pageup'].includes(key)){e.preventDefault();showSlide(current-1);}
+  else if(key==='arrowdown'){e.preventDefault();reveal();}
+  else if(key==='arrowup'){e.preventDefault();reveals[current]=Math.max(0,reveals[current]-1);syncReveal();}
+  else if(key==='home'){e.preventDefault();showSlide(0);}
+  else if(key==='end'){e.preventDefault();showSlide(sections.length-1);}
+  else if(key==='f'){e.preventDefault();fullscreen();}
+  else if(key==='m'){e.preventDefault();$('#sound').click();}
+});
+
+let quizIndex=0;const quizAnswers=quizQuestions.map(()=>null);
+function renderQuiz(){
+  const score=quizAnswers.filter((a,i)=>a===quizQuestions[i][2]).length,done=quizAnswers.filter(a=>a!==null).length;
+  if(quizIndex===quizQuestions.length){
+    $('#quiz').innerHTML=`<div class="card quiz-end"><div class="score-big">${score} / ${quizQuestions.length}</div><h3>Kết quả Đấu trường Quiz Bài 8</h3><p>${score===quizQuestions.length?'Xuất sắc! Em đã nắm vững 100% bản chất phép cộng và trừ vectơ!':'Xem lại những câu chưa đúng rồi thử lại để đạt 12/12 nhé!'}</p><button class="action primary" id="quiz-reset">↺ Làm lại toàn bộ</button></div>`;
+    $('#quiz-reset').onclick=resetQuiz;return;
+  }
+  const [q,options,correct,explain]=quizQuestions[quizIndex],picked=quizAnswers[quizIndex],answered=picked!==null;
+  $('#quiz').innerHTML=`<div class="quiz-meta"><span>Câu ${quizIndex+1} / ${quizQuestions.length}</span><span>Đã làm ${done} · Đúng ${score}</span><button class="action" id="quiz-reset">↺ Làm lại</button></div><div class="card"><h3 class="quiz-question">${q}</h3><div class="quiz-options">${options.map((o,i)=>`<button class="choice ${answered?(i===correct?'correct':i===picked?'wrong':''):''}" data-quiz="${i}" ${answered?'disabled':''}><span class="letter">${answered&&i===correct?'✓':'ABCD'[i]}</span><span>${o}</span></button>`).join('')}</div><div class="feedback ${picked===correct?'good':''}">${answered?(picked===correct?'✓ Chính xác. ':'↪ Chưa đúng. ')+explain:''}</div><div class="quiz-actions"><button class="action" id="quiz-prev" ${quizIndex===0?'disabled':''}>← Câu trước</button><button class="action primary" id="quiz-next" ${answered?'':'disabled'}>${quizIndex===quizQuestions.length-1?'Xem tổng điểm':'Câu tiếp →'}</button></div></div>`;
+  $('#quiz-reset').onclick=resetQuiz;
+  $('#quiz-prev').onclick=()=>{quizIndex--;renderQuiz();};
+  $('#quiz-next').onclick=()=>{quizIndex++;renderQuiz();if(quizIndex===quizQuestions.length){sound('good');if(score===quizQuestions.length)confetti();}};
+  $$('[data-quiz]').forEach(b=>b.onclick=()=>{
+    if(quizAnswers[quizIndex]!==null)return;
+    quizAnswers[quizIndex]=Number(b.dataset.quiz);
+    sound(quizAnswers[quizIndex]===correct?'good':'bad');
+    renderQuiz();
+    $('#quiz-next').focus({preventScroll:true});
+  });
+}
+function resetQuiz(){quizAnswers.fill(null);quizIndex=0;renderQuiz();sound();}
+renderQuiz();
+
+let celebrationTimer;
+function confetti(){
+  if(!motion||matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+  const layer=$('#confetti');clearTimeout(celebrationTimer);layer.replaceChildren();
+  const colors=['#38bdf8','#fbbf24','#f43f5e','#10b981'];
+  for(let i=0;i<65;i++){
+    const p=document.createElement('i');
+    p.style.left=`${Math.random()*100}%`;
+    p.style.animationDelay=`${Math.random()*.45}s`;
+    p.style.background=colors[i%4];
+    layer.append(p);
+  }
+  celebrationTimer=setTimeout(()=>layer.replaceChildren(),2500);
+}
+
+// Interactive SVG diagrams and labs for Bài 8: Tổng và hiệu của hai vectơ
+const sub=(a,b)=>[b[0]-a[0],b[1]-a[1]];
+const close=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1])<1e-8;
+
+function diagram(id,points,arrows=[],options={}){
+  const svg=$('#'+id);if(!svg)return;
+  let xs=Object.values(points).map(p=>p[0]),ys=Object.values(points).map(p=>p[1]);
+  const xmin=options.grid?0:Math.min(...xs),xmax=options.grid?8:Math.max(...xs),ymin=options.grid?0:Math.min(...ys),ymax=options.grid?8:Math.max(...ys);
+  const scale=Math.min(460/(xmax-xmin||1),240/(ymax-ymin||1));
+  const ox=310-(xmin+xmax)*scale/2,oy=170+(ymin+ymax)*scale/2;
+  const xy=p=>[ox+p[0]*scale,oy-p[1]*scale];
+  const colors=['#38bdf8','#fbbf24','#f43f5e','#10b981','#818cf8'];
+
+  let html=`<defs>${colors.map(c=>`<marker id="${id}-${c.slice(1)}" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0L10 5L0 10Z" fill="${c}"/></marker>`).join('')}</defs>`;
+
+  if(options.polygon){
+    const pts=options.polygon.map(k=>xy(points[k]).join(',')).join(' ');
+    html+=`<polygon points="${pts}" fill="rgba(56, 189, 248, 0.05)" stroke="#334155" stroke-width="2"/>`;
+  }
+
+  // Draw aux dashed lines
+  if(options.dashed){
+    for(const [a,b] of options.dashed){
+      const p=xy(points[a]),q=xy(points[b]);
+      html+=`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="#475569" stroke-width="2" stroke-dasharray="5 5"/>`;
+    }
+  }
+
+  // Draw arrows
+  for(const [i,item] of arrows.entries()){
+    const [a,b,color=colors[i%colors.length],dash='']=item;
+    if(!points[a]||!points[b])continue;
+    const p=xy(points[a]),q=xy(points[b]);
+    html+=`<line x1="${p[0]}" y1="${p[1]}" x2="${q[0]}" y2="${q[1]}" stroke="${color}" stroke-width="4" marker-end="url(#${id}-${color.slice(1)})" ${dash?'stroke-dasharray="6 4"':''}/>`;
+  }
+
+  // Draw points & labels
+  for(const [name,p] of Object.entries(points)){
+    const [x,y]=xy(p);
+    html+=`<circle cx="${x}" cy="${y}" r="4.5" fill="#f8fafc"/>`;
+    if(!options.hideLabels){
+      html+=`<text x="${x+9}" y="${y-10}" font-weight="bold" font-size="18">${esc(name)}</text>`;
+    }
+  }
+
+  if(options.label){
+    html+=`<text x="310" y="325" text-anchor="middle" class="small" fill="#94a3b8">${esc(options.label)}</text>`;
+  }
+  svg.innerHTML=html;
+}
+
+// 1. Cover
+diagram('cover',{A:[0,0],B:[4,1],C:[7,5]},[['A','B','#38bdf8'],['B','C','#10b981'],['A','C','#fbbf24','dash']],{label:'AB + BC = AC (Quy tắc nối tiếp)'});
+
+// 2. River Boat
+diagram('river-boat',{O:[0,0],T:[0,4],N:[5,0],R:[5,4]},[['O','T','#38bdf8'],['O','N','#10b981'],['O','R','#fbbf24']],{dashed:[['T','R'],['N','R']],label:'Vectơ vận tốc thực tế: v = v_tàu + v_nước'});
+
+// 3. Triangle Add
+diagram('triangle-add',{A:[0,0],B:[5,0],C:[7,4]},[['A','B','#38bdf8'],['B','C','#10b981'],['A','C','#fbbf24']],{label:'HĐ1: AB + BC = AC'});
+
+// 4. Independent Root
+diagram('independent-root',{A:[0,0],B:[4,1],C:[6,4],A1:[0,6],B1:[4,7],C1:[6,10]},[['A','B','#38bdf8'],['B','C','#10b981'],['A','C','#fbbf24'],['A1','B1','#38bdf8'],['B1','C1','#10b981'],['A1','C1','#fbbf24']],{dashed:[['A','A1'],['C','C1']],label:'Vectơ tổng AC và A\'C\' hoàn toàn bằng nhau'});
+
+// 5. Three Points
+diagram('three-points',{A:[1,1],B:[5,2],C:[8,6]},[['A','B','#38bdf8'],['B','C','#10b981'],['A','C','#fbbf24']],{label:'Quy tắc ba điểm: Nối ngọn B vào gốc B'});
+
+// 6. Chain Lab
+function renderChain(mode){
+  if(mode===0){
+    diagram('chain-lab',{A:[0,0],B:[3,1],C:[6,4]},[['A','B','#38bdf8'],['B','C','#10b981'],['A','C','#fbbf24']],{label:'3 điểm: AB + BC = AC'});
+    $('#chain-result').innerHTML='<strong>AB + BC = AC</strong><br><small>2 chặng nối tiếp.</small>';
+  } else if(mode===1){
+    diagram('chain-lab',{A:[0,0],B:[2,2],C:[5,3],D:[7,1]},[['A','B','#38bdf8'],['B','C','#10b981'],['C','D','#818cf8'],['A','D','#fbbf24']],{label:'4 điểm: AB + BC + CD = AD'});
+    $('#chain-result').innerHTML='<strong>AB + BC + CD = AD</strong><br><small>3 chặng nối tiếp liên tục.</small>';
+  } else {
+    diagram('chain-lab',{A:[0,0],B:[3,3],C:[6,1]},[['A','B','#38bdf8'],['B','C','#10b981'],['C','A','#f43f5e']],{label:'Khép kín: AB + BC + CA = AA = 0'});
+    $('#chain-result').innerHTML='<strong>AB + BC + CA = AA = \\(\\vec0\\)</strong><br><small>Đa giác khép kín có tổng bằng vectơ-không.</small>';
+  }
+}
+$$('[data-chain]').forEach(b=>b.onclick=()=>renderChain(Number(b.dataset.chain)));
+renderChain(0);
+
+// 7. Force Pull
+diagram('force-pull',{A:[0,0],B:[5,0],D:[3,4],C:[8,4]},[['A','B','#38bdf8'],['A','D','#10b981'],['A','C','#fbbf24']],{dashed:[['B','C'],['D','C']],label:'Hai lực kéo đồng quy F1 và F2 tạo nên hợp lực F'});
+
+// 8. Parallelogram Rule
+diagram('parallelogram-rule',{A:[0,0],B:[6,0],D:[2,4],C:[8,4]},[['A','B','#38bdf8'],['A','D','#10b981'],['A','C','#fbbf24']],{polygon:['A','B','C','D'],label:'Quy tắc HBH: AB + AD = AC'});
+
+// 9. Parallelogram Lab (Interactive slider)
+function updatePBHLab(){
+  const deg=Number($('#pbh-angle').value);
+  $('#pbh-angle-val').textContent=deg+'°';
+  const rad=deg*Math.PI/180;
+  const F1=10, F2=10;
+  const Dx=F2*Math.cos(rad), Dy=F2*Math.sin(rad);
+  const Cx=F1+Dx, Cy=Dy;
+  const resF=Math.sqrt(F1*F1 + F2*F2 + 2*F1*F2*Math.cos(rad));
+
+  diagram('parallelogram-lab',{A:[0,0],B:[F1,0],D:[Dx,Dy],C:[Cx,Cy]},[['A','B','#38bdf8'],['A','D','#10b981'],['A','C','#fbbf24']],{dashed:[['B','C'],['D','C']],label:`Góc θ = ${deg}° · Hợp lực F = ${resF.toFixed(2)} N`});
+  $('#pbh-result').innerHTML=`<strong>Hợp lực |F| = ${resF.toFixed(2)} N</strong><br><small>${deg===0?'Cực đại F = 20 N (cùng hướng)':deg===180?'Cực tiểu F = 0 N (ngược hướng triệt tiêu)':`F = 2·10·cos(${deg/2}°) = ${(20*Math.cos(rad/2)).toFixed(2)} N`}</small>`;
+}
+if($('#pbh-angle')){
+  $('#pbh-angle').oninput=updatePBHLab;
+  updatePBHLab();
+}
+
+// 10. Ví dụ 1
+diagram('vd1-scene',{A:[0,0],B:[6,0],C:[8,4],D:[2,4]},[['A','B','#38bdf8'],['C','D','#f43f5e'],['A','C','#fbbf24']],{polygon:['A','B','C','D'],label:'Ví dụ 1: AB + CD = 0 và BA + DA + AC = 0'});
+
+// 11. Luyện tập 1
+diagram('lt1-scene',{A:[0,0],B:[5,0],D:[2.5,4.33],C:[7.5,4.33]},[['A','B','#38bdf8'],['A','D','#10b981'],['A','C','#fbbf24']],{polygon:['A','B','C','D'],label:'Hình thoi cạnh a, góc 60°: AC = a√3'});
+
+// 12. Opposite Vectors
+diagram('opposite-vectors',{I:[0,0],A:[-4,0],B:[4,0]},[['I','A','#38bdf8'],['I','B','#f43f5e']],{label:'Hai vectơ đối: IA + IB = 0'});
+
+// 13. Subtraction Def
+diagram('subtraction-def',{O:[0,0],A:[4,2],B:[2,4],minusB:[-2,-4],Res:[2,-2]},[['O','A','#38bdf8'],['O','B','#10b981'],['O','minusB','#f43f5e','dash'],['O','Res','#fbbf24']],{label:'a - b = a + (-b)'});
+
+// 14. Diff Rule
+diagram('diff-rule',{O:[0,0],A:[3,4],B:[6,1]},[['O','A','#38bdf8'],['O','B','#10b981'],['A','B','#fbbf24']],{label:'OB - OA = AB (ngọn trừ gốc)'});
+
+// 15. Ví dụ 2
+diagram('vd2-scene',{A:[0,0],B:[5,1],C:[2,4]},[['A','B','#38bdf8'],['A','C','#10b981'],['C','B','#fbbf24']],{label:'AB - AC = CB'});
+
+// 16. Midpoint Rule
+diagram('midpoint-rule',{M:[2,5],I:[3,1],A:[0,1],B:[6,1]},[['M','A','#38bdf8'],['M','B','#10b981'],['M','I','#fbbf24'],['I','A','#475569','dash'],['I','B','#475569','dash']],{label:'MA + MB = 2MI (I là trung điểm AB)'});
+
+// 17. Centroid Rule
+diagram('centroid-rule',{A:[2,6],B:[0,0],C:[7,1],G:[3,2.33],M:[3.5,0.5]},[['G','A','#38bdf8'],['G','B','#10b981'],['G','C','#818cf8']],{dashed:[['A','M']],label:'GA + GB + GC = 0 (G là trọng tâm ABC)'});
+
+// 18. Luyện tập 2
+diagram('lt2-scene',{A:[0,4],B:[2,6],C:[7,3],D:[5,0],M:[1,5],N:[6,1.5]},[['A','C','#38bdf8'],['B','D','#10b981'],['M','N','#fbbf24']],{dashed:[['A','B'],['C','D']],label:'AC + BD = 2MN'});
+
+// 19. Ví dụ 4
+diagram('vd4-scene',{O:[0,0],F1:[6,0],F2:[3,5.19],F:[9,5.19]},[['O','F1','#38bdf8'],['O','F2','#10b981'],['O','F','#fbbf24']],{dashed:[['F1','F'],['F2','F']],label:'F1 = 10N, F2 = 10N, θ = 60° ⇒ F = 10√3 N ≈ 17,32 N'});
+
+// 20. Cannon Scene
+diagram('cannon-scene',{O:[0,0],L:[7,0],P:[4,0],G:[3.5,2],Px:[2.5,1.4],Py:[4,0.3],Fk:[5.5,3.2]},[['G','P','#f43f5e'],['G','Px','#fbbf24'],['G','Fk','#10b981']],{dashed:[['G','Py']],label:'Trọng lực P, thành phần trượt Px và lực kéo Fk'});
+
+// 21. Incline Lab (Interactive slider)
+function updateSlopeLab(){
+  const deg=Number($('#slope-angle').value);
+  $('#slope-angle-val').textContent=deg+'°';
+  const rad=deg*Math.PI/180;
+  const mass=2260; // kg
+  const g=9.8;
+  const P=mass*g;
+  const Px=P*Math.sin(rad);
+  const soldiers=Math.ceil(Px/100);
+
+  const L=8;
+  const H=L*Math.sin(rad);
+  const W=L*Math.cos(rad);
+
+  diagram('incline-lab',{O:[0,0],B:[W,0],T:[W,H],G:[W/2,H/2+0.5],Px:[W/2-1.5*Math.cos(rad),H/2+0.5-1.5*Math.sin(rad)],Fk:[W/2+2*Math.cos(rad),H/2+0.5+2*Math.sin(rad)]},[['G','Px','#fbbf24'],['G','Fk','#10b981']],{polygon:['O','B','T'],label:`Dốc ${deg}° · Lực tụt dốc Px = ${Px.toFixed(0)} N`});
+
+  $('#slope-result').innerHTML=`<strong>Lực trượt: ${Px.toFixed(0)} N · Cần tối thiểu ${soldiers} chiến sĩ</strong><br><small>Góc càng dốc thì P·sin(α) càng lớn!</small>`;
+}
+if($('#slope-angle')){
+  $('#slope-angle').oninput=updateSlopeLab;
+  updateSlopeLab();
+}
+
+// 22. Boat Race
+diagram('boat-race',{A:[0,0],B:[0,5],T1:[3,5],T2:[1,5]},[['A','T1','#38bdf8'],['A','T2','#10b981']],{label:'Cùng vy = v0·sinα ⇒ t = d/vy như nhau, cùng sang bờ!'});
+
+// Group activity timer
+let timerId, timeRemaining = 180;
+const timerEl = $('#group-time');
+function updateTimer(){
+  const m = Math.floor(timeRemaining / 60);
+  const s = timeRemaining % 60;
+  if(timerEl) timerEl.textContent = `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+}
+if($('#group-start')){
+  $('#group-start').onclick=()=>{
+    clearInterval(timerId);
+    timerId=setInterval(()=>{
+      if(timeRemaining>0){ timeRemaining--; updateTimer(); }
+      else { clearInterval(timerId); sound('good'); notify('Hết 3 phút thảo luận nhóm!'); }
+    },1000);
+  };
+  $('#group-pause').onclick=()=>clearInterval(timerId);
+  $('#group-reset').onclick=()=>{ clearInterval(timerId); timeRemaining=180; updateTimer(); };
+}
+
+// Checkboxes checklist
+$$('.check').forEach(b=>b.onclick=()=>{
+  const val = b.getAttribute('aria-pressed')==='true';
+  b.setAttribute('aria-pressed', String(!val));
+  b.querySelector('.check-icon').textContent = !val ? '☑' : '□';
+  sound();
+});
+</script>
+</body>
+</html>

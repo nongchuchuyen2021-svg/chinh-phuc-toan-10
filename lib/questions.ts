@@ -6,6 +6,7 @@ import bai04 from "@/data/questions/bai-04";
 import bai05 from "@/data/questions/bai-05";
 import bai06 from "@/data/questions/bai-06";
 import bai07 from "@/data/questions/bai-07";
+import bai08 from "@/data/questions/bai-08";
 
 // Ngân hàng câu hỏi trắc nghiệm 4 lựa chọn cho toàn bộ 27 bài học Toán 10 (Bộ sách Kết nối tri thức).
 export const QUESTION_BANK: Record<string, Question[]> = {
@@ -19,32 +20,7 @@ export const QUESTION_BANK: Record<string, Question[]> = {
 
   "bai-07": bai07,
 
-  "bai-08": [
-    {
-      id: "b8-q1",
-      q: "Với ba điểm phân biệt $A, B, C$ tuỳ ý, đẳng thức nào sau đây luôn đúng (Quy tắc ba điểm)?",
-      options: [
-        "$\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$",
-        "$\\overrightarrow{AB} + \\overrightarrow{CA} = \\overrightarrow{BC}$",
-        "$\\overrightarrow{AB} - \\overrightarrow{AC} = \\overrightarrow{BC}$",
-        "$\\overrightarrow{BA} + \\overrightarrow{AC} = \\overrightarrow{CB}$"
-      ],
-      answer: 0,
-      explain: "Theo quy tắc ba điểm: $\\overrightarrow{AB} + \\overrightarrow{BC} = \\overrightarrow{AC}$."
-    },
-    {
-      id: "b8-q2",
-      q: "Cho hình bình hành $ABCD$. Tổng vectơ $\\overrightarrow{AB} + \\overrightarrow{AD}$ bằng:",
-      options: [
-        "$\\overrightarrow{CA}$",
-        "$\\overrightarrow{BD}$",
-        "$\\overrightarrow{AC}$",
-        "$\\overrightarrow{DB}$"
-      ],
-      answer: 2,
-      explain: "Theo quy tắc hình bình hành: $\\overrightarrow{AB} + \\overrightarrow{AD} = \\overrightarrow{AC}$."
-    }
-  ],
+  "bai-08": bai08,
 
   "bai-09": [
     {

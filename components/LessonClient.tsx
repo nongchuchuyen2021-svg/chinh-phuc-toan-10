@@ -300,6 +300,8 @@ export default function LessonClient({
               ? "26 slide tương tác · Khám phá côsin, sin, giải tam giác, đo khoảng cách, diện tích và 12 câu hỏi tự chấm"
               : lessonId === "bai-07"
               ? "28 slide tương tác · Xưởng tự dựng 3 nhiệm vụ, phản hồi sửa sai, 12 câu tự chấm và bài tập đúng SGK"
+              : lessonId === "bai-08"
+              ? "28 slide tương tác · Phòng thí nghiệm cộng vectơ, tổng hợp lực kéo pháo, thuyền qua sông và 12 câu hỏi tự chấm"
               : "15 slide bài giảng điện tử tương tác chuẩn GDPT 2018 · Phòng thí nghiệm mô phỏng động & Đấu trường Quiz",
             done: false,
             badge: "Mới ✨",
@@ -320,6 +322,8 @@ export default function LessonClient({
               ? "Bài học theo SGK trang 38–43 · Tình huống thực địa hai con tàu, hoạt động khám phá, ví dụ mẫu và bài tập luyện tập giải chi tiết"
               : lessonId === "bai-07"
               ? "SGK trang 46–50 · Đúng đề 4.1–4.5, lời giải bổ sung và 5 trang gốc để đối chiếu"
+              : lessonId === "bai-08"
+              ? "SGK trang 51–54 · Quy tắc 3 điểm, hình bình hành, kéo pháo Điện Biên Phủ, bài tập 4.6–4.10 có lời giải chi tiết"
               : "Đọc nguyên bản sách giáo khoa Toán 10 Kết nối tri thức có hình vẽ đồ thị và bài tập",
             done: false,
             badge: null,
@@ -340,6 +344,8 @@ export default function LessonClient({
               ? "3 trò chơi hấp dẫn · Đấu trường Côsin vs Sin, Ghép đôi công thức vàng & Máy quét tam giác nhọn/tù"
               : lessonId === "bai-07"
               ? "3 trò chơi hấp dẫn · Đấu trường Hướng vectơ, Ghép đôi khái niệm vàng & Máy quét chân lý vectơ"
+              : lessonId === "bai-08"
+              ? "3 trò chơi hấp dẫn · Đấu trường Chuỗi vectơ, Ghép đôi quy tắc vàng & Máy quét hợp lực thực tế"
               : `${games.length} trò chơi sinh động · Kéo co tri thức 2 đội, Chinh phục đỉnh cao & Ghép thẻ`,
             done: false,
             badge: `${games.length} game`,
